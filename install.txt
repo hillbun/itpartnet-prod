@@ -427,6 +427,8 @@ sudo systemctl start redis
 sudo systemctl status redis
 sudo systemctl restart redis
 
+redis-cli -h 192.168.52.236 -p 6379 --rdb /root/dump.rdb
+
 
 
 redis-cli -h 127.0.0.1 -p 6379 -a 'StrongP@@ssw0rd123!'
