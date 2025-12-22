@@ -260,6 +260,12 @@ chown squid.squid /opt/squid/etc/opp.keytab
 
 
 ---
+sudo dnf install -y gcc gcc-c++ pcre pcre-devel gd-devel openssl openssl-devel \
+    zlib zlib-devel perl-devel perl-ExtUtils-Embed gd-devel net-tools \
+    libxslt-devel libxml2 libxslt-devel openldap-clients
+
+# 创建nginx系统用户
+sudo useradd -s /bin/false -M nginx
 
 #上传模块压缩包
 mkdir /root/software
@@ -267,3 +273,24 @@ cd /root/software
 wget https://nginx.org/download/nginx-1.2.5.tar.gz
 headers-more-nginx-module.tar.gz
 
+./configure --prefix=/usr/nginx \
+    --with-cc-opt=-O2 \
+    --with-http_ssl_module \
+    --with-http_v2_module \
+    --with-http_sub_module \
+    --with-http_stub_status_module \
+    --with-threads \
+    --with-compat \
+    --add-module=../headers-more-nginx-module \
+    --sbin-path=/usr/nginx/sbin/nginx \
+    --conf-path=/usr/nginx/conf/nginx.conf \
+    --with-stream \
+    --without-pcre2 \
+    --with-stream_ssl_module \
+    --with-stream_ssl_preread_module
+	
+# 编译（普通用户权限）
+make
+
+# 安装（需要sudo权限）
+sudo make install
