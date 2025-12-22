@@ -1,17 +1,29 @@
+HA-RPAHOST-2
+LH511
+tyP6Jx?urY1
+
+CORP-LOGON
+
+sshgateway
+xw972
+TcN?U?JmqU1
+
+
 https://ka9rcghfcff.feishu.cn/wiki/BLjXwE6nmith8Wk7Tv4c4w72nmf
 
 
-poxappprd52a
-poxappprd52b
-poxappprd52
-poxappprd52d
-poxappprd52e
+poxappprd52a  192.168.152.120
+poxappprd52b  192.168.152.121
+poxappprd52c  192.168.152.122
+poxappprd52d  192.168.152.123
+poxappprd52e  192.168.152.124
 MDE
 
 root
 pox@N5OPP
 
 
+NONONONONONO
 -------------------------------------------
 # 设置主机名
 sudo hostnamectl set-hostname test4.squid.hk
@@ -52,6 +64,8 @@ sudo dnf install -y openldap-clients openldap-devel realmd sssd sssd-ldap \
     krb5-libs krb5-workstation krb5-devel libecap libecap-devel \
     gnutls-devel pam-devel libtdb-devel libxml2-devel
 
+
+NONONONONO
 -------
 # 设置时间同步
 sudo systemctl start chronyd
@@ -59,9 +73,12 @@ sudo timedatectl set-timezone Asia/Hong_Kong
 sudo timedatectl set-ntp yes
 sudo systemctl restart chronyd
 
+
+NONONONONO
 ---
 # 切换到普通用户
 su - normaluser
+
 
 --------------------------------------------
 # 创建Squid系统用户
@@ -125,6 +142,8 @@ make
 # 安装（需要sudo权限）
 sudo make install
 
+
+NONONONONONO
 ---
 cp /opt/squid/etc/squid.conf /opt/squid/etc/squid.conf.bak
 
@@ -176,36 +195,8 @@ sudo /opt/squid/sbin/squid -k parse -f /opt/squid/etc/squid.conf
 
 ---
 # 备份原配置
-sudo cp /etc/krb5.conf /etc/krb5.conf_org
+sudo cp /etc/krb5.conf /etc/krb5.conf.bak
 
-# 创建新的krb5.conf
-sudo tee /etc/krb5.conf > /dev/null << 'EOF'
-[logging]
-default = FILE:/var/log/krb5libs.log
-kdc = FILE:/var/log/krb5kdc.log
-admin_server = FILE:/var/log/kadmind.log
+cp squid.keytab /opt/squid/etc/app.keytab
+cp krb5.conf /etc/krb5.conf
 
-[libdefaults]
-dns_lookup_realm = false
-dns_lookup_kdc = true
-ticket_lifetime = 24h
-renew_lifetime = 7d
-forwardable = true
-rdns = false
-default_keytab_name = /opt/squid/etc/squid.keytab
-pkinit_anchors = FILE:/etc/pki/tls/certs/ca-bundle.crt
-spake_preauth_groups = edwards25519
-default_realm = SQUID.HK
-default_ccache_name = KEYRING:persistent:%{uid}
-udp_preference_limit = 0
-
-[realms]
-SQUID.HK = {
-    kdc = dc1.squid.hk
-    admin_server = dc1.squid.hk
-}
-
-[domain_realm]
-.squid.hk = SQUID.HK
-squid.hk = SQUID.HK
-EOF
