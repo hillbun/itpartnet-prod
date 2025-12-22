@@ -164,6 +164,8 @@ coredump_dir /opt/squid/var/coredumps
 EOF
 
 
+mkdir -p /opt/squid/var/coredumps
+
 # 设置目录权限
 sudo chown -R squid:squid /opt/squid
 #sudo chown -R squid:squid /opt/squid/var/
