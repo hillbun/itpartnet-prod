@@ -65,41 +65,6 @@ sudo systemctl restart chronyd
 sudo useradd -r -s /sbin/nologin squid
 
 
-# 备份原配置
-sudo cp /etc/krb5.conf /etc/krb5.conf_org
-
-# 创建新的krb5.conf
-sudo tee /etc/krb5.conf > /dev/null << 'EOF'
-[logging]
-default = FILE:/var/log/krb5libs.log
-kdc = FILE:/var/log/krb5kdc.log
-admin_server = FILE:/var/log/kadmind.log
-
-[libdefaults]
-dns_lookup_realm = false
-dns_lookup_kdc = true
-ticket_lifetime = 24h
-renew_lifetime = 7d
-forwardable = true
-rdns = false
-default_keytab_name = /opt/squid/etc/squid.keytab
-pkinit_anchors = FILE:/etc/pki/tls/certs/ca-bundle.crt
-spake_preauth_groups = edwards25519
-default_realm = SQUID.HK
-default_ccache_name = KEYRING:persistent:%{uid}
-udp_preference_limit = 0
-
-[realms]
-SQUID.HK = {
-    kdc = dc1.squid.hk
-    admin_server = dc1.squid.hk
-}
-
-[domain_realm]
-.squid.hk = SQUID.HK
-squid.hk = SQUID.HK
-EOF
-
 ---
 # 切换到普通用户
 su - normaluser
@@ -207,3 +172,40 @@ sudo systemctl status squid
 
 # 检查配置语法
 sudo /opt/squid/sbin/squid -k parse -f /opt/squid/etc/squid.conf
+
+
+---
+# 备份原配置
+sudo cp /etc/krb5.conf /etc/krb5.conf_org
+
+# 创建新的krb5.conf
+sudo tee /etc/krb5.conf > /dev/null << 'EOF'
+[logging]
+default = FILE:/var/log/krb5libs.log
+kdc = FILE:/var/log/krb5kdc.log
+admin_server = FILE:/var/log/kadmind.log
+
+[libdefaults]
+dns_lookup_realm = false
+dns_lookup_kdc = true
+ticket_lifetime = 24h
+renew_lifetime = 7d
+forwardable = true
+rdns = false
+default_keytab_name = /opt/squid/etc/squid.keytab
+pkinit_anchors = FILE:/etc/pki/tls/certs/ca-bundle.crt
+spake_preauth_groups = edwards25519
+default_realm = SQUID.HK
+default_ccache_name = KEYRING:persistent:%{uid}
+udp_preference_limit = 0
+
+[realms]
+SQUID.HK = {
+    kdc = dc1.squid.hk
+    admin_server = dc1.squid.hk
+}
+
+[domain_realm]
+.squid.hk = SQUID.HK
+squid.hk = SQUID.HK
+EOF
