@@ -17,9 +17,8 @@ poxappprd52b  192.168.152.121
 poxappprd52c  192.168.152.122
 poxappprd52d  192.168.152.123
 poxappprd52e  192.168.152.124
-MDE
 
-root
+ssho root@192.168.152.120
 pox@N5OPP
 
 
@@ -204,12 +203,51 @@ sudo systemctl enable squid
 
 
 ---
+# 检查配置语法
+sudo /opt/squid/sbin/squid -k parse -f /opt/squid/etc/squid.conf
+
 # 启动服务
 sudo systemctl start squid
 sudo systemctl status squid
 
-# 检查配置语法
-sudo /opt/squid/sbin/squid -k parse -f /opt/squid/etc/squid.conf
+---
+######################################################################################################################################################
+#                                                                                                                                                   ##
+#                                                                  LDAP 认证配置                                                                    ##
+#                                                                                                                                                   ##
+######################################################################################################################################################
+
+# LDAP  (基本认证)
+#4.Authentication
+#4.1 LDAPS
+include /opt/squid/etc/ldap_auth.conf
+#auth_param  basic program /opt/squid/libexec/basic_ldap_auth -R -b "dc=corp,dc=ha,dc=org,dc=hk" -D "cn=n5-proxy-opp-41a,ou=Users,ou=N2,ou=ITIS,dc=corp,dc=ha,dc=org,dc=hk" -W "/opt/squid/etc/ldap_password" -f sAMAccountName=%s -H ldaps://corprodc03.corp.ha.org.hk:636
+#1
+auth_param basic realm "HA corp OPPTransproxy Authentication"
+auth_param basic credentialsttl 168 hours
+acl ldap_auth proxy_auth REQUIRED
+
+#http_access allow ldap-auth
+
+
+
+######################################################################################################################################################
+#                                                                                                                                                   ##
+#                                                                  Kerberos 认证配置                                                                ##
+#                                                                                                                                                   ##
+######################################################################################################################################################
+
+#Kerberos(案列)
+include /opt/squid/etc/kerberos_auth.conf
+#auth_param negotiate program /opt/squid/libexec/negotiate_kerberos_auth -k /opt/squid/etc/41a-new.keytab  -s HTTP/poxappprd41a.server.ha.org.hk@CORP.HA.ORG.HK -d
+#auth_param negotiate children 200
+#auth_param negotiate keep_alive on
+#auth_param negotiate realm CORP.HA.ORG.HK
+#acl kerberos_auth proxy_auth REQUIRED
+#http_access deny !kerberos_auth
+#http_access allow kerberos_auth
+
+
 
 
 ---
@@ -220,4 +258,12 @@ cp opp.keytab /opt/squid/etc/opp.keytab
 chown squid.squid /opt/squid/etc/opp.keytab
 \cp krb5.conf /etc/krb5.conf
 
+
+---
+
+#上传模块压缩包
+mkdir /root/software
+cd /root/software
+wget https://nginx.org/download/nginx-1.2.5.tar.gz
+headers-more-nginx-module.tar.gz
 
