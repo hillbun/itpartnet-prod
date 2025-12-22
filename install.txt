@@ -197,8 +197,8 @@ sudo /opt/squid/sbin/squid -k parse -f /opt/squid/etc/squid.conf
 # 备份原配置
 sudo cp /etc/krb5.conf /etc/krb5.conf.bak
 
-cp app.keytab /opt/squid/etc/app.keytab
-chown squid.squid /opt/squid/etc/app.keytab
+cp opp.keytab /opt/squid/etc/opp.keytab
+chown squid.squid /opt/squid/etc/opp.keytab
 \cp krb5.conf /etc/krb5.conf
 
 
