@@ -1,1 +1,209 @@
-install
+https://ka9rcghfcff.feishu.cn/wiki/BLjXwE6nmith8Wk7Tv4c4w72nmf
+
+
+poxappprd52a
+poxappprd52b
+poxappprd52
+poxappprd52d
+poxappprd52e
+MDE
+
+root
+pox@N5OPP
+
+
+-------------------------------------------
+# 设置主机名
+sudo hostnamectl set-hostname test4.squid.hk
+
+# 配置DNS
+sudo bash -c 'cat > /etc/resolv.conf << EOF
+search squid.hk
+nameserver 10.2.3.180
+EOF'
+
+# 设置hosts文件
+sudo bash -c 'cat >> /etc/hosts << EOF
+10.2.3.180 dc1.squid.hk
+10.2.3.92 test4.squid.hk
+EOF'
+
+
+# 创建普通用户并授予sudo权限
+sudo useradd -m -s /bin/bash normaluser
+sudo passwd normaluser
+sudo usermod -aG wheel normaluser
+
+# 切换到普通用户
+su - normaluser
+
+# 验证sudo权限
+sudo whoami
+
+
+-------------------------------------------
+# 安装基础依赖包
+sudo dnf install -y gcc make openssl openssl-devel zlib zlib-devel \
+    perl-devel perl-ExtUtils-Embed net-tools vim wget lrzsz
+
+
+sudo dnf install -y openldap-clients openldap-devel realmd sssd sssd-ldap \
+    oddjob-mkhomedir oddjob samba-common-tools sssd-tools chrony \
+    krb5-libs krb5-workstation krb5-devel libecap libecap-devel \
+    gnutls-devel pam-devel libtdb-devel libxml2-devel
+
+-------
+# 设置时间同步
+sudo systemctl start chronyd
+sudo timedatectl set-timezone Asia/Hong_Kong
+sudo timedatectl set-ntp yes
+sudo systemctl restart chronyd
+
+
+--------------------------------------------
+# 创建Squid系统用户
+sudo useradd -r -s /sbin/nologin squid
+
+
+# 备份原配置
+sudo cp /etc/krb5.conf /etc/krb5.conf_org
+
+# 创建新的krb5.conf
+sudo tee /etc/krb5.conf > /dev/null << 'EOF'
+[logging]
+default = FILE:/var/log/krb5libs.log
+kdc = FILE:/var/log/krb5kdc.log
+admin_server = FILE:/var/log/kadmind.log
+
+[libdefaults]
+dns_lookup_realm = false
+dns_lookup_kdc = true
+ticket_lifetime = 24h
+renew_lifetime = 7d
+forwardable = true
+rdns = false
+default_keytab_name = /opt/squid/etc/squid.keytab
+pkinit_anchors = FILE:/etc/pki/tls/certs/ca-bundle.crt
+spake_preauth_groups = edwards25519
+default_realm = SQUID.HK
+default_ccache_name = KEYRING:persistent:%{uid}
+udp_preference_limit = 0
+
+[realms]
+SQUID.HK = {
+    kdc = dc1.squid.hk
+    admin_server = dc1.squid.hk
+}
+
+[domain_realm]
+.squid.hk = SQUID.HK
+squid.hk = SQUID.HK
+EOF
+
+---
+# 切换到普通用户
+su - normaluser
+
+# 下载Squid源码
+cd ~
+wget http://www.squid-cache.org/Versions/v6/squid-6.11.tar.gz
+tar -xzvf squid-6.11.tar.gz
+cd squid-6.11
+
+# 配置编译选项
+./configure --prefix=/opt/squid \
+    --bindir=/opt/squid/bin \
+    --sbindir=/opt/squid/sbin \
+    --sysconfdir=/opt/squid/etc \
+    --datadir=/opt/squid/share \
+    --includedir=/opt/squid/include \
+    --libdir=/opt/squid/lib \
+    --libexecdir=/opt/squid/libexec \
+    --localstatedir=/opt/squid/var \
+    --sharedstatedir=/opt/squid/lib \
+    --mandir=/opt/squid/share/man \
+    --infodir=/opt/squid/share/info \
+    --with-logdir=/opt/squid/var/log \
+    --with-pidfile=/opt/squid/var/run/squid.pid \
+    --enable-ssl \
+    --with-openssl=/usr \
+    --enable-auth \
+    --enable-auth-basic=DB,fake,getpwnam,LDAP,NCSA,PAM,POP3,RADIUS,SASL,SMB,SMB_LM \
+    --enable-auth-ntlm=SMB_LM,fake \
+    --enable-auth-digest=file,LDAP \
+    --enable-auth-negotiate=kerberos \
+    --enable-external-acl helpers=LDAP_group,time_quota,session,unix_group,wbinfo_group,kerberos_ldap_group \
+    --enable-storeid-rewrite-helpers=file \
+    --enable-cache-digests \
+    --enable-cachemgr-hostname=localhost \
+    --enable-delay-pools \
+    --enable-epoll \
+    --enable-icap-client \
+    --enable-ident-lookups \
+    --enable-linux-netfilter \
+    --enable-removal-policies=heap,lru \
+    --enable-snmp \
+    --enable-ssl-crtd \
+    --enable-storeio=aufs,diskd,ufs,rock \
+    --enable-diskio \
+    --enable-wccpv2 \
+    --enable-esi \
+    --enable-ecap \
+    --with-aio \
+    --with-default-user=squid \
+    --enable-async-io \
+    --with-dl \
+    --with-pthreads \
+    --with-swapdir=/opt/squid/var/spool/squid
+
+# 编译
+make
+
+# 安装（需要sudo权限）
+sudo make install
+
+
+---
+# 初始化缓存
+sudo /opt/squid/sbin/squid -z
+
+# 设置目录权限
+sudo chown -R squid:squid /opt/squid/var/
+sudo chmod -R 755 /opt/squid/var/
+sudo chown -R squid:squid /opt/squid/var/spool/squid
+sudo chmod -R 750 /opt/squid/var/spool/squid
+
+---
+# 创建systemd服务文件
+sudo tee /etc/systemd/system/squid.service > /dev/null << 'EOF'
+[Unit]
+Description=Squid Web Proxy Cache
+After=network.target
+
+[Service]
+Type=forking
+User=root
+ExecStart=/opt/squid/sbin/squid -f /opt/squid/etc/squid.conf
+ExecReload=/opt/squid/sbin/squid -k reconfigure -f /opt/squid/etc/squid.conf
+ExecStop=/opt/squid/sbin/squid -k shutdown -f /opt/squid/etc/squid.conf
+PIDFile=/opt/squid/var/run/squid.pid
+LimitNOFILE=1048576
+LimitNPROC=1048576
+LimitCORE=infinity
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+# 重新加载systemd配置
+sudo systemctl daemon-reload
+sudo systemctl enable squid
+
+
+---
+# 启动服务
+sudo systemctl start squid
+sudo systemctl status squid
+
+# 检查配置语法
+sudo /opt/squid/sbin/squid -k parse -f /opt/squid/etc/squid.conf
