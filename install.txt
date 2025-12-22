@@ -338,8 +338,20 @@ sudo dnf install -y php php-bcmath php-cli php-common php-dba php-dbg \
     php-json php-ldap php-mbstring php-mysqlnd php-odbc php-opcache \
     php-pdo php-pear php-pecl-apcu php-pecl-apcu-devel php-pgsql \
     php-process php-recode php-snmp php-soap php-xml php-xmlrpc \
-    openssl openldap-clients mod_ssl
+    openssl openldap-clients mod_ssl php-redis
 
 # 启动 PHP-FPM
 sudo systemctl enable php-fpm
 sudo systemctl start php-fpm
+sudo systemctl status nginx
+
+-------------------
+
+# 启动 Nginx
+sudo /usr/nginx/sbin/nginx -c /usr/nginx/conf/nginx.conf
+
+# 测试Nginx配置
+sudo /usr/nginx/sbin/nginx -t
+
+----
+
