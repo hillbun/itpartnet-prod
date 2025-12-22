@@ -125,6 +125,9 @@ make
 # 安装（需要sudo权限）
 sudo make install
 
+---
+cp /opt/squid/etc/squid.conf /opt/squid/etc/squid.conf.bak
+
 
 ---
 # 初始化缓存
