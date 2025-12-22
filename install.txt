@@ -367,6 +367,7 @@ sudo make install
 ---
 sudo cp redis.conf /etc/redis.conf
 sudo cp /etc/redis.conf /etc/redis.conf.bak
+sudo sed -i 's/^daemonize no/daemonize yes/' /etc/redis.conf
 sudo sed -i 's/^bind 127.0.0.1 -::1/bind 0.0.0.0/' /etc/redis.conf
 sudo sed -i 's/^protected-mode yes/protected-mode no/' /etc/redis.conf
 sudo sed -i 's|^dir ./|dir /opt/redis|' /etc/redis.conf
