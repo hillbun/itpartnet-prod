@@ -36,8 +36,7 @@ EOF'
 
 # 设置hosts文件
 sudo bash -c 'cat >> /etc/hosts << EOF
-10.2.3.180 dc1.squid.hk
-10.2.3.92 test4.squid.hk
+160.98.39.18 corprodc03.corp.ha.org.hk
 EOF'
 
 
