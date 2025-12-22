@@ -59,15 +59,13 @@ sudo timedatectl set-timezone Asia/Hong_Kong
 sudo timedatectl set-ntp yes
 sudo systemctl restart chronyd
 
+---
+# 切换到普通用户
+su - normaluser
 
 --------------------------------------------
 # 创建Squid系统用户
 sudo useradd -r -s /sbin/nologin squid
-
-
----
-# 切换到普通用户
-su - normaluser
 
 # 下载Squid源码
 cd ~
