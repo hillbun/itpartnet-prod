@@ -355,3 +355,29 @@ sudo /usr/nginx/sbin/nginx -t
 
 ----
 
+sudo dnf install -y gcc make tcl
+cd ~/software/
+wget https://download.redis.io/releases/redis-7.4.2.tar.gz
+tar -xzvf redis-7.4.2.tar.gz
+cd redis-7.4.2
+make
+sudo make install
+
+
+---
+sudo cp /etc/redis.conf /etc/redis.conf.bak
+sudo sed -i 's/^bind 127.0.0.1 -::1/bind 0.0.0.0/' /etc/redis.conf
+sudo sed -i 's/^protected-mode yes/protected-mode no/' /etc/redis.conf
+sudo sed -i 's|^dir ./|dir /opt/redis|' /etc/redis.conf
+sudo sed -i 's/^# requirepass foobared/requirepass StrongP@@ssw0rd123!/' /etc/redis.conf
+sudo mkdir -p /opt/redis
+sudo chown redis:redis /opt/redis
+sudo systemctl restart redis
+
+# 注意修改下面地方
+# bind 0.0.0.0
+# protected-mode no
+# port 6379
+# dir /opt/redis
+# dbfilename dump.rdb
+# requirepass StrongP@@ssw0rd123!
