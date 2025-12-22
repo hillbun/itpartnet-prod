@@ -128,16 +128,14 @@ sudo make install
 ---
 cp /opt/squid/etc/squid.conf /opt/squid/etc/squid.conf.bak
 
-
----
-# 初始化缓存
-sudo /opt/squid/sbin/squid -z
-
 # 设置目录权限
 sudo chown -R squid:squid /opt/squid/var/
 sudo chmod -R 755 /opt/squid/var/
 sudo chown -R squid:squid /opt/squid/var/spool/squid
 sudo chmod -R 750 /opt/squid/var/spool/squid
+
+# 初始化缓存
+sudo /opt/squid/sbin/squid -z
 
 ---
 # 创建systemd服务文件
