@@ -371,7 +371,7 @@ sudo sed -i 's/^daemonize no/daemonize yes/' /etc/redis.conf
 sudo sed -i 's/^protected-mode yes/protected-mode no/' /etc/redis.conf
 sudo sed -i 's|^dir ./|dir /opt/redis|' /etc/redis.conf
 sudo sed -i 's/^# requirepass foobared/requirepass StrongP@@ssw0rd123!/' /etc/redis.conf
-sudo sed -i 's/^logfile ""$/logfile \/var\/log\/redis.log/' redis.conf
+sudo sed -i 's/^logfile ""$/logfile \/var\/log\/redis.log/' /etc/redis.conf
 
 
 sudo useradd -M -s /bin/bash redis
@@ -382,6 +382,7 @@ sudo systemctl restart redis
 
 echo "vm.overcommit_memory = 1" >> /etc/sysctl.conf
 echo "net.core.somaxconn = 512" >> /etc/sysctl.conf
+sysctl -p
 
 sudo mkdir -p /opt/redis
 sudo chown redis:redis /opt/redis
