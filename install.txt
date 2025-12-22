@@ -386,6 +386,7 @@ sudo mkdir -p /opt/redis
 sudo chown redis:redis /opt/redis
 mkdir /var/log/redis
 sudo chown redis:redis /var/log/redis
+sudo chown redis:redis /etc/redis.conf
 
 
 # 注意修改下面地方
