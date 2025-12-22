@@ -33,29 +33,6 @@ sudo bash -c 'cat >> /etc/hosts << EOF
 EOF'
 
 
-NONONONONONO
--------------------------------------------
-# 设置主机名
-sudo hostnamectl set-hostname test4.squid.hk
-
-# 配置DNS
-sudo bash -c 'cat > /etc/resolv.conf << EOF
-search squid.hk
-nameserver 10.2.3.180
-EOF'
-
-
-# 创建普通用户并授予sudo权限
-sudo useradd -m -s /bin/bash normaluser
-sudo passwd normaluser
-sudo usermod -aG wheel normaluser
-
-# 切换到普通用户
-su - normaluser
-
-# 验证sudo权限
-sudo whoami
-
 OK
 -------------------------------------------
 # 安装基础依赖包
