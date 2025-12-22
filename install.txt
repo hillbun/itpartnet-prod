@@ -32,8 +32,6 @@ sudo bash -c 'cat >> /etc/hosts << EOF
 #### ADDED BY OPP END ####
 EOF'
 
-
-OK
 -------------------------------------------
 # 安装基础依赖包
 sudo dnf install -y gcc make openssl openssl-devel zlib zlib-devel \
@@ -45,23 +43,6 @@ sudo dnf install -y openldap-clients openldap-devel realmd sssd sssd-ldap \
     krb5-libs krb5-workstation krb5-devel libecap libecap-devel \
     gnutls-devel pam-devel libtdb-devel libxml2-devel
 
-
-NONONONONO
--------
-# 设置时间同步
-sudo systemctl start chronyd
-sudo timedatectl set-timezone Asia/Hong_Kong
-sudo timedatectl set-ntp yes
-sudo systemctl restart chronyd
-
-
-NONONONONO
----
-# 切换到普通用户
-su - normaluser
-
-
-OK
 --------------------------------------------
 # 创建Squid系统用户
 sudo useradd -r -s /sbin/nologin squid
