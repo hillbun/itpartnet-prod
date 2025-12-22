@@ -1,0 +1,29 @@
+# 在 squid.conf 中指定运行用户
+cat >> /opt/squid/etc/squid.conf << EOF
+#### ADDED BY OPP BEGIN ####
+cache_effective_user squid
+cache_effective_group squid
+cache_dir rock /opt/squid/var/spool/squid 10240 swap-timeout=300
+coredump_dir /opt/squid/var/coredumps
+#### ADDED BY OPP END ####
+EOF
+
+# 配置文件所有者应为 root，squid 只需要读取权限
+chown -R root:squid /opt/squid/etc
+chmod 750 /etc/squid/
+chmod 640 /etc/squid/squid.conf
+
+mkdir -p /var/log/squid
+chown -R squid:squid /var/log/squid
+chmod 750 /var/log/squid
+
+# 初始化缓存目录
+sudo /opt/squid/sbin/squid -z
+
+# 手动设置权限
+chown -R squid:squid /var/cache/squid
+chmod 750 /var/cache/squid
+
+mkdir -p /etc/squid/ssl
+chown -R squid:squid /etc/squid/ssl
+chmod 750 /etc/squid/ssl

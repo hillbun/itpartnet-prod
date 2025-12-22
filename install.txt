@@ -23,6 +23,16 @@ root
 pox@N5OPP
 
 
+-------------
+# 设置hosts文件
+sudo bash -c 'cat >> /etc/hosts << EOF
+#### ADDED BY OPP BEGIN ####
+160.88.114.70 corprodc02.corp.ha.org.hk
+160.98.39.18 corprodc03.corp.ha.org.hk
+#### ADDED BY OPP END ####
+EOF'
+
+
 NONONONONONO
 -------------------------------------------
 # 设置主机名
@@ -32,14 +42,6 @@ sudo hostnamectl set-hostname test4.squid.hk
 sudo bash -c 'cat > /etc/resolv.conf << EOF
 search squid.hk
 nameserver 10.2.3.180
-EOF'
-
-# 设置hosts文件
-sudo bash -c 'cat >> /etc/hosts << EOF
-#### ADDED BY OPP BEGIN ####
-160.88.114.70 corprodc02.corp.ha.org.hk
-160.98.39.18 corprodc03.corp.ha.org.hk
-#### ADDED BY OPP END ####
 EOF'
 
 
@@ -54,7 +56,7 @@ su - normaluser
 # 验证sudo权限
 sudo whoami
 
-
+OK
 -------------------------------------------
 # 安装基础依赖包
 sudo dnf install -y gcc make openssl openssl-devel zlib zlib-devel \
@@ -82,6 +84,7 @@ NONONONONO
 su - normaluser
 
 
+OK
 --------------------------------------------
 # 创建Squid系统用户
 sudo useradd -r -s /sbin/nologin squid
@@ -145,9 +148,21 @@ make
 sudo make install
 
 
-NONONONONONO
+OK 
 ---
 cp /opt/squid/etc/squid.conf /opt/squid/etc/squid.conf.bak
+
+
+# 在 squid.conf 中指定运行用户
+cat >> /opt/squid/etc/squid.conf << EOF
+#### ADDED BY OPP BEGIN ####
+cache_effective_user squid
+cache_effective_group squid
+cache_dir rock /opt/squid/var/spool/squid 10240 swap-timeout=300
+coredump_dir /opt/squid/var/coredumps
+#### ADDED BY OPP END ####
+EOF
+
 
 # 设置目录权限
 sudo chown -R squid:squid /opt/squid
