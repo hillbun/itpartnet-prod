@@ -428,3 +428,17 @@ sudo systemctl status redis
 sudo systemctl restart redis
 
 redis-cli -h 127.0.0.1 -p 6379 -a 'StrongP@@ssw0rd123!'
+
+
+---
+13442:M 22 Dec 2025 17:43:18.456 * Server initialized
+13442:M 22 Dec 2025 17:43:18.456 * Ready to accept connections tcp
+14121:C 22 Dec 2025 17:44:15.645 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+14121:C 22 Dec 2025 17:44:15.645 * Redis version=7.4.2, bits=64, commit=00000000, modified=1, pid=14121, just started
+14121:C 22 Dec 2025 17:44:15.645 * Configuration loaded
+14121:M 22 Dec 2025 17:44:15.646 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+14121:M 22 Dec 2025 17:44:15.646 * monotonic clock: POSIX clock_gettime
+14121:M 22 Dec 2025 17:44:15.646 * Running mode=standalone, port=6379.
+14121:M 22 Dec 2025 17:44:15.647 * Server initialized
+14121:M 22 Dec 2025 17:44:15.647 * Ready to accept connections tcp
+
