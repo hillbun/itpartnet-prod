@@ -6,3 +6,13 @@
   tasks:
     - name: 测试连接状态
       ping:
+
+  tasks:
+    - name: 向 /etc/hosts 追加主机名解析
+      blockinfile:
+        path: /etc/hosts
+        block: |
+          160.88.114.70 corprodc02.corp.ha.org.hk
+          160.98.39.18 corprodc03.corp.ha.org.hk
+        marker: "#### {mark} ADDED BY OPP ####" # 自定义标记格式
+        state: present
