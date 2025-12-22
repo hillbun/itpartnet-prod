@@ -319,5 +319,27 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl enable nginx
 
-sudo systemctl srart nginx
+sudo systemctl start nginx
 sudo systemctl status nginx
+
+
+----
+# 添加EPEL和 Remi仓库
+sudo dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+sudo dnf install -y https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+
+# 重置并启用PHP7.4模块
+sudo dnf module reset php -y
+sudo dnf module enable php:remi-7.4 -y
+
+# 安装PHP及扩展
+sudo dnf install -y php php-bcmath php-cli php-common php-dba php-dbg \
+    php-devel php-embedded php-enchant php-fpm php-gd php-gmp php-intl \
+    php-json php-ldap php-mbstring php-mysqlnd php-odbc php-opcache \
+    php-pdo php-pear php-pecl-apcu php-pecl-apcu-devel php-pgsql \
+    php-process php-recode php-snmp php-soap php-xml php-xmlrpc \
+    openssl openldap-clients mod_ssl
+
+# 启动 PHP-FPM
+sudo systemctl enable php-fpm
+sudo systemctl start php-fpm
