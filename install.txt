@@ -377,22 +377,15 @@ sudo sed -i 's|^dir ./|dir /opt/redis|' /etc/redis.conf
 sudo sed -i 's/^# requirepass foobared/requirepass StrongP@@ssw0rd123!/' /etc/redis.conf
 sudo sed -i 's/^logfile ""$/logfile \/var\/log\/redis\/redis.log/' /etc/redis.conf
 
-
-sudo useradd -M -s /bin/bash redis
-sudo mkdir -p /opt/redis
-sudo chown redis:redis /opt/redis
-sudo chown redis:redis /var/log/redis
-sudo systemctl restart redis
-
-
 echo "vm.overcommit_memory = 1" >> /etc/sysctl.conf
 echo "net.core.somaxconn = 512" >> /etc/sysctl.conf
 sysctl -p
 
+sudo useradd -M -s /bin/bash redis
 sudo mkdir -p /opt/redis
 sudo chown redis:redis /opt/redis
-sudo systemctl restart redis
-
+mkdir /var/log/redis
+sudo chown redis:redis /var/log/redis
 
 
 # 注意修改下面地方
@@ -424,13 +417,15 @@ PIDFile=/var/run/redis_6379.pid
 WantedBy=multi-user.target
 EOF
 
-/run/redis/redis_6379.pid
+
 
 sudo systemctl daemon-reload
 sudo systemctl enable redis
 sudo systemctl start redis
 sudo systemctl status redis
 sudo systemctl restart redis
+
+
 
 redis-cli -h 127.0.0.1 -p 6379 -a 'StrongP@@ssw0rd123!'
 
