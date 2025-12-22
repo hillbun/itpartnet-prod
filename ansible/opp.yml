@@ -1,8 +1,8 @@
 ---
-- name: ¶ÔËùÓÐÖ÷»ú½øÐÐ Ping ¼ì²â
-  hosts: opp-prod     # ×÷ÓÃÓÚ hosts.ini ÖÐ¶¨ÒåµÄËùÓÐÖ÷»ú
-  gather_facts: no    # ¹Ø±ÕÊÂÊµÊÕ¼¯ÒÔÌá¸ßÖ´ÐÐËÙ¶È
+- name: å¯¹æ‰€æœ‰ä¸»æœºè¿›è¡Œ Ping æ£€æµ‹
+  hosts: all          # ä½œç”¨äºŽ hosts.ini ä¸­å®šä¹‰çš„æ‰€æœ‰ä¸»æœº
+  gather_facts: no    # å…³é—­äº‹å®žæ”¶é›†ä»¥æé«˜æ‰§è¡Œé€Ÿåº¦
   
   tasks:
-    - name: ²âÊÔÁ¬½Ó×´Ì¬
+    - name: æµ‹è¯•è¿žæŽ¥çŠ¶æ€
       ping:
