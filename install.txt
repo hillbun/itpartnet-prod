@@ -370,6 +370,7 @@ sudo sed -i 's/^bind 127.0.0.1 -::1/bind 0.0.0.0/' /etc/redis.conf
 sudo sed -i 's/^protected-mode yes/protected-mode no/' /etc/redis.conf
 sudo sed -i 's|^dir ./|dir /opt/redis|' /etc/redis.conf
 sudo sed -i 's/^# requirepass foobared/requirepass StrongP@@ssw0rd123!/' /etc/redis.conf
+
 sudo mkdir -p /opt/redis
 sudo chown redis:redis /opt/redis
 sudo systemctl restart redis
