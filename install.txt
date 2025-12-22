@@ -363,6 +363,9 @@ cd redis-7.4.2
 make
 sudo make install
 
+sudo groupadd redis
+sudo useradd -r -g redis -s /bin/false redis
+
 
 ---
 sudo cp redis.conf /etc/redis.conf
@@ -372,12 +375,13 @@ sudo sed -i 's/daemonize no/daemonize yes/' /etc/redis.conf
 sudo sed -i 's/^protected-mode yes/protected-mode no/' /etc/redis.conf
 sudo sed -i 's|^dir ./|dir /opt/redis|' /etc/redis.conf
 sudo sed -i 's/^# requirepass foobared/requirepass StrongP@@ssw0rd123!/' /etc/redis.conf
-sudo sed -i 's/^logfile ""$/logfile \/var\/log\/redis.log/' /etc/redis.conf
+sudo sed -i 's/^logfile ""$/logfile \/var\/log\/redis\/redis.log/' /etc/redis.conf
 
 
 sudo useradd -M -s /bin/bash redis
 sudo mkdir -p /opt/redis
 sudo chown redis:redis /opt/redis
+sudo chown redis:redis /var/log/redis
 sudo systemctl restart redis
 
 
