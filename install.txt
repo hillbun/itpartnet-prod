@@ -376,6 +376,7 @@ sudo sed -i 's/^protected-mode yes/protected-mode no/' /etc/redis.conf
 sudo sed -i 's|^dir ./|dir /opt/redis|' /etc/redis.conf
 sudo sed -i 's/^# requirepass foobared/requirepass StrongP@@ssw0rd123!/' /etc/redis.conf
 sudo sed -i 's/^logfile ""$/logfile \/var\/log\/redis\/redis.log/' /etc/redis.conf
+sudo sed -i 's|pidfile /var/run/redis_6379\.pid|pidfile /run/redis/redis-server.pid|' /etc/redis.conf
 
 echo "vm.overcommit_memory = 1" >> /etc/sysctl.conf
 echo "net.core.somaxconn = 512" >> /etc/sysctl.conf
