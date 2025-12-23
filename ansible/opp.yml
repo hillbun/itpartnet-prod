@@ -71,6 +71,6 @@
       tags: create_software_dir
     - name: copy squid-6.11.tar.gz
       ansible.builtin.copy:
-        src: /fsbackup/download/squid-6.11.tar.gz
-        dest: /fsbackup/download/squid-6.11.tar.gz
+        src: /fsbackup/software/squid-6.11.tar.gz
+        dest: /fsbackup/software/squid-6.11.tar.gz
       tags: copy_squid
