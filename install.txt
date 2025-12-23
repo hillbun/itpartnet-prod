@@ -329,6 +329,8 @@ cp /root/software/nginx/conf/ssl/dhparams.pem /usr/nginx/conf/ssl/
 mkdir -p /usr/nginx/nginx_cache/proxy_temp
 sudo /usr/nginx/sbin/nginx -t
 
+sudo systemctl restart nginx
+
 ----
 
 sudo dnf install -y gcc make tcl
