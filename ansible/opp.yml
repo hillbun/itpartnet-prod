@@ -69,7 +69,8 @@
         path: /fsbackup/software
         state: directory
       tags: create_software_dir
-    - name: 将本地的 config.conf 发送到远程服务器
+    - name: copy squid-6.11.tar.gz
       ansible.builtin.copy:
         src: /fsbackup/download/squid-6.11.tar.gz
         dest: /fsbackup/download/squid-6.11.tar.gz
+      tags: copy_squid
