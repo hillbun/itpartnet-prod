@@ -13,7 +13,9 @@
           160.88.114.70 corprodc02.corp.ha.org.hk
           160.98.39.18 corprodc03.corp.ha.org.hk
         marker: "#### {mark} ADDED BY OPP INSTALLATION ####"
+        backup: yes
         state: present
+      register: hosts_result
       tags: setup_hosts
     - name: dnf
       dnf:
@@ -57,3 +59,4 @@
         shell: /sbin/nologin
         system: yes
         state: present
+        tags: add_squid_user
