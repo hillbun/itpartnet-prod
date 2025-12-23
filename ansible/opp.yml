@@ -73,3 +73,62 @@
         src: "{{ software_src_path }}/squid-6.11.tar.gz"
         dest: "{{ software_dest_path }}/squid-6.11.tar.gz"
       tags: copy_squid
+    - name: squid-unarchive
+      unarchive:
+        src: "{{ software_dest_path }}/squid-6.11.tar.gz"
+        dest: "{{ software_dest_path }}"
+        remote_src: yes
+    - name: squid-configure
+      shell: |
+        ./configure --prefix=/opt/squid \
+            --bindir=/opt/squid/bin \
+            --sbindir=/opt/squid/sbin \
+            --sysconfdir=/opt/squid/etc \
+            --datadir=/opt/squid/share \
+            --includedir=/opt/squid/include \
+            --libdir=/opt/squid/lib \
+            --libexecdir=/opt/squid/libexec \
+            --localstatedir=/opt/squid/var \
+            --sharedstatedir=/opt/squid/lib \
+            --mandir=/opt/squid/share/man \
+            --infodir=/opt/squid/share/info \
+            --with-logdir=/opt/squid/var/log \
+            --with-pidfile=/opt/squid/var/run/squid.pid \
+            --enable-ssl \
+            --with-openssl=/usr \
+            --enable-auth \
+            --enable-auth-basic=DB,fake,getpwnam,LDAP,NCSA,PAM,POP3,RADIUS,SASL,SMB,SMB_LM \
+            --enable-auth-ntlm=SMB_LM,fake \
+            --enable-auth-digest=file,LDAP \
+            --enable-auth-negotiate=kerberos \
+            --enable-external-acl helpers=LDAP_group,time_quota,session,unix_group,wbinfo_group,kerberos_ldap_group \
+            --enable-storeid-rewrite-helpers=file \
+            --enable-cache-digests \
+            --enable-cachemgr-hostname=localhost \
+            --enable-delay-pools \
+            --enable-epoll \
+            --enable-icap-client \
+            --enable-ident-lookups \
+            --enable-linux-netfilter \
+            --enable-removal-policies=heap,lru \
+            --enable-snmp \
+            --enable-ssl-crtd \
+            --enable-storeio=aufs,diskd,ufs,rock \
+            --enable-diskio \
+            --enable-wccpv2 \
+            --enable-esi \
+            --enable-ecap \
+            --with-aio \
+            --with-default-user=squid \
+            --enable-async-io \
+            --with-dl \
+            --with-pthreads \
+            --with-swapdir=/opt/squid/var/spool/squid
+      args:
+        chdir: "{{ software_dest_path }}/squid-6.11"
+        creates: /opt/squid
+    - name: squid-compile
+      shell: make && make install
+      args:
+        chdir: "{{ software_dest_path }}/squid-6.11"
+        creates: /opt/squid
