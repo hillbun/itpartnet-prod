@@ -489,3 +489,7 @@ sudo systemctl start node_exporter
 
 # 检查服务状态
 sudo systemctl status node_exporter
+
+netstat -na |grep 9100
+
+curl http://127.0.0.1:9100/metrics
