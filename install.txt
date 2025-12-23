@@ -8,6 +8,9 @@ sshgateway
 xw972
 TcN?U?JmqU1
 
+tou
+itp@8888
+
 
 https://ka9rcghfcff.feishu.cn/wiki/BLjXwE6nmith8Wk7Tv4c4w72nmf
 
@@ -18,6 +21,8 @@ poxappprd52b  192.168.152.121
 poxappprd52c  192.168.152.122
 poxappprd52d  192.168.152.123
 poxappprd52e  192.168.152.124
+
+pox@N5OPP
 
 ssh logreader@192.168.52.236
 P@ssw0rd123
@@ -254,6 +259,8 @@ make
 # 安装（需要sudo权限）
 sudo make install
 
+chown -R nginx.nginx /usr/nginx
+
 ---
 # 创建nginx服务文件
 sudo tee /etc/systemd/system/nginx.service > /dev/null << 'EOF'
@@ -442,3 +449,43 @@ redis-cli -h 127.0.0.1 -p 6379 -a 'StrongP@@ssw0rd123!'
 keys *
 
 
+---
+# 下载node_exporter
+wget https://github.com/prometheus/node_exporter/releases/download/v1.8.2/node_exporter-1.8.2.linux-amd64.tar.gz
+tar -xvf node_exporter-1.8.2.linux-amd64.tar.gz
+ls -la node_exporter-1.8.2.linux-amd64/
+
+sudo mkdir -p /usr/local/node_exporter
+sudo cp node_exporter-1.8.2.linux-amd64/node_exporter /usr/local/node_exporter/
+
+sudo chmod +x /usr/local/node_exporter/node_exporter
+sudo chown -R root:root /usr/local/node_exporter
+
+
+# 创建systemd服务文件
+
+sudo tee /etc/systemd/system/node_exporter.service > /dev/null << 'EOF'
+[Unit]
+Description=node_exporter
+Documentation=https://github.com/prometheus/node_exporter
+After=network.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/local/node_exporter/node_exporter --web.listen-address=:9100
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+# 重新加载systemd
+sudo systemctl daemon-reload
+
+# 启用并启动服务
+sudo systemctl enable node_exporter
+sudo systemctl start node_exporter
+
+# 检查服务状态
+sudo systemctl status node_exporter
