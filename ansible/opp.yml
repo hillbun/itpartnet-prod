@@ -51,3 +51,9 @@
           - libxml2-devel
         state: present
         tags: install_dnf_package
+    - name: add squid account
+      ansible.builtin.user:
+        name: squid
+        shell: /sbin/nologin
+        system: yes
+        state: present
