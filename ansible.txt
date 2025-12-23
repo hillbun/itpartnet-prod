@@ -1,3 +1,4 @@
 sudo dnf install ansible
 
 ansible-playbook -i hosts.ini opp.yml
+ansible-playbook --syntax-check opp.yml
