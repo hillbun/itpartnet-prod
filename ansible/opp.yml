@@ -3,9 +3,8 @@
   hosts: opp_prod
   gather_facts: no
   vars:
+    software_src_path: "/fsbackup/software"
     software_dest_path: "/fsbackup/software"
-    squid_version: "6.11"
-    squid_url: "https://www.squid-cache.org/Versions/v6/squid-{{ squid_version }}.tar.gz"
   tasks:
     - name: ping
       ping:
@@ -66,11 +65,11 @@
       tags: add_squid_user
     - name: create software dir
       ansible.builtin.file:
-        path: /fsbackup/software
+        path: {{ software_src_path }}
         state: directory
       tags: create_software_dir
     - name: copy squid-6.11.tar.gz
       ansible.builtin.copy:
-        src: /fsbackup/software/squid-6.11.tar.gz
-        dest: /fsbackup/software/squid-6.11.tar.gz
+        src: {{ software_src_path }}/squid-6.11.tar.gz
+        dest: {{ software_dest_path }}/squid-6.11.tar.gz
       tags: copy_squid
