@@ -312,6 +312,23 @@ sudo /usr/nginx/sbin/nginx -c /usr/nginx/conf/nginx.conf
 # 测试Nginx配置
 sudo /usr/nginx/sbin/nginx -t
 
+---
+cp -r /root/software/nginx/html/dist /usr/nginx/html/
+cp -r /root/software/nginx/html/transproxy_admin /usr/nginx/html/
+cp /root/software/nginx/conf/nginx.conf /usr/nginx/conf/
+cp /root/software/nginx/conf/proxy.conf /usr/nginx/conf/
+cp -r /root/software/nginx/conf/conf.d /usr/nginx/conf/
+
+mkdir /usr/nginx/conf/ssl
+cp /root/software/nginx/conf/ssl/ssl.conf /usr/nginx/conf/ssl/
+cp /root/software/nginx/conf/ssl/poxmgtprd61a.cer /usr/nginx/conf/ssl/
+cp /root/software/nginx/conf/ssl//usr/nginx/conf/ssl/poxmgtprd61a.key /usr/nginx/conf/ssl/
+cp /usr/nginx/conf/ssl/poxmgtprd61a.key /usr/nginx/conf/ssl/
+cp /root/software/nginx/conf/ssl/poxmgtprd61a.key /usr/nginx/conf/ssl/
+cp /root/software/nginx/conf/ssl/dhparams.pem /usr/nginx/conf/ssl/
+mkdir -p /usr/nginx/nginx_cache/proxy_temp
+sudo /usr/nginx/sbin/nginx -t
+
 ----
 
 sudo dnf install -y gcc make tcl
