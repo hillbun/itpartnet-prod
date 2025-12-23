@@ -282,6 +282,32 @@ sudo systemctl start nginx
 sudo systemctl status nginx
 
 
+---
+
+groupadd www-group
+usermod -a -G www-group nginx
+usermod -a -G www-group apache
+
+chmod 775 /usr/nginx/html/transproxy_admin/storage/logs
+chown -R nginx.www-group /usr/nginx/html/transproxy_admin/storage/logs
+chmod g+s /usr/nginx/html/transproxy_admin/storage/logs
+
+chmod 775 /usr/nginx/html/transproxy_admin/storage/app
+chown -R nginx.www-group /usr/nginx/html/transproxy_admin/storage/app
+chmod g+s /usr/nginx/html/transproxy_admin/storage/app
+
+chmod 775 /usr/nginx/html/transproxy_admin/storage/framework/sessions
+chown -R nginx.www-group /usr/nginx/html/transproxy_admin/storage/framework/sessions
+chmod g+s /usr/nginx/html/transproxy_admin/storage/framework/sessions
+
+chmod 775 /usr/nginx/html/transproxy_admin/public/fileData
+chown -R nginx.www-group /usr/nginx/html/transproxy_admin/public/fileData
+chmod g+s /usr/nginx/html/transproxy_admin/public/fileData
+chown nginx.www-group /usr/nginx/html/transproxy_admin/public/fileData/*
+chmod 644 /usr/nginx/html/transproxy_admin/public/fileData/*
+
+
+
 ----
 # 添加EPEL和 Remi仓库
 sudo dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
