@@ -19,8 +19,8 @@ poxappprd52c  192.168.152.122
 poxappprd52d  192.168.152.123
 poxappprd52e  192.168.152.124
 
-ssho root@192.168.152.120
-pox@N5OPP
+ssh logreader@192.168.52.236
+P@ssw0rd123
 
 
 -------------
