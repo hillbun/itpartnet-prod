@@ -5,13 +5,13 @@
   tasks:
     - name: ping
       ping:
-    - name: 向 /etc/hosts 追加主机名解析
+    - name: hosts rekord
       blockinfile:
         path: /etc/hosts
         block: |
           160.88.114.70 corprodc02.corp.ha.org.hk
           160.98.39.18 corprodc03.corp.ha.org.hk
-        marker: "#### {mark} ADDED BY OPP ####"
+        marker: "#### {mark} ADDED BY OPP INSTALLATION ####"
         state: present
     - name: dnf
       dnf:
