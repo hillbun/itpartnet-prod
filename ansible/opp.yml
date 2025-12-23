@@ -70,6 +70,6 @@
       tags: create_software_dir
     - name: copy squid-6.11.tar.gz
       ansible.builtin.copy:
-        src: "{{ software_src_path }}"/squid-6.11.tar.gz
-        dest: "{{ software_dest_path }}"/squid-6.11.tar.gz
+        src: "{{ software_src_path }}/squid-6.11.tar.gz"
+        dest: "{{ software_dest_path }}/squid-6.11.tar.gz"
       tags: copy_squid
