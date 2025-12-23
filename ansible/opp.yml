@@ -2,6 +2,10 @@
 - name: install app
   hosts: opp_prod
   gather_facts: no
+  vars:
+    software_dest_path: "/fsbackup/software"
+    squid_version: "6.11"
+    squid_url: "https://www.squid-cache.org/Versions/v6/squid-{{ squid_version }}.tar.gz"
   tasks:
     - name: ping
       ping:
@@ -67,6 +71,6 @@
       tags: create_software_dir
     - name: Download using curl if get_url fails
       ansible.builtin.shell:
-        cmd: "curl -4 -L -o /fsbackup/software/squid-6.11.tar.gz https://www.squid-cache.org/Versions/v6/squid-6.11.tar.gz"
+        cmd: "curl -4 -L -o {{ software_dest_path }}/squid-{{ squid_version }}.tar.gz {{ squid_url }}"
         creates: /fsbackup/software/squid-6.11.tar.gz
       tags: download_squid

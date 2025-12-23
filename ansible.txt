@@ -10,3 +10,7 @@ ansible-playbook -i hosts.ini opp.yml --tags "setup_hosts"
 ansible-playbook -i hosts.ini opp.yml --skip-tags "ping_hosts"
 
 ansible-playbook -i hosts.ini --syntax-check opp.yml
+
+
+--
+curl -L http://www.squid-cache.org/Versions/v6/squid-6.11.tar.gz -o /fsbackup/download/squid-6.11.tar.gz
