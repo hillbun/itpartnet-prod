@@ -65,7 +65,7 @@
       tags: add_squid_user
     - name: create software dir
       ansible.builtin.file:
-        path: {{ software_src_path }}
+        path: "{{ software_src_path }}"
         state: directory
       tags: create_software_dir
     - name: copy squid-6.11.tar.gz
