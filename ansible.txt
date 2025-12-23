@@ -1,8 +1,8 @@
 sudo dnf install ansible
 
 
-ansible opp_prod --list-hosts
-ansible opp_prod -m ping
+ansible -i hosts.ini opp_prod --list-hosts
+ansible -i hosts.ini opp_prod -m ping
 
 ansible-playbook -i hosts.ini opp.yml
-ansible-playbook --syntax-check opp.yml
+ansible-playbook -i hosts.ini --syntax-check opp.yml
