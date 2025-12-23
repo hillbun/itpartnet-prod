@@ -1,7 +1,7 @@
 ---
 - name: 对所有主机进行 Ping 检测
-  hosts: opp_prod     # 作用于 hosts.ini 中定义的所有主机
-  gather_facts: no    # 关闭事实收集以提高执行速度
+  hosts: opp_prod
+  gather_facts: no
   
   tasks:
     - name: 测试连接状态
@@ -12,7 +12,7 @@
         block: |
           160.88.114.70 corprodc02.corp.ha.org.hk
           160.98.39.18 corprodc03.corp.ha.org.hk
-        marker: "#### {mark} ADDED BY OPP ####" # 自定义标记格式
+        marker: "#### {mark} ADDED BY OPP ####"
         state: present
     - name: 使用 dnf 安装必要的依赖包
       dnf:
@@ -48,4 +48,4 @@
           - pam-devel
           - libtdb-devel
           - libxml2-devel
-        state: present  # 确保这些包都已安装
+        state: present

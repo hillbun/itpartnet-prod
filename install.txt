@@ -294,6 +294,7 @@ sudo systemctl status nginx
 groupadd www-group
 usermod -a -G www-group nginx
 usermod -a -G www-group apache
+usermod -a -G www-group squid
 
 chmod 775 /usr/nginx/html/transproxy_admin/storage/logs
 chown -R nginx.www-group /usr/nginx/html/transproxy_admin/storage/logs
