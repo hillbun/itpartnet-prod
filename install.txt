@@ -232,7 +232,7 @@ cd /root/software
 wget https://nginx.org/download/nginx-1.2.5.tar.gz
 headers-more-nginx-module.tar.gz
 
-./configure --prefix=/usr/nginx \
+./configure --user=nginx --group=nginx --prefix=/usr/nginx \
     --with-cc-opt=-O2 \
     --with-http_ssl_module \
     --with-http_v2_module \
