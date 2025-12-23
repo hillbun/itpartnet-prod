@@ -14,7 +14,7 @@
           160.98.39.18 corprodc03.corp.ha.org.hk
         marker: "#### {mark} ADDED BY OPP INSTALLATION ####"
         state: present
-        tags: setup_hosts
+      tags: setup_hosts
     - name: dnf
       dnf:
         name:
