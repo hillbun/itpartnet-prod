@@ -69,4 +69,6 @@
       ansible.builtin.get_url:
         url: http://www.squid-cache.org/Versions/v6/squid-6.11.tar.gz
         dest: /usr/deploy/software/squid-6.11.tar.gz
+      environment:
+        GAI_STRATEGY: pf_inet
       tags: download_squid
