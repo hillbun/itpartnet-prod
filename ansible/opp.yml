@@ -69,8 +69,7 @@
         path: /fsbackup/software
         state: directory
       tags: create_software_dir
-    - name: Download using curl if get_url fails
-      ansible.builtin.shell:
-        cmd: "curl -4 -L -o {{ software_dest_path }}/squid-{{ squid_version }}.tar.gz {{ squid_url }}"
-        creates: /fsbackup/software/squid-6.11.tar.gz
-      tags: download_squid
+    - name: 将本地的 config.conf 发送到远程服务器
+      ansible.builtin.copy:
+        src: /fsbackup/download/squid-6.11.tar.gz
+        dest: /fsbackup/download/squid-6.11.tar.gz
