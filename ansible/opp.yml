@@ -5,7 +5,8 @@
   tasks:
     - name: ping
       ping:
-    - name: hosts rekord
+      tags: ping_hosts
+    - name: hosts record
       blockinfile:
         path: /etc/hosts
         block: |
@@ -13,6 +14,7 @@
           160.98.39.18 corprodc03.corp.ha.org.hk
         marker: "#### {mark} ADDED BY OPP INSTALLATION ####"
         state: present
+        tags: setup_hosts
     - name: dnf
       dnf:
         name:
@@ -48,3 +50,4 @@
           - libtdb-devel
           - libxml2-devel
         state: present
+        tags: install_dnf_package
