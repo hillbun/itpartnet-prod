@@ -60,3 +60,13 @@
         system: yes
         state: present
       tags: add_squid_user
+    - name: create software dir
+      ansible.builtin.file:
+        path: /usr/deploy/software
+        state: directory
+      tags: create_software_dir
+    - name: download squid
+      ansible.builtin.get_url:
+        url: http://www.squid-cache.org/Versions/v6/squid-6.11.tar.gz
+        dest: /usr/deploy/software/squid-6.11.tar.gz
+      tags: download_squid
