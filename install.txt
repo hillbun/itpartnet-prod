@@ -335,6 +335,13 @@ sudo dnf install -y php php-bcmath php-cli php-common php-dba php-dbg \
     php-process php-recode php-snmp php-soap php-xml php-xmlrpc \
     openssl openldap-clients mod_ssl php-redis
 
+
+more /etc/php-fpm.d/www.conf  |grep apache
+user = apache
+group = apache
+listen.acl_users = apache,nginx
+
+
 # 启动 PHP-FPM
 sudo systemctl enable php-fpm
 sudo systemctl start php-fpm

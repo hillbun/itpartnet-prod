@@ -341,8 +341,8 @@
       tags: install_repo
     - name: enable php7
       ansible.builtin.dnf:
-        name: "php:remi-7.4"
-        state: enabled
+        name: "@php:remi-7.4"
+        state: present
       become: yes
       tags: enable_php7
     - name: install php dnf
