@@ -17,3 +17,4 @@ ansible-playbook -i hosts.ini --syntax-check opp.yml
 curl -L http://www.squid-cache.org/Versions/v6/squid-6.11.tar.gz -o /fsbackup/download/squid-6.11.tar.gz
 curl -L https://nginx.org/download/nginx-1.25.5.tar.gz -o /fsbackup/download/nginx-1.25.5.tar.gz
 curl -L https://download.redis.io/releases/redis-7.4.2.tar.gz -o /fsbackup/download/redis-7.4.2.tar.gz
+curl -L https://github.com/prometheus/node_exporter/releases/download/v1.8.2/node_exporter-1.8.2.linux-amd64.tar.gz -o /fsbackup/download/node_exporter-1.8.2.linux-amd64.tar.gz
