@@ -354,7 +354,7 @@
     - name: reset php
       ansible.builtin.dnf:
         name: php
-        state: reset
+        state: installed
       tags: reset_php
     - name: enable php
       ansible.builtin.dnf:
