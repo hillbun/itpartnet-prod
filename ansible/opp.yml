@@ -225,8 +225,8 @@
       tags: copy_krb5_conf
     - name: copy nginx-1.2.5.tar.gz
       ansible.builtin.copy:
-        src: "{{ software_src_path }}/nginx-1.2.5.tar.gz"
-        dest: "{{ software_dest_path }}/nginx-1.2.5.tar.gz"
+        src: "{{ software_src_path }}/nginx-1.25.5.tar.gz"
+        dest: "{{ software_dest_path }}/nginx-1.25.5.tar.gz"
       tags: copy_nginx
     - name: copy headers-more-nginx-module
       ansible.builtin.copy:
@@ -235,7 +235,7 @@
       tags: copy_headers_more_nginx_module
     - name: nginx-unarchive
       unarchive:
-        src: "{{ software_dest_path }}/nginx-1.2.5.tar.gz"
+        src: "{{ software_dest_path }}/nginx-1.25.5.tar.gz"
         dest: "{{ software_dest_path }}"
         remote_src: yes
     - name: nginx-configure
@@ -256,11 +256,11 @@
             --with-stream_ssl_module \
             --with-stream_ssl_preread_module
       args:
-        chdir: "{{ software_dest_path }}/nginx-1.2.5"
+        chdir: "{{ software_dest_path }}/nginx-1.25.5"
     - name: nginx-compile
       shell: make && make install
       args:
-        chdir: "{{ software_dest_path }}/nginx-1.2.5"
+        chdir: "{{ software_dest_path }}/nginx-1.25.5"
         creates: /usr/nginx
   handlers:
       - name: reload systemd
