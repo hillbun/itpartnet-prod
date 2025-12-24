@@ -423,10 +423,11 @@
         dest: "{{ software_dest_path }}"
         remote_src: yes
       tags: redis_unarchive
-    - name: redis-server-compile
+    - name: redis server compile
       shell: make && make install
       args:
         chdir: "{{ software_dest_path }}/redis-7.4.2"
+      tags: redis-server-compile
     - name: redis service create
       ansible.builtin.copy:
         dest: /etc/systemd/system/redis.service
@@ -453,11 +454,6 @@
           WantedBy=multi-user.target
       notify: reload systemd
       tags: redis_service_create
-    - name: copy redis config
-      ansible.builtin.copy:
-        src: "{{ software_src_path }}/redis-7.4.2/redis.conf"
-        dest: "/etc/redis.conf"
-      tags: copy_redis_config
     - name: edit sysctl.conf
       blockinfile:
         path: /etc/sysctl.conf
@@ -468,6 +464,38 @@
         backup: yes
         state: present
       tags: edit_sysctl_conf
+    - name: reload sysctl
+      shell: sysctl -p
+      tags: reload_sysctl
+    - name: add redis account
+      ansible.builtin.user:
+        name: redis
+        shell: /bin/false
+        create_home: no
+        state: present
+        system: yes
+      tags: add_redis_account
+    - name: copy redis config
+      ansible.builtin.copy:
+        src: "{{ software_src_path }}/redis-7.4.2/redis.conf"
+        dest: "/etc/redis.conf"
+        owner: redis
+        group: redis
+      tags: copy_redis_config
+    - name: create opt redis dir
+      ansible.builtin.file:
+        path: /opt/redis
+        state: directory
+        owner: redis
+        group: redis
+      tags: create_opt_redis_dir
+    - name: create var log redis dir
+      ansible.builtin.file:
+        path: /var/log/redis
+        state: directory
+        owner: redis
+        group: redis
+      tags: create_var_log_redis_dir
   handlers:
       - name: reload systemd
         ansible.builtin.systemd:
