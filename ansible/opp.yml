@@ -187,7 +187,6 @@
           
           [Install]
           WantedBy=multi-user.target
-          EOF
       notify: reload systemd
       tags: squid_service_create
     - name: squid service start
