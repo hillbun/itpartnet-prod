@@ -584,6 +584,11 @@
         src: /usr/nginx/conf
         dest: /usr/nginx/
       tags: sync_nginx_conf
+    - name: create nginx cache dir
+      ansible.builtin.file:
+        path: /usr/nginx/nginx_cache/proxy_temp
+        state: directory
+      tags: create_nginx_cache_dir
     - name: set nginx user group
       ansible.builtin.file:
         path: /usr/nginx
