@@ -317,7 +317,22 @@
         name: nginx
         groups: www-group
         append: yes
-      tags: add nginx_www_group
+      tags: add_nginx_www_group
+    - name: install repo
+      ansible.builtin.dnf:
+        name:
+          - https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+          - https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+        state: present
+        disable_gpg_check: yes
+      become: yes
+      tags: install_repo
+    - name: enable php7
+      ansible.builtin.dnf:
+        name: "php:remi-7.4"
+        state: enabled
+      become: yes
+      tags: enable_php7
   handlers:
       - name: reload systemd
         ansible.builtin.systemd:
