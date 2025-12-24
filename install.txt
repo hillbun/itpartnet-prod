@@ -37,6 +37,10 @@ proxy_username=LH511@CORP.HA.ORG.HK
 proxy_password=tyP6Jx?urY1
 
 
+export http_proxy="http://LH511@CORP.HA.ORG.HK:tyP6Jx?urY1@poxappprd41a:8080"
+export https_proxy="http://LH511@CORP.HA.ORG.HK:tyP6Jx?urY1@poxappprd41a:8080"
+export no_proxy="localhost,127.0.0.1"
+
 -------------
 # 设置hosts文件
 sudo bash -c 'cat >> /etc/hosts << EOF
