@@ -337,6 +337,7 @@
         - "{{ software_dest_path }}/remi-release-8.rpm"
         state: present
         disable_gpg_check: yes
+        disablerepo: "*"
       become: yes
       tags: install_repo
     - name: enable php7
