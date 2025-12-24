@@ -30,6 +30,11 @@ ssh logreader@192.168.52.236
 P@ssw0rd123
 
 
+----
+
+
+
+
 -------------
 # 设置hosts文件
 sudo bash -c 'cat >> /etc/hosts << EOF

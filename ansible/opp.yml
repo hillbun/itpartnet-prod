@@ -397,6 +397,51 @@
         regexp: 'group = apache'
         replace: 'group = nginx'
       tags: change_php_fpm_group
+ 
+ 
+     - name: copy redis-7.4.2.tar.gz
+      ansible.builtin.copy:
+        src: "{{ software_src_path }}/redis-7.4.2.tar.gz"
+        dest: "{{ software_dest_path }}/redis-7.4.2.tar.gz"
+      tags: copy_redis
+    - name: redis-unarchive
+      unarchive:
+        src: "{{ software_dest_path }}/redis-7.4.2.tar.gz"
+        dest: "{{ software_dest_path }}"
+        remote_src: yes
+      tags: redis_unarchive
+    - name: redis-server-compile
+      shell: make && make install
+      args:
+        chdir: "{{ software_dest_path }}/redis-7.4.2"
+    - name: nginx service create
+      ansible.builtin.copy:
+        dest: /etc/systemd/system/nginx.service
+        owner: root
+        group: root
+        mode: '0644'
+        content: |
+          [Unit]
+          Description=The nginx HTTP and reverse proxy server
+          After=network.target remote-fs.target nss-lookup.target
+          
+          [Service]
+          Type=forking
+          PIDFile=/usr/nginx/logs/nginx.pid
+          ExecStartPre=/usr/nginx/sbin/nginx -t
+          ExecStart=/usr/nginx/sbin/nginx
+          ExecReload=/usr/nginx/sbin/nginx -s reload
+          ExecStop=/bin/kill -s QUIT $MAINPID
+          PrivateTmp=true
+          
+          [Install]
+          WantedBy=multi-user.target
+      notify: reload systemd
+      tags: nginx_service_create
+
+ 
+ 
+ 
   handlers:
       - name: reload systemd
         ansible.builtin.systemd:
