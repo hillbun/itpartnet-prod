@@ -269,6 +269,36 @@
       args:
         chdir: "{{ software_dest_path }}/nginx-1.25.5"
         creates: /usr/nginx
+    - name: nginx service create
+      ansible.builtin.copy:
+        dest: /etc/systemd/system/nginx.service
+        owner: root
+        group: root
+        mode: '0644'
+        content: |
+          [Unit]
+          Description=The nginx HTTP and reverse proxy server
+          After=network.target remote-fs.target nss-lookup.target
+          
+          [Service]
+          Type=forking
+          PIDFile=/usr/nginx/logs/nginx.pid
+          ExecStartPre=/usr/nginx/sbin/nginx -t
+          ExecStart=/usr/nginx/sbin/nginx
+          ExecReload=/usr/nginx/sbin/nginx -s reload
+          ExecStop=/bin/kill -s QUIT $MAINPID
+          PrivateTmp=true
+          
+          [Install]
+          WantedBy=multi-user.target
+      notify: reload systemd
+      tags: nginx_service_create
+    - name: nginx service start
+      ansible.builtin.systemd:
+        name: nginx
+        state: started
+        enabled: yes
+      tags: nginx_service_start
   handlers:
       - name: reload systemd
         ansible.builtin.systemd:
