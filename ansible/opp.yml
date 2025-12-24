@@ -18,7 +18,6 @@
         marker: "#### {mark} ADDED BY OPP INSTALLATION ####"
         backup: yes
         state: present
-      register: hosts_result
       tags: setup_hosts
     - name: dnf
       dnf:
@@ -132,3 +131,30 @@
       args:
         chdir: "{{ software_dest_path }}/squid-6.11"
         creates: /opt/squid
+    - name: squid-config-init
+      blockinfile:
+        path: /opt/squid/etc/squid.conf
+        block: |
+          cache_effective_user squid
+          cache_effective_group squid
+          cache_dir rock /opt/squid/var/spool/squid 10240 swap-timeout=300
+          coredump_dir /opt/squid/var/coredumps
+        marker: "#### {mark} ADDED BY OPP INSTALLATION ####"
+        backup: yes
+        state: present
+      tags: squid_config_init
+    - name: squid coredumps
+      ansible.builtin.file:
+        path: /opt/squid/var/coredumps
+        state: directory
+        owner: squid
+        group: squid
+      tags: squid_coredumps_create
+    - name: squid dir owner
+      ansible.builtin.file:
+        path: /opt/squid
+        state: directory
+        owner: squid
+        group: squid
+        recurse: yes
+      tags: squid_dir_owner
