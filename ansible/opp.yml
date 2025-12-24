@@ -196,7 +196,7 @@
         state: started
         enabled: yes
       tags: squid_service_start
-handlers:
-    - name: reload systemd
-      ansible.builtin.systemd:
-        daemon_reload: yes
+  handlers:
+      - name: reload systemd
+        ansible.builtin.systemd:
+          daemon_reload: yes
