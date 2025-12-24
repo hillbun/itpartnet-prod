@@ -9,6 +9,7 @@
       NO_PROXY: "localhost,127.0.0.1"
     software_src_path: "/fsbackup/download"
     software_dest_path: "/fsbackup/download"
+    REDISCLI_AUTH: StrongP@@ssw0rd123!
   tasks:
     - name: ping
       ping:
@@ -540,9 +541,16 @@
         group: redis
       tags: create_var_log_redis_dir
     - name: local redis save
-      ansible.builtin.shell: redis-cli -h 127.0.0.1 -p 6379 -a "StrongP@@ssw0rd123!" -n 0 SAVE
+      ansible.builtin.shell: redis-cli -h 127.0.0.1 -p 6379 SAVE
       delegate_to: localhost
+      run_once: true
+      environment: "{{ REDISCLI_AUTH }}"
       tags: local_redis_save
+     - name: copy redis data
+      ansible.builtin.copy:
+        src: "{{ software_src_path }}/redis-7.4.2.tar.gz"
+        dest: "{{ software_dest_path }}/redis-7.4.2.tar.gz"
+      tags: copy_redis_data
   handlers:
       - name: reload systemd
         ansible.builtin.systemd:
