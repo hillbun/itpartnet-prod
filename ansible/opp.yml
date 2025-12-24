@@ -584,6 +584,7 @@
         state: directory
         owner: nginx
         group: www-group
+        recurse: yes
       tags: set_nginx_user_group
   handlers:
       - name: reload systemd
