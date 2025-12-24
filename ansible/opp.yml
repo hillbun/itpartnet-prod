@@ -158,3 +158,8 @@
         group: squid
         recurse: yes
       tags: squid_dir_owner
+    - name: squid cache dir init
+      ansible.builtin.command: /opt/squid/sbin/squid -z
+      args:
+        creates: /opt/squid/var/spool/squidrock
+      tags: squid_cache_dir_init
