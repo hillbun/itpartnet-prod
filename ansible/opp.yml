@@ -544,12 +544,11 @@
       ansible.builtin.shell: redis-cli -h 127.0.0.1 -p 6379 SAVE
       delegate_to: localhost
       run_once: true
-      environment: "{{ REDISCLI_AUTH }}"
       tags: local_redis_save
-     - name: copy redis data
+    - name: copy redis data
       ansible.builtin.copy:
-        src: "{{ software_src_path }}/redis-7.4.2.tar.gz"
-        dest: "{{ software_dest_path }}/redis-7.4.2.tar.gz"
+        src: /opt/redis/dump.rdb
+        dest: /opt/redis/dump.rdb
       tags: copy_redis_data
   handlers:
       - name: reload systemd
