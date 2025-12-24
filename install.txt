@@ -254,7 +254,7 @@ headers-more-nginx-module.tar.gz
     --without-pcre2 \
     --with-stream_ssl_module \
     --with-stream_ssl_preread_module
-	
+
 # 编译（普通用户权限）
 make
 
