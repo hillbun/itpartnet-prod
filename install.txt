@@ -32,9 +32,10 @@ P@ssw0rd123
 
 ----
 
+/etc/yum.conf
+
 proxy=http://poxappprd41a:8080
-proxy_username=LH511@CORP.HA.ORG.HK
-proxy_password=tyP6Jx?urY1
+
 
 
 export http_proxy="http://LH511@CORP.HA.ORG.HK:tyP6Jx?urY1@poxappprd41a:8080"

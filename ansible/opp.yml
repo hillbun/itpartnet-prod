@@ -9,6 +9,14 @@
     - name: ping
       ping:
       tags: ping_hosts
+    - name: setup yum proxy
+      blockinfile:
+        path: /etc/yum.conf
+        block: |
+          proxy=http://192.168.189.195:8080
+        backup: yes
+        state: present
+      tags: setup_yum_proxy
     - name: hosts record
       blockinfile:
         path: /etc/hosts
