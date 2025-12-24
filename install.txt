@@ -32,7 +32,9 @@ P@ssw0rd123
 
 ----
 
-
+proxy=http://poxappprd41a:8080
+proxy_username=LH511@CORP.HA.ORG.HK
+proxy_password=tyP6Jx?urY1
 
 
 -------------
