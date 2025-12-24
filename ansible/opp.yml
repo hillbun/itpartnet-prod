@@ -453,6 +453,21 @@
           WantedBy=multi-user.target
       notify: reload systemd
       tags: redis_service_create
+    - name: copy redis config
+      ansible.builtin.copy:
+        src: "{{ software_src_path }}/redis-7.4.2/redis.conf"
+        dest: "/etc/redis.conf"
+      tags: copy_redis_config
+    - name: edit sysctl.conf
+      blockinfile:
+        path: /etc/sysctl.conf
+        block: |
+          vm.overcommit_memory = 1
+          net.core.somaxconn = 512
+        marker: "#### {mark} ADDED BY OPP INSTALLATION ####"
+        backup: yes
+        state: present
+      tags: edit_sysctl_conf
   handlers:
       - name: reload systemd
         ansible.builtin.systemd:
