@@ -563,6 +563,11 @@
         state: started
         enabled: yes
       tags: redis_service_start
+    - name: sync nginx dist
+      ansible.posix.synchronize:
+        src: /usr/nginx/html/dist
+        dest: /usr/nginx/html/dist
+      tags: sync_nginx_dist
   handlers:
       - name: reload systemd
         ansible.builtin.systemd:
