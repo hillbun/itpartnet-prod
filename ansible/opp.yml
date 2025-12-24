@@ -3,8 +3,8 @@
   hosts: opp_prod
   gather_facts: no
   vars:
-    software_src_path: "/fsbackup/software"
-    software_dest_path: "/fsbackup/software"
+    software_src_path: "/fsbackup/download"
+    software_dest_path: "/fsbackup/download"
   tasks:
     - name: ping
       ping:
