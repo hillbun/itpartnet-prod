@@ -223,21 +223,28 @@
         src: /etc/krb5.conf
         dest: /etc/krb5.conf
       tags: copy_krb5_conf
+    - name: copy headers-more-nginx-module.tar.gz
+      ansible.builtin.copy:
+        src: "{{ software_src_path }}/headers-more-nginx-module.tar.gz"
+        dest: "{{ software_dest_path }}/headers-more-nginx-module.tar.gz"
+      tags: copy_headers_more_nginx_module
+    - name: headers-more-nginx-module-unarchive
+      unarchive:
+        src: "{{ software_dest_path }}/headers-more-nginx-module.tar.gz"
+        dest: "{{ software_dest_path }}"
+        remote_src: yes
+      tags: headers_more_nginx_module_unarchive
     - name: copy nginx-1.2.5.tar.gz
       ansible.builtin.copy:
         src: "{{ software_src_path }}/nginx-1.25.5.tar.gz"
         dest: "{{ software_dest_path }}/nginx-1.25.5.tar.gz"
-      tags: copy_nginx
-    - name: copy headers-more-nginx-module
-      ansible.builtin.copy:
-        src: "{{ software_src_path }}/headers-more-nginx-module"
-        dest: "{{ software_dest_path }}/headers-more-nginx-module"
-      tags: copy_headers_more_nginx_module
+      tags: copy_nginxs
     - name: nginx-unarchive
       unarchive:
         src: "{{ software_dest_path }}/nginx-1.25.5.tar.gz"
         dest: "{{ software_dest_path }}"
         remote_src: yes
+      tags: nginx_unarchive
     - name: nginx-configure
       shell: |
         ./configure --user=nginx --group=nginx --prefix=/usr/nginx \
