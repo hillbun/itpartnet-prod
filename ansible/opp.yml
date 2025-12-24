@@ -354,12 +354,12 @@
     - name: reset php
       ansible.builtin.dnf:
         name: php
-        state: installed
+        state: present
       tags: reset_php
     - name: enable php
       ansible.builtin.dnf:
         name: "@php:remi-7.4"
-        state: enabled
+        state: present
       tags: enable_php
     - name: install php dnf
       dnf:
