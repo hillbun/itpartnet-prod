@@ -293,6 +293,14 @@
           WantedBy=multi-user.target
       notify: reload systemd
       tags: nginx_service_create
+    - name: add nginx account
+      ansible.builtin.user:
+        name: nginx
+        shell: /bin/false
+        create_home: no
+        state: present
+        system: yes
+      tags: add_nginx_account
     - name: nginx service start
       ansible.builtin.systemd:
         name: nginx
