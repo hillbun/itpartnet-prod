@@ -318,11 +318,23 @@
         groups: www-group
         append: yes
       tags: add_nginx_www_group
+    - name: copy epel
+      ansible.builtin.copy:
+        src: "{{ software_src_path }}/epel-release-latest-8.noarch.rpm"
+        dest: "{{ software_dest_path }}/epel-release-latest-8.noarch.rpm"
+      tags: copy_epel
+    - name: copy remi
+      ansible.builtin.copy:
+        src: "{{ software_src_path }}/remi-release-8.rpm"
+        dest: "{{ software_dest_path }}/remi-release-8.rpm"
+      tags: copy_remi
     - name: install repo
       ansible.builtin.dnf:
         name:
-          - https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-          - https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+        #  - https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+        #  - https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+        - "{{ software_dest_path }}/epel-release-latest-8.noarch.rpm"
+        - "{{ software_dest_path }}/remi-release-8.rpm"
         state: present
         disable_gpg_check: yes
       become: yes
