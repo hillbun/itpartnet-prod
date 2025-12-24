@@ -161,7 +161,7 @@
     - name: squid cache dir init
       ansible.builtin.command: /opt/squid/sbin/squid -z
       args:
-        creates: /opt/squid/var/spool/squidrock
+        creates: /opt/squid/var/spool/squid/rock
       tags: squid_cache_dir_init
     - name: squid service create
       ansible.builtin.copy:
