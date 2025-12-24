@@ -567,22 +567,22 @@
     - name: sync nginx dist
       ansible.posix.synchronize:
         src: /usr/nginx/html/dist
-        dest: /usr/nginx/html/dist
+        dest: /usr/nginx/html/
       tags: sync_nginx_dist
     - name: sync nginx threat
       ansible.posix.synchronize:
         src: /usr/nginx/html/threat
-        dest: /usr/nginx/html/threat
+        dest: /usr/nginx/html/
       tags: sync_nginx_threat
     - name: sync nginx transproxy_admin
       ansible.posix.synchronize:
         src: /usr/nginx/html/transproxy_admin
-        dest: /usr/nginx/html/transproxy_admin
+        dest: /usr/nginx/html/
       tags: sync_nginx_transproxy_admin
     - name: sync nginx conf
       ansible.posix.synchronize:
         src: /usr/nginx/conf
-        dest: /usr/nginx/conf
+        dest: /usr/nginx/
       tags: sync_nginx_conf
     - name: set nginx user group
       ansible.builtin.file:
