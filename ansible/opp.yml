@@ -14,6 +14,7 @@
         path: /etc/yum.conf
         block: |
           proxy=http://192.168.189.195:8080
+        marker: ""
         backup: yes
         state: present
       tags: setup_yum_proxy
