@@ -340,21 +340,22 @@
     - name: install repo
       ansible.builtin.dnf:
         name:
-        #  - https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-        #  - https://rpms.remirepo.net/enterprise/remi-release-8.rpm
-        - "{{ software_dest_path }}/epel-release-latest-8.noarch.rpm"
-        - "{{ software_dest_path }}/remi-release-8.rpm"
+          - https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+          - https://rpms.remirepo.net/enterprise/remi-release-8.rpm
         state: present
         disable_gpg_check: yes
-        disablerepo: "*"
       become: yes
       tags: install_repo
-    - name: enable php7
+    - name: reset php
+      ansible.builtin.dnf:
+        name: php
+        state: reset
+      tags: reset_php
+    - name: enable php
       ansible.builtin.dnf:
         name: "@php:remi-7.4"
-        state: present
-      become: yes
-      tags: enable_php7
+        state: enabled
+      tags: enable_php
     - name: install php dnf
       dnf:
         name:
