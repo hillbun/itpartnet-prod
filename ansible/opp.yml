@@ -413,6 +413,13 @@
         regexp: 'group = apache'
         replace: 'group = nginx'
       tags: change_php_fpm_group
+      notify: reload systemd
+    - name: php-fpm service start
+      ansible.builtin.systemd:
+        name: php-fpm
+        state: started
+        enabled: yes
+      tags: php_fpm_service_start
     - name: copy redis-7.4.2.tar.gz
       ansible.builtin.copy:
         src: "{{ software_src_path }}/redis-7.4.2.tar.gz"
