@@ -568,6 +568,16 @@
         src: /usr/nginx/html/dist
         dest: /usr/nginx/html/dist
       tags: sync_nginx_dist
+    - name: sync nginx threat
+      ansible.posix.synchronize:
+        src: /usr/nginx/html/threat
+        dest: /usr/nginx/html/threat
+      tags: sync_nginx_threat
+    - name: sync nginx transproxy_admin
+      ansible.posix.synchronize:
+        src: /usr/nginx/html/transproxy_admin
+        dest: /usr/nginx/html/transproxy_admin
+      tags: sync_nginx_threat
   handlers:
       - name: reload systemd
         ansible.builtin.systemd:
