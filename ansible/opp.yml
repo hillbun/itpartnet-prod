@@ -580,7 +580,7 @@
       tags: sync_nginx_transproxy_admin
     - name: set nginx user group
       ansible.builtin.file:
-        path: /opt/nginx
+        path: /usr/nginx
         state: directory
         owner: nginx
         group: www-group
