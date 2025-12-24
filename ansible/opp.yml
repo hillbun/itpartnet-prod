@@ -397,8 +397,6 @@
         regexp: 'group = apache'
         replace: 'group = nginx'
       tags: change_php_fpm_group
- 
- 
      - name: copy redis-7.4.2.tar.gz
       ansible.builtin.copy:
         src: "{{ software_src_path }}/redis-7.4.2.tar.gz"
@@ -414,34 +412,32 @@
       shell: make && make install
       args:
         chdir: "{{ software_dest_path }}/redis-7.4.2"
-    - name: nginx service create
+    - name: redis service create
       ansible.builtin.copy:
-        dest: /etc/systemd/system/nginx.service
+        dest: /etc/systemd/system/redis.service
         owner: root
         group: root
         mode: '0644'
         content: |
           [Unit]
-          Description=The nginx HTTP and reverse proxy server
-          After=network.target remote-fs.target nss-lookup.target
+          Description=Redis persistent key-value database
+          After=network.target
           
           [Service]
           Type=forking
-          PIDFile=/usr/nginx/logs/nginx.pid
-          ExecStartPre=/usr/nginx/sbin/nginx -t
-          ExecStart=/usr/nginx/sbin/nginx
-          ExecReload=/usr/nginx/sbin/nginx -s reload
-          ExecStop=/bin/kill -s QUIT $MAINPID
-          PrivateTmp=true
+          ExecStart=/usr/local/bin/redis-server /etc/redis.conf
+          ExecStop=/usr/local/bin/redis-cli -p 6379 -a StrongP@@ssw0rd123! shutdown
+          Restart=always
+          User=redis
+          Group=redis
+          RuntimeDirectory=redis
+          RuntimeDirectoryMode=0755
+          PIDFile=/run/redis/redis-server.pid
           
           [Install]
           WantedBy=multi-user.target
       notify: reload systemd
-      tags: nginx_service_create
-
- 
- 
- 
+      tags: redis_service_create
   handlers:
       - name: reload systemd
         ansible.builtin.systemd:
