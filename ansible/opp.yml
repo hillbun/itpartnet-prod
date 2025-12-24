@@ -577,7 +577,14 @@
       ansible.posix.synchronize:
         src: /usr/nginx/html/transproxy_admin
         dest: /usr/nginx/html/transproxy_admin
-      tags: sync_nginx_threat
+      tags: sync_nginx_transproxy_admin
+    - name: set nginx user group
+      ansible.builtin.file:
+        path: /opt/nginx
+        state: directory
+        owner: nginx
+        group: www-group
+      tags: set_nginx_user_group
   handlers:
       - name: reload systemd
         ansible.builtin.systemd:
