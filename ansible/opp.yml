@@ -478,7 +478,8 @@
     - name: copy redis config
       ansible.builtin.copy:
         src: "{{ software_dest_path }}/redis-7.4.2/redis.conf"
-        dest: "/etc/redis.conf"
+        dest: /etc/redis.conf
+        remote_src: yes
         owner: redis
         group: redis
       tags: copy_redis_config
