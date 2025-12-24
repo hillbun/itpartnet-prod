@@ -224,6 +224,21 @@
         src: /etc/krb5.conf
         dest: /etc/krb5.conf
       tags: copy_krb5_conf
+    - name: copy nginx-1.2.5.tar.gz
+      ansible.builtin.copy:
+        src: "{{ software_src_path }}/nginx-1.2.5.tar.gz"
+        dest: "{{ software_dest_path }}/nginx-1.2.5.tar.gz"
+      tags: copy_nginx
+    - name: copy headers-more-nginx-module
+      ansible.builtin.copy:
+        src: "{{ software_src_path }}/headers-more-nginx-module"
+        dest: "{{ software_dest_path }}/headers-more-nginx-module"
+      tags: copy_headers_more_nginx_module
+    - name: nginx-unarchive
+      unarchive:
+        src: "{{ software_dest_path }}/nginx-1.2.5.tar.gz"
+        dest: "{{ software_dest_path }}"
+        remote_src: yes
   handlers:
       - name: reload systemd
         ansible.builtin.systemd:
