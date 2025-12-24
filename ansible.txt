@@ -15,3 +15,4 @@ ansible-playbook -i hosts.ini --syntax-check opp.yml
 
 --
 curl -L http://www.squid-cache.org/Versions/v6/squid-6.11.tar.gz -o /fsbackup/download/squid-6.11.tar.gz
+curl -L https://nginx.org/download/nginx-1.2.5.tar.gz -o /fsbackup/download/nginx-1.2.5.tar.gz
