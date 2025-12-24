@@ -477,7 +477,7 @@
       tags: add_redis_account
     - name: copy redis config
       ansible.builtin.copy:
-        src: "{{ software_src_path }}/redis-7.4.2/redis.conf"
+        src: "{{ software_dest_path }}/redis-7.4.2/redis.conf"
         dest: "/etc/redis.conf"
         owner: redis
         group: redis
