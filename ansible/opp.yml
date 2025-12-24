@@ -333,6 +333,45 @@
         state: enabled
       become: yes
       tags: enable_php7
+    - name: install php dnf
+      dnf:
+        name:
+          - php
+          - php-bcmath
+          - php-cli
+          - php-common
+          - php-dba
+          - php-dbg
+          - php-devel
+          - php-embedded
+          - php-enchant
+          - php-fpm
+          - php-gd
+          - php-gmp
+          - php-intl
+          - php-json
+          - php-ldap
+          - php-mbstring
+          - php-mysqlnd
+          - php-odbc
+          - php-opcache
+          - php-pdo
+          - php-pear
+          - php-pecl-apcu
+          - php-pecl-apcu-devel
+          - php-pgsql
+          - php-process
+          - php-recode
+          - php-snmp
+          - php-soap
+          - php-xml
+          - php-xmlrpc
+          - openssl
+          - openldap-clients
+          - mod_ssl
+          - php-redis
+        state: present
+      tags: install_dnf_php_package
   handlers:
       - name: reload systemd
         ansible.builtin.systemd:
