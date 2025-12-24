@@ -539,6 +539,10 @@
         owner: redis
         group: redis
       tags: create_var_log_redis_dir
+    - name: local redis save
+      ansible.builtin.shell: redis-cli -h 127.0.0.1 -p 6379 -a "StrongP@@ssw0rd123!" -n 0 SAVE
+      delegate_to: localhost
+      tags: local_redis_save
   handlers:
       - name: reload systemd
         ansible.builtin.systemd:
