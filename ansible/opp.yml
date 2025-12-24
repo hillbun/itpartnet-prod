@@ -53,6 +53,23 @@
           - pam-devel
           - libtdb-devel
           - libxml2-devel
+          - gcc
+          - gcc-c++
+          - pcre
+          - pcre-devel
+          - gd-devel
+          - openssl
+          - openssl-devel
+          - zlib
+          - zlib-devel
+          - perl-devel
+          - perl-ExtUtils-Embed
+          - gd-devel
+          - net-tools
+          - libxslt-devel
+          - libxml2
+          - libxslt-devel
+          - openldap-clients
         state: present
       tags: install_dnf_package
     - name: add squid account
@@ -195,6 +212,18 @@
         state: started
         enabled: yes
       tags: squid_service_start
+    - name: copy opp keytab
+      ansible.builtin.copy:
+        src: /opt/squid/etc/opp.keytab
+        dest: /opt/squid/etc/opp.keytab
+        owner: squid
+        group: squid
+      tags: copy_opp_keytab
+    - name: copy krb5 conf
+      ansible.builtin.copy:
+        src: /etc/krb5.conf
+        dest: /etc/krb5.conf
+      tags: copy_krb5_conf
   handlers:
       - name: reload systemd
         ansible.builtin.systemd:
