@@ -397,7 +397,7 @@
         regexp: 'group = apache'
         replace: 'group = nginx'
       tags: change_php_fpm_group
-     - name: copy redis-7.4.2.tar.gz
+    - name: copy redis-7.4.2.tar.gz
       ansible.builtin.copy:
         src: "{{ software_src_path }}/redis-7.4.2.tar.gz"
         dest: "{{ software_dest_path }}/redis-7.4.2.tar.gz"
