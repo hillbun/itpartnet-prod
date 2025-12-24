@@ -161,6 +161,7 @@
       args:
         chdir: "{{ software_dest_path }}/squid-6.11"
         creates: /opt/squid
+      tags: squid_compile
     - name: squid-config-init
       blockinfile:
         path: /opt/squid/etc/squid.conf
@@ -578,6 +579,11 @@
         src: /usr/nginx/html/transproxy_admin
         dest: /usr/nginx/html/transproxy_admin
       tags: sync_nginx_transproxy_admin
+    - name: sync nginx conf
+      ansible.posix.synchronize:
+        src: /usr/nginx/conf
+        dest: /usr/nginx/conf
+      tags: sync_nginx_conf
     - name: set nginx user group
       ansible.builtin.file:
         path: /usr/nginx
@@ -586,6 +592,9 @@
         group: www-group
         recurse: yes
       tags: set_nginx_user_group
+    - name: backup nginx conf
+      shell: cp -rp /usr/nginx/conf /usr/nginx/conf.bak
+      tags: backup_nginx_conf
   handlers:
       - name: reload systemd
         ansible.builtin.systemd:
