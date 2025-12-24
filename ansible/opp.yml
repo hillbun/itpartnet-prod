@@ -384,6 +384,18 @@
           - php-redis
         state: present
       tags: install_dnf_php_package
+    - name: change php-fpm user
+      ansible.builtin.replace:
+        path: /etc/php-fpm.d/www.conf
+        regexp: 'user = apache'
+        replace: 'user = nginx'
+      tags: change_php_fpm_user
+     - name: change php-fpm group
+      ansible.builtin.replace:
+        path: /etc/php-fpm.d/www.conf
+        regexp: 'group = apache'
+        replace: 'group = nginx'
+      tags: change_php_fpm_group
   handlers:
       - name: reload systemd
         ansible.builtin.systemd:
