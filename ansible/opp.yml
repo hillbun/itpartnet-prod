@@ -483,6 +483,48 @@
         owner: redis
         group: redis
       tags: copy_redis_config
+    - name: edit redis config bind
+      ansible.builtin.replace:
+        path: /etc/redis.conf
+        regexp: 'bind 127.0.0.1 -::1'
+        replace: 'bind 127.0.0.1'
+      tags: edit_redis_config_bind
+    - name: edit redis config daemonize
+      ansible.builtin.replace:
+        path: /etc/redis.conf
+        regexp: 'daemonize no'
+        replace: 'daemonize yes'
+      tags: edit_redis_config_daemonize
+    - name: edit redis config protected-mode
+      ansible.builtin.replace:
+        path: /etc/redis.conf
+        regexp: '^protected-mode yes'
+        replace: 'protected-mode no'
+      tags: edit_redis_config_protected_mode
+    - name: edit redis config dir
+      ansible.builtin.replace:
+        path: /etc/redis.conf
+        regexp: '^dir \./'
+        replace: 'dir /opt/redis'
+      tags: edit_redis_config_dir
+    - name: edit redis config requirepass
+      ansible.builtin.replace:
+        path: /etc/redis.conf
+        regexp: '^# requirepass foobared'
+        replace: 'requirepass StrongP@@ssw0rd123!'
+      tags: edit_redis_config_requirepass
+    - name: edit redis config logfile
+      ansible.builtin.replace:
+        path: /etc/redis.conf
+        regexp: '^logfile ""$'
+        replace: 'logfile /var/log/redis/redis.log'
+      tags: edit_redis_config_logfile
+    - name: edit redis config pidfile
+      ansible.builtin.replace:
+        path: /etc/redis.conf
+        regexp: 'pidfile /var/run/redis_6379\.pid'
+        replace: 'pidfile /run/redis/redis-server.pid'
+      tags: edit_redis_config_pidfile
     - name: create opt redis dir
       ansible.builtin.file:
         path: /opt/redis
