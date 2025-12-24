@@ -592,9 +592,6 @@
         group: www-group
         recurse: yes
       tags: set_nginx_user_group
-    - name: backup nginx conf
-      shell: \cp -rp /usr/nginx/conf /usr/nginx/conf.bak
-      tags: backup_nginx_conf
   handlers:
       - name: reload systemd
         ansible.builtin.systemd:
