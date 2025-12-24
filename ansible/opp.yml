@@ -557,6 +557,12 @@
         src: /opt/redis/dump.rdb
         dest: /opt/redis/dump.rdb
       tags: copy_redis_data
+    - name: redis service start
+      ansible.builtin.systemd:
+        name: redis
+        state: started
+        enabled: yes
+      tags: redis_service_start
   handlers:
       - name: reload systemd
         ansible.builtin.systemd:
