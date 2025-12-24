@@ -163,3 +163,40 @@
       args:
         creates: /opt/squid/var/spool/squidrock
       tags: squid_cache_dir_init
+    - name: squid service create
+      ansible.builtin.copy:
+        dest: /etc/systemd/system/squid.service
+        owner: root
+        group: root
+        mode: '0644'
+        content: |          
+          [Unit]
+          Description=Squid Web Proxy Cache
+          After=network.target
+          
+          [Service]
+          Type=forking
+          User=root
+          ExecStart=/opt/squid/sbin/squid -f /opt/squid/etc/squid.conf
+          ExecReload=/opt/squid/sbin/squid -k reconfigure -f /opt/squid/etc/squid.conf
+          ExecStop=/opt/squid/sbin/squid -k shutdown -f /opt/squid/etc/squid.conf
+          PIDFile=/opt/squid/var/run/squid.pid
+          LimitNOFILE=1048576
+          LimitNPROC=1048576
+          LimitCORE=infinity
+          
+          [Install]
+          WantedBy=multi-user.target
+          EOF
+      notify: reload systemd
+      tags: squid_service_create
+    - name: squid service start
+      ansible.builtin.systemd:
+        name: squid
+        state: started
+        enabled: yes
+      tags: squid_service_start
+handlers:
+    - name: reload systemd
+      ansible.builtin.systemd:
+        daemon_reload: yes
