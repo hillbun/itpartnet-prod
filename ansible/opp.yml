@@ -615,6 +615,12 @@
         group: www-group
         recurse: yes
       tags: set_nginx_user_group
+    - name: nginx service start
+      ansible.builtin.systemd:
+        name: nginx
+        state: started
+        enabled: yes
+      tags: nginx_service_start
     - name: copy node_exporter
       ansible.builtin.copy:
         src: "{{ software_src_path }}/node_exporter-1.8.2.linux-amd64.tar.gz"
