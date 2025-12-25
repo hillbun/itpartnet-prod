@@ -630,7 +630,7 @@
     - name: sync squid etc
       ansible.posix.synchronize:
         src: /opt/squid/etc
-        dest: /opt/quuid/
+        dest: /opt/squid/
       tags: sync_squid_etc
     - name: sync squid_shell
       ansible.posix.synchronize:
