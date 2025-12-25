@@ -627,6 +627,13 @@
         groups: www-group
         append: yes
       tags: add_squid_www_group
+    - name: create squid error dir
+      ansible.builtin.file:
+        path: /opt/squid/share/errors/en
+        state: directory
+        owner: squid
+        group: squid
+      tags: create_squid_error_dir
     - name: sync squid etc
       ansible.posix.synchronize:
         src: /opt/squid/etc
@@ -637,6 +644,9 @@
         src: /opt/squid_shell
         dest: /opt/
       tags: sync_squid_shell
+#############################
+#############crond
+#############################
     - name: copy node_exporter
       ansible.builtin.copy:
         src: "{{ software_src_path }}/node_exporter-1.8.2.linux-amd64.tar.gz"
