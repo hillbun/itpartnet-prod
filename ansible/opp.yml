@@ -621,6 +621,11 @@
         state: started
         enabled: yes
       tags: nginx_service_start
+    - name: sync squid_shell
+      ansible.posix.synchronize:
+        src: /opt/squid_shell
+        dest: /opt/
+      tags: sync_squid_shell
     - name: copy node_exporter
       ansible.builtin.copy:
         src: "{{ software_src_path }}/node_exporter-1.8.2.linux-amd64.tar.gz"
