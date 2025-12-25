@@ -658,6 +658,15 @@
         state: restarted
         enabled: yes
       tags: squid_service_restart
+    - name: check squid status
+      shell: systemctl status squid
+      register: squid_status
+      ignore_errors: yes
+      tags: check_squid_status
+    - name: output squid status
+      debug:
+        var: squid_status.stdout_lines
+      tags: output_squid_status
 #############################
 #############suduer
 #############################
