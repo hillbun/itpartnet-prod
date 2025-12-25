@@ -526,3 +526,7 @@ sudo systemctl status node_exporter
 netstat -na |grep 9100
 
 curl http://127.0.0.1:9100/metrics
+
+-rw-r--r-- 1 nginx www-group 2495 Dec 23 10:54 poxmgtprd.server.ha.org.hk.conf
+-rw-r--r-- 1 nginx www-group 1150 Dec 23 11:55 transproxy.swd.ha.org.hk.conf
+
