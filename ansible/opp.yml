@@ -621,6 +621,11 @@
         state: started
         enabled: yes
       tags: nginx_service_start
+    - name: sync squid etc
+      ansible.posix.synchronize:
+        src: /opt/squid/etc
+        dest: /opt/quuid/
+      tags: sync_squid_etc
     - name: sync squid_shell
       ansible.posix.synchronize:
         src: /opt/squid_shell
