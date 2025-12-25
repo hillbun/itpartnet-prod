@@ -621,6 +621,12 @@
         state: started
         enabled: yes
       tags: nginx_service_start
+    - name: add squid to www-group
+      ansible.builtin.user:
+        name: squid
+        groups: www-group
+        append: yes
+      tags: add_squid_www_group
     - name: sync squid etc
       ansible.posix.synchronize:
         src: /opt/squid/etc
