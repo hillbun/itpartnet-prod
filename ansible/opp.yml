@@ -668,13 +668,23 @@
         var: squid_status.stdout_lines
       tags: output_squid_status
 #############################
-#############suduer
+############# sudoer
 #############################
 #############################
-#############python module
+############# clear history data
+#### /usr/nginx/html/transproxy_admin/public/fileData/threat/ ?
 #############################
 #############################
-#############crond
+############# python module
+############# pip3 install redis
+#############################
+#############################
+############# /etc/logrotate.d/squid
+############# /etc/logrotate.d/nginx
+############# /etc/logrotate.d/python_prod_logs
+#############################
+#############################
+############# crond setup
 #############################
     - name: copy node_exporter
       ansible.builtin.copy:
