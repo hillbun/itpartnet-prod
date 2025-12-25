@@ -615,6 +615,56 @@
         group: www-group
         recurse: yes
       tags: set_nginx_user_group
+    - name: copy node_exporter
+      ansible.builtin.copy:
+        src: "{{ software_src_path }}/node_exporter-1.8.2.linux-amd64.tar.gz"
+        dest: "{{ software_dest_path }}/node_exporter-1.8.2.linux-amd64.tar.gz"
+      tags: copy_node_exporter
+    - name: node exporter unarchive
+      unarchive:
+        src: "{{ software_dest_path }}/node_exporter-1.8.2.linux-amd64.tar.gz"
+        dest: "{{ software_dest_path }}"
+        remote_src: yes
+      tags: node_exporter_unarchive
+    - name: create node_exporter dir
+      ansible.builtin.file:
+        path: /usr/local/node_exporter
+        state: directory
+      tags: create_node_exporter_dir
+    - name: copy node_exporter
+      ansible.builtin.copy:
+        src: "{{ software_dest_path }}/node_exporter-1.8.2.linux-amd64/node_exporter"
+        dest: /usr/local/node_exporter/node_exporter
+        remote_src: yes
+      tags: copy_node_exporter
+    - name: node_exporter service create
+      ansible.builtin.copy:
+        dest: /etc/systemd/system/node_exporter.service
+        owner: root
+        group: root
+        mode: '0644'
+        content: |
+          [Unit]
+          Description=node_exporter
+          Documentation=https://github.com/prometheus/node_exporter
+          After=network.target
+          
+          [Service]
+          Type=simple
+          User=root
+          ExecStart=/usr/local/node_exporter/node_exporter --web.listen-address=:9100
+          Restart=on-failure
+          
+          [Install]
+          WantedBy=multi-user.target
+      notify: reload systemd
+      tags: node_exporter_service_create
+    - name: node_exporter service start
+      ansible.builtin.systemd:
+        name: node_exporter
+        state: started
+        enabled: yes
+      tags: node_exporter_service_start
   handlers:
       - name: reload systemd
         ansible.builtin.systemd:
