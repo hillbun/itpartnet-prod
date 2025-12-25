@@ -579,11 +579,29 @@
         src: /usr/nginx/html/transproxy_admin
         dest: /usr/nginx/html/
       tags: sync_nginx_transproxy_admin
+    - name: edit transproxy env
+      ansible.builtin.replace:
+        path: /usr/nginx/html/transproxy_admin/.env
+        regexp: 'poxappprd52a'
+        replace: '{{ custom_hostname }}'
+      tags: edit_transproxy_env
     - name: sync nginx conf
       ansible.posix.synchronize:
         src: /usr/nginx/conf
         dest: /usr/nginx/
       tags: sync_nginx_conf
+    - name: edit poxmgtprd nginx conf
+      ansible.builtin.replace:
+        path: /usr/nginx/conf/conf.d/poxmgtprd.server.ha.org.hk.conf
+        regexp: 'poxappprd52a'
+        replace: '{{ custom_hostname }}'
+      tags: edit_poxmgtprd_nginx_conf
+    - name: edit transproxy nginx conf
+      ansible.builtin.replace:
+        path: /usr/nginx/conf/conf.d/transproxy.swd.ha.org.hk.conf
+        regexp: 'poxappprd52a'
+        replace: '{{ custom_hostname }}'
+      tags: edit_transproxy_nginx_conf
     - name: create nginx cache dir
       ansible.builtin.file:
         path: /usr/nginx/nginx_cache/proxy_temp
