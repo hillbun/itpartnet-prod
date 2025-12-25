@@ -642,6 +642,9 @@
         src: "{{ software_dest_path }}/node_exporter-1.8.2.linux-amd64/node_exporter"
         dest: /usr/local/node_exporter/node_exporter
         remote_src: yes
+        owner: root
+        group: root
+        mode: '0755'
       tags: copy_node_exporter
     - name: node_exporter service create
       ansible.builtin.copy:
