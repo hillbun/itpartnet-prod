@@ -730,6 +730,15 @@
         enabled: yes
       tags: node_exporter_service_start
     - name: check node_exporter status
+      shell: systemctl status node_exporter
+      register: node_exporter_status
+      ignore_errors: yes
+      tags: check_node_exporter_status
+    - name: output node_exporter status
+      debug:
+        var: node_exporter_status.stdout_lines
+      tags: output_node_exporter_status
+    - name: check node_exporter status
       shell: curl http://127.0.0.1:9100/metrics
       tags: check_node_exporter_status
   handlers:
