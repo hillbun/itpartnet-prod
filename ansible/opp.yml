@@ -316,12 +316,12 @@
         state: present
         system: yes
       tags: add_nginx_account
-    - name: nginx service start
+    - name: nginx service start init
       ansible.builtin.systemd:
         name: nginx
         state: started
         enabled: yes
-      tags: nginx_service_start
+      tags: nginx_service_start_init
     - name: add www-group
       ansible.builtin.group:
         name: www-group
@@ -615,12 +615,12 @@
         group: www-group
         recurse: yes
       tags: set_nginx_user_group
-    - name: nginx service start
+    - name: nginx service start 2
       ansible.builtin.systemd:
         name: nginx
         state: started
         enabled: yes
-      tags: nginx_service_start
+      tags: nginx_service_start_2
     - name: add squid to www-group
       ansible.builtin.user:
         name: squid
