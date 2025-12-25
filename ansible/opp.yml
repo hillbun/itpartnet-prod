@@ -639,11 +639,22 @@
         src: /opt/squid/etc
         dest: /opt/squid/
       tags: sync_squid_etc
+#######
+### /opt/squid/sbin/squid -k parse -f /opt/squid/etc/squid.conf
+#######
     - name: sync squid_shell
       ansible.posix.synchronize:
         src: /opt/squid_shell
         dest: /opt/
       tags: sync_squid_shell
+    - name: sync sync_py_prod
+      ansible.posix.synchronize:
+        src: /opt/py_prod
+        dest: /opt/
+      tags: sync_py_prod
+#############################
+#############suduer
+#############################	  
 #############################
 #############crond
 #############################
