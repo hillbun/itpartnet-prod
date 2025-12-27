@@ -549,6 +549,10 @@ curl http://127.0.0.1:9100/metrics
 
 
 ---
+pip3 install redis
+sudo -u squid /bin/python3 -c "import redis; print(redis.__version__)"
+
+---
 /etc/cron.d/opp-crontab
 
 # 设置环境变量，确保 cron 能找到所有基础命令

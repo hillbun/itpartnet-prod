@@ -678,7 +678,6 @@
         state: absent
       tags: delete_netstat_json
 #############################
-############# python redis module install
 ############# pip3 install redis
 #############################
 #############################
