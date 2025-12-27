@@ -667,12 +667,18 @@
       debug:
         var: squid_status.stdout_lines
       tags: output_squid_status
+    - name: delete system json
+      ansible.builtin.file:
+        path: /usr/nginx/html/transproxy_admin/system_usage.json
+        state: absent
+      tags: delete_system_json
+    - name: delete netstat json
+      ansible.builtin.file:
+        path: /usr/nginx/html/transproxy_admin/public/fileData/threat/netstat_status.json
+        state: absent
+      tags: delete_netstat_json
 #############################
-############# clear history data
-#### /usr/nginx/html/transproxy_admin/public/fileData/threat/ ?
-#############################
-#############################
-############# python module
+############# python redis module install
 ############# pip3 install redis
 #############################
 #############################
