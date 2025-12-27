@@ -550,7 +550,11 @@ curl http://127.0.0.1:9100/metrics
 
 ---
 pip3 install redis
+pip3 install --upgrade pip
+/bin/python3 -m pip show redis
+chmod -R a+rx /usr/local/lib/python3.6
 sudo -u squid /bin/python3 -c "import redis; print(redis.__version__)"
+
 
 ---
 /etc/cron.d/opp-crontab

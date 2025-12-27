@@ -677,11 +677,10 @@
         path: /usr/nginx/html/transproxy_admin/public/fileData/threat/netstat_status.json
         state: absent
       tags: delete_netstat_json
-#############################
-############# pip3 install redis
-#############################
-#############################
-############# /etc/logrotate.d/squid
+    - name: install python redis module
+      shell: pip3 install redis;pip3 install --upgrade pip;/bin/python3 -m pip show redis;chmod -R a+rx /usr/local/lib/python3.6
+      environment: "{{ proxy_env }}"
+      tags: install_python_redis_module
     - name: copy logrotate squid
       ansible.builtin.copy:
         src: /etc/logrotate.d/squid
