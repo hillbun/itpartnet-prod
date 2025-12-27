@@ -1,0 +1,532 @@
+HA-RPAHOST-2
+LH511
+tyP6Jx?urY1
+
+CORP-LOGON
+
+sshgateway
+xw972
+TcN?U?JmqU1
+
+tou
+itp@8888
+
+
+https://ka9rcghfcff.feishu.cn/wiki/BLjXwE6nmith8Wk7Tv4c4w72nmf
+SERVER LIST
+https://ka9rcghfcff.feishu.cn/wiki/MftkwbS0qiIGXlkEoVLcKyCBnme?table=tblGdNWJ8ybel69A&view=vewkIjaPvb
+
+poxappprd41a  192.168.52.236
+
+poxappprd52a  192.168.152.120
+poxappprd52b  192.168.152.121
+poxappprd52c  192.168.152.122
+poxappprd52d  192.168.152.123
+poxappprd52e  192.168.152.124
+
+pox@N5OPP
+
+ssh logreader@192.168.52.236
+P@ssw0rd123
+
+
+----
+
+/etc/yum.conf
+
+proxy=http://poxappprd41a:8080
+
+
+proxy=http://192.168.189.195:8080
+
+
+
+export http_proxy="http://192.168.189.195:8080"
+export https_proxy="http://192.168.189.195:8080"
+
+
+
+export http_proxy="http://LH511@CORP.HA.ORG.HK:tyP6Jx?urY1@poxappprd41a:8080"
+export https_proxy="http://LH511@CORP.HA.ORG.HK:tyP6Jx?urY1@poxappprd41a:8080"
+export no_proxy="localhost,127.0.0.1"
+
+-------------
+# 设置hosts文件
+sudo bash -c 'cat >> /etc/hosts << EOF
+#### ADDED BY OPP BEGIN ####
+160.88.114.70 corprodc02.corp.ha.org.hk
+160.98.39.18 corprodc03.corp.ha.org.hk
+#### ADDED BY OPP END ####
+EOF'
+
+-------------------------------------------
+# 安装基础依赖包
+sudo dnf install -y gcc make openssl openssl-devel zlib zlib-devel \
+    perl-devel perl-ExtUtils-Embed net-tools vim wget lrzsz
+
+
+sudo dnf install -y openldap-clients openldap-devel realmd sssd sssd-ldap \
+    oddjob-mkhomedir oddjob samba-common-tools sssd-tools chrony \
+    krb5-libs krb5-workstation krb5-devel libecap libecap-devel \
+    gnutls-devel pam-devel libtdb-devel libxml2-devel
+
+--------------------------------------------
+# 创建Squid系统用户
+sudo useradd -r -s /sbin/nologin squid
+
+# 下载Squid源码
+cd ~
+wget http://www.squid-cache.org/Versions/v6/squid-6.11.tar.gz
+tar -xzvf squid-6.11.tar.gz
+cd squid-6.11
+
+# 配置编译选项
+./configure --prefix=/opt/squid \
+    --bindir=/opt/squid/bin \
+    --sbindir=/opt/squid/sbin \
+    --sysconfdir=/opt/squid/etc \
+    --datadir=/opt/squid/share \
+    --includedir=/opt/squid/include \
+    --libdir=/opt/squid/lib \
+    --libexecdir=/opt/squid/libexec \
+    --localstatedir=/opt/squid/var \
+    --sharedstatedir=/opt/squid/lib \
+    --mandir=/opt/squid/share/man \
+    --infodir=/opt/squid/share/info \
+    --with-logdir=/opt/squid/var/log \
+    --with-pidfile=/opt/squid/var/run/squid.pid \
+    --enable-ssl \
+    --with-openssl=/usr \
+    --enable-auth \
+    --enable-auth-basic=DB,fake,getpwnam,LDAP,NCSA,PAM,POP3,RADIUS,SASL,SMB,SMB_LM \
+    --enable-auth-ntlm=SMB_LM,fake \
+    --enable-auth-digest=file,LDAP \
+    --enable-auth-negotiate=kerberos \
+    --enable-external-acl helpers=LDAP_group,time_quota,session,unix_group,wbinfo_group,kerberos_ldap_group \
+    --enable-storeid-rewrite-helpers=file \
+    --enable-cache-digests \
+    --enable-cachemgr-hostname=localhost \
+    --enable-delay-pools \
+    --enable-epoll \
+    --enable-icap-client \
+    --enable-ident-lookups \
+    --enable-linux-netfilter \
+    --enable-removal-policies=heap,lru \
+    --enable-snmp \
+    --enable-ssl-crtd \
+    --enable-storeio=aufs,diskd,ufs,rock \
+    --enable-diskio \
+    --enable-wccpv2 \
+    --enable-esi \
+    --enable-ecap \
+    --with-aio \
+    --with-default-user=squid \
+    --enable-async-io \
+    --with-dl \
+    --with-pthreads \
+    --with-swapdir=/opt/squid/var/spool/squid
+
+# 编译
+make
+
+# 安装（需要sudo权限）
+sudo make install
+
+
+OK 
+---
+cp /opt/squid/etc/squid.conf /opt/squid/etc/squid.conf.bak
+
+
+# 在 squid.conf 中指定运行用户
+cat >> /opt/squid/etc/squid.conf << EOF
+#### ADDED BY OPP BEGIN ####
+cache_effective_user squid
+cache_effective_group squid
+cache_dir rock /opt/squid/var/spool/squid 10240 swap-timeout=300
+coredump_dir /opt/squid/var/coredumps
+#### ADDED BY OPP END ####
+EOF
+
+
+mkdir -p /opt/squid/var/coredumps
+
+# 设置目录权限
+sudo chown -R squid:squid /opt/squid
+#sudo chown -R squid:squid /opt/squid/var/
+#sudo chmod -R 755 /opt/squid/var/
+#sudo chown -R squid:squid /opt/squid/var/spool/squid
+#sudo chmod -R 750 /opt/squid/var/spool/squid
+
+# 初始化缓存
+sudo /opt/squid/sbin/squid -z
+
+---
+# 创建systemd服务文件
+sudo tee /etc/systemd/system/squid.service > /dev/null << 'EOF'
+[Unit]
+Description=Squid Web Proxy Cache
+After=network.target
+
+[Service]
+Type=forking
+User=root
+ExecStart=/opt/squid/sbin/squid -f /opt/squid/etc/squid.conf
+ExecReload=/opt/squid/sbin/squid -k reconfigure -f /opt/squid/etc/squid.conf
+ExecStop=/opt/squid/sbin/squid -k shutdown -f /opt/squid/etc/squid.conf
+PIDFile=/opt/squid/var/run/squid.pid
+LimitNOFILE=1048576
+LimitNPROC=1048576
+LimitCORE=infinity
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+# 重新加载systemd配置
+sudo systemctl daemon-reload
+sudo systemctl enable squid
+
+
+---
+# 检查配置语法
+sudo /opt/squid/sbin/squid -k parse -f /opt/squid/etc/squid.conf
+
+# 启动服务
+sudo systemctl start squid
+sudo systemctl status squid
+
+---
+######################################################################################################################################################
+#                                                                                                                                                   ##
+#                                                                  LDAP 认证配置                                                                    ##
+#                                                                                                                                                   ##
+######################################################################################################################################################
+
+# LDAP  (基本认证)
+#4.Authentication
+#4.1 LDAPS
+include /opt/squid/etc/ldap_auth.conf
+#auth_param  basic program /opt/squid/libexec/basic_ldap_auth -R -b "dc=corp,dc=ha,dc=org,dc=hk" -D "cn=n5-proxy-opp-41a,ou=Users,ou=N2,ou=ITIS,dc=corp,dc=ha,dc=org,dc=hk" -W "/opt/squid/etc/ldap_password" -f sAMAccountName=%s -H ldaps://corprodc03.corp.ha.org.hk:636
+#1
+auth_param basic realm "HA corp OPPTransproxy Authentication"
+auth_param basic credentialsttl 168 hours
+acl ldap_auth proxy_auth REQUIRED
+
+#http_access allow ldap-auth
+
+
+
+######################################################################################################################################################
+#                                                                                                                                                   ##
+#                                                                  Kerberos 认证配置                                                                ##
+#                                                                                                                                                   ##
+######################################################################################################################################################
+
+#Kerberos(案列)
+include /opt/squid/etc/kerberos_auth.conf
+#auth_param negotiate program /opt/squid/libexec/negotiate_kerberos_auth -k /opt/squid/etc/41a-new.keytab  -s HTTP/poxappprd41a.server.ha.org.hk@CORP.HA.ORG.HK -d
+#auth_param negotiate children 200
+#auth_param negotiate keep_alive on
+#auth_param negotiate realm CORP.HA.ORG.HK
+#acl kerberos_auth proxy_auth REQUIRED
+#http_access deny !kerberos_auth
+#http_access allow kerberos_auth
+
+
+
+
+---
+# 备份原配置
+sudo cp /etc/krb5.conf /etc/krb5.conf.bak
+
+cp opp.keytab /opt/squid/etc/opp.keytab
+chown squid.squid /opt/squid/etc/opp.keytab
+\cp krb5.conf /etc/krb5.conf
+
+
+---
+sudo dnf install -y gcc gcc-c++ pcre pcre-devel gd-devel openssl openssl-devel \
+    zlib zlib-devel perl-devel perl-ExtUtils-Embed gd-devel net-tools \
+    libxslt-devel libxml2 libxslt-devel openldap-clients
+
+# 创建nginx系统用户
+sudo useradd -s /bin/false -M nginx
+
+#上传模块压缩包
+mkdir /root/software
+cd /root/software
+wget https://nginx.org/download/nginx-1.2.5.tar.gz
+headers-more-nginx-module.tar.gz
+
+./configure --user=nginx --group=nginx --prefix=/usr/nginx \
+    --with-cc-opt=-O2 \
+    --with-http_ssl_module \
+    --with-http_v2_module \
+    --with-http_sub_module \
+    --with-http_stub_status_module \
+    --with-threads \
+    --with-compat \
+    --add-module=../headers-more-nginx-module \
+    --sbin-path=/usr/nginx/sbin/nginx \
+    --conf-path=/usr/nginx/conf/nginx.conf \
+    --with-stream \
+    --without-pcre2 \
+    --with-stream_ssl_module \
+    --with-stream_ssl_preread_module
+
+# 编译（普通用户权限）
+make
+
+# 安装（需要sudo权限）
+sudo make install
+
+chown -R nginx.nginx /usr/nginx
+
+---
+# 创建nginx服务文件
+sudo tee /etc/systemd/system/nginx.service > /dev/null << 'EOF'
+[Unit]
+Description=The nginx HTTP and reverse proxy server
+After=network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=forking
+PIDFile=/usr/nginx/logs/nginx.pid
+ExecStartPre=/usr/nginx/sbin/nginx -t
+ExecStart=/usr/nginx/sbin/nginx
+ExecReload=/usr/nginx/sbin/nginx -s reload
+ExecStop=/bin/kill -s QUIT $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+# 重新加载 systemd
+sudo systemctl daemon-reload
+sudo systemctl enable nginx
+
+sudo systemctl start nginx
+sudo systemctl status nginx
+
+
+---
+
+groupadd www-group
+usermod -a -G www-group nginx
+usermod -a -G www-group apache
+usermod -a -G www-group squid
+
+chown -R nginx.www-group /usr/nginx/
+
+
+chmod 775 /usr/nginx/html/transproxy_admin/storage/logs
+chown -R nginx.www-group /usr/nginx/html/transproxy_admin/storage/logs
+chmod g+s /usr/nginx/html/transproxy_admin/storage/logs
+
+chmod 775 /usr/nginx/html/transproxy_admin/storage/app
+chown -R nginx.www-group /usr/nginx/html/transproxy_admin/storage/app
+chmod g+s /usr/nginx/html/transproxy_admin/storage/app
+
+chmod 775 /usr/nginx/html/transproxy_admin/storage/framework/sessions
+chown -R nginx.www-group /usr/nginx/html/transproxy_admin/storage/framework/sessions
+chmod g+s /usr/nginx/html/transproxy_admin/storage/framework/sessions
+
+chmod 775 /usr/nginx/html/transproxy_admin/public/fileData
+chown -R nginx.www-group /usr/nginx/html/transproxy_admin/public/fileData
+chmod g+s /usr/nginx/html/transproxy_admin/public/fileData
+chown nginx.www-group /usr/nginx/html/transproxy_admin/public/fileData/*
+chmod 644 /usr/nginx/html/transproxy_admin/public/fileData/*
+
+
+
+----
+# 添加EPEL和 Remi仓库
+sudo dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+sudo dnf install -y https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+
+# 重置并启用PHP7.4模块
+sudo dnf module reset php -y
+sudo dnf module enable php:remi-7.4 -y
+
+# 安装PHP及扩展
+sudo dnf install -y php php-bcmath php-cli php-common php-dba php-dbg \
+    php-devel php-embedded php-enchant php-fpm php-gd php-gmp php-intl \
+    php-json php-ldap php-mbstring php-mysqlnd php-odbc php-opcache \
+    php-pdo php-pear php-pecl-apcu php-pecl-apcu-devel php-pgsql \
+    php-process php-recode php-snmp php-soap php-xml php-xmlrpc \
+    openssl openldap-clients mod_ssl php-redis
+
+
+more /etc/php-fpm.d/www.conf  |grep apache
+user = apache
+group = apache
+listen.acl_users = apache,nginx
+
+
+# 启动 PHP-FPM
+sudo systemctl enable php-fpm
+sudo systemctl start php-fpm
+sudo systemctl status nginx
+
+-------------------
+
+# 启动 Nginx
+sudo /usr/nginx/sbin/nginx -c /usr/nginx/conf/nginx.conf
+
+# 测试Nginx配置
+sudo /usr/nginx/sbin/nginx -t
+
+---
+cp -r /root/software/nginx/html/dist /usr/nginx/html/
+cp -r /root/software/nginx/html/transproxy_admin /usr/nginx/html/
+cp /root/software/nginx/conf/nginx.conf /usr/nginx/conf/
+cp /root/software/nginx/conf/proxy.conf /usr/nginx/conf/
+cp -r /root/software/nginx/conf/conf.d /usr/nginx/conf/
+
+mkdir /usr/nginx/conf/ssl
+cp /root/software/nginx/conf/ssl/ssl.conf /usr/nginx/conf/ssl/
+cp /root/software/nginx/conf/ssl/poxmgtprd61a.cer /usr/nginx/conf/ssl/
+cp /root/software/nginx/conf/ssl//usr/nginx/conf/ssl/poxmgtprd61a.key /usr/nginx/conf/ssl/
+cp /usr/nginx/conf/ssl/poxmgtprd61a.key /usr/nginx/conf/ssl/
+cp /root/software/nginx/conf/ssl/poxmgtprd61a.key /usr/nginx/conf/ssl/
+cp /root/software/nginx/conf/ssl/dhparams.pem /usr/nginx/conf/ssl/
+mkdir -p /usr/nginx/nginx_cache/proxy_temp
+sudo /usr/nginx/sbin/nginx -t
+
+sudo systemctl restart nginx
+
+----
+
+sudo dnf install -y gcc make tcl
+cd ~/software/
+wget https://download.redis.io/releases/redis-7.4.2.tar.gz
+tar -xzvf redis-7.4.2.tar.gz
+cd redis-7.4.2
+make
+sudo make install
+
+sudo groupadd redis
+sudo useradd -r -g redis -s /bin/false redis
+
+
+---
+sudo cp redis.conf /etc/redis.conf
+sudo cp /etc/redis.conf /etc/redis.conf.bak
+sudo sed -i 's/bind 127.0.0.1 -::1/bind 127.0.0.1/' /etc/redis.conf
+sudo sed -i 's/daemonize no/daemonize yes/' /etc/redis.conf
+sudo sed -i 's/^protected-mode yes/protected-mode no/' /etc/redis.conf
+sudo sed -i 's|^dir ./|dir /opt/redis|' /etc/redis.conf
+sudo sed -i 's/^# requirepass foobared/requirepass StrongP@@ssw0rd123!/' /etc/redis.conf
+sudo sed -i 's/^logfile ""$/logfile \/var\/log\/redis\/redis.log/' /etc/redis.conf
+sudo sed -i 's|pidfile /var/run/redis_6379\.pid|pidfile /run/redis/redis-server.pid|' /etc/redis.conf
+
+echo "vm.overcommit_memory = 1" >> /etc/sysctl.conf
+echo "net.core.somaxconn = 512" >> /etc/sysctl.conf
+sysctl -p
+
+sudo useradd -M -s /bin/bash redis
+sudo mkdir -p /opt/redis
+sudo chown redis:redis /opt/redis
+mkdir /var/log/redis
+sudo chown redis:redis /var/log/redis
+sudo chown redis:redis /etc/redis.conf
+
+
+# 注意修改下面地方
+# bind 127.0.0.1 -::1
+# protected-mode no
+# port 6379
+# dir /opt/redis
+# dbfilename dump.rdb
+# requirepass StrongP@@ssw0rd123!
+
+----
+sudo tee /etc/systemd/system/redis.service > /dev/null << 'EOF'
+[Unit]
+Description=Redis persistent key-value database
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/usr/local/bin/redis-server /etc/redis.conf
+ExecStop=/usr/local/bin/redis-cli -p 6379 -a StrongP@@ssw0rd123! shutdown
+Restart=always
+User=redis
+Group=redis
+RuntimeDirectory=redis
+RuntimeDirectoryMode=0755
+PIDFile=/run/redis/redis-server.pid
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+
+
+sudo systemctl daemon-reload
+sudo systemctl enable redis
+sudo systemctl start redis
+sudo systemctl status redis
+sudo systemctl restart redis
+
+sudo systemctl stop redis
+redis-cli -h 192.168.52.236 -p 6379 --rdb /root/dump.rdb
+\cp /root/dump.rdb /opt/redis/dump.rdb
+sudo systemctl start redis
+
+
+
+redis-cli -h 127.0.0.1 -p 6379 -a 'StrongP@@ssw0rd123!'
+keys *
+
+
+---
+# 下载node_exporter
+wget https://github.com/prometheus/node_exporter/releases/download/v1.8.2/node_exporter-1.8.2.linux-amd64.tar.gz
+tar -xvf node_exporter-1.8.2.linux-amd64.tar.gz
+ls -la node_exporter-1.8.2.linux-amd64/
+
+sudo mkdir -p /usr/local/node_exporter
+sudo cp node_exporter-1.8.2.linux-amd64/node_exporter /usr/local/node_exporter/
+
+sudo chmod +x /usr/local/node_exporter/node_exporter
+sudo chown -R root:root /usr/local/node_exporter
+
+
+# 创建systemd服务文件
+
+sudo tee /etc/systemd/system/node_exporter.service > /dev/null << 'EOF'
+[Unit]
+Description=node_exporter
+Documentation=https://github.com/prometheus/node_exporter
+After=network.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/local/node_exporter/node_exporter --web.listen-address=:9100
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+# 重新加载systemd
+sudo systemctl daemon-reload
+
+# 启用并启动服务
+sudo systemctl enable node_exporter
+sudo systemctl start node_exporter
+
+# 检查服务状态
+sudo systemctl status node_exporter
+
+netstat -na |grep 9100
+
+curl http://127.0.0.1:9100/metrics
+
+-rw-r--r-- 1 nginx www-group 2495 Dec 23 10:54 poxmgtprd.server.ha.org.hk.conf
+-rw-r--r-- 1 nginx www-group 1150 Dec 23 11:55 transproxy.swd.ha.org.hk.conf
+
