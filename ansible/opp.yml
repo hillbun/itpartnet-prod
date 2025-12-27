@@ -668,9 +668,6 @@
         var: squid_status.stdout_lines
       tags: output_squid_status
 #############################
-############# sudoer
-#############################
-#############################
 ############# clear history data
 #### /usr/nginx/html/transproxy_admin/public/fileData/threat/ ?
 #############################
@@ -685,6 +682,9 @@
 #############################
 #############################
 ############# crond setup
+#############################
+#############################
+############# sudoer
 #############################
     - name: copy node_exporter
       ansible.builtin.copy:
