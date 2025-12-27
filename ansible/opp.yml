@@ -691,7 +691,7 @@
         owner: root
         group: root
         mode: '0644'
-        content: |		
+        content: |+	
           SHELL=/bin/bash
           PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
@@ -708,7 +708,6 @@
           5 0 * * * root /usr/sbin/logrotate -f /etc/logrotate.d/squid &>> /opt/squid_shell/logs/logrotate.log
           30 0 * * * root /usr/sbin/logrotate -f /etc/logrotate.d/nginx
           45 0 * * * root /usr/sbin/logrotate -f /etc/logrotate.d/python_prod_logs
-
 
       tags: opp_crontab_create
 #############################
