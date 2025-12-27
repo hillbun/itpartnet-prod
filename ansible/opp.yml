@@ -709,6 +709,7 @@
           30 0 * * * root /usr/sbin/logrotate -f /etc/logrotate.d/nginx
           45 0 * * * root /usr/sbin/logrotate -f /etc/logrotate.d/python_prod_logs
 
+
       tags: opp_crontab_create
 #############################
 ############# sudoer
