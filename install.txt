@@ -530,3 +530,20 @@ curl http://127.0.0.1:9100/metrics
 -rw-r--r-- 1 nginx www-group 2495 Dec 23 10:54 poxmgtprd.server.ha.org.hk.conf
 -rw-r--r-- 1 nginx www-group 1150 Dec 23 11:55 transproxy.swd.ha.org.hk.conf
 
+
+----
+
+10 * * * * bash  /opt/squid_shell/resource_monitor_script.sh &>> /opt/squid_shell/logs/resource_monitor_script.log
+15 0 * * * bash /opt/squid_shell/ftp_accesslog.sh
+0 */8 * * * : > /opt/squid/var/log/cache.log
+1 */1 * * * /usr/bin/python3 /opt/squid_shell/hour_monitor.py &>> /opt/squid_shell/logs/nohup_monitor.log
+2 */1 * * * bash /opt/squid_shell/network_count.sh &>> /opt/squid_shell/logs/metwork_count.log
+1 */1 * * * bash /opt/squid_shell/monitor_matchlogs.sh  &>> /opt/squid_shell/logs/monitor_matchlogs.log
+1 0 * * * bash /opt/squid_shell/count_week_ip_url.sh  &>> /opt/squid_shell/logs/monitor_week_top.log
+1 0 * * * bash /opt/squid_shell/count_week_status.sh &>> /opt/squid_shell/logs/count_week_status.log
+1 */1 * * * bash /opt/squid_shell/count_estab.sh      &>> /opt/squid_shell/logs/count_estab.log
+0 1 * * * /usr/bin/python3 /usr/nginx/html/threat/IOCsApi_csv.py  &>> /opt/squid_shell/logs/ioc_script.log
+5 0 * * * /usr/sbin/logrotate -f /etc/logrotate.d/squid &>> /opt/squid_shell/logs/logrotate.log
+30 0 * * * root /usr/sbin/logrotate -f /etc/logrotate.d/nginx
+45 0 * * * root /usr/sbin/logrotate -f /etc/logrotate.d/python_prod_logs
+
