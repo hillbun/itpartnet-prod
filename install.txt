@@ -560,7 +560,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 0 */8 * * * root truncate -s 0 /opt/squid/var/log/cache.log
 1 */1 * * * root /usr/bin/python3 /opt/squid_shell/hour_monitor.py &>> /opt/squid_shell/logs/nohup_monitor.log
 2 */1 * * * root bash /opt/squid_shell/network_count.sh &>> /opt/squid_shell/logs/network_count.log
-1 */1 * * * root bash /opt/squid_shell/monitor_matchlogs.sh &>> /etc/squid_shell/logs/monitor_matchlogs.log
+1 */1 * * * root bash /opt/squid_shell/monitor_matchlogs.sh &>> /opt/squid_shell/logs/monitor_matchlogs.log
 1 0 * * * root bash /opt/squid_shell/count_week_ip_url.sh &>> /opt/squid_shell/logs/monitor_week_top.log
 1 0 * * * root bash /opt/squid_shell/count_week_status.sh &>> /opt/squid_shell/logs/count_week_status.log
 1 */1 * * * root bash /opt/squid_shell/count_estab.sh &>> /opt/squid_shell/logs/count_estab.log
