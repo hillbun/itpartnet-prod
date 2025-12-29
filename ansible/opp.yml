@@ -729,7 +729,7 @@
         mode: '0440'
         content: |
           ## Allows nginx user to run OPP commond
-          nginx ALL=(root) NOPASSWD: /usr/bin/python3 /opt/py_test/squid_ldap_modify.py
+          nginx ALL=(root) NOPASSWD: /usr/bin/python3 /opt/py_prod/squid_ldap_modify.py
           nginx ALL=(root) NOPASSWD: /opt/squid/sbin/squid -k reconfigure
       tags: opp_sudoer_create
     - name: copy node_exporter
