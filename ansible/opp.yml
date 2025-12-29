@@ -96,6 +96,9 @@
           - openldap-clients
         state: present
       tags: install_dnf_package
+###########
+#### chrony service ####
+###########
     - name: add squid account
       ansible.builtin.user:
         name: squid
@@ -600,6 +603,9 @@
         regexp: 'poxappprd52a'
         replace: '{{ custom_hostname }}'
       tags: edit_transproxy_env
+##############
+####  laravel-queue service  ######
+##############
     - name: sync nginx conf
       ansible.posix.synchronize:
         src: /usr/nginx/conf
