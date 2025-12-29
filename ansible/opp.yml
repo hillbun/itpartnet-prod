@@ -732,6 +732,9 @@
           nginx ALL=(root) NOPASSWD: /usr/bin/python3 /opt/py_prod/squid_ldap_modify.py
           nginx ALL=(root) NOPASSWD: /opt/squid/sbin/squid -k reconfigure
       tags: opp_sudoer_create
+#####################
+#######   /usr/bin/python3 /opt/py_prod/squid_ldap_modify.py /opt/squid/etc/ldap_auth.conf.j2
+#####################
     - name: copy node_exporter
       ansible.builtin.copy:
         src: "{{ software_src_path }}/node_exporter-1.8.2.linux-amd64.tar.gz"
