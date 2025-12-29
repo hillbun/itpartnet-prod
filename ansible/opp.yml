@@ -35,7 +35,7 @@
       tags: setup_hosts
     - name: setup limits
       blockinfile:
-        path: /etc/hosts
+        path: /etc/security/limits.conf
         block: |
           * soft nofile 1048576
           * soft nofile 1048576
