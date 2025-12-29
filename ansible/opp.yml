@@ -721,9 +721,17 @@
           45 0 * * * root /usr/sbin/logrotate -f /etc/logrotate.d/python_prod_logs
 
       tags: opp_crontab_create
-#############################
-############# sudoer
-#############################
+    - name: opp sudoer create
+      ansible.builtin.copy:
+        dest: /etc/sudoers.d/opp
+        owner: root
+        group: root
+        mode: '0440'
+        content: |
+          ## Allows nginx user to run OPP commond
+          nginx ALL=(root) NOPASSWD: /usr/bin/python3 /opt/py_test/squid_ldap_modify.py
+          nginx ALL=(root) NOPASSWD: /opt/squid/sbin/squid -k reconfigure
+      tags: opp_sudoer_create
     - name: copy node_exporter
       ansible.builtin.copy:
         src: "{{ software_src_path }}/node_exporter-1.8.2.linux-amd64.tar.gz"
