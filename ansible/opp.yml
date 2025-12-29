@@ -33,6 +33,16 @@
         backup: yes
         state: present
       tags: setup_hosts
+    - name: setup limits
+      blockinfile:
+        path: /etc/hosts
+        block: |
+          * soft nofile 1048576
+          * soft nofile 1048576
+        marker: "#### {mark} ADDED BY OPP INSTALLATION ####"
+        backup: no
+        state: present
+      tags: setup_limits
     - name: dnf
       dnf:
         name:
