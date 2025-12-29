@@ -693,8 +693,8 @@
       tags: copy_logrotate_nginx
     - name: copy logrotate python_prod_logs
       ansible.builtin.copy:
-        src: /etc/logrotate.d/nginx
-        dest: /etc/logrotate.d/nginx
+        src: /etc/logrotate.d/python_prod_logs
+        dest: /etc/logrotate.d/python_prod_logs
       tags: copy_logrotate_python_prod_logs
     - name: opp-crontab create
       ansible.builtin.copy:
