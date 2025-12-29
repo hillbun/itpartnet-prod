@@ -678,7 +678,7 @@
         state: absent
       tags: delete_netstat_json
     - name: install python redis module
-      shell: pip3 install redis;pip3 install --upgrade pip;/bin/python3 -m pip show redis;chmod -R a+rx /usr/local/lib/python3.6
+      shell: pip3 install jinja2 redis;pip3 install --upgrade pip;/bin/python3 -m pip show redis;chmod -R a+rx /usr/local/lib/python3.6
       environment: "{{ proxy_env }}"
       tags: install_python_redis_module
     - name: copy logrotate squid
@@ -696,6 +696,7 @@
         src: /etc/logrotate.d/python_prod_logs
         dest: /etc/logrotate.d/python_prod_logs
       tags: copy_logrotate_python_prod_logs
+
     - name: opp-crontab create
       ansible.builtin.copy:
         dest: /etc/cron.d/opp-crontab
@@ -732,9 +733,6 @@
           nginx ALL=(root) NOPASSWD: /usr/bin/python3 /opt/py_prod/squid_ldap_modify.py
           nginx ALL=(root) NOPASSWD: /opt/squid/sbin/squid -k reconfigure
       tags: opp_sudoer_create
-#####################
-#######   /usr/bin/python3 /opt/py_prod/squid_ldap_modify.py /opt/squid/etc/ldap_auth.conf.j2
-#####################
     - name: copy node_exporter
       ansible.builtin.copy:
         src: "{{ software_src_path }}/node_exporter-1.8.2.linux-amd64.tar.gz"
