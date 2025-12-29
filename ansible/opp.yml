@@ -696,7 +696,6 @@
         src: /etc/logrotate.d/python_prod_logs
         dest: /etc/logrotate.d/python_prod_logs
       tags: copy_logrotate_python_prod_logs
-
     - name: opp-crontab create
       ansible.builtin.copy:
         dest: /etc/cron.d/opp-crontab
@@ -731,6 +730,7 @@
         content: |
           ## Allows nginx user to run OPP commond
           nginx ALL=(root) NOPASSWD: /usr/bin/python3 /opt/py_prod/squid_ldap_modify.py
+          nginx ALL=(root) NOPASSWD: /usr/bin/python3 /opt/py_prod/squid_kerberos_modify.py
           nginx ALL=(root) NOPASSWD: /opt/squid/sbin/squid -k reconfigure
       tags: opp_sudoer_create
     - name: copy node_exporter
