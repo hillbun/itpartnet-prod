@@ -238,6 +238,11 @@
         src: /etc/krb5.conf
         dest: /etc/krb5.conf
       tags: copy_krb5_conf
+    - name: copy krb5 j2 conf
+      ansible.builtin.copy:
+        src: /etc/krb5.conf.j2
+        dest: /etc/krb5.conf.j2
+      tags: copy_krb5_j2_conf
     - name: copy headers-more-nginx-module.tar.gz
       ansible.builtin.copy:
         src: "{{ software_src_path }}/headers-more-nginx-module.tar.gz"
