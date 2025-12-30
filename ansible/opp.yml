@@ -97,6 +97,7 @@
         state: present
       tags: install_dnf_package
 ###########
+#### todo           ####
 #### chrony service ####
 ###########
     - name: add squid account
