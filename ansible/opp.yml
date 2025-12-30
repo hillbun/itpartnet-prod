@@ -729,19 +729,23 @@
       debug:
         var: squid_status.stdout_lines
       tags: output_squid_status
-############ todo rsyslog oproxy
     - name: copy rsyslog oproxy
       ansible.builtin.copy:
         src: /etc/rsyslog.d/oproxy_log.conf
         dest: /etc/rsyslog.d/oproxy_log.conf
       tags: copy_rsyslog_oproxy
+    - name: edit rsyslog oproxy
+      ansible.builtin.replace:
+        path: /etc/rsyslog.d/oproxy_log.conf
+        regexp: 'poxappprd52a'
+        replace: '{{ custom_hostname }}'
+      tags: edit_rsyslog_oproxy
     - name: rsyslog service restart
       ansible.builtin.systemd:
         name: rsyslog
         state: restarted
         enabled: yes
       tags: rsyslog_service_restart
-############
     - name: delete system json
       ansible.builtin.file:
         path: /usr/nginx/html/transproxy_admin/system_usage.json
