@@ -598,12 +598,12 @@
         src: /opt/redis/dump.rdb
         dest: /opt/redis/dump.rdb
       tags: copy_redis_data
-    - name: redis service start
+    - name: redis service restart
       ansible.builtin.systemd:
         name: redis
-        state: started
+        state: restarted
         enabled: yes
-      tags: redis_service_start
+      tags: redis_service_restart
     - name: sync nginx dist
       ansible.posix.synchronize:
         src: /usr/nginx/html/dist
