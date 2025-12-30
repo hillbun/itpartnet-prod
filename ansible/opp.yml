@@ -535,8 +535,8 @@
     - name: edit redis config daemonize
       ansible.builtin.replace:
         path: /etc/redis.conf
-        regexp: 'daemonize no'
-        replace: 'daemonize yes'
+        regexp: 'daemonize yes'
+        replace: 'daemonize no'
       tags: edit_redis_config_daemonize
     - name: edit redis config protected-mode
       ansible.builtin.replace:
