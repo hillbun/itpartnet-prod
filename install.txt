@@ -588,4 +588,30 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 chmod 644 /etc/cron.d/opp-crontab
 
 
+more  /etc/systemd/system/laravel-queue.service
+[Unit]
+Description=Laravel Queue Worker
+After=network.target redis.service  # 若依赖 Redis，需指定
+
+[Service]
+User=nginx
+Group=nginx
+WorkingDirectory=/usr/nginx/html/transproxy_admin
+ExecStart=/usr/bin/php -d memory_limit=512M artisan queue:work \
+                    --tries=3 \
+                    --timeout=120
+
+Restart=always
+RestartSec=5
+MemoryLimit=1G
+
+# 环境变量（重要！）
+#Environment="REDIS_HOST=127.0.0.1"
+#Environment="DB_HOST=127.0.0.1"
+#Environment="APP_ENV=production"
+
+[Install]
+WantedBy=multi-user.target
+
+
 
