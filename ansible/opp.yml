@@ -470,7 +470,7 @@
       shell: make USE_SYSTEMD=yes && make install
       args:
         chdir: "{{ software_dest_path }}/redis-7.4.2"
-      tags: redis-server-compile
+      tags: redis_server_compile
     - name: redis service create
       ansible.builtin.copy:
         dest: /etc/systemd/system/redis.service
