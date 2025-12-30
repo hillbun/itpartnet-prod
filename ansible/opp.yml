@@ -467,7 +467,7 @@
         remote_src: yes
       tags: redis_unarchive
     - name: redis server compile
-      shell: make && make install
+      shell: make USE_SYSTEMD=yes && make install
       args:
         chdir: "{{ software_dest_path }}/redis-7.4.2"
       tags: redis-server-compile
