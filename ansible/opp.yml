@@ -532,12 +532,18 @@
         regexp: 'bind 127.0.0.1 -::1'
         replace: 'bind 127.0.0.1'
       tags: edit_redis_config_bind
-    - name: edit redis config daemonize
+    #- name: edit redis config daemonize
+    #  ansible.builtin.replace:
+    #    path: /etc/redis.conf
+    #    regexp: 'daemonize no'
+    #    replace: 'daemonize yes'
+    #  tags: edit_redis_config_daemonize
+    - name: edit redis config supervised
       ansible.builtin.replace:
         path: /etc/redis.conf
-        regexp: 'daemonize yes'
-        replace: 'daemonize no'
-      tags: edit_redis_config_daemonize
+        regexp: '# supervised auto'
+        replace: 'supervised systemd'
+      tags: edit_redis_config_supervised
     - name: edit redis config protected-mode
       ansible.builtin.replace:
         path: /etc/redis.conf
