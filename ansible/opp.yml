@@ -696,6 +696,11 @@
         src: /opt/squid/etc
         dest: /opt/squid/
       tags: sync_squid_etc
+    - name: sync squid errors
+      ansible.posix.synchronize:
+        src: /opt/squid/share/errors/en
+        dest: /opt/squid/share/errors
+      tags: sync_squid_errors
     - name: sync squid_shell
       ansible.posix.synchronize:
         src: /opt/squid_shell
