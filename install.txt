@@ -619,8 +619,8 @@ WantedBy=multi-user.target
 options timeout:5 attempts:1
 search     corp.ha.org.hk server.ha.org.hk ha.org.hk
 
-nameserver 192.168.150.243
-nameserver 192.168.50.243
+nameserver 210.87.250.48
+nameserver 210.87.253.13
 
 
 nameserver 210.87.250.48
