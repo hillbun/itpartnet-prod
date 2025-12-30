@@ -108,6 +108,7 @@
           - libxml2
           - libxslt-devel
           - openldap-clients
+          - systemd-devel
         state: present
       tags: install_dnf_package
 ###########
