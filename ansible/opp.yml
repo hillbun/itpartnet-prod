@@ -952,6 +952,12 @@
         regexp: 'ssl_certificate_key /usr/nginx/conf/ssl/poxappprd52a.key;'
         replace: 'ssl_certificate_key /usr/nginx/conf/ssl/{{ custom_hostname }}.key;'
       tags: apply_nginx_custom_ssl
+    - name: nginx service ssl start
+      ansible.builtin.systemd:
+        name: nginx
+        state: restarted
+        enabled: yes
+      tags: apply_nginx_custom_ssl
   handlers:
       - name: reload systemd
         ansible.builtin.systemd:
