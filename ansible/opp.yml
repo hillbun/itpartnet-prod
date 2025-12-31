@@ -921,7 +921,7 @@
         src: "{{ software_src_path }}/{{ src_ssl_crt }}"
         dest: "/usr/nginx/conf/ssl/{{ custom_hostname }}.crt"
         mode: '0400'
-        when: ssl_crt_file.stat.exists
+      when: ssl_crt_file.stat.exists
       tags: apply_nginx_custom_ssl
   handlers:
       - name: reload systemd
