@@ -657,3 +657,6 @@ PROD[root@poxappprd52a poxappprd52a-52g]$ find
 ./poxappprd52a_06A30C/poxappprd52a.crt
 
 
+
+ssl_certificate /usr/nginx/conf/ssl/poxappprd52a.crt;
+ssl_certificate_key /usr/nginx/conf/ssl/poxappprd52a.key;
