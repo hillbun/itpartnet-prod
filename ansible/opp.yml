@@ -841,6 +841,8 @@
           5 0 * * * root /usr/sbin/logrotate -f /etc/logrotate.d/squid &>> /opt/squid_shell/logs/logrotate.log
           30 0 * * * root /usr/sbin/logrotate -f /etc/logrotate.d/nginx
           45 0 * * * root /usr/sbin/logrotate -f /etc/logrotate.d/python_prod_logs
+          0 1 * * * root /usr/bin/curl -k https://127.0.0.1:8000/api/logs_del  &>> /opt/squid_shell/logs/php_logs_del.log
+          0 1,13 * * * root /usr/bin/curl -k https://127.0.0.1:8000/api/upredis_dir &>> /opt/squid_shell/logs/php_upredis_dir.log
 
       tags: opp_crontab_create
     - name: opp sudoer create
