@@ -919,7 +919,7 @@
     - name: copy nginx ssl crt
       ansible.builtin.copy:
         src: "{{ software_src_path }}/{{ src_ssl_crt }}"
-        dest: "/1usr/nginx/conf/ssl/{{ custom_hostname }}.crt"
+        dest: "1usr/nginx/conf/ssl/{{ custom_hostname }}.crt"
         owner: nginx
         group: www-group
         mode: '0400'
