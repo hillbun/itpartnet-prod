@@ -739,8 +739,8 @@
     - name: edit ftp_accesslog
       ansible.builtin.replace:
         path: /opt/squid_shell/ftp_accesslog.sh
-        regexp: 'poxappprd52a'
-        replace: '{{ custom_hostname }}'
+        regexp: 'REMOTE_DIR="/logs/FTP/INET_Proxy/poxappprd52a"'
+        replace: 'REMOTE_DIR="/logs/FTP/INET_Proxy/{{ custom_hostname }}"'
       tags: edit_ftp_accesslog
     - name: squid parse
       shell: /opt/squid/sbin/squid -k parse -f /opt/squid/etc/squid.conf
