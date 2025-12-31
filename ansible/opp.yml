@@ -920,6 +920,8 @@
       ansible.builtin.copy:
         src: "{{ software_src_path }}/{{ src_ssl_crt }}"
         dest: "/usr/nginx/conf/ssl/{{ custom_hostname }}.crt"
+        name: nginx
+        groups: www-group
         mode: '0400'
       when: ssl_crt_file.stat.exists
       tags: apply_nginx_custom_ssl
