@@ -679,13 +679,12 @@
       ansible.builtin.copy:
         src: /usr/nginx/conf/ssl/poxappprd52a.crt
         dest: /usr/nginx/conf/ssl/poxappprd52a.crt
-      tags: copy nginx ssl crt
+      tags: copy_nginx_ssl_crt
     - name: copy nginx ssl key
       ansible.builtin.copy:
         src: /usr/nginx/conf/ssl/poxappprd52a.key
         dest: /usr/nginx/conf/ssl/poxappprd52a.key
-      tags: copy nginx ssl key
-      tags: copy_nginx_ssl_conf
+      tags: copy_nginx_ssl_key
 ####
     - name: edit poxmgtprd nginx conf
       ansible.builtin.replace:
