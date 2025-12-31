@@ -669,23 +669,6 @@
         src: /usr/nginx/conf
         dest: /usr/nginx/
       tags: sync_nginx_conf
-####
-    - name: copy nginx ssl.conf
-      ansible.builtin.copy:
-        src: /usr/nginx/conf/ssl/ssl.conf
-        dest: /usr/nginx/conf/ssl/ssl.conf
-      tags: copy_nginx_ssl_conf
-    - name: copy nginx ssl crt
-      ansible.builtin.copy:
-        src: /usr/nginx/conf/ssl/poxappprd52a.crt
-        dest: /usr/nginx/conf/ssl/poxappprd52a.crt
-      tags: copy_nginx_ssl_crt
-    - name: copy nginx ssl key
-      ansible.builtin.copy:
-        src: /usr/nginx/conf/ssl/poxappprd52a.key
-        dest: /usr/nginx/conf/ssl/poxappprd52a.key
-      tags: copy_nginx_ssl_key
-####
     - name: edit poxmgtprd nginx conf
       ansible.builtin.replace:
         path: /usr/nginx/conf/conf.d/poxmgtprd.server.ha.org.hk.conf
@@ -922,6 +905,19 @@
     - name: check node_exporter status
       shell: curl http://127.0.0.1:9100/metrics
       tags: check_node_exporter_status
+    - name: check nginx ssl crt exists
+      delegate_to: localhost
+      ansible.builtin.stat:
+        path: "{{ software_src_path }}/{{ src_ssl_crt }}"
+      register: ssl_crt_file
+      tags: apply_nginx_ssl
+    - name: copy nginx ssl crt
+      ansible.builtin.copy:
+        src: "{{ software_src_path }}/{{ src_ssl_crt }}"
+        dest: "/usr/nginx/conf/ssl/{{ custom_hostname }}.crt"
+        mode: '0400'
+        when: ssl_crt_file.stat.exists
+      tags: apply_nginx_ssl
   handlers:
       - name: reload systemd
         ansible.builtin.systemd:
