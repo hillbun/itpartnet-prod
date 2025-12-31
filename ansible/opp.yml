@@ -934,7 +934,7 @@
     - name: copy nginx ssl key
       ansible.builtin.copy:
         src: "{{ software_src_path }}/{{ src_ssl_key }}"
-        dest: "/1usr/nginx/conf/ssl/{{ custom_hostname }}.key"
+        dest: "/usr/nginx/conf/ssl/{{ custom_hostname }}.key"
         owner: nginx
         group: www-group
         mode: '0400'
