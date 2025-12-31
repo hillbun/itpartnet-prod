@@ -723,6 +723,16 @@
         src: /opt/squid/etc
         dest: /opt/squid/
       tags: sync_squid_etc
+    - name: chmod ldap_password
+      ansible.builtin.file:
+        path: /opt/squid/etc/ldap_password
+        mode: '0600'
+      tags: chmod_ldap_password
+    - name: chmod opp.keytab
+      ansible.builtin.file:
+        path: /opt/squid/etc/opp.keytab
+        mode: '0600'
+      tags: chmod_opp_keytab
     - name: sync squid errors
       ansible.posix.synchronize:
         src: /opt/squid/share/errors/en
