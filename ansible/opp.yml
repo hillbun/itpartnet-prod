@@ -925,6 +925,21 @@
         mode: '0400'
       when: ssl_crt_file.stat.exists | default(false)
       tags: apply_nginx_custom_ssl
+    - name: check nginx ssl key exists
+      delegate_to: localhost
+      ansible.builtin.stat:
+        path: "{{ software_src_path }}/{{ src_ssl_key }}"
+      register: ssl_key_file
+      tags: apply_nginx_custom_ssl
+    - name: copy nginx ssl key
+      ansible.builtin.copy:
+        src: "{{ software_src_path }}/{{ src_ssl_key }}"
+        dest: "/usr/nginx/conf/ssl/{{ custom_hostname }}.key"
+        owner: nginx
+        group: www-group
+        mode: '0400'
+      when: ssl_key_file.stat.exists | default(false)
+      tags: apply_nginx_custom_ssl
   handlers:
       - name: reload systemd
         ansible.builtin.systemd:
