@@ -676,3 +676,5 @@ redis-cli -a "StrongP@@ssw0rd123!" INFO|grep redis_version
 Warning: Using a password with '-a' or '-u' option on the command line interface may not be safe.
 redis_version:7.4.2
 
+
+/usr/nginx/html/transproxy_admin/public/fileData/threat/logstatus_7days.json
