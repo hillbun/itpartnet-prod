@@ -669,6 +669,13 @@
         src: /usr/nginx/conf
         dest: /usr/nginx/
       tags: sync_nginx_conf
+####
+    - name: copy nginx ssl.conf
+      ansible.builtin.copy:
+        src: /usr/nginx/conf/ssl/ssl.conf
+        dest: /usr/nginx/conf/ssl/ssl.conf
+      tags: copy_nginx_ssl_conf
+####
     - name: edit poxmgtprd nginx conf
       ansible.builtin.replace:
         path: /usr/nginx/conf/conf.d/poxmgtprd.server.ha.org.hk.conf
@@ -733,9 +740,6 @@
         src: /opt/py_prod
         dest: /opt/
       tags: sync_py_prod
-####
-####/opt/squid_shell/ftp_accesslog.sh
-####
     - name: edit ftp_accesslog
       ansible.builtin.replace:
         path: /opt/squid_shell/ftp_accesslog.sh
