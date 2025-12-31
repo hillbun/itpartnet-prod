@@ -7,13 +7,18 @@
       http_proxy: "http://192.168.189.195:8080"
       https_proxy: "http://192.168.189.195:8080"
       NO_PROXY: "localhost,127.0.0.1"
-    software_src_path: "/fsbackup/download"
-    software_dest_path: "/fsbackup/download"
+    software_src_path: "/usr/opp/download"
+    software_dest_path: "/usr/opp/download"
     REDISCLI_AUTH: StrongP@@ssw0rd123!
   tasks:
     - name: ping
       ping:
       tags: ping_hosts
+    - name: download dir create
+      ansible.builtin.file:
+        path: {{ /usr/opp/download }}
+        state: directory
+      tags: download_dir_create
     - name: setup yum proxy
       blockinfile:
         path: /etc/yum.conf
@@ -204,7 +209,7 @@
         backup: yes
         state: present
       tags: squid_config_init
-    - name: squid coredumps
+    - name: squid coredumps create
       ansible.builtin.file:
         path: /opt/squid/var/coredumps
         state: directory
