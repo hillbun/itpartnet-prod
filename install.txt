@@ -630,3 +630,30 @@ nameserver 210.87.253.13
 REMOTE_DIR="/logs/FTP/INET_Proxy/poxappprd52a"
 
 
+PROD[root@poxappprd52a poxappprd52a-52g]$ pwd
+/fsbackup/download/poxappprd52a-52g
+PROD[root@poxappprd52a poxappprd52a-52g]$ find
+.
+./poxappprd52g_06A314
+./poxappprd52g_06A314/poxappprd52g.key
+./poxappprd52g_06A314/poxappprd52g.crt
+./poxappprd52e_06A310
+./poxappprd52e_06A310/poxappprd52e.key
+./poxappprd52e_06A310/poxappprd52e.crt
+./poxappprd52d_06A30F
+./poxappprd52d_06A30F/poxappprd52d.key
+./poxappprd52d_06A30F/poxappprd52d.crt
+./poxappprd52c_06A30E
+./poxappprd52c_06A30E/poxappprd52c.crt
+./poxappprd52c_06A30E/poxappprd52c.key
+./poxappprd52f_06A311
+./poxappprd52f_06A311/poxappprd52f.crt
+./poxappprd52f_06A311/poxappprd52f.key
+./poxappprd52b_06A30D
+./poxappprd52b_06A30D/poxappprd52b.key
+./poxappprd52b_06A30D/poxappprd52b.crt
+./poxappprd52a_06A30C
+./poxappprd52a_06A30C/poxappprd52a.key
+./poxappprd52a_06A30C/poxappprd52a.crt
+
+
