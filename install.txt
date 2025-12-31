@@ -667,3 +667,6 @@ ssl_certificate_key /usr/nginx/conf/ssl/poxappprd52a.key;
 0 1 * * * /usr/bin/curl -k https://127.0.0.1:8000/api/logs_del  &>> /opt/squid_shell/logs/php_logs_del.log
 0 1,13 * * * /usr/bin/curl -k https://127.0.0.1:8000/api/upredis_dir &>> /opt/squid_shell/logs/php_upredis_dir.log
 
+
+
+wget https://download.redis.io/releases/redis-5.0.3.tar.gz
