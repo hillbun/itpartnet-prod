@@ -923,7 +923,7 @@
         owner: nginx
         group: www-group
         mode: '0400'
-      when: ssl_crt_file.stat.exists
+      when: ssl_crt_file.stat.exists | default(false)
       tags: apply_nginx_custom_ssl
   handlers:
       - name: reload systemd
