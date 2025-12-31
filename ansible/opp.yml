@@ -919,7 +919,7 @@
     - name: copy nginx ssl crt
       ansible.builtin.copy:
         src: "{{ software_src_path }}/{{ src_ssl_crt }}"
-        dest: "1usr/nginx/conf/ssl/{{ custom_hostname }}.crt"
+        dest: "/usr/nginx/conf/ssl/{{ custom_hostname }}.crt"
         owner: nginx
         group: www-group
         mode: '0400'
@@ -939,6 +939,18 @@
         group: www-group
         mode: '0400'
       when: ssl_key_file.stat.exists | default(false)
+      tags: apply_nginx_custom_ssl
+    - name: edit ssl.conf ssl_certificate
+      ansible.builtin.replace:
+        path: /usr/nginx/conf/ssl/ssl.conf
+        regexp: 'ssl_certificate /usr/nginx/conf/ssl/poxappprd52a.crt;'
+        replace: 'ssl_certificate /usr/nginx/conf/ssl/{{ custom_hostname }}.crt;'
+      tags: apply_nginx_custom_ssl
+    - name: edit ssl.conf ssl_certificate_key
+      ansible.builtin.replace:
+        path: /usr/nginx/conf/ssl/ssl.conf
+        regexp: 'ssl_certificate_key /usr/nginx/conf/ssl/poxappprd52a.key;'
+        replace: 'ssl_certificate_key /usr/nginx/conf/ssl/{{ custom_hostname }}.key;'
       tags: apply_nginx_custom_ssl
   handlers:
       - name: reload systemd
