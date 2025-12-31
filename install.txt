@@ -667,3 +667,8 @@ ssl_certificate_key /usr/nginx/conf/ssl/poxappprd52a.key;
 0 1 * * * /usr/bin/curl -k https://127.0.0.1:8000/api/logs_del  &>> /opt/squid_shell/logs/php_logs_del.log
 0 1,13 * * * /usr/bin/curl -k https://127.0.0.1:8000/api/upredis_dir &>> /opt/squid_shell/logs/php_upredis_dir.log
 
+
+
+redis-cli -a "StrongP@@ssw0rd123!" INFO|grep redis_version
+Warning: Using a password with '-a' or '-u' option on the command line interface may not be safe.
+redis_version:7.4.2
