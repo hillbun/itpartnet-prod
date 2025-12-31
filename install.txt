@@ -627,4 +627,6 @@ nameserver 210.87.250.48
 nameserver 210.87.253.13
 
 
+REMOTE_DIR="/logs/FTP/INET_Proxy/poxappprd52a"
+
 
