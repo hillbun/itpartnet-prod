@@ -16,7 +16,7 @@
       tags: ping_hosts
     - name: download dir create
       ansible.builtin.file:
-        path: {{ /usr/opp/download }}
+        path: "{{ software_dest_path }}"
         state: directory
       tags: download_dir_create
     - name: setup yum proxy
