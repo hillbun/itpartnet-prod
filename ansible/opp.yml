@@ -14,11 +14,19 @@
     - name: ping
       ping:
       tags: ping_hosts
-    - name: download dir create
+    - name: create software_src_path
+      file:
+        path: "{{ software_src_path }}"
+        state: directory
+        mode: '0755'
+      delegate_to: localhost
+      run_once: true
+      tags: create_software_src_path
+    - name: create software_dest_path
       ansible.builtin.file:
         path: "{{ software_dest_path }}"
         state: directory
-      tags: download_dir_create
+      tags: create_software_dest_path
     - name: setup yum proxy
       blockinfile:
         path: /etc/yum.conf
@@ -128,11 +136,13 @@
         system: yes
         state: present
       tags: add_squid_user
-    - name: create software dir
-      ansible.builtin.file:
-        path: "{{ software_src_path }}"
-        state: directory
-      tags: create_software_dir
+    - name: download squid-6.11
+      get_url:
+        url: https://www.squid-cache.org/Versions/v6/squid-6.11.tar.gz
+        dest: "{{ software_src_path }}/squid-6.11.tar.gz"
+      delegate_to: localhost
+      run_once: true
+      tags: download_squid_6_11
     - name: copy squid-6.11.tar.gz
       ansible.builtin.copy:
         src: "{{ software_src_path }}/squid-6.11.tar.gz"
@@ -278,6 +288,13 @@
         src: /etc/krb5.conf.j2
         dest: /etc/krb5.conf.j2
       tags: copy_krb5_j2_conf
+    - name: download headers-more-nginx-module-0.34
+      get_url:
+        url: https://github.com/openresty/headers-more-nginx-module/archive/refs/tags/v0.34.tar.gz
+        dest: "{{ software_src_path }}/headers-more-nginx-module-0.34.tar.gz"
+      delegate_to: localhost
+      run_once: true
+      tags: download_headers_more_nginx_module_0_34
     - name: copy headers-more-nginx-module.tar.gz
       ansible.builtin.copy:
         src: "{{ software_src_path }}/headers-more-nginx-module.tar.gz"
@@ -289,6 +306,13 @@
         dest: "{{ software_dest_path }}"
         remote_src: yes
       tags: headers_more_nginx_module_unarchive
+    - name: download nginx-1.2.5.tar.gz
+      get_url:
+        url: https://nginx.org/download/nginx-1.25.5.tar.gz
+        dest: "{{ software_src_path }}/nginx-1.25.5.tar.gz"
+      delegate_to: localhost
+      run_once: true
+      tags: download_nginx_1_2_5
     - name: copy nginx-1.2.5.tar.gz
       ansible.builtin.copy:
         src: "{{ software_src_path }}/nginx-1.25.5.tar.gz"
@@ -373,11 +397,25 @@
         groups: www-group
         append: yes
       tags: add_nginx_www_group
+    - name: download epel
+      get_url:
+        url: https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+        dest: "{{ software_src_path }}/epel-release-latest-8.noarch.rpm"
+      delegate_to: localhost
+      run_once: true
+      tags: download_epel
     - name: copy epel
       ansible.builtin.copy:
         src: "{{ software_src_path }}/epel-release-latest-8.noarch.rpm"
         dest: "{{ software_dest_path }}/epel-release-latest-8.noarch.rpm"
       tags: copy_epel
+    - name: download remi
+      get_url:
+        url: https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+        dest: "{{ software_src_path }}/remi-release-8.rpm"
+      delegate_to: localhost
+      run_once: true
+      tags: download_remi
     - name: copy remi
       ansible.builtin.copy:
         src: "{{ software_src_path }}/remi-release-8.rpm"
@@ -461,6 +499,13 @@
         state: started
         enabled: yes
       tags: php_fpm_service_start
+    - name: download redis-7.4.2
+      get_url:
+        url: https://download.redis.io/releases/redis-7.4.2.tar.gz
+        dest: "{{ software_src_path }}/redis-7.4.2.tar.gz"
+      delegate_to: localhost
+      run_once: true
+      tags: download_redis_7_4_2
     - name: copy redis-7.4.2.tar.gz
       ansible.builtin.copy:
         src: "{{ software_src_path }}/redis-7.4.2.tar.gz"
@@ -477,6 +522,15 @@
       args:
         chdir: "{{ software_dest_path }}/redis-7.4.2"
       tags: redis_server_compile
+#### TODO
+    - name: download redis-5.0.3
+      get_url:
+        url: https://download.redis.io/releases/redis-5.0.3.tar.gz
+        dest: "{{ software_src_path }}/redis-5.0.3.tar.gz"
+      delegate_to: localhost
+      run_once: true
+      tags: download_redis_5_0_3
+####
     - name: redis service create
       ansible.builtin.copy:
         dest: /etc/systemd/system/redis.service
@@ -857,6 +911,13 @@
           nginx ALL=(root) NOPASSWD: /usr/bin/python3 /opt/py_prod/squid_kerberos_modify.py
           nginx ALL=(root) NOPASSWD: /opt/squid/sbin/squid -k reconfigure
       tags: opp_sudoer_create
+    - name: download node_exporter-1.8.2.linux-amd64.tar.gz
+      get_url:
+        url: https://github.com/prometheus/node_exporter/releases/download/v1.8.2/node_exporter-1.8.2.linux-amd64.tar.gz
+        dest: "{{ software_src_path }}/node_exporter-1.8.2.linux-amd64.tar.gz"
+      delegate_to: localhost
+      run_once: true
+      tags: download_node_exporter_1_8_2
     - name: copy node_exporter
       ansible.builtin.copy:
         src: "{{ software_src_path }}/node_exporter-1.8.2.linux-amd64.tar.gz"
@@ -927,6 +988,7 @@
       ansible.builtin.stat:
         path: "{{ software_src_path }}/{{ src_ssl_crt }}"
       register: ssl_crt_file
+      run_once: true
       tags: apply_nginx_custom_ssl
     - name: copy nginx ssl crt
       ansible.builtin.copy:
@@ -942,6 +1004,7 @@
       ansible.builtin.stat:
         path: "{{ software_src_path }}/{{ src_ssl_key }}"
       register: ssl_key_file
+      run_once: true
       tags: apply_nginx_custom_ssl
     - name: copy nginx ssl key
       ansible.builtin.copy:
