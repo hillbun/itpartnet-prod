@@ -356,8 +356,8 @@
             --with-threads \
             --with-compat \
             --add-module=../headers-more-nginx-module-0.34 \
-            --sbin-path=/usr/nginx/sbin/nginx \
-            --conf-path=/usr/nginx/conf/nginx.conf \
+            --sbin-path=/opt/nginx/sbin/nginx \
+            --conf-path=/opt/nginx/conf/nginx.conf \
             --with-stream \
             --without-pcre2 \
             --with-stream_ssl_module \
@@ -741,22 +741,22 @@
       tags: redis_service_restart
     - name: sync nginx dist
       ansible.posix.synchronize:
-        src: /usr/nginx/html/dist
-        dest: /usr/nginx/html/
+        src: /opt/nginx/html/dist
+        dest: /opt/nginx/html/
       tags: sync_nginx_dist
     - name: sync nginx threat
       ansible.posix.synchronize:
-        src: /usr/nginx/html/threat
-        dest: /usr/nginx/html/
+        src: /opt/nginx/html/threat
+        dest: /opt/nginx/html/
       tags: sync_nginx_threat
     - name: sync nginx transproxy_admin
       ansible.posix.synchronize:
-        src: /usr/nginx/html/transproxy_admin
-        dest: /usr/nginx/html/
+        src: /opt/nginx/html/transproxy_admin
+        dest: /opt/nginx/html/
       tags: sync_nginx_transproxy_admin
     - name: edit transproxy env
       ansible.builtin.replace:
-        path: /usr/nginx/html/transproxy_admin/.env
+        path: /opt/nginx/html/transproxy_admin/.env
         regexp: 'poxappprd52a'
         replace: '{{ custom_hostname }}'
       tags: edit_transproxy_env
@@ -774,7 +774,7 @@
           [Service]
           User=nginx
           Group=nginx
-          WorkingDirectory=/usr/nginx/html/transproxy_admin
+          WorkingDirectory=/opt/nginx/html/transproxy_admin
           ExecStart=/usr/bin/php -d memory_limit=512M artisan queue:work \
                               --tries=3 \
                               --timeout=120
@@ -800,29 +800,29 @@
       tags: laravel_queue_service_start
     - name: sync nginx conf
       ansible.posix.synchronize:
-        src: /usr/nginx/conf
-        dest: /usr/nginx/
+        src: /opt/nginx/conf
+        dest: /opt/nginx/
       tags: sync_nginx_conf
     - name: edit poxmgtprd nginx conf
       ansible.builtin.replace:
-        path: /usr/nginx/conf/conf.d/poxmgtprd.server.ha.org.hk.conf
+        path: /opt/nginx/conf/conf.d/poxmgtprd.server.ha.org.hk.conf
         regexp: 'poxappprd52a'
         replace: '{{ custom_hostname }}'
       tags: edit_poxmgtprd_nginx_conf
     - name: edit transproxy nginx conf
       ansible.builtin.replace:
-        path: /usr/nginx/conf/conf.d/transproxy.swd.ha.org.hk.conf
+        path: /opt/nginx/conf/conf.d/transproxy.swd.ha.org.hk.conf
         regexp: 'poxappprd52a'
         replace: '{{ custom_hostname }}'
       tags: edit_transproxy_nginx_conf
     - name: create nginx cache dir
       ansible.builtin.file:
-        path: /usr/nginx/nginx_cache/proxy_temp
+        path: /opt/nginx/nginx_cache/proxy_temp
         state: directory
       tags: create_nginx_cache_dir
     - name: set nginx user group
       ansible.builtin.file:
-        path: /usr/nginx
+        path: /opt/nginx
         state: directory
         owner: nginx
         group: www-group
@@ -920,12 +920,12 @@
       tags: rsyslog_service_restart
     - name: delete system json
       ansible.builtin.file:
-        path: /usr/nginx/html/transproxy_admin/system_usage.json
+        path: /opt/nginx/html/transproxy_admin/system_usage.json
         state: absent
       tags: delete_system_json
     - name: delete netstat json
       ansible.builtin.file:
-        path: /usr/nginx/html/transproxy_admin/public/fileData/threat/netstat_status.json
+        path: /opt/nginx/html/transproxy_admin/public/fileData/threat/netstat_status.json
         state: absent
       tags: delete_netstat_json
     - name: install python redis module
