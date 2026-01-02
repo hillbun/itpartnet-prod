@@ -365,11 +365,16 @@
       args:
         chdir: "{{ software_dest_path }}/nginx-1.25.5"
       tags: nginx_configure
+#    - name: nginx-compile
+#      shell: make && make install
+#      args:
+#        chdir: "{{ software_dest_path }}/nginx-1.25.5"
+#        creates: /usr/nginx
+#      tags: nginx_compile
     - name: nginx-compile
       shell: make && make install
       args:
         chdir: "{{ software_dest_path }}/nginx-1.25.5"
-        creates: /usr/nginx
       tags: nginx_compile
 #    - name: nginx service create
 #      ansible.builtin.copy:
