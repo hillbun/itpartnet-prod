@@ -582,6 +582,15 @@
         backup: yes
         state: present
       tags: edit_sysctl_conf
+    - name: edit rc.local
+      blockinfile:
+        path: /etc/rc.local
+        block: |
+          echo never > /sys/kernel/mm/transparent_hugepage/enabled
+        marker: "#### {mark} ADDED BY OPP INSTALLATION ####"
+        backup: no
+        state: present
+      tags: edit_rc_local
     - name: reload sysctl
       shell: sysctl -p
       tags: reload_sysctl
@@ -606,7 +615,7 @@
 #        path: /etc/redis.conf
 #        regexp: 'bind 127.0.0.1 -::1'
 #        replace: 'bind 127.0.0.1'
-      tags: edit_redis_config_bind
+#      tags: edit_redis_config_bind
 #    - name: edit redis config supervised
 #      ansible.builtin.replace:
 #        path: /etc/redis.conf
