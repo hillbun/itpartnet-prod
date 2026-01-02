@@ -123,6 +123,7 @@
           - openldap-clients
           - systemd-devel
           - ftp
+          - go
         state: present
       tags: install_dnf_package
 ###########
