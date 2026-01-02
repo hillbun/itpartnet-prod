@@ -325,9 +325,29 @@
         dest: "{{ software_dest_path }}"
         remote_src: yes
       tags: nginx_unarchive
+#    - name: nginx-configure
+#      shell: |
+#        ./configure --user=nginx --group=nginx --prefix=/usr/nginx \
+#            --with-cc-opt=-O2 \
+#            --with-http_ssl_module \
+#            --with-http_v2_module \
+#            --with-http_sub_module \
+#            --with-http_stub_status_module \
+#            --with-threads \
+#            --with-compat \
+#            --add-module=../headers-more-nginx-module \
+#            --sbin-path=/usr/nginx/sbin/nginx \
+#            --conf-path=/usr/nginx/conf/nginx.conf \
+#            --with-stream \
+#            --without-pcre2 \
+#            --with-stream_ssl_module \
+#            --with-stream_ssl_preread_module
+#      args:
+#        chdir: "{{ software_dest_path }}/nginx-1.25.5"
+#      tags: nginx_configure
     - name: nginx-configure
       shell: |
-        ./configure --user=nginx --group=nginx --prefix=/usr/nginx \
+        ./configure --user=nginx --group=nginx --prefix=/opt/nginx \
             --with-cc-opt=-O2 \
             --with-http_ssl_module \
             --with-http_v2_module \
@@ -344,11 +364,37 @@
             --with-stream_ssl_preread_module
       args:
         chdir: "{{ software_dest_path }}/nginx-1.25.5"
+      tags: nginx_configure
     - name: nginx-compile
       shell: make && make install
       args:
         chdir: "{{ software_dest_path }}/nginx-1.25.5"
         creates: /usr/nginx
+      tags: nginx_compile
+#    - name: nginx service create
+#      ansible.builtin.copy:
+#        dest: /etc/systemd/system/nginx.service
+#        owner: root
+#        group: root
+#        mode: '0644'
+#        content: |
+#          [Unit]
+#          Description=The nginx HTTP and reverse proxy server
+#          After=network.target remote-fs.target nss-lookup.target
+#          
+#          [Service]
+#          Type=forking
+#          PIDFile=/usr/nginx/logs/nginx.pid
+#          ExecStartPre=/usr/nginx/sbin/nginx -t
+#          ExecStart=/usr/nginx/sbin/nginx
+#          ExecReload=/usr/nginx/sbin/nginx -s reload
+#          ExecStop=/bin/kill -s QUIT $MAINPID
+#          PrivateTmp=true
+#          
+#          [Install]
+#          WantedBy=multi-user.target
+#      notify: reload systemd
+#      tags: nginx_service_create
     - name: nginx service create
       ansible.builtin.copy:
         dest: /etc/systemd/system/nginx.service
@@ -362,10 +408,10 @@
           
           [Service]
           Type=forking
-          PIDFile=/usr/nginx/logs/nginx.pid
-          ExecStartPre=/usr/nginx/sbin/nginx -t
-          ExecStart=/usr/nginx/sbin/nginx
-          ExecReload=/usr/nginx/sbin/nginx -s reload
+          PIDFile=/opt/nginx/logs/nginx.pid
+          ExecStartPre=/opt/nginx/sbin/nginx -t
+          ExecStart=/opt/nginx/sbin/nginx
+          ExecReload=/opt/nginx/sbin/nginx -s reload
           ExecStop=/bin/kill -s QUIT $MAINPID
           PrivateTmp=true
           
