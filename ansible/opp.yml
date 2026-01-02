@@ -298,12 +298,12 @@
       tags: download_headers_more_nginx_module_0_34
     - name: copy headers-more-nginx-module.tar.gz
       ansible.builtin.copy:
-        src: "{{ software_src_path }}/headers-more-nginx-module.tar.gz"
-        dest: "{{ software_dest_path }}/headers-more-nginx-module.tar.gz"
+        src: "{{ software_src_path }}/headers-more-nginx-module-0.34.tar.gz"
+        dest: "{{ software_dest_path }}/headers-more-nginx-module-0.34.tar.gz"
       tags: copy_headers_more_nginx_module
     - name: headers-more-nginx-module-unarchive
       unarchive:
-        src: "{{ software_dest_path }}/headers-more-nginx-module.tar.gz"
+        src: "{{ software_dest_path }}/headers-more-nginx-module-0.34.tar.gz"
         dest: "{{ software_dest_path }}"
         remote_src: yes
       tags: headers_more_nginx_module_unarchive
