@@ -601,11 +601,11 @@
         owner: redis
         group: redis
       tags: copy_redis_config
-    - name: edit redis config bind
-      ansible.builtin.replace:
-        path: /etc/redis.conf
-        regexp: 'bind 127.0.0.1 -::1'
-        replace: 'bind 127.0.0.1'
+#    - name: edit redis config bind
+#      ansible.builtin.replace:
+#        path: /etc/redis.conf
+#        regexp: 'bind 127.0.0.1 -::1'
+#        replace: 'bind 127.0.0.1'
       tags: edit_redis_config_bind
 #    - name: edit redis config supervised
 #      ansible.builtin.replace:
