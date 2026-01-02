@@ -318,7 +318,7 @@
       ansible.builtin.copy:
         src: "{{ software_src_path }}/nginx-1.25.5.tar.gz"
         dest: "{{ software_dest_path }}/nginx-1.25.5.tar.gz"
-      tags: copy_nginxs
+      tags: copy_nginx
     - name: nginx-unarchive
       unarchive:
         src: "{{ software_dest_path }}/nginx-1.25.5.tar.gz"
