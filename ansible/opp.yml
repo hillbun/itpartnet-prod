@@ -966,7 +966,7 @@
           1 0 * * * root bash /opt/squid_shell/count_week_ip_url.sh &>> /opt/squid_shell/logs/monitor_week_top.log
           1 0 * * * root bash /opt/squid_shell/count_week_status.sh &>> /opt/squid_shell/logs/count_week_status.log
           1 */1 * * * root bash /opt/squid_shell/count_estab.sh &>> /opt/squid_shell/logs/count_estab.log
-          0 1 * * * root /usr/bin/python3 /usr/nginx/html/threat/IOCsApi_csv.py &>> /opt/squid_shell/logs/ioc_script.log
+          0 1 * * * root /usr/bin/python3 /opt/nginx/html/threat/IOCsApi_csv.py &>> /opt/squid_shell/logs/ioc_script.log
           5 0 * * * root /usr/sbin/logrotate -f /etc/logrotate.d/squid &>> /opt/squid_shell/logs/logrotate.log
           30 0 * * * root /usr/sbin/logrotate -f /etc/logrotate.d/nginx
           45 0 * * * root /usr/sbin/logrotate -f /etc/logrotate.d/python_prod_logs
@@ -1068,7 +1068,7 @@
     - name: copy nginx ssl crt
       ansible.builtin.copy:
         src: "{{ software_src_path }}/{{ src_ssl_crt }}"
-        dest: "/usr/nginx/conf/ssl/{{ custom_hostname }}.crt"
+        dest: "/opt/nginx/conf/ssl/{{ custom_hostname }}.crt"
         owner: nginx
         group: www-group
         mode: '0400'
@@ -1084,7 +1084,7 @@
     - name: copy nginx ssl key
       ansible.builtin.copy:
         src: "{{ software_src_path }}/{{ src_ssl_key }}"
-        dest: "/usr/nginx/conf/ssl/{{ custom_hostname }}.key"
+        dest: "/opt/nginx/conf/ssl/{{ custom_hostname }}.key"
         owner: nginx
         group: www-group
         mode: '0400'
@@ -1092,15 +1092,15 @@
       tags: apply_nginx_custom_ssl
     - name: edit ssl.conf ssl_certificate
       ansible.builtin.replace:
-        path: /usr/nginx/conf/ssl/ssl.conf
-        regexp: 'ssl_certificate /usr/nginx/conf/ssl/poxappprd52a.crt;'
-        replace: 'ssl_certificate /usr/nginx/conf/ssl/{{ custom_hostname }}.crt;'
+        path: /opt/nginx/conf/ssl/ssl.conf
+        regexp: 'ssl_certificate /opt/nginx/conf/ssl/poxappprd52a.crt;'
+        replace: 'ssl_certificate /opt/nginx/conf/ssl/{{ custom_hostname }}.crt;'
       tags: apply_nginx_custom_ssl
     - name: edit ssl.conf ssl_certificate_key
       ansible.builtin.replace:
-        path: /usr/nginx/conf/ssl/ssl.conf
-        regexp: 'ssl_certificate_key /usr/nginx/conf/ssl/poxappprd52a.key;'
-        replace: 'ssl_certificate_key /usr/nginx/conf/ssl/{{ custom_hostname }}.key;'
+        path: /opt/nginx/conf/ssl/ssl.conf
+        regexp: 'ssl_certificate_key /opt/nginx/conf/ssl/poxappprd52a.key;'
+        replace: 'ssl_certificate_key /opt/nginx/conf/ssl/{{ custom_hostname }}.key;'
       tags: apply_nginx_custom_ssl
     - name: nginx service ssl start
       ansible.builtin.systemd:
