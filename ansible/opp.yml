@@ -607,10 +607,16 @@
         regexp: 'bind 127.0.0.1 -::1'
         replace: 'bind 127.0.0.1'
       tags: edit_redis_config_bind
+#    - name: edit redis config supervised
+#      ansible.builtin.replace:
+#        path: /etc/redis.conf
+#        regexp: '# supervised auto'
+#        replace: 'supervised systemd'
+#      tags: edit_redis_config_supervised
     - name: edit redis config supervised
       ansible.builtin.replace:
         path: /etc/redis.conf
-        regexp: '# supervised auto'
+        regexp: '^supervised no'
         replace: 'supervised systemd'
       tags: edit_redis_config_supervised
     - name: edit redis config protected-mode
@@ -640,7 +646,7 @@
     - name: edit redis config pidfile
       ansible.builtin.replace:
         path: /etc/redis.conf
-        regexp: 'pidfile /var/run/redis_6379\.pid'
+        regexp: '^pidfile /var/run/redis_6379\.pid'
         replace: 'pidfile /run/redis/redis-server.pid'
       tags: edit_redis_config_pidfile
     - name: create opt redis dir
