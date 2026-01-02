@@ -355,7 +355,7 @@
             --with-http_stub_status_module \
             --with-threads \
             --with-compat \
-            --add-module=../headers-more-nginx-module \
+            --add-module=../headers-more-nginx-module-0.34 \
             --sbin-path=/usr/nginx/sbin/nginx \
             --conf-path=/usr/nginx/conf/nginx.conf \
             --with-stream \
