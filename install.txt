@@ -821,10 +821,12 @@ systemctl restart sshd
 
 
 --
-
+systemctl enable firewalld
+systemctl start firewalld
 firewall-cmd --permanent --set-target=ACCEPT
 firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 0 -p icmp --icmp-type timestamp-request -j DROP
 firewall-cmd --permanent --direct --add-rule ipv4 filter OUTPUT 0 -p icmp --icmp-type timestamp-request -j DROP
+firewall-cmd --reload
 
 查看iptables -L -n规则是否添加
 查看cat /proc/sys/net/ipv4/icmp_echo_ignore_all是否等于0，如果等于1需要执行下面命令
