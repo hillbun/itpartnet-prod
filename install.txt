@@ -751,7 +751,7 @@ URL统计: /usr/nginx/html/transproxy_admin/public/fileData/threat/week_top_url_
 
 -----
 
-
+usermod -aG squid nginx
 
 
 
@@ -762,3 +762,50 @@ URL统计: /usr/nginx/html/transproxy_admin/public/fileData/threat/week_top_url_
 /opt/squid_shell/count_week_ip_url.sh
 /opt/squid_shell/count_week_status.sh
 /opt/squid_shell/count_estab.sh
+
+
+---
+
+# 1. 备份数据
+sudo mkdir -p /opt_bak
+sudo cp -r /opt/ /opt_bak/
+
+# 2. 创建新逻辑卷
+
+
+sudo lvcreate -L 1T -n optlvnew 2gvg02
+sudo mkfs.ext4 /dev/2gvg02/optlvnew
+
+# 3. 准备临时挂载
+sudo mkdir -p /mnt/new_opt
+sudo mount /dev/2gvg02/optlvnew /mnt/new_opt
+sudo rsync -av /opt_bak/ /mnt/new_opt/
+sudo umount /mnt/new_opt
+sudo rmdir /mnt/new_opt
+
+# 4. 卸载原/opt
+# 先尝试普通卸载
+sudo umount /opt
+
+# 如果失败，查看哪个进程占用
+sudo lsof /opt
+
+
+# 5. 挂载新逻辑卷
+sudo mount /dev/2gvg02/optlvnew /opt
+
+
+-----
+
+1：修改ssh配置文件中禁用弱算法添加强算法配置过滤清除含有cbc算法的内容
+vim /etc/ssh/sshd_config
+KexAlgorithms curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256
+# 密钥交换算法（禁用弱 DH/SHA-1 算法）
+KexAlgorithms curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256
+# 加密算法（禁用 3DES、CBC 模式等弱算法）
+Ciphers aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
+# 消息认证码算法（禁用 SHA-1 类 MAC）
+MACs hmac-sha2-256,hmac-sha2-512,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com
+
+2:重启sshd服务
+systemctl restart sshd
