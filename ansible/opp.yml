@@ -918,16 +918,15 @@
         state: restarted
         enabled: yes
       tags: rsyslog_service_restart
-    - name: delete system json
+    - name: delete stats json
       ansible.builtin.file:
-        path: /opt/nginx/html/transproxy_admin/system_usage.json
+        path: "{{ item }}"
         state: absent
-      tags: delete_system_json
-    - name: delete netstat json
-      ansible.builtin.file:
-        path: /opt/nginx/html/transproxy_admin/public/fileData/threat/netstat_status.json
-        state: absent
-      tags: delete_netstat_json
+      loop:
+        - /opt/nginx/html/transproxy_admin/system_usage.json
+        - /opt/nginx/html/transproxy_admin/public/fileData/threat/netstat_status.json
+        - /opt/nginx/html/transproxy_admin/public/fileData/threat/blacklist_summary.json
+      tags: delete_stats_json
     - name: install python redis module
       shell: pip3 install jinja2 redis;pip3 install --upgrade pip;/bin/python3 -m pip show redis;chmod -R a+rx /usr/local/lib/python3.6
       environment: "{{ proxy_env }}"
