@@ -325,6 +325,37 @@
         dest: "{{ software_dest_path }}"
         remote_src: yes
       tags: nginx_unarchive
+    - name: add nginx account
+      ansible.builtin.user:
+        name: nginx
+        shell: /bin/false
+        create_home: no
+        state: present
+        system: yes
+      tags: add_nginx_account
+    - name: add nginx to squid group
+      ansible.builtin.user:
+        name: nginx
+        groups: squid
+        append: yes
+      tags: add_nginx_squid_group
+    - name: nginx service start init
+      ansible.builtin.systemd:
+        name: nginx
+        state: started
+        enabled: yes
+      tags: nginx_service_start_init
+    - name: add www-group
+      ansible.builtin.group:
+        name: www-group
+        state: present
+      tags: add_www_group
+    - name: add nginx to www-group
+      ansible.builtin.user:
+        name: nginx
+        groups: www-group
+        append: yes
+      tags: add_nginx_www_group
 #    - name: nginx-configure
 #      shell: |
 #        ./configure --user=nginx --group=nginx --prefix=/usr/nginx \
@@ -424,31 +455,6 @@
           WantedBy=multi-user.target
       notify: reload systemd
       tags: nginx_service_create
-    - name: add nginx account
-      ansible.builtin.user:
-        name: nginx
-        shell: /bin/false
-        create_home: no
-        state: present
-        system: yes
-      tags: add_nginx_account
-    - name: nginx service start init
-      ansible.builtin.systemd:
-        name: nginx
-        state: started
-        enabled: yes
-      tags: nginx_service_start_init
-    - name: add www-group
-      ansible.builtin.group:
-        name: www-group
-        state: present
-      tags: add_www_group
-    - name: add nginx to www-group
-      ansible.builtin.user:
-        name: nginx
-        groups: www-group
-        append: yes
-      tags: add_nginx_www_group
     - name: download epel
       get_url:
         url: https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
