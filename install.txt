@@ -746,3 +746,14 @@ URL统计: /usr/nginx/html/transproxy_admin/public/fileData/threat/week_top_url_
 
 
 /usr/nginx/html/transproxy_admin/public/fileData/threat/logstatus_7days.json
+
+
+
+
+---
+/opt/squid_shell/hour_monitor.py
+/opt/squid_shell/network_count.sh
+/opt/squid_shell/monitor_matchlogs.sh
+/opt/squid_shell/count_week_ip_url.sh
+/opt/squid_shell/count_week_status.sh
+/opt/squid_shell/count_estab.sh
