@@ -667,6 +667,7 @@
         block: |
           vm.overcommit_memory = 1
           net.core.somaxconn = 512
+          net.ipv4.icmp_echo_ignore_all = 0
         marker: "#### {mark} ADDED BY OPP INSTALLATION ####"
         backup: yes
         state: present

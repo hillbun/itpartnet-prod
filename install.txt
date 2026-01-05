@@ -818,3 +818,17 @@ MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@op
 --
 sshd -t
 systemctl restart sshd
+
+
+--
+
+firewall-cmd --permanent --set-target=ACCEPT
+firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 0 -p icmp --icmp-type timestamp-request -j DROP
+firewall-cmd --permanent --direct --add-rule ipv4 filter OUTPUT 0 -p icmp --icmp-type timestamp-request -j DROP
+
+查看iptables -L -n规则是否添加
+查看cat /proc/sys/net/ipv4/icmp_echo_ignore_all是否等于0，如果等于1需要执行下面命令
+net.ipv4.icmp_echo_ignore_all = 0 添加参数到查看/etc/sysctl.conf
+执行sysctl -p"
+
+
