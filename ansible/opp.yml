@@ -926,6 +926,9 @@
         - /opt/nginx/html/transproxy_admin/system_usage.json
         - /opt/nginx/html/transproxy_admin/public/fileData/threat/netstat_status.json
         - /opt/nginx/html/transproxy_admin/public/fileData/threat/blacklist_summary.json
+        - /opt/nginx/html/transproxy_admin/public/fileData/threat/week_top_ip_10.json
+        - /opt/nginx/html/transproxy_admin/public/fileData/threat/week_top_url_10.json
+        - /opt/nginx/html/transproxy_admin/public/fileData/threat/logstatus_7days.json
       tags: delete_stats_json
     - name: install python redis module
       shell: pip3 install jinja2 redis;pip3 install --upgrade pip;/bin/python3 -m pip show redis;chmod -R a+rx /usr/local/lib/python3.6
