@@ -744,3 +744,5 @@ cluster = false
 IP统计: /usr/nginx/html/transproxy_admin/public/fileData/threat/week_top_ip_10.json
 URL统计: /usr/nginx/html/transproxy_admin/public/fileData/threat/week_top_url_10.json
 
+
+/usr/nginx/html/transproxy_admin/public/fileData/threat/logstatus_7days.json
