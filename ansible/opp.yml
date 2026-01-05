@@ -36,6 +36,18 @@
         backup: yes
         state: present
       tags: setup_yum_proxy
+    - name: edit sshd config ciphers
+      ansible.builtin.replace:
+        path: /etc/ssh/sshd_config
+        regexp: 'Ciphers aes128-ctr,aes192-ctr,aes256-ctr'
+        replace: '#Ciphers aes128-ctr,aes192-ctr,aes256-ctr'
+      tags: edit_sshd_config_ciphers
+    - name: edit sshd config macs
+      ansible.builtin.replace:
+        path: /etc/ssh/sshd_config
+        regexp: 'MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com'
+        replace: '#MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com'
+      tags: edit_sshd_config_macs
     - name: edit sshd config
       blockinfile:
         path: /etc/ssh/sshd_config
