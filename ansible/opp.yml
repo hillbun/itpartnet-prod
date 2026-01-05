@@ -36,6 +36,20 @@
         backup: yes
         state: present
       tags: setup_yum_proxy
+    - name: edit sshd config
+      blockinfile:
+        path: /etc/ssh/sshd_config
+        block: |
+          # 密钥交换算法（禁用弱 DH/SHA-1 算法）
+          KexAlgorithms curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256
+          # 加密算法（禁用 3DES、CBC 模式等弱算法）
+          Ciphers aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
+          # 消息认证码算法（禁用 SHA-1 类 MAC）
+          MACs hmac-sha2-256,hmac-sha2-512,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com
+        marker: "#### {mark} ADDED BY OPP INSTALLATION ####"
+        backup: yes
+        state: present
+      tags: edit_sshd_config
     - name: setup hosts
       blockinfile:
         path: /etc/hosts
