@@ -835,3 +835,93 @@ net.ipv4.icmp_echo_ignore_all = 0 添加参数到查看/etc/sysctl.conf
 执行sysctl -p"
 
 
+---
+
+在 Linux 系统中，`chronyd` 是 `chrony` 守护进程，而我们通常使用其配套的命令行工具 **`chronyc`** 来执行对时操作。
+
+以下是常用的对时命令及其应用场景：
+
+---
+
+### 1. 强制立即同步 (忽略步进限制)
+
+如果你发现系统时间偏差较大，希望立即校准，可以使用以下命令。它会告诉 `chronyd` 忽略默认的渐进式调整（slew），直接步进（step）到正确时间。
+
+```bash
+# 强制立即同步时间
+chronyc makestep
+
+```
+
+> **注意**：这只会触发一次同步。如果时间偏差极大，建议运行此命令。
+
+### 2. 查看当前同步状态
+
+在对时之前或之后，你可以查看系统是否已与服务器建立联系：
+
+* **查看同步详情**：
+```bash
+chronyc tracking
+
+```
+
+
+*重点看 `Leap status`（应为 Normal）和 `System time`（显示偏差值值）。*
+* **查看时间源状态**：
+```bash
+chronyc sources -v
+
+```
+
+
+*重点看带 `^*` 符号的行，这代表当前正在使用的同步源。*
+
+### 3. 如果 `chronyd` 服务未运行
+
+如果服务没启动，对时命令是无法生效的。你需要先重启服务：
+
+```bash
+systemctl restart chronyd
+
+```
+
+---
+
+### 4. 进阶：使用 Ansible 实现“强制对时”
+
+如果你想在 Ansible Playbook 中实现类似你之前防火墙那样的自动化对时，可以这样写：
+
+```yaml
+- name: 强制同步系统时间
+  tasks:
+    - name: 确保 chronyd 正在运行
+      ansible.builtin.service:
+        name: chronyd
+        state: started
+
+    - name: 立即步进校准时间
+      ansible.builtin.command: chronyc makestep
+      # 这种操作通常不需要关心幂等性，或者可以根据 tracking 结果判断
+      changed_when: true 
+
+```
+
+---
+
+### 常见对时流程建议
+
+通常最稳妥的“命令行手动对时”步骤是：
+
+1. `systemctl restart chronyd` (确保配置加载并运行)
+2. `chronyc makestep` (立即校准)
+3. `chronyc sources -v` (确认已连接到 NTP 服务器)
+
+**需要我帮你检查一下 `/etc/chrony.conf` 配置文件中的上游服务器（server）设置是否正确吗？**
+
+
+
+---
+TCP
+nc -vz <服务器IP> <端口号>
+
+nc -z -v -u <服务器IP> 123
