@@ -102,6 +102,27 @@
         backup: no
         state: present
       tags: setup_limits
+    - name: firewalld service start
+      ansible.builtin.systemd:
+        name: firewalld
+        enabled: yes
+        state: started
+      tags: firewalld_service_start
+    - name: firewalld set-target
+      ansible.posix.firewalld:
+        target: ACCEPT
+        permanent: yes
+        state: enabled
+      notify: reload firewalld
+      tags: firewalld_set_target
+    - name: firewalld rule
+      ansible.builtin.shell: |
+        firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 0 -p icmp --icmp-type timestamp-request -j DROP
+        firewall-cmd --permanent --direct --add-rule ipv4 filter OUTPUT 0 -p icmp --icmp-type timestamp-request -j DROP
+      register: direct_rule_result
+      changed_when: "'ALREADY_ENABLED' not in direct_rule_result.stderr"
+      notify: reload firewalld
+      tags: firewalld_rule
     - name: dnf
       dnf:
         name:
@@ -1153,3 +1174,7 @@
       - name: reload systemd
         ansible.builtin.systemd:
           daemon_reload: yes
+      - name: reload firewalld
+        ansible.builtin.service:
+          name: firewalld
+          state: reloaded

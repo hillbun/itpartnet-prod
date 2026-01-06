@@ -821,6 +821,7 @@ systemctl restart sshd
 
 
 --
+systemctl is-enabled firewalld
 systemctl enable firewalld
 systemctl start firewalld
 firewall-cmd --permanent --set-target=ACCEPT
