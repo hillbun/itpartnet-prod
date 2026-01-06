@@ -114,7 +114,6 @@
         target: ACCEPT
         permanent: yes
         state: enabled
-      notify: reload firewalld
       tags: firewalld_set_target
     - name: firewalld rule
       ansible.builtin.shell: |
