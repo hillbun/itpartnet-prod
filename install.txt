@@ -982,3 +982,71 @@ logdir /var/log/chrony
 # Select which information is logged.
 #log measurements statistics tracking
 log measurements statistics tracking rtc refclocks tempcomp
+
+
+---
+---
+- name: Update Chrony Servers
+  hosts: all
+  become: yes
+  tasks:
+    - name: Replace hktsrvprd41a with 1.1.1.1
+      replace:
+        path: /etc/chrony.conf
+        regexp: '^server hktsrvprd41a iburst'
+        replace: 'server 1.1.1.1 iburst'
+
+    - name: Replace hktsrvprd51a with 2.2.2.2
+      replace:
+        path: /etc/chrony.conf
+        regexp: '^server hktsrvprd51a iburst'
+        replace: 'server 2.2.2.2 iburst'
+
+    - name: Restart chronyd service
+      service:
+        name: chronyd
+        state: restarted
+		
+---
+方案二：使用 template 模块（生产环境推荐）
+在实际运维中，通常建议将整个 chrony.conf 维护在一个模板文件中。这样不仅方便修改这几个地址，以后增加其他配置也更清晰。
+
+创建模板文件 chrony.conf.j2： 将你理想的配置内容写入该文件。
+
+Plaintext
+
+# ... 其他配置 ...
+server 1.1.1.1 iburst
+server 2.2.2.2 iburst
+# ... 其他配置 ...
+编写 Playbook：
+
+YAML
+
+---
+- name: Sync Chrony Configuration
+  hosts: all
+  become: yes
+  tasks:
+    - name: Copy chrony configuration template
+      template:
+        src: chrony.conf.j2
+        dest: /etc/chrony.conf
+        owner: root
+        group: root
+        mode: '0644'
+      notify: Restart Chronyd
+
+  handlers:
+    - name: Restart Chronyd
+      service:
+        name: chronyd
+        state: restarted
+方案选择建议
+如果你的环境非常复杂，每个服务器的 chrony.conf 其他部分都不一样，请使用 方案一 (replace)。它只会动你指定的那两行。
+
+如果你的环境比较标准，所有服务器的 NTP 配置都应该一致，请使用 方案二 (template)。这种方式符合“配置即代码”的原则，后期维护成本最低。
+
+温馨提示： 修改 NTP 配置后一定要重启 chronyd 服务才能生效，上面的示例中都已经包含了重启服务的步骤。
+
+你想了解如何通过变量（Variables）来动态设置这些 IP 地址吗？

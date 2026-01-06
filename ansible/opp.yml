@@ -180,10 +180,16 @@
           - go
         state: present
       tags: install_dnf_package
-###########
-#### todo           ####
-#### chrony service ####
-###########
+    - name: edit chrony server
+      replace:
+        path: /etc/chrony.conf
+        regexp: "{{ item.old }}"
+        replace: "{{ item.new }}"
+      loop:
+        - { old: '^server hktsrvprd41a iburst', new: 'server 192.168.50.104 iburst' }
+        - { old: '^server hktsrvprd51a iburst', new: 'server 192.168.150.104 iburst' }
+      notify: restart chronyd
+      tags: edit_chrony_server
     - name: add squid account
       ansible.builtin.user:
         name: squid
@@ -1179,3 +1185,7 @@
         ansible.builtin.service:
           name: firewalld
           state: reloaded
+      - name: restart chronyd
+        ansible.builtin.service:
+          name: chronyd
+          state: restarted
