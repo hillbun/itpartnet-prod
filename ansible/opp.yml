@@ -110,6 +110,7 @@
       tags: firewalld_service_start
     - name: firewalld set-target
       ansible.posix.firewalld:
+        zone: public
         target: ACCEPT
         permanent: yes
         state: enabled
