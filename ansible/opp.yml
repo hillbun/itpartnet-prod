@@ -701,6 +701,13 @@
         backup: yes
         state: present
       tags: edit_sysctl_conf
+    - name: edit sysctl.conf ip_local_port_range
+      ansible.builtin.lineinfile:
+        path: /etc/sysctl.conf
+        regexp: '^#?net\.ipv4\.ip_local_port_range'
+        line: 'net.ipv4.ip_local_port_range = 1024 65535'
+        state: present
+      tags: edit_sysctl_conf_ip_local_port_range
     - name: reload sysctl
       shell: sysctl -p
       tags: reload_sysctl
