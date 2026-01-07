@@ -1,0 +1,52 @@
+app/Http/Controllers/Api/LadpsController.php:           exec("sudo /usr/bin/python3  $dirpy");
+app/Http/Controllers/Api/ThreatController.phpbak:        exec("sudo /bin/chmod 644  $fileName");
+app/Http/Controllers/Api/ThreatController.phpbak:            //exec("sudo /bin/chmod 777  $path");
+app/Http/Controllers/Api/ThreatController.phpbak:        $command = "sudo /opt/squid/sbin/squid -k reconfigure 2>&1 ";
+app/Http/Controllers/Api/LogsController.php:                exec("sudo /bin/chmod 777  $path");
+app/Http/Controllers/Api/ThreatController.php.bak:      exec("sudo /bin/chmod 644  $fileName");
+app/Http/Controllers/Api/IndexController.php-20250916:        $command = "sudo /opt/squid/sbin/squid -k reconfigure 2>&1 ";
+app/Http/Controllers/Api/IndexController.php-20250916:        $command = "sudo /usr/bin/python3 /opt/py_test_new/check_ip_allow.py 2>&1 ";
+app/Http/Controllers/Api/IndexController.php-20250916:        $command = "sudo /usr/bin/python3 /opt/py_test_new/check_ip_deny.py 2>&1 ";
+app/Http/Controllers/Api/IndexController.php-20250916:        $command = "sudo /usr/bin/python3 /opt/py_test_new/check_iprange_allow.py 2>&1 ";
+app/Http/Controllers/Api/IndexController.php-20250916:        $command = "sudo /usr/bin/python3 /opt/py_test_new/check_iprange_deny.py 2>&1 ";
+app/Http/Controllers/Api/IndexController.php-20250916:        $command = "sudo /usr/bin/python3 /opt/py_test_new/check_special_user_allow.py 2>&1 ";
+app/Http/Controllers/Api/IndexController.php-20250916:        $command = "sudo /usr/bin/python3 /opt/py_test_new/check_special_user_deny.py 2>&1 ";
+app/Http/Controllers/Api/IndexController.php-20250916:        $command = "sudo /usr/bin/python3 /opt/py_test_new/check_user.py 2>&1 ";
+app/Http/Controllers/Api/LogsController.php.back:                exec("sudo /bin/chmod 644  $path");
+app/Http/Controllers/Api/ThreatController.php:            //exec("sudo /bin/chmod 777  $path");
+app/Http/Controllers/Api/ThreatController.php:        $command = "sudo /opt/squid/sbin/squid -k reconfigure 2>&1 ";
+app/Http/Controllers/Api/PortDefinedController.php:            $command = "sudo /opt/squid/sbin/squid -k reconfigure 2>&1 ";
+app/Http/Controllers/Api/IndexController.php-20251215:        $command = "sudo /opt/squid/sbin/squid -k reconfigure 2>&1 ";
+app/Http/Controllers/Api/IndexController.php-20251215:        $command = "sudo /usr/bin/python3 {$python_file_addr_spec}check_ip_allow.py 2>&1 ";
+app/Http/Controllers/Api/IndexController.php-20251215:        $command = "sudo /usr/bin/python3 {$python_file_addr_spec}check_ip_deny.py 2>&1 ";
+app/Http/Controllers/Api/IndexController.php-20251215:        $command = "sudo /usr/bin/python3 {$python_file_addr_spec}check_iprange_allow.py 2>&1 ";
+app/Http/Controllers/Api/IndexController.php-20251215:        $command = "sudo /usr/bin/python3 {$python_file_addr_spec}check_iprange_deny.py 2>&1 ";
+app/Http/Controllers/Api/IndexController.php-20251215:        $command = "sudo /usr/bin/python3 {$python_file_addr_spec}check_special_user_allow.py 2>&1 ";
+app/Http/Controllers/Api/IndexController.php-20251215:        $command = "sudo /usr/bin/python3 {$python_file_addr_spec}check_special_user_deny.py 2>&1 ";
+app/Http/Controllers/Api/IndexController.php-20251215:        $command = "sudo /usr/bin/python3 {$python_file_addr_spec}check_user.py 2>&1 ";
+app/Http/Controllers/Api/IndexController.php-20251215:  $cmd = "sudo ss -ant | awk '\$1==\"ESTAB\" && \$4 !~ /:8080\$/ && \$5 !~ /:8080\$/ && \$5 !~ /^127\\.0\\.0\\.1:/ && \$5 ~ /:443|:80/ {print}' | wc -l 2>&1";
+app/Http/Controllers/Api/IndexController.php-20251215:  exec('sudo ss -ant | awk \'$1=="ESTAB" && $4 ~ /:8080$/{print}\' | wc -l 2>&1',$o2,$r2);
+app/Http/Controllers/Api/AdController.php-bak:        $command = "sudo /opt/squid/sbin/squid -k reconfigure 2>&1 ";
+app/Http/Controllers/Api/KbsController.php:                exec("sudo /usr/bin/python3  $dirpy");
+app/Http/Controllers/Api/KbsController.php:                exec("sudo /usr/bin/python3  $dirpy");
+app/Http/Controllers/Api/IndexController.php:        $command = "sudo /opt/squid/sbin/squid -k reconfigure 2>&1 ";
+app/Http/Controllers/Api/IndexController.php:        $command = "sudo /usr/bin/python3 {$python_file_addr_spec}check_ip_allow.py 2>&1 ";
+app/Http/Controllers/Api/IndexController.php:        $command = "sudo /usr/bin/python3 {$python_file_addr_spec}check_ip_deny.py 2>&1 ";
+app/Http/Controllers/Api/IndexController.php:        $command = "sudo /usr/bin/python3 {$python_file_addr_spec}check_iprange_allow.py 2>&1 ";
+app/Http/Controllers/Api/IndexController.php:        $command = "sudo /usr/bin/python3 {$python_file_addr_spec}check_iprange_deny.py 2>&1 ";
+app/Http/Controllers/Api/IndexController.php:        $command = "sudo /usr/bin/python3 {$python_file_addr_spec}check_special_user_allow.py 2>&1 ";
+app/Http/Controllers/Api/IndexController.php:        $command = "sudo /usr/bin/python3 {$python_file_addr_spec}check_special_user_deny.py 2>&1 ";
+app/Http/Controllers/Api/IndexController.php:        $command = "sudo /usr/bin/python3 {$python_file_addr_spec}check_user.py 2>&1 ";
+app/Http/Controllers/Api/IndexController.php:   $cmd = "sudo ss -ant | awk '\$1==\"ESTAB\" && \$4 !~ /:8080\$/ && \$5 !~ /:8080\$/ && \$5 !~ /^127\\.0\\.0\\.1:/ && \$5 ~ /:443|:80/ {print}' | wc -l 2>&1";
+app/Http/Controllers/Api/IndexController.php:   exec('sudo ss -ant | awk \'$1=="ESTAB" && $4 ~ /:8080$/{print}\' | wc -l 2>&1',$o2,$r2);
+app/Console/Commands/RemoveDup.php:     exec("sudo /bin/chmod 644  $fileName1");
+app/Console/Commands/RemoveDup.php:        exec("sudo /bin/chmod 644  $fileName2");
+vendor/symfony/console/Command/DumpCompletionCommand.php:    <info>%command.full_name% bash | sudo tee /etc/bash_completion.d/{$commandName}</>
+vendor/phpoffice/phpexcel/.travis.yml:  - sudo apt-get -qq update > /dev/null
+vendor/psy/psysh/src/Shell.php:        $sudo = new Command\SudoCommand();
+vendor/psy/psysh/src/Input/SilentInput.php: * rewritten user code run by sudo command. Silent input isn't echoed before
+vendor/psy/psysh/src/Command/SudoCommand.php:<return>>>> sudo $sekret->whisper("hi")</return>
+vendor/psy/psysh/src/Command/SudoCommand.php:<return>>>> sudo $sekret->word</return>
+vendor/psy/psysh/src/Command/SudoCommand.php:<return>>>> sudo $sekret->word = "please"</return>
+vendor/laravel/framework/src/Illuminate/Console/Scheduling/CommandBuilder.php:        return $event->user && ! windows_os() ? 'sudo -u '.$event->user.' -- sh -c \''.$command.'\'' : $command;
+
