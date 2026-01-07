@@ -701,6 +701,9 @@
         backup: yes
         state: present
       tags: edit_sysctl_conf
+    - name: reload sysctl
+      shell: sysctl -p
+      tags: reload_sysctl
     - name: edit rc.local
       blockinfile:
         path: /etc/rc.local
@@ -710,9 +713,6 @@
         backup: no
         state: present
       tags: edit_rc_local
-    - name: reload sysctl
-      shell: sysctl -p
-      tags: reload_sysctl
     - name: add redis account
       ansible.builtin.user:
         name: redis
