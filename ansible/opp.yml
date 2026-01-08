@@ -412,7 +412,7 @@
       ansible.builtin.authorized_key:
         user: normaluser
         state: present
-        key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+        key: "{{ lookup('file', '~normaluser/.ssh/id_rsa.pub') }}"
       tags: set_normaluser_key
     - name: normaluser sudoer create
       ansible.builtin.copy:
