@@ -10,7 +10,7 @@ use App\Http\Controllers\Api\ThreatController;
 class RemoveDup extends Command
 {
     protected $signature = 'ioc:remove-dup';
-    private $pypath = '/usr/local/nginx/html/threat/archive/';
+    private $pypath = '/opt/nginx/html/threat/archive/';
 
     protected $description = '去掉子域，只保留父域';
 
