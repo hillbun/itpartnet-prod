@@ -1281,5 +1281,9 @@ net.ipv4.tcp_max_tw_buckets = 2000000
 
 
 ---
-sudo useradd -m -s /bin/bash -G squid,nginx normaluser
-sudo usermod -aG squid,nginx normaluser
+sudo useradd -m -s /bin/bash -G squid,www-group normaluser
+sudo usermod -aG squid,www-group normaluser
+
+gpasswd -d normaluser nginx
+id normaluser
+newgrp normaluser

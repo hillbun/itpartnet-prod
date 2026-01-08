@@ -1,3 +1,16 @@
+##############
+### TODO
+### check opp squid reload
+### check opp other sudo command
+### chown -R normaluser.normaluser /opt/squid_shell
+### chmod g+w /opt/squid/var/log
+### chmod g+w /opt/squid/var/log/cache.log
+### chmod g+w /opt/nginx/html/transproxy_admin
+### chmod g+w /opt/nginx/html/threat/archive
+### run crontab as normaluser
+### fix logrote issue
+### run ansible-playbook as normaluser
+##############
 ---
 - name: install app
   hosts: opp_prod
