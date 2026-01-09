@@ -389,6 +389,7 @@
       tags: edit_chrony_server
 
     - name: Python-3.9.20 copy
+      become: yes
       ansible.builtin.copy:
         src: "{{ software_src_path }}/Python-3.9.20.tgz"
         dest: "{{ software_dest_path }}/Python-3.9.20.tgz"
@@ -401,6 +402,7 @@
         remote_src: yes
       tags: python_3_9_20_unarchive
     - name: Python-3.9.20 configure
+      become: yes
       shell: |
         ./configure --prefix=/usr/local/python-3.9.20
       args:
@@ -414,15 +416,11 @@
         creates: /usr/local/python-3.9.20
       tags: python_3_9_20_install
     - name: alternatives python-3.9.20 install
-      delegate_to: localhost
       become: yes
-      run_once: true
       shell: alternatives --install /usr/bin/python3 python3 /usr/local/python-3.9.20/bin/python3.9 1
       tags: alternatives_python_3_9_20_install
     - name: alternatives python-3.9.20 config
-      delegate_to: localhost
       become: yes
-      run_once: true
       shell: alternatives --set python3 /usr/local/python-3.9.20/bin/python3.9
       tags: alternatives_python_3_9_20_config
 
