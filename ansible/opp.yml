@@ -442,7 +442,7 @@
       tags: old_version_pip_remove
     - name: install python module
       become: yes
-      shell: umask 0022;python3 -m pip install --upgrade pip;python3 -m pip install jinja2 redis psutil
+      shell: umask 0022;python3 -m pip install --upgrade pip;python3 -m pip install jinja2 redis psutil requests
       environment: "{{ proxy_env }}"
       tags: install_python_module
     - name: add squid account
@@ -1296,10 +1296,10 @@
         - /opt/nginx/html/transproxy_admin/public/fileData/threat/logstatus_7days.json
         - /tmp/usage.json.tmp
       tags: delete_stats_json
-    - name: install python redis module
-      shell: pip3 install jinja2 redis;pip3 install --upgrade pip;/bin/python3 -m pip show redis;chmod -R a+rx /usr/local/lib/python3.6
-      environment: "{{ proxy_env }}"
-      tags: install_python_redis_module
+    #- name: install python redis module
+    #  shell: pip3 install jinja2 redis;pip3 install --upgrade pip;/bin/python3 -m pip show redis;chmod -R a+rx /usr/local/lib/python3.6
+    #  environment: "{{ proxy_env }}"
+    #  tags: install_python_redis_module
     - name: copy logrotate squid
       ansible.builtin.copy:
         src: /etc/logrotate.d/squid
