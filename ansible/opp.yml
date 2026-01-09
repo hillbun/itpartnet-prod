@@ -1394,8 +1394,8 @@
         mode: "g+w"
       loop:
         #- /opt/squid/var/log/cache.log
-        - /opt/nginx/html/transproxy_admin
-        #- /opt/nginx/html/transproxy_admin/storage/logs
+        #- /opt/nginx/html/transproxy_admin
+        - /opt/nginx/html/transproxy_admin/storage/logs
         #- /opt/nginx/html/transproxy_admin/storage/temp
         #- /opt/nginx/html/transproxy_admin/public/fileData/threat
         #- /opt/nginx/html/threat/archive
