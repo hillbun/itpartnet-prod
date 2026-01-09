@@ -1301,3 +1301,8 @@ alternatives --display python3
 
 
 ---
+# 注册新版 pip3
+alternatives --install /usr/bin/pip3 pip3 /usr/local/python-3.9.20/bin/pip3 1
+
+# 设置为默认
+alternatives --set pip3 /usr/local/python-3.9.20/bin/pip3
