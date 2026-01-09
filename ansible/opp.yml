@@ -196,12 +196,18 @@
         chdir: "{{ software_src_path }}/Python-3.9.20"
         creates: /usr/local/python-3.9.20
       tags: local_python_3_9_20_install
-    - name: local alternatives install python-3.9.20
+    - name: local alternatives python-3.9.20 install
       delegate_to: localhost
       become: yes
       run_once: true
       shell: alternatives --install /usr/bin/python3 python3 /usr/local/python-3.9.20/bin/python3.9 1
-      tags: local_alternatives_install_python_3_9_20
+      tags: local_alternatives_python_3_9_20_install
+    - name: local alternatives python-3.9.20 config
+      delegate_to: localhost
+      become: yes
+      run_once: true
+      shell: alternatives --config python3
+      tags: local_alternatives_python_3_9_20_config
 #######################################################
     - name: ping
       ping:
