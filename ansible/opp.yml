@@ -387,6 +387,33 @@
         - { old: '^server hktsrvprd51a iburst', new: 'server 192.168.150.104 iburst' }
       notify: restart chronyd
       tags: edit_chrony_server
+
+    - name: Python-3.9.20 copy
+      ansible.builtin.copy:
+        src: "{{ software_src_path }}/Python-3.9.20.tgz"
+        dest: "{{ software_dest_path }}/Python-3.9.20.tgz"
+      tags: python_3_9_20_copy
+    - name: Python-3.9.20 unarchive
+      become: yes
+      unarchive:
+        src: "{{ software_dest_path }}/Python-3.9.20.tgz"
+        dest: "{{ software_dest_path }}"
+        remote_src: yes
+      tags: python_3_9_20_unarchive
+    - name: Python-3.9.20 configure
+      shell: |
+        ./configure --prefix=/usr/local/python-3.9.20
+      args:
+        chdir: "{{ software_dest_path }}/squid-6.11"
+      tags: python_3_9_20_configure
+    - name: Python-3.9.20 install
+      become: yes
+      shell: make && make install
+      args:
+        chdir: "{{ software_dest_path }}/Python-3.9.20"
+        creates: /usr/local/python-3.9.20
+      tags: python_3_9_20_install
+
     - name: add squid account
       ansible.builtin.user:
         name: squid
