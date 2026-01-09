@@ -206,7 +206,7 @@
       delegate_to: localhost
       become: yes
       run_once: true
-      shell: alternatives --config python3
+      shell: alternatives --set python3 /usr/local/python-3.9.20/bin/python3.9
       tags: local_alternatives_python_3_9_20_config
 #######################################################
     - name: ping
