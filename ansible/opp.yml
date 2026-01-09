@@ -201,7 +201,7 @@
       become: yes
       run_once: true
       shell: alternatives --install /usr/bin/python3 python3 /usr/local/python-3.9.20/bin/python3.9 1
-      tags: local_alternatives_install_python-3.9.20
+      tags: local_alternatives_install_python_3_9_20
 #######################################################
     - name: ping
       ping:
