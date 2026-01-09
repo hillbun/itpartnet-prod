@@ -62,7 +62,8 @@ proxy=http://192.168.189.195:8080
 export http_proxy="http://192.168.189.195:8080"
 export https_proxy="http://192.168.189.195:8080"
 
-
+import os
+print(os.environ.get('http_proxy'))
 
 export http_proxy="http://LH511@CORP.HA.ORG.HK:tyP6Jx?urY1@poxappprd41a:8080"
 export https_proxy="http://LH511@CORP.HA.ORG.HK:tyP6Jx?urY1@poxappprd41a:8080"
@@ -570,7 +571,7 @@ curl http://127.0.0.1:9100/metrics
 python3 -m pip install -r requirements.txt
 python3 -m pip install redis
 pip3 install redis
-pip3 install --upgrade pip
+python3 -m pip install --upgrade pip
 /bin/python3 -m pip show redis
 chmod -R a+rx /usr/local/lib/python3.6
 sudo -u squid /bin/python3 -c "import redis; print(redis.__version__)"
