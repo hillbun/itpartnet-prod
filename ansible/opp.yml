@@ -18,6 +18,7 @@
 ### run crontab as normaluser
 ### fix logrote issue
 ### run ansible-playbook as normaluser
+### Ansible Vault
 ##############
 ---
 - name: install app
@@ -525,7 +526,7 @@
         create_home: yes
         groups: squid,www-group
         append: yes
-        password: "{{ 'Piat5mmdr' | password_hash('sha512') }}"
+        password: "{{ normaluser_password | password_hash('sha512') }}"
       tags: create_account_normaluser
 #    - name: set normaluser key
 #      ansible.builtin.authorized_key:
