@@ -92,6 +92,7 @@
       tags: local_create_opp_crontab_dir
     - name: local create opp-crontab
       delegate_to: localhost
+      become: yes
       become_user: logreader
       run_once: true
       ansible.builtin.copy:
