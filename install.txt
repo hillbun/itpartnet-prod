@@ -587,6 +587,11 @@ umask 0022
 python3 -m pip freeze > all_packages.txt
 python3 -m pip install --upgrade --force-reinstall -r all_packages.txt
 
+sudo -u squid /usr/local/python-3.9.20/bin/python3 -m pip install --user -r requirements.txt
+
+/etc/pip.conf
+[global]
+umask = 0022
 
 ---
 /etc/cron.d/opp-crontab
