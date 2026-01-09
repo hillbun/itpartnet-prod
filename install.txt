@@ -580,7 +580,12 @@ sudo -u squid python3 -c "import redis; print(redis.__file__)"
 
 ---
 
+# 1. 关键：设置权限掩码，确保重装后的库对 squid 等用户可见
+umask 0022
 
+# 2. 导出当前所有包名，并强制重新安装它们
+python3 -m pip freeze > all_packages.txt
+python3 -m pip install --upgrade --force-reinstall -r all_packages.txt
 
 
 ---
