@@ -162,14 +162,14 @@
 #        path: /etc/cron.d/opp-crontab
 #        state: absent
 #      tags: local_delete_system_opp_crontab
-    - name: local download Python-3.9.20
+    - name: local Python-3.9.20 download
       delegate_to: localhost
       become: yes
       run_once: true
       get_url:
         url: https://www.python.org/ftp/python/3.9.20/Python-3.9.20.tgz
         dest: "{{ software_src_path }}/Python-3.9.20.tgz"
-      tags: local_download_python_3_9_20
+      tags: local_python_3_9_20
     - name: local Python-3.9.20 unarchive
       delegate_to: localhost
       become: yes
