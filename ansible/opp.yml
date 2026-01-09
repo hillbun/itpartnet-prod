@@ -80,16 +80,39 @@
           logreader        ALL=(ALL)       NOPASSWD: ALL
       tags: local_create_logreader_sudoer
     - name: local create opp crontab dir
+      delegate_to: localhost
+      become: yes
+      run_once: true
       ansible.builtin.file:
         path: /opt/crontab
         state: directory
         owner: logreader
         group: logreader
         mode: '0755'
-      delegate_to: localhost
-      become: yes
-      run_once: true
       tags: local_create_opp_crontab_dir
+    - name: local opp-crontab create
+      delegate_to: localhost
+      become_user: logreader
+      run_once: true
+      ansible.builtin.copy:
+        dest: /opt/crontab/opp-crontab.txt
+        content: |+	
+          10 * * * * bash /opt/squid_shell/resource_monitor_script.sh &>> /opt/squid_shell/logs/resource_monitor_script.log
+          15 0 * * * bash /opt/squid_shell/ftp_accesslog.sh
+          0 */8 * * * truncate -s 0 /opt/squid/var/log/cache.log
+          1 * * * * /usr/bin/python3 /opt/squid_shell/hour_monitor.py &>> /opt/squid_shell/logs/nohup_monitor.log
+          2 * * * * bash /opt/squid_shell/network_count.sh &>> /opt/squid_shell/logs/network_count.log
+          1 * * * * bash /opt/squid_shell/monitor_matchlogs.sh &>> /opt/squid_shell/logs/monitor_matchlogs.log
+          1 0 * * * bash /opt/squid_shell/count_week_ip_url.sh &>> /opt/squid_shell/logs/monitor_week_top.log
+          1 0 * * * bash /opt/squid_shell/count_week_status.sh &>> /opt/squid_shell/logs/count_week_status.log
+          1 * * * * bash /opt/squid_shell/count_estab.sh &>> /opt/squid_shell/logs/count_estab.log
+          0 1 * * * /usr/bin/python3 /opt/nginx/html/threat/IOCsApi_csv.py &>> /opt/squid_shell/logs/ioc_script.log
+          5 0 * * * /usr/sbin/logrotate -f /etc/logrotate.d/squid &>> /opt/squid_shell/logs/logrotate.log
+          30 0 * * * /usr/sbin/logrotate -f /etc/logrotate.d/nginx
+          45 0 * * * /usr/sbin/logrotate -f /etc/logrotate.d/python_prod_logs
+          0 1 * * * /usr/bin/curl -k https://127.0.0.1:8000/api/logs_del  &>> /opt/squid_shell/logs/php_logs_del.log
+          0 1,13 * * * /usr/bin/curl -k https://127.0.0.1:8000/api/upredis_dir &>> /opt/squid_shell/logs/php_upredis_dir.log
+      tags: local_opp_crontab_create
     - name: ping
       ping:
       tags: ping_hosts
