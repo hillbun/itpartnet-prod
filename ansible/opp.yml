@@ -90,7 +90,7 @@
         group: logreader
         mode: '0755'
       tags: local_create_opp_crontab_dir
-    - name: local opp-crontab create
+    - name: local create opp-crontab
       delegate_to: localhost
       become_user: logreader
       run_once: true
@@ -112,7 +112,7 @@
           45 0 * * * /usr/sbin/logrotate -f /etc/logrotate.d/python_prod_logs
           0 1 * * * /usr/bin/curl -k https://127.0.0.1:8000/api/logs_del  &>> /opt/squid_shell/logs/php_logs_del.log
           0 1,13 * * * /usr/bin/curl -k https://127.0.0.1:8000/api/upredis_dir &>> /opt/squid_shell/logs/php_upredis_dir.log
-      tags: local_opp_crontab_create
+      tags: local_create_opp_crontab
     - name: ping
       ping:
       tags: ping_hosts
