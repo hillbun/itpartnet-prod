@@ -1,12 +1,20 @@
 ##############
 ### TODO
-### check opp squid reload
-### check opp other sudo command
+### !!!!!!  check opp squid reload  !!!!!!
+### !!!!!!  check opp other sudo command  !!!!!!
 ### chown -R normaluser.normaluser /opt/squid_shell
 ### chmod g+w /opt/squid/var/log
 ### chmod g+w /opt/squid/var/log/cache.log
 ### chmod g+w /opt/nginx/html/transproxy_admin
+### chmod g+w /opt/nginx/html/transproxy_admin/storage/logs
+### chown nginx.www-group /opt/nginx/html/transproxy_admin/storage/temp
+### chmod g+w /opt/nginx/html/transproxy_admin/storage/temp
+### chmod g+w /opt/nginx/html/transproxy_admin/public/fileData/threat
+### chmod g+w /opt/nginx/html/transproxy_admin/public/fileData/threat/*.txt
 ### chmod g+w /opt/nginx/html/threat/archive
+### chmod 644 /etc/logrotate.d/squid
+### create account normaluser
+### run logrote as normaluser
 ### run crontab as normaluser
 ### fix logrote issue
 ### run ansible-playbook as normaluser

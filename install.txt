@@ -1287,3 +1287,8 @@ sudo usermod -aG squid,www-group normaluser
 gpasswd -d normaluser nginx
 id normaluser
 newgrp normaluser
+
+
+---
+# 命令示例
+/usr/sbin/logrotate -s /home/user/my_logrotate.status /home/user/my_logrotate.conf
