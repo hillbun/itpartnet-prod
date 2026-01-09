@@ -1397,8 +1397,8 @@
         #- /opt/nginx/html/transproxy_admin
         #- /opt/nginx/html/transproxy_admin/storage/logs
         #- /opt/nginx/html/transproxy_admin/storage/temp
-        - /opt/nginx/html/transproxy_admin/public/fileData/threat
-        #- /opt/nginx/html/threat/archive
+        #- /opt/nginx/html/transproxy_admin/public/fileData/threat
+        - /opt/nginx/html/threat/archive
       tags: chmod_crontab_file_attribute
     - name: create opp crontab dir
       become: yes
