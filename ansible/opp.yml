@@ -404,7 +404,7 @@
       shell: |
         ./configure --prefix=/usr/local/python-3.9.20
       args:
-        chdir: "{{ software_dest_path }}/squid-6.11"
+        chdir: "{{ software_dest_path }}/Python-3.9.20"
       tags: python_3_9_20_configure
     - name: Python-3.9.20 install
       become: yes
