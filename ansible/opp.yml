@@ -1245,12 +1245,11 @@
         mode: '0755'
       tags: create_opp_crontab_dir
     - name: create opp-crontab
-      become: yes
-      become_user: logreader
+
       ansible.builtin.copy:
-        ######## dest: /opt/crontab/opp-crontab.txt
-        ########
-      tags: create_opp_crontab
+        src: /opt/crontab/opp-crontab.txt
+        dest: /opt/crontab/opp-crontab.txt
+      tags: create opp_crontab
     - name: run opp-crontab
       become: yes
       become_user: logreader
