@@ -32,6 +32,39 @@
     software_dest_path: "/usr/opp/download"
     REDISCLI_AUTH: StrongP@@ssw0rd123!
   tasks:
+    - name: local create account logreader
+      delegate_to: localhost
+      run_once: true
+      become: yes
+      ansible.builtin.user:
+        name: logreader
+        state: present
+        shell: /bin/bash
+        create_home: yes
+        groups: squid,www-group
+        append: yes
+        password: "{{ 'logreader_password' | password_hash('sha512') }}"
+      tags: local_create_account_logreader
+    - name: local logreader keygen
+      community.crypto.openssh_keypair:
+        path: "~/.ssh/id_rsa"
+        type: rsa
+        size: 2048
+      delegate_to: localhost
+      become: yes
+      become_user: logreader
+      run_once: true
+      tags: local_logreader_keygen
+    - name: local logreader sudoer create
+      ansible.builtin.copy:
+        dest: /etc/sudoers.d/logreader
+        owner: root
+        group: root
+        mode: '0440'
+        content: |
+          ## Allows logreader user to sudo without password
+          logreader        ALL=(ALL)       NOPASSWD: ALL
+      tags: local_logreader_sudoer_create
     - name: ping
       ping:
       tags: ping_hosts
@@ -1110,29 +1143,6 @@
           nginx ALL=(root) NOPASSWD: /usr/bin/python3 /opt/py_prod/squid_kerberos_modify.py
           nginx ALL=(root) NOPASSWD: /opt/squid/sbin/squid -k reconfigure
       tags: opp_sudoer_create
-    - name: create local account logreader
-      delegate_to: localhost
-      run_once: true
-      become: yes
-      ansible.builtin.user:
-        name: logreader
-        state: present
-        shell: /bin/bash
-        create_home: yes
-        groups: squid,www-group
-        append: yes
-        password: "{{ 'logreader_password' | password_hash('sha512') }}"
-      tags: create_local_account_logreader
-    - name: local logreader sudoer create
-      ansible.builtin.copy:
-        dest: /etc/sudoers.d/logreader
-        owner: root
-        group: root
-        mode: '0440'
-        content: |
-          ## Allows logreader user to sudo without password
-          logreader        ALL=(ALL)       NOPASSWD: ALL
-      tags: local_logreader_sudoer_create
     - name: create account logreader
       ansible.builtin.user:
         name: logreader
