@@ -517,16 +517,16 @@
         groups: squid
         append: yes
       tags: add_nginx_squid_group
-#    - name: create account normaluser
-#      ansible.builtin.user:
-#        name: normaluser
-#        state: present
-#        shell: /bin/bash
-#        create_home: yes
-#        groups: squid,www-group
-#        append: yes
-#        password: "{{ 'normaluser_password' | password_hash('sha512') }}"
-#      tags: create_account_normaluser
+    - name: create account normaluser
+      ansible.builtin.user:
+        name: normaluser
+        state: present
+        shell: /bin/bash
+        create_home: yes
+        groups: squid,www-group
+        append: yes
+        password: "{{ 'Piat5mmdr' | password_hash('sha512') }}"
+      tags: create_account_normaluser
 #    - name: set normaluser key
 #      ansible.builtin.authorized_key:
 #        user: normaluser
