@@ -543,6 +543,14 @@
 #          ## Allows normaluser user to sudo without password
 #          normaluser        ALL=(ALL)       NOPASSWD: ALL
 #      tags: normaluser_sudoer_create
+    - name: delete account normaluser
+      become: yes
+      ansible.builtin.user:
+        name: normaluser
+        state: absent
+        remove: yes
+        force: yes
+      tags: delete_account_normaluser
     - name: nginx service start init
       ansible.builtin.systemd:
         name: nginx
