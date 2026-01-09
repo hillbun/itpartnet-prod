@@ -79,6 +79,17 @@
           ## Allows logreader user to sudo without password
           logreader        ALL=(ALL)       NOPASSWD: ALL
       tags: local_create_logreader_sudoer
+    - name: local create opp crontab dir
+      ansible.builtin.file:
+        path: /opt/crontab
+        state: directory
+        owner: logreader
+        group: logreader
+        mode: '0755'
+      delegate_to: localhost
+      become: yes
+      run_once: true
+      tags: local_create_opp_crontab_dir
     - name: ping
       ping:
       tags: ping_hosts
