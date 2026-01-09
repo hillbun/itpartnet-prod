@@ -576,6 +576,13 @@ chmod -R a+rx /usr/local/lib/python3.6
 sudo -u squid /bin/python3 -c "import redis; print(redis.__version__)"
 
 sudo -u squid python3 -c "import redis; print(redis.__file__)"
+
+
+---
+
+
+
+
 ---
 /etc/cron.d/opp-crontab
 
