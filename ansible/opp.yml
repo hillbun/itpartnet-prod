@@ -183,7 +183,7 @@
       become: yes
       run_once: true
       shell: |
-        ./configure
+        ./configure --prefix=/usr/local/python-3.9.20
       args:
         chdir: "{{ software_src_path }}/Python-3.9.20"
       tags: local_python_3_9_20_configure
