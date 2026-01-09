@@ -45,6 +45,17 @@
         append: yes
         password: "{{ 'logreader_password' | password_hash('sha512') }}"
       tags: local_create_account_logreader
+    - name: local create logreader ssh
+      ansible.builtin.file:
+        path: "~/.ssh"
+        state: directory
+        mode: '0700'
+        owner: logreader
+      delegate_to: localhost
+      become: yes
+      become_user: logreader
+      run_once: true
+      tags: local_create_logreader_ssh
     - name: local logreader keygen
       community.crypto.openssh_keypair:
         path: "~/.ssh/id_rsa"
