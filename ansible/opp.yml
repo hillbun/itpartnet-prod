@@ -109,6 +109,7 @@
         owner: logreader
         group: logreader
         mode: '0755'
+        recurse: yes
       tags: local_chown_squid_shell
     - name: local create opp crontab dir
       delegate_to: localhost
