@@ -433,7 +433,7 @@
       tags: alternatives_pip_3_9_20_config
     - name: old version pip remove
       become: yes
-      shell: mv
+      shell: mv /usr/local/bin/pip3 /usr/local/bin/pip3.bak
       tags: old_version_pip_remove
     - name: add squid account
       ansible.builtin.user:
