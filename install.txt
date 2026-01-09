@@ -1292,3 +1292,7 @@ newgrp normaluser
 ---
 # 命令示例
 /usr/sbin/logrotate -s /home/user/my_logrotate.status /home/user/my_logrotate.conf
+
+
+---
+alternatives --install /usr/bin/python3 python3 /usr/local/python-3.9.20/bin/python3.9 1
