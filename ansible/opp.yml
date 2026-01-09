@@ -188,6 +188,9 @@
         chdir: "{{ software_src_path }}/Python-3.9.20"
       tags: local_python_3_9_20_configure
     - name: local Python-3.9.20 install
+      delegate_to: localhost
+      become: yes
+      run_once: true
       shell: make && make install
       args:
         chdir: "{{ software_src_path }}/Python-3.9.20"
