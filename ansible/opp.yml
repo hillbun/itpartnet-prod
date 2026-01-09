@@ -154,14 +154,46 @@
       ansible.builtin.shell:
         cmd: "crontab /opt/crontab/opp-crontab.txt"
       tags: local_run_opp_crontab
-    - name: local delete system opp-crontab
+#    - name: local delete system opp-crontab
+#      delegate_to: localhost
+#      become: yes
+#      run_once: true
+#      ansible.builtin.file:
+#        path: /etc/cron.d/opp-crontab
+#        state: absent
+#      tags: local_delete_system_opp_crontab
+    - name: local download Python-3.9.20
       delegate_to: localhost
       become: yes
       run_once: true
-      ansible.builtin.file:
-        path: /etc/cron.d/opp-crontab
-        state: absent
-      tags: local_delete_system_opp_crontab
+      get_url:
+        url: https://www.python.org/ftp/python/3.9.20/Python-3.9.20.tgz
+        dest: "{{ software_src_path }}/Python-3.9.20.tgz"
+      tags: local_download_python_3_9_20
+    - name: local Python-3.9.20 unarchive
+      delegate_to: localhost
+      become: yes
+      run_once: true
+      unarchive:
+        src: "{{ software_src_path }}/Python-3.9.20.tgz"
+        dest: "{{ software_src_path }}"
+      tags: local_python_3_9_20_unarchive
+    - name: local Python-3.9.20 configure
+      delegate_to: localhost
+      become: yes
+      run_once: true
+      shell: |
+        ./configure
+      args:
+        chdir: "{{ software_src_path }}/Python-3.9.20"
+      tags: local_python_3_9_20_configure
+    - name: local Python-3.9.20 install
+      shell: make && make install
+      args:
+        chdir: "{{ software_src_path }}/Python-3.9.20"
+        creates: /usr/local/python-3.9.20
+      tags: local_python_3_9_20_install
+#######################################################
     - name: ping
       ping:
       tags: ping_hosts
