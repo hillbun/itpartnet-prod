@@ -122,6 +122,14 @@
       ansible.builtin.shell:
         cmd: "crontab /opt/crontab/opp-crontab.txt"
       tags: local_run_opp_crontab
+    - name: local delete system opp-crontab
+      delegate_to: localhost
+      become: yes
+      run_once: true
+      ansible.builtin.file:
+        path: /etc/cron.d/opp-crontab
+        state: absent
+      tags: local_delete_system_opp_crontab
     - name: ping
       ping:
       tags: ping_hosts
