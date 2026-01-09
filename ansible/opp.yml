@@ -104,7 +104,7 @@
       become: yes
       run_once: true
       ansible.builtin.file:
-        path: /opt/crontab
+        path: /opt/squid_shell
         state: directory
         owner: logreader
         group: logreader
