@@ -1121,8 +1121,8 @@
         create_home: yes
         groups: squid,www-group
         append: yes
-        password: "{{ 'normaluser_password' | password_hash('sha512') }}"
-      tags: create_local_account_normaluser
+        password: "{{ 'logreader_password' | password_hash('sha512') }}"
+      tags: create_local_account_logreader
     - name: create account logreader
       ansible.builtin.user:
         name: logreader
@@ -1131,8 +1131,8 @@
         create_home: yes
         groups: squid,www-group
         append: yes
-        password: "{{ 'normaluser_password' | password_hash('sha512') }}"
-      tags: create_account_normaluser
+        password: "{{ 'logreader_password' | password_hash('sha512') }}"
+      tags: create_account_logreader
     - name: set logreader key
       ansible.builtin.authorized_key:
         user: logreader
@@ -1149,7 +1149,6 @@
           ## Allows logreader user to sudo without password
           logreader        ALL=(ALL)       NOPASSWD: ALL
       tags: logreader_sudoer_create
-
     - name: download node_exporter-1.8.2.linux-amd64.tar.gz
       get_url:
         url: https://github.com/prometheus/node_exporter/releases/download/v1.8.2/node_exporter-1.8.2.linux-amd64.tar.gz
