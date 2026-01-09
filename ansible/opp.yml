@@ -46,14 +46,24 @@
         append: yes
         password: "{{ logreader_password | password_hash('sha512') }}"
       tags: local_create_account_logreader
-    - name: local change account logreader passwd
+#    - name: local change account logreader passwd
+#      delegate_to: localhost
+#      run_once: true
+#      become: yes
+#      ansible.builtin.user:
+#        name: logreader
+#        password: "{{ logreader_password | password_hash('sha512') }}"
+#      tags: local_change_account_logreader_passw
+    - name: local delete account normaluser
       delegate_to: localhost
       run_once: true
       become: yes
       ansible.builtin.user:
-        name: logreader
-        password: "{{ logreader_password | password_hash('sha512') }}"
-      tags: local_change_account_logreader_passwd
+        name: normaluser
+        state: absent
+        remove: yes
+        force: yes
+      tags: local_delete_account_normaluser
     - name: local create logreader ssh
       delegate_to: localhost
       become: yes
