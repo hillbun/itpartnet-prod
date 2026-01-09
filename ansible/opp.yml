@@ -2,7 +2,10 @@
 ### TODO
 ### !!!!!!  check opp squid reload  !!!!!!
 ### !!!!!!  check opp other sudo command  !!!!!!
-### upgrade python to 3.9.20
+### upgrade python to 3.9.20 OK
+### upgrade pip to 3.9.20 OK
+### upgrade pip module to 3.9.20
+### verify squid show redis version
 ### chown -R logreader.logreader /opt/squid_shell
 ### chmod g+w /opt/squid/var/log
 ### chmod g+w /opt/squid/var/log/cache.log
@@ -1374,6 +1377,16 @@
           ## Allows logreader user to sudo without password
           logreader        ALL=(ALL)       NOPASSWD: ALL
       tags: create_logreader_sudoer
+    - name: chown squid_shell
+      become: yes
+      ansible.builtin.file:
+        path: /opt/squid_shell
+        state: directory
+        owner: logreader
+        group: logreader
+        mode: '0755'
+        recurse: yes
+      tags: chown_squid_shell
     - name: create opp crontab dir
       become: yes
       ansible.builtin.file:
