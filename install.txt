@@ -567,6 +567,8 @@ curl http://127.0.0.1:9100/metrics
 
 
 ---
+python3 -m pip install -r requirements.txt
+python3 -m pip install 
 pip3 install redis
 pip3 install --upgrade pip
 /bin/python3 -m pip show redis
