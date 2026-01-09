@@ -1297,4 +1297,7 @@ newgrp normaluser
 ---
 alternatives --display python3
 alternatives --install /usr/bin/python3 python3 /usr/local/python-3.9.20/bin/python3.9 1
+alternatives --display python3
 
+
+---
