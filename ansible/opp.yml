@@ -1393,6 +1393,7 @@
         path: "{{ item }}"
         mode: "g+w"
       loop:
+        - /opt/squid/var/log
         - /opt/squid/var/log/cache.log
         - /opt/nginx/html/transproxy_admin
         - /opt/nginx/html/transproxy_admin/storage/logs
