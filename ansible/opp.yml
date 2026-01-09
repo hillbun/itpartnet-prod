@@ -440,7 +440,7 @@
       tags: old_version_pip_remove
     - name: install python module
       become: yes
-      shell: umask 0022;python3 -m pip install --upgrade pip;python3 -m pip install jinja2 redis
+      shell: umask 0022;python3 -m pip install --upgrade pip;python3 -m pip install jinja2 redis psutil
       environment: "{{ proxy_env }}"
       tags: install_python_module
     - name: add squid account
