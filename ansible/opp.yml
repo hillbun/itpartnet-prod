@@ -436,6 +436,7 @@
       shell: mv /usr/local/bin/pip3 /usr/local/bin/pip3.bak
       tags: old_version_pip_remove
     - name: install python module
+      become: yes
       shell: umask 0022;python3 -m pip install --upgrade pip;python3 -m pip install jinja2 redis
       environment: "{{ proxy_env }}"
       tags: install_python_module
