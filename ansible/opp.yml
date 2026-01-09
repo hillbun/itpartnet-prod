@@ -6,7 +6,7 @@
 ### upgrade pip to 3.9.20 OK
 ### upgrade pip module to 3.9.20
 ### verify squid show redis version
-### chown -R logreader.logreader /opt/squid_shell
+### chown -R logreader.logreader /opt/squid_shell OK
 ### chmod g+w /opt/squid/var/log
 ### chmod g+w /opt/squid/var/log/cache.log
 ### chmod g+w /opt/nginx/html/transproxy_admin
@@ -1387,6 +1387,19 @@
         mode: '0755'
         recurse: yes
       tags: chown_squid_shell
+    - name: chmod crontab file attribute
+      file:
+        path: "{{ item }}"
+        mode: "g+w"
+      loop:
+        - /opt/squid/var/log
+        - /opt/squid/var/log/cache.log
+        - /opt/nginx/html/transproxy_admin
+        - /opt/nginx/html/transproxy_admin/storage/logs
+        - /opt/nginx/html/transproxy_admin/storage/temp
+        - /opt/nginx/html/transproxy_admin/public/fileData/threat
+        - /opt/nginx/html/threat/archive
+      tags: chmod_crontab_file_attribute
     - name: create opp crontab dir
       become: yes
       ansible.builtin.file:
