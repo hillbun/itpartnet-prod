@@ -1,7 +1,7 @@
-su squid squid
 {{ access_log_path }}
 {{ cache_log_path }}
-{{ access_tianji_blacklist_log_path }}{
+{{ access_tianji_blacklist_log_path }} {
+    su squid squid
 ##    daily
     dateext
     dateformat -%Y%m%d
