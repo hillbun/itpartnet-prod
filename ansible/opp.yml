@@ -133,32 +133,19 @@
         - "etc"
         - "status"
       tags: local_create_logrotate_dir
-    - name: local create logrotate-squid
+    - name: local create logrotate config
       delegate_to: localhost
       become: yes
       become_user: logreader
       run_once: true
-      ansible.builtin.copy:
-        dest: /opt/logrotate/etc/squid
-        content: |
-          su squid squid
-          /opt/squid/var/log/access.log
-          /opt/squid/var/log/cache.log
-          /opt/squid/var/log/access-tianji-blacklist.log{
-          ##    daily
-              dateext
-              dateformat -%Y%m%d
-              rotate 7
-              compress
-              copytruncate   #使用复制截断
-              missingok
-              ifempty
-              nodelaycompress
-              postrotate
-                  /opt/squid/sbin/squid -k reconfigure >/dev/null 2>&1 || true
-              endscript
-          }
-      tags: local_create_logrotate_squid
+      block:
+        - name: logrotate config nginx
+          ansible.builtin.template:
+            src: templates/logrotate_config_nginx.j2
+            dest: /opt/logrotate/etc/nginx
+          vars:
+            log_path: "/opt/nginx/logs/*.log"
+      tags: local_create_logrotate_config
     - name: local create opp crontab dir
       delegate_to: localhost
       become: yes

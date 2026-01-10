@@ -1,7 +1,7 @@
 su squid squid
-/opt/squid/var/log/access.log
-/opt/squid/var/log/cache.log
-/opt/squid/var/log/access-tianji-blacklist.log{
+{{ access_log_path }}
+{{ cache_log_path }}
+{{ access_tianji_blacklist_log_path }}{
 ##    daily
     dateext
     dateformat -%Y%m%d
