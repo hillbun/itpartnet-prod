@@ -1,8 +1,8 @@
-su squid squid
 /opt/squid/var/log/access.log
 /opt/squid/var/log/cache.log
-/opt/squid/var/log/access-tianji-blacklist.log{
-##    daily
+/opt/squid/var/log/access-tianji-blacklist.log {
+    su squid squid
+	##    daily
     dateext
     dateformat -%Y%m%d
     rotate 7
