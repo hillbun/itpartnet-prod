@@ -8,8 +8,11 @@
 1 0 * * * bash /opt/squid_shell/count_week_status.sh &>> /opt/squid_shell/logs/count_week_status.log
 1 * * * * bash /opt/squid_shell/count_estab.sh &>> /opt/squid_shell/logs/count_estab.log
 0 1 * * * /usr/bin/python3 /opt/nginx/html/threat/IOCsApi_csv.py &>> /opt/squid_shell/logs/ioc_script.log
-5 0 * * * /usr/sbin/logrotate -f /etc/logrotate.d/squid &>> /opt/squid_shell/logs/logrotate.log
-30 0 * * * /usr/sbin/logrotate -f /etc/logrotate.d/nginx
-45 0 * * * /usr/sbin/logrotate -f /etc/logrotate.d/python_prod_logs
+#5 0 * * * /usr/sbin/logrotate -f /etc/logrotate.d/squid &>> /opt/squid_shell/logs/logrotate.log
+#30 0 * * * /usr/sbin/logrotate -f /etc/logrotate.d/nginx
+#45 0 * * * /usr/sbin/logrotate -f /etc/logrotate.d/python_prod_logs
+5 0 * * * /usr/sbin/logrotate -s /opt/logrotate/status/logrotate.status -f /opt/logrotate/etc/squid &>> /opt/squid_shell/logs/logrotate.log
+30 0 * * * /usr/sbin/logrotate -s /opt/logrotate/status/logrotate.status -f /opt/logrotate/etc/nginx &>> /opt/squid_shell/logs/logrotate.log
+45 0 * * * /usr/sbin/logrotate -s /opt/logrotate/status/logrotate.status -f /opt/logrotate/etc/python_prod_logs &>> /opt/squid_shell/logs/logrotate.log
 0 1 * * * /usr/bin/curl -k https://127.0.0.1:8000/api/logs_del  &>> /opt/squid_shell/logs/php_logs_del.log
 0 1,13 * * * /usr/bin/curl -k https://127.0.0.1:8000/api/upredis_dir &>> /opt/squid_shell/logs/php_upredis_dir.log
