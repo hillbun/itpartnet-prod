@@ -1,0 +1,18 @@
+su squid squid
+/opt/squid/var/log/access.log
+/opt/squid/var/log/cache.log
+/opt/squid/var/log/access-tianji-blacklist.log{
+##    daily
+    dateext
+    dateformat -%Y%m%d
+    rotate 7
+    compress
+    copytruncate   #使用复制截断
+    missingok
+    ifempty
+    nodelaycompress
+    postrotate
+        /opt/squid/sbin/squid -k reconfigure >/dev/null 2>&1 || true
+    endscript
+}
+

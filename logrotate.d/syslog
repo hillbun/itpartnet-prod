@@ -1,0 +1,23 @@
+/var/log/cmd.log
+{
+    size 100M
+    rotate 10
+    compress
+    missingok
+    create 0640 root t1
+}
+
+/var/log/boot.log
+/var/log/error
+/var/log/maillog
+/var/log/messages
+/var/log/spooler
+{
+    missingok
+    sharedscripts
+    create 0644 root root
+    postrotate
+        /usr/bin/systemctl kill -s HUP rsyslog.service >/dev/null 2>&1 || true
+    endscript
+}
+

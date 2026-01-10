@@ -1,0 +1,14 @@
+/usr/nginx/logs/*.log {
+    daily
+    dateext
+    dateformat -%Y%m%d
+    rotate 14
+    compress
+    notifempty
+    missingok
+    create 0640 squid squid
+    sharedscripts
+    postrotate
+    /bin/kill -USR1 `cat /opt/nginx/logs/nginx.pid  2>/dev/null` 2>/dev/null || true
+    endscript
+}

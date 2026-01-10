@@ -1,0 +1,12 @@
+/opt/py_prod/log/*.log {
+      daily
+      dateext
+      dateformat -%Y%m%d
+      rotate 14
+      compress
+      delaycompress
+      notifempty
+      missingok
+      create 8644 root root
+      copytruncate
+}
