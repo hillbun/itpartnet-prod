@@ -2,6 +2,8 @@
 ### TODO
 ### !!!!!!  check opp squid reload  !!!!!!
 ### !!!!!!  check opp other sudo command  !!!!!!
+### logrotate -d /opt/logrotate/etc/squid
+### /opt/logrotate/status/logrotate.status
 ### upgrade python to 3.9.20 OK
 ### upgrade pip to 3.9.20 OK
 ### upgrade pip module to 3.9.20
@@ -116,18 +118,22 @@
         mode: '0755'
         recurse: yes
       tags: local_chown_squid_shell
-    - name: local create opp logrotate dir
+    - name: local create logrotate dir
       delegate_to: localhost
       become: yes
       run_once: true
       ansible.builtin.file:
-        path: /opt/logrotate
+        path: "/opt/logrotate/{{ item }}"
         state: directory
         owner: logreader
         group: logreader
         mode: '0755'
-      tags: local_create_opp_logrotate_dir
-    - name: local create opp-logrotate-squid
+      loop:
+        - ""
+        - "etc"
+        - "status"
+      tags: local_create_logrotate_dir
+    - name: local create logrotate-squid
       delegate_to: localhost
       become: yes
       become_user: logreader
@@ -152,7 +158,7 @@
                   /opt/squid/sbin/squid -k reconfigure >/dev/null 2>&1 || true
               endscript
           }
-      tags: local_create_opp_logrotate_squid
+      tags: local_create_logrotate_squid
     - name: local create opp crontab dir
       delegate_to: localhost
       become: yes
