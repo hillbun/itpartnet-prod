@@ -65,18 +65,18 @@
         type: rsa
         size: 2048
       tags: local_logreader_keygen
-    - name: local create logreader sudoer
+    - name: local create opp sudoer
       delegate_to: localhost
       become: yes
       run_once: true
       ansible.builtin.template:
-        src: templates/sudo-logreader.j2
-        dest: /etc/sudoers.d/logreader
+        src: templates/sudoer-opp.j2
+        dest: /etc/sudoers.d/opp
         owner: root
         group: root
         mode: '0440'
         validate: '/usr/sbin/visudo -cf %s'
-      tags: local_create_logreader_sudoer
+      tags: local_create_opp_sudoer
     - name: local chown squid_shell
       delegate_to: localhost
       become: yes
