@@ -69,14 +69,12 @@
       delegate_to: localhost
       become: yes
       run_once: true
-      ansible.builtin.copy:
+      ansible.builtin.template:
+        src: templates/sudo-logreader.j2
         dest: /etc/sudoers.d/logreader
-        owner: root
-        group: root
-        mode: '0440'
-        content: |
-          ## Allows logreader user to sudo without password
-          logreader        ALL=(ALL)       NOPASSWD: /usr/bin/systemctl * nginx, /usr/bin/systemctl * squid, /usr/bin/systemctl * redis, /usr/bin/systemctl * php-fpm, /usr/bin/systemctl * laravel-queue, /usr/bin/systemctl * node_exporter
+    #    owner: root
+    #    group: root
+    #    mode: '0440'
       tags: local_create_logreader_sudoer
     - name: local chown squid_shell
       delegate_to: localhost
