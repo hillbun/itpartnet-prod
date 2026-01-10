@@ -165,7 +165,7 @@
           vars:
             log_path: "/opt/py_prod/log/*.log"
       tags: local_create_logrotate_config
-    - name: local create opp crontab dir
+    - name: local create opp-crontab dir
       delegate_to: localhost
       become: yes
       run_once: true
@@ -176,38 +176,20 @@
         group: logreader
         mode: '0755'
       tags: local_create_opp_crontab_dir
-    - name: local create opp-crontab
+    - name: local opp-crontab config
       delegate_to: localhost
       become: yes
       become_user: logreader
       run_once: true
-      ansible.builtin.copy:
-        dest: /opt/crontab/opp-crontab.txt
-        content: |+	
-          10 * * * * bash /opt/squid_shell/resource_monitor_script.sh &>> /opt/squid_shell/logs/resource_monitor_script.log
-          15 0 * * * bash /opt/squid_shell/ftp_accesslog.sh
-          0 */8 * * * truncate -s 0 /opt/squid/var/log/cache.log
-          1 * * * * /usr/bin/python3 /opt/squid_shell/hour_monitor.py &>> /opt/squid_shell/logs/nohup_monitor.log
-          2 * * * * bash /opt/squid_shell/network_count.sh &>> /opt/squid_shell/logs/network_count.log
-          1 * * * * bash /opt/squid_shell/monitor_matchlogs.sh &>> /opt/squid_shell/logs/monitor_matchlogs.log
-          1 0 * * * bash /opt/squid_shell/count_week_ip_url.sh &>> /opt/squid_shell/logs/monitor_week_top.log
-          1 0 * * * bash /opt/squid_shell/count_week_status.sh &>> /opt/squid_shell/logs/count_week_status.log
-          1 * * * * bash /opt/squid_shell/count_estab.sh &>> /opt/squid_shell/logs/count_estab.log
-          0 1 * * * /usr/bin/python3 /opt/nginx/html/threat/IOCsApi_csv.py &>> /opt/squid_shell/logs/ioc_script.log
-          5 0 * * * /usr/sbin/logrotate -f /etc/logrotate.d/squid &>> /opt/squid_shell/logs/logrotate.log
-          30 0 * * * /usr/sbin/logrotate -f /etc/logrotate.d/nginx
-          45 0 * * * /usr/sbin/logrotate -f /etc/logrotate.d/python_prod_logs
-          0 1 * * * /usr/bin/curl -k https://127.0.0.1:8000/api/logs_del  &>> /opt/squid_shell/logs/php_logs_del.log
-          0 1,13 * * * /usr/bin/curl -k https://127.0.0.1:8000/api/upredis_dir &>> /opt/squid_shell/logs/php_upredis_dir.log
-      tags: local_create_opp_crontab
-    - name: local run opp-crontab
-      delegate_to: localhost
-      become: yes
-      become_user: logreader
-      run_once: true
-      ansible.builtin.shell:
-        cmd: "crontab /opt/crontab/opp-crontab.txt"
-      tags: local_run_opp_crontab
+      block:
+        - name: create opp-crontab
+          ansible.builtin.template:
+            src: templates/opp-crontab.j2
+            dest: /opt/crontab/opp-crontab
+        - name: run opp-crontab
+          ansible.builtin.shell:
+            cmd: "crontab /opt/crontab/opp-crontab"
+      tags: local_opp_crontab_config
 #    - name: local delete system opp-crontab
 #      delegate_to: localhost
 #      become: yes
