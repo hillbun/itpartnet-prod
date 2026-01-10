@@ -72,9 +72,10 @@
       ansible.builtin.template:
         src: templates/sudo-logreader.j2
         dest: /etc/sudoers.d/logreader
-    #    owner: root
-    #    group: root
-    #    mode: '0440'
+        owner: root
+        group: root
+        mode: '0440'
+        validate: '/usr/sbin/visudo -cf %s'
       tags: local_create_logreader_sudoer
     - name: local chown squid_shell
       delegate_to: localhost
