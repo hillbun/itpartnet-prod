@@ -1217,6 +1217,7 @@
       tags: create_logrotate_dir
     - name: create logrotate config
       become: yes
+      become_user: logreader
       block:
         - name: logrotate sub dir
           ansible.builtin.file:
