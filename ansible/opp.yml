@@ -150,12 +150,14 @@
             access_log_path: "/opt/squid/var/log/access.log"
             cache_log_path: "/opt/squid/var/log/cache.log"
             access_tianji_blacklist_log_path: "/opt/squid/var/log/access-tianji-blacklist.log"
+            squid_path: "/opt/squid"
         - name: logrotate config nginx
           ansible.builtin.template:
             src: templates/logrotate_config_nginx.j2
             dest: /opt/logrotate/etc/nginx
           vars:
             log_path: "/opt/nginx/logs/*.log"
+            nginx_path: "/opt/nginx"
         - name: logrotate config python_prod_logs
           ansible.builtin.template:
             src: templates/logrotate_config_python_prod_logs.j2

@@ -12,6 +12,6 @@ su squid squid
     ifempty
     nodelaycompress
     postrotate
-        /opt/squid/sbin/squid -k reconfigure >/dev/null 2>&1 || true
+        {{ squid_path }}/sbin/squid -k reconfigure >/dev/null 2>&1 || true
     endscript
 }
