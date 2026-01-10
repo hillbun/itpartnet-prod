@@ -1,26 +1,26 @@
 import requests
 
 def fetch_baidu():
-    # Ä¿±ê URL
+    # ç›®æ ‡ URL
     url = "https://www.baidu.com"
     
     try:
-        # ·¢ËÍ GET ÇëÇó
+        # å‘é€ GET è¯·æ±‚
         response = requests.get(url)
         
-        # ¼ì²éÇëÇóÊÇ·ñ³É¹¦ (×´Ì¬Âë 200)
+        # æ£€æŸ¥è¯·æ±‚æ˜¯å¦æˆåŠŸ (çŠ¶æ€ç  200)
         response.raise_for_status()
         
-        # ÉèÖÃÕıÈ·µÄ±àÂë£¨°Ù¶ÈÓĞÊ±ĞèÒªÊÖ¶¯ÉèÖÃ£¬·ñÔòÖĞÎÄ¿ÉÄÜÂÒÂë£©
+        # è®¾ç½®æ­£ç¡®çš„ç¼–ç ï¼ˆç™¾åº¦æœ‰æ—¶éœ€è¦æ‰‹åŠ¨è®¾ç½®ï¼Œå¦åˆ™ä¸­æ–‡å¯èƒ½ä¹±ç ï¼‰
         response.encoding = response.apparent_encoding
         
-        print(f"ÇëÇó³É¹¦£¡×´Ì¬Âë: {response.status_code}")
+        print(f"è¯·æ±‚æˆåŠŸï¼çŠ¶æ€ç : {response.status_code}")
         print("-" * 30)
-        # ´òÓ¡ÍøÒ³ÄÚÈİ£¨Ö»½ØÈ¡Ç°500×ÖÒÔÃâË¢ÆÁ£©
+        # æ‰“å°ç½‘é¡µå†…å®¹ï¼ˆåªæˆªå–å‰500å­—ä»¥å…åˆ·å±ï¼‰
         print(response.text[:500])
         
     except requests.exceptions.RequestException as e:
-        print(f"ÇëÇó³ö´í: {e}")
+        print(f"è¯·æ±‚å‡ºé”™: {e}")
 
 if __name__ == "__main__":
     fetch_baidu()
