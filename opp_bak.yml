@@ -92,6 +92,9 @@
           ansible.builtin.file:
             path: "/opt/logrotate/{{ item }}"
             state: directory
+            owner: logreader
+            group: logreader
+            mode: '0755'
           loop:
             - "etc"
             - "status"
@@ -143,14 +146,6 @@
           ansible.builtin.shell:
             cmd: "crontab /opt/crontab/opp-crontab"
       tags: local_opp_crontab_config
-#    - name: local delete system opp-crontab
-#      delegate_to: localhost
-#      become: yes
-#      run_once: true
-#      ansible.builtin.file:
-#        path: /etc/cron.d/opp-crontab
-#        state: absent
-#      tags: local_delete_system_opp_crontab
     - name: local Python-3.9.20 download
       delegate_to: localhost
       become: yes

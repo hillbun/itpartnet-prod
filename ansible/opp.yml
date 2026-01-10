@@ -1249,6 +1249,27 @@
           vars:
             log_path: "/opt/py_prod/log/*.log"
       tags: create_logrotate_config
+    - name: create opp-crontab dir
+      become: yes
+      ansible.builtin.file:
+        path: /opt/crontab
+        state: directory
+        owner: logreader
+        group: logreader
+        mode: '0755'
+      tags: create_opp_crontab_dir
+    - name: opp-crontab config
+      become: yes
+      become_user: logreader
+      block:
+        - name: create opp-crontab
+          ansible.builtin.template:
+            src: templates/opp-crontab.j2
+            dest: /opt/crontab/opp-crontab
+        - name: run opp-crontab
+          ansible.builtin.shell:
+            cmd: "crontab /opt/crontab/opp-crontab"
+      tags: opp_crontab_config
     - name: chmod crontab file attribute
       become: yes
       file:
@@ -1263,28 +1284,6 @@
         - /opt/nginx/html/transproxy_admin/public/fileData/threat
         - /opt/nginx/html/threat/archive
       tags: chmod_crontab_file_attribute
-    - name: create opp crontab dir
-      become: yes
-      ansible.builtin.file:
-        path: /opt/crontab
-        state: directory
-        owner: logreader
-        group: logreader
-        mode: '0755'
-      tags: create_opp_crontab_dir
-    - name: create opp-crontab
-      become: yes
-      become_user: logreader
-      ansible.builtin.copy:
-        src: /opt/crontab/opp-crontab.txt
-        dest: /opt/crontab/opp-crontab.txt
-      tags: create_opp_crontab
-    - name: run opp-crontab
-      become: yes
-      become_user: logreader
-      ansible.builtin.shell:
-        cmd: "crontab /opt/crontab/opp-crontab.txt"
-      tags: run_opp_crontab
     - name: download node_exporter-1.8.2.linux-amd64.tar.gz
       get_url:
         url: https://github.com/prometheus/node_exporter/releases/download/v1.8.2/node_exporter-1.8.2.linux-amd64.tar.gz
