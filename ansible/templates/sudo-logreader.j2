@@ -4,5 +4,7 @@ Cmnd_Alias LOGREADER_SUDO_CMD = /usr/bin/systemctl * nginx, \
 								/usr/bin/systemctl * redis, \
 								/usr/bin/systemctl * php-fpm, \
 								/usr/bin/systemctl * laravel-queue, \
-								/usr/bin/systemctl * node_exporter
+								/usr/bin/systemctl * node_exporter \
+								/usr/bin/cp /opt/logrotate/etc/squid /root/logrotate-squid \
+								/usr/sbin/logrotate -s /opt/logrotate/status/logrotate.status -f /root/logrotate-squid &>> /opt/squid_shell/logs/logrotate.log
 logreader ALL=(root) NOPASSWD: LOGREADER_SUDO_CMD
