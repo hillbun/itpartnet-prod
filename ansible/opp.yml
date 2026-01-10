@@ -123,15 +123,11 @@
       become: yes
       run_once: true
       ansible.builtin.file:
-        path: "/opt/logrotate/{{ item }}"
+        path: /opt/logrotate
         state: directory
         owner: logreader
         group: logreader
         mode: '0755'
-      loop:
-        - ""
-        - "etc"
-        - "status"
       tags: local_create_logrotate_dir
     - name: local create logrotate config
       delegate_to: localhost
@@ -139,12 +135,33 @@
       become_user: logreader
       run_once: true
       block:
+        - name: logrotate sub dir
+          ansible.builtin.file:
+            path: "/opt/logrotate/{{ item }}"
+            state: directory
+          loop:
+            - "etc"
+            - "status"
+        - name: logrotate config squid
+          ansible.builtin.template:
+            src: templates/logrotate_config_squid.j2
+            dest: /opt/logrotate/etc/squid
+          vars:
+            access_log_path: "/opt/squid/var/log/access.log"
+            cache_log_path: "/opt/squid/var/log/cache.log"
+            access_tianji_blacklist_log_path: "/opt/squid/var/log/access-tianji-blacklist.log"
         - name: logrotate config nginx
           ansible.builtin.template:
             src: templates/logrotate_config_nginx.j2
             dest: /opt/logrotate/etc/nginx
           vars:
             log_path: "/opt/nginx/logs/*.log"
+        - name: logrotate config python_prod_logs
+          ansible.builtin.template:
+            src: templates/logrotate_config_python_prod_logs.j2
+            dest: /opt/logrotate/etc/python_prod_logs
+          vars:
+            log_path: "/opt/py_prod/log/*.log"
       tags: local_create_logrotate_config
     - name: local create opp crontab dir
       delegate_to: localhost
