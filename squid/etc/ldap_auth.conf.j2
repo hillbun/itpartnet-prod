@@ -1,0 +1,7 @@
+auth_param basic program /opt/squid/libexec/basic_ldap_auth \
+  -R \
+  -b "DC=corp,DC=ha,DC=org,DC=hk" \
+  -D "{{ ladpdn }}" \
+  -W "/opt/squid/etc/ldap_password" \
+  -f {{ filter_attr }} \
+  -h {{ hostname }}:{{ port }}
