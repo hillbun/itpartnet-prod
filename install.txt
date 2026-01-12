@@ -1349,3 +1349,7 @@ ls -al /opt/nginx/html/transproxy_admin/public/fileData/threat/logstatus_7days.j
 ls -al /opt/nginx/html/transproxy_admin/public/fileData/threat/blacklist_summary.json
 ls -al /opt/nginx/html/transproxy_admin/public/fileData/threat/week_top_ip_10.json
 ls -al /opt/nginx/html/transproxy_admin/public/fileData/threat/week_top_url_10.json
+
+
+---
+squidclient -p 8080 mgr:info | grep 'file desc'
