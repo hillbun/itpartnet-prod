@@ -33,6 +33,7 @@
 ###   python  log /opt/squid_shell/logs/
 ###   /opt/py_prod/log   
 ###   /usr/nginx/html/threat/archive/
+### 30 3 * * * /usr/bin/find /var/crash -maxdepth 1 -name 'squid.*.core.*' -mtime +1 -print -delete
 ###
 ##############
 
@@ -49,5 +50,5 @@ logreader ALL=(ALL) NOPASSWD:
 /usr/bin/journalctl -u redis -n 100 --no-pager,
 /usr/bin/journalctl -u squid -n 100 --no-pager,
 /usr/bin/rsync -a /usr/nginx/html/transproxy_admin/public/fileData/ /opt/fileData_bak/*/,
-/usr/bin/rsync -a --no-delay-updates --inplace --ignore-times /opt/txt_release/*/ /usr/nginx/html/transproxy_admin/public/fileData/
+#/usr/bin/rsync -a --no-delay-updates --inplace --ignore-times /opt/txt_release/*/ /usr/nginx/html/transproxy_admin/public/fileData/
 /usr/bin/chown -R squid.squid /usr/nginx/html/transproxy_admin/public/fileData
