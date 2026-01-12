@@ -5,11 +5,13 @@ Cmnd_Alias LOGREADER_SUDO_CMD = /usr/bin/systemctl * nginx, \
                                 /usr/bin/systemctl * php-fpm, \
                                 /usr/bin/systemctl * laravel-queue, \
                                 /usr/bin/systemctl * node_exporter, \
+                                /usr/bin/journalctl *, \
                                 /usr/bin/cp /opt/logrotate/etc/squid /root/logrotate-squid, \
                                 /usr/sbin/logrotate *, \
                                 /opt/squid/sbin/squid -k reconfigure, \
                                 /usr/bin/php *
 logreader ALL=(root) NOPASSWD: LOGREADER_SUDO_CMD
+logreader ALL=(nginx) NOPASSWD: ALL
 
 # Allows nginx user to sudo cmd list without password
 Defaults:nginx !requiretty

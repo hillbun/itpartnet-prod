@@ -46,9 +46,8 @@ logreader ALL=(ALL) NOPASSWD:
 /usr/bin/chown -R redis.redis /opt/redis/dump.rdb,
 /usr/bin/journalctl -u redis,
 /usr/bin/journalctl -u squid,
-/usr/bin/journalctl -u redis -n 100 --no-pager, 
-/usr/bin/journalctl -u squid -n 100 --no-pager, 
+/usr/bin/journalctl -u redis -n 100 --no-pager,
+/usr/bin/journalctl -u squid -n 100 --no-pager,
 /usr/bin/rsync -a /usr/nginx/html/transproxy_admin/public/fileData/ /opt/fileData_bak/*/,
-/usr/bin/rsync -a --no-delay-updates --inplace --ignore-times /opt/txt_release/*/ 
-/usr/nginx/html/transproxy_admin/public/fileData/,
+/usr/bin/rsync -a --no-delay-updates --inplace --ignore-times /opt/txt_release/*/ /usr/nginx/html/transproxy_admin/public/fileData/
 /usr/bin/chown -R squid.squid /usr/nginx/html/transproxy_admin/public/fileData
