@@ -12,7 +12,7 @@ Cmnd_Alias LOGREADER_SUDO_CMD = /usr/bin/systemctl * nginx, \
                                 /usr/bin/php * \
                                 /usr/bin/cp -f /opt/redis_bak/dump.rdb_release* /opt/redis/dump.rdb, \
                                 /usr/bin/rm -f /opt/redis/dump.rdb, \
-								/usr/bin/chown -R redis.redis /opt/redis/dump.rdb
+                                /usr/bin/chown -R redis.redis /opt/redis/dump.rdb
 
 logreader ALL=(root) NOPASSWD: LOGREADER_SUDO_CMD
 logreader ALL=(nginx) NOPASSWD: ALL
