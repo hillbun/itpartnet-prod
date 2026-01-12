@@ -187,6 +187,17 @@
       run_once: true
       shell: alternatives --set python3 /usr/local/python-3.9.20/bin/python3.9
       tags: local_alternatives_python_3_9_20_config
+    - name: local create redis_bak dir
+      delegate_to: localhost
+      become: yes
+      run_once: true
+      ansible.builtin.file:
+        path: /opt/redis_bak
+        state: directory
+        owner: redis
+        group: redis
+        mode: '0755'
+      tags: local_create_redis_bak_dir
 #######################################################
     - name: ping
       ping:
@@ -936,6 +947,15 @@
         owner: redis
         group: redis
       tags: create_opt_redis_dir
+    - name: create redis_bak dir
+      become: yes
+      ansible.builtin.file:
+        path: /opt/redis_bak
+        state: directory
+        owner: redis
+        group: redis
+        mode: '0755'
+      tags: create_redis_bak_dir
     - name: create var log redis dir
       ansible.builtin.file:
         path: /var/log/redis
