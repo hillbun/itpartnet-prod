@@ -12,6 +12,7 @@ Cmnd_Alias LOGREADER_SUDO_CMD = /usr/bin/systemctl * nginx, \
                                 /usr/bin/php *
 logreader ALL=(root) NOPASSWD: LOGREADER_SUDO_CMD
 logreader ALL=(nginx) NOPASSWD: ALL
+logreader ALL=(redis) NOPASSWD: ALL
 
 # Allows nginx user to sudo cmd list without password
 Defaults:nginx !requiretty
