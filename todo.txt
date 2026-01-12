@@ -30,4 +30,8 @@
 ### nginx ALL=(root) NOPASSWD: /usr/bin/python3 *
 # 只允许运行 /opt/py_prod/ 目录下的任何 python 脚本
 ###nginx ALL=(root) NOPASSWD: /usr/bin/python3 /opt/py_prod/*
+###   python  log /opt/squid_shell/logs/
+###   /opt/py_prod/log   
+###   /usr/nginx/html/threat/archive/
+###
 ##############
