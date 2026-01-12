@@ -1340,3 +1340,12 @@ ls -al /opt/nginx/html/transproxy_admin/public/fileData/threat/logstatus_7days.j
 ls -al /opt/nginx/html/transproxy_admin/public/fileData/threat/blacklist_summary.json
 ls -al /opt/nginx/html/transproxy_admin/public/fileData/threat/week_top_ip_10.json
 ls -al /opt/nginx/html/transproxy_admin/public/fileData/threat/week_top_url_10.json
+
+
+ls -al /opt/nginx/html/transproxy_admin/system_usage.json /opt/nginx/html/transproxy_admin/public/fileData/threat/netstat_status.json /opt/nginx/html/transproxy_admin/public/fileData/threat/logstatus_7days.json /opt/nginx/html/transproxy_admin/public/fileData/threat/blacklist_summary.json /opt/nginx/html/transproxy_admin/public/fileData/threat/week_top_ip_10.json /opt/nginx/html/transproxy_admin/public/fileData/threat/week_top_url_10.json
+
+ls -al /opt/nginx/html/transproxy_admin/public/fileData/threat/netstat_status.json
+ls -al /opt/nginx/html/transproxy_admin/public/fileData/threat/logstatus_7days.json
+ls -al /opt/nginx/html/transproxy_admin/public/fileData/threat/blacklist_summary.json
+ls -al /opt/nginx/html/transproxy_admin/public/fileData/threat/week_top_ip_10.json
+ls -al /opt/nginx/html/transproxy_admin/public/fileData/threat/week_top_url_10.json
