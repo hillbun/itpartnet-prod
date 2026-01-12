@@ -198,6 +198,17 @@
         group: redis
         mode: '0755'
       tags: local_create_redis_bak_dir
+    - name: local create fileData_bak dir
+      delegate_to: localhost
+      become: yes
+      run_once: true
+      ansible.builtin.file:
+        path: /opt/fileData_bak
+        state: directory
+        owner: nginx
+        group: nginx
+        mode: '0755'
+      tags: local_create_filedata_bak_dir
 #######################################################
     - name: ping
       ping:
@@ -994,6 +1005,15 @@
         src: /opt/nginx/html/transproxy_admin
         dest: /opt/nginx/html/
       tags: sync_nginx_transproxy_admin
+    - name: create fileData_bak dir
+      become: yes
+      ansible.builtin.file:
+        path: /opt/fileData_bak
+        state: directory
+        owner: nginx
+        group: nginx
+        mode: '0755'
+      tags: create_filedata_bak_dir
     - name: edit transproxy env
       ansible.builtin.replace:
         path: /opt/nginx/html/transproxy_admin/.env
