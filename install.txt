@@ -1330,3 +1330,13 @@ alternatives --set pip3 /usr/local/python-3.9.20/bin/pip3
 
 --
 https://autoupdate.termius.com/windows/Install%20Termius.exe
+
+
+---
+--
+ls -al /opt/nginx/html/transproxy_admin/system_usage.json
+ls -al /opt/nginx/html/transproxy_admin/public/fileData/threat/netstat_status.json
+ls -al /opt/nginx/html/transproxy_admin/public/fileData/threat/logstatus_7days.json
+ls -al /opt/nginx/html/transproxy_admin/public/fileData/threat/blacklist_summary.json
+ls -al /opt/nginx/html/transproxy_admin/public/fileData/threat/week_top_ip_10.json
+ls -al /opt/nginx/html/transproxy_admin/public/fileData/threat/week_top_url_10.json
