@@ -1356,3 +1356,21 @@ ls -al /opt/nginx/html/transproxy_admin/public/fileData/threat/week_top_url_10.j
 
 squidclient -p 8080 mgr:info | grep 'file desc'
 
+
+---
+
+more /opt/squid/etc/ldap_auth.conf
+
+auth_param basic program /opt/squid/libexec/basic_ldap_auth \
+  -R \
+  -b "DC=corp,DC=ha,DC=org,DC=hk" \
+  -D "CN=n5-proxy-opp-52a,OU=Users,OU=N2,OU=ITIS,DC=corp,DC=ha,DC=org,DC=hk" \
+  -W "/opt/squid/etc/ldap_password" \
+  -f sAMAccountName=%s \
+  -h ldaps://160.98.39.18:636
+
+more /opt/squid/etc/ldap_password
+ziSJ144Watmj
+
+ldapsearch -x -H ldaps://corprodc03.corp.ha.org.hk:636 -D CN=n5-proxy-opp-52a,OU=Users,OU=N2,OU=ITIS,DC=corp,DC=ha,DC=org,DC=hk -W -b DC=corp,DC=ha,DC=org,DC=hk
+
