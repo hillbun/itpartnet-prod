@@ -1374,3 +1374,5 @@ ziSJ144Watmj
 
 ldapsearch -x -H ldaps://corprodc03.corp.ha.org.hk:636 -D CN=n5-proxy-opp-52a,OU=Users,OU=N2,OU=ITIS,DC=corp,DC=ha,DC=org,DC=hk -W -b DC=corp,DC=ha,DC=org,DC=hk
 
+ldapsearch -x -H ldaps://corprodc03.corp.ha.org.hk:636 -D CN=n5-proxy-opp-52a,OU=Users,OU=N2,OU=ITIS,DC=corp,DC=ha,DC=org,DC=hk -w 'ziSJ144Watmj' -b DC=corp,DC=ha,DC=org,DC=hk
+
