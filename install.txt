@@ -1349,3 +1349,7 @@ ls -al /opt/nginx/html/transproxy_admin/public/fileData/threat/logstatus_7days.j
 ls -al /opt/nginx/html/transproxy_admin/public/fileData/threat/blacklist_summary.json
 ls -al /opt/nginx/html/transproxy_admin/public/fileData/threat/week_top_ip_10.json
 ls -al /opt/nginx/html/transproxy_admin/public/fileData/threat/week_top_url_10.json
+
+
+---
+0 1 * * * /usr/bin/find /var/crash -maxdepth 1 -name 'squid.*.core.*' -mtime +1 -print -delete
