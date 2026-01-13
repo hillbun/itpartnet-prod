@@ -1,0 +1,5 @@
+auth_param negotiate program /opt/squid/libexec/negotiate_kerberos_auth -k {{ keytab_file }} -d -s {{ service_principal }}
+auth_param negotiate children 200
+auth_param negotiate keep_alive on
+auth_param negotiate realm {{ realm }}
+acl kerberos_auth proxy_auth REQUIRED
