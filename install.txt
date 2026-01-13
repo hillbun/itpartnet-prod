@@ -1351,9 +1351,8 @@ ls -al /opt/nginx/html/transproxy_admin/public/fileData/threat/week_top_ip_10.js
 ls -al /opt/nginx/html/transproxy_admin/public/fileData/threat/week_top_url_10.json
 
 
----
-<<<<<<< HEAD
+
 0 1 * * * /usr/bin/find /var/crash -maxdepth 1 -name 'squid.*.core.*' -mtime +1 -print -delete
-=======
+
 squidclient -p 8080 mgr:info | grep 'file desc'
->>>>>>> 73a966f4c7acd4d158a0a52f995972b9465449b7
+
