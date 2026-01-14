@@ -74,6 +74,7 @@
             archive: yes
             delete: yes
             rsync_opts:
+              - "--exclude=.env"
               - "--exclude=system_usage.json"
               - "--exclude=public/fileData/threat/netstat_status.json"
               - "--exclude=public/fileData/threat/logstatus_7days.json"
