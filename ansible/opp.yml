@@ -1132,6 +1132,11 @@
         src: /opt/squid_shell
         dest: /opt/
       tags: sync_squid_shell
+    - name: sync shell_prod
+      ansible.posix.synchronize:
+        src: /opt/shell_prod/
+        dest: /opt/
+      tags: sync_shell_prod
     - name: sync py_prod
       ansible.posix.synchronize:
         src: /opt/py_prod
