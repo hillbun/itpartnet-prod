@@ -6,7 +6,6 @@
     - vars/app_vars.yml
   tasks:
     - name: upgrade py_prod
-      become: yes
       tags: upgrade_py_prod
       block:
         - name: backup py_prod
