@@ -1383,6 +1383,8 @@ ldapsearch -x -H ldaps://corprodc03.corp.ha.org.hk:636 -D CN=n5-proxy-opp-52a,OU
 
 
 ---
+grep Umask /proc/$(pgrep -x rsyslogd)/status
+
 # 1. 加载模块，但不要直接写文件，而是发送到 syslog 内部通道
 module(load="impstats" interval="10" severity="7" log.syslog="on")
 
