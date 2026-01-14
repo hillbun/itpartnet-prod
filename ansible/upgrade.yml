@@ -13,4 +13,9 @@
           ansible.posix.synchronize:
             src: /opt/py_prod/
             dest: "/opt/backup/py_prod_{{ current_time }}/"
+            archive: yes
+            rsync_opts:
+              - "--owner"
+              - "--group"
+              - "--numeric-ids"
           delegate_to: "{{ inventory_hostname }}"
