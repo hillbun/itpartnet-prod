@@ -67,9 +67,23 @@
         - name: print transproxy_admin current_time
           debug:
             msg: "backup dir /opt/backup/transproxy_admin_{{ current_time }}/"
-        #- name: sync transproxy_admin
-        #  ansible.posix.synchronize:
-        #    src: /opt/nginx/html/transproxy_admin/
-        #    dest: /opt/nginx/html/transproxy_admin/
-        #    archive: yes
-        #    delete: yes
+        - name: sync transproxy_admin
+          ansible.posix.synchronize:
+            src: /opt/nginx/html/transproxy_admin/
+            dest: /opt/nginx/html/transproxy_admin/
+            archive: yes
+            delete: yes
+            rsync_opts:
+              - "--exclude=system_usage.json"
+              - "--exclude=public/fileData/threat/netstat_status.json"
+              - "--exclude=public/fileData/threat/logstatus_7days.json"
+              - "--exclude=public/fileData/threat/blacklist_summary.json"
+              - "--exclude=public/fileData/threat/week_top_ip_10.json"
+              - "--exclude=public/fileData/threat/week_top_url_10.json"
+              - "--exclude=storage/logs"
+    - name: rollback py_prod
+      tags: rollback_py_prod
+    - name: rollback dist
+      tags: rollback_dist
+    - name: rollback transproxy_admin
+      tags: rollback_transproxy_admin
