@@ -2,14 +2,8 @@
 - name: install app
   hosts: opp_prod
   gather_facts: no
-  vars:
-    proxy_env:
-      http_proxy: "http://192.168.152.120:8080"
-      https_proxy: "http://192.168.152.120:8080"
-      NO_PROXY: "localhost,127.0.0.1"
-    software_src_path: "/usr/opp/download"
-    software_dest_path: "/usr/opp/download"
-    REDISCLI_AUTH: StrongP@@ssw0rd123!
+  vars_files:
+    - vars/app_vars.yml
   tasks:
     - name: local create account logreader
       delegate_to: localhost
@@ -226,6 +220,12 @@
         path: "{{ software_dest_path }}"
         state: directory
       tags: create_software_dest_path
+    - name: create backup_dest_path
+      become: yes
+      ansible.builtin.file:
+        path: "{{ backup_dest_path }}"
+        state: directory
+      tags: create_backup_dest_path
     - name: setup yum proxy
       blockinfile:
         path: /etc/yum.conf
@@ -1132,6 +1132,11 @@
         src: /opt/squid_shell
         dest: /opt/
       tags: sync_squid_shell
+    - name: sync shell_prod
+      ansible.posix.synchronize:
+        src: /opt/shell_prod/
+        dest: /opt/shell_prod/
+      tags: sync_shell_prod
     - name: sync py_prod
       ansible.posix.synchronize:
         src: /opt/py_prod
@@ -1217,7 +1222,7 @@
         create_home: yes
         groups: squid,www-group
         append: yes
-        password: "{{ 'logreader_password' | password_hash('sha512') }}"
+        password: "{{ logreader_password | password_hash('sha512') }}"
       tags: create_account_logreader
     - name: set logreader key
       become: yes
@@ -1246,6 +1251,14 @@
         mode: '0755'
         recurse: yes
       tags: chown_squid_shell
+    - name: create shell_prod dir
+      ansible.builtin.file:
+        path: /opt/shell_prod
+        state: directory
+        owner: logreader
+        group: logreader
+        mode: '0755'
+      tags: create_shell_prod_dir
     - name: create logrotate dir
       become: yes
       ansible.builtin.file:

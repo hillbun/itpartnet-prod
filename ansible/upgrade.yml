@@ -1,0 +1,104 @@
+---
+- name: upgrade opp
+  hosts: opp_prod
+  gather_facts: no
+  vars_files:
+    - vars/app_vars.yml
+  tasks:
+    - name: upgrade py_prod
+      tags: upgrade_py_prod
+      block:
+        - name: backup py_prod
+          ansible.posix.synchronize:
+            src: /opt/py_prod/
+            dest: "/opt/backup/py_prod_{{ current_time }}/"
+            archive: yes
+            rsync_opts:
+              - "--owner"
+              - "--group"
+              - "--numeric-ids"
+          delegate_to: "{{ inventory_hostname }}"
+        - name: print py_prod current_time
+          debug:
+            msg: "backup dir /opt/backup/py_prod{{ current_time }}/"
+        - name: sync py_prod
+          ansible.posix.synchronize:
+            src: /opt/py_prod/
+            dest: /opt/py_prod/
+            archive: yes
+            delete: yes
+            rsync_opts:
+              - "--exclude=log/"
+    - name: upgrade dist
+      tags: upgrade_dist
+      block:
+        - name: backup dist
+          ansible.posix.synchronize:
+            src: /opt/nginx/html/dist/
+            dest: "/opt/backup/dist_{{ current_time }}/"
+            archive: yes
+            rsync_opts:
+              - "--owner"
+              - "--group"
+              - "--numeric-ids"
+          delegate_to: "{{ inventory_hostname }}"
+        - name: print dist current_time
+          debug:
+            msg: "backup dir /opt/backup/dist_{{ current_time }}/"
+        - name: sync dist
+          ansible.posix.synchronize:
+            src: /opt/nginx/html/dist/
+            dest: /opt/nginx/html/dist/
+            archive: yes
+            delete: yes
+    - name: upgrade transproxy_admin
+      tags: upgrade_transproxy_admin
+      block:
+        - name: backup transproxy_admin
+          ansible.posix.synchronize:
+            src: /opt/nginx/html/transproxy_admin/
+            dest: "/opt/backup/transproxy_admin_{{ current_time }}/"
+            archive: yes
+            rsync_opts:
+              - "--owner"
+              - "--group"
+              - "--numeric-ids"
+          delegate_to: "{{ inventory_hostname }}"
+        - name: print transproxy_admin current_time
+          debug:
+            msg: "backup dir /opt/backup/transproxy_admin_{{ current_time }}/"
+        - name: sync transproxy_admin
+          ansible.posix.synchronize:
+            src: /opt/nginx/html/transproxy_admin/
+            dest: /opt/nginx/html/transproxy_admin/
+            archive: yes
+            delete: yes
+            rsync_opts:
+              - "--exclude=.env"
+              - "--exclude=system_usage.json"
+              - "--exclude=public/fileData/threat/netstat_status.json"
+              - "--exclude=public/fileData/threat/logstatus_7days.json"
+              - "--exclude=public/fileData/threat/blacklist_summary.json"
+              - "--exclude=public/fileData/threat/week_top_ip_10.json"
+              - "--exclude=public/fileData/threat/week_top_url_10.json"
+              - "--exclude=storage/logs/"
+    #- name: rollback py_prod
+    #  tags: rollback_py_prod
+    #- name: rollback dist
+    #  tags: rollback_dist
+    - name: rollback dist
+      tags: rollback_dist
+      block:
+        - name: backup py_prod
+          ansible.posix.synchronize:
+            src: "/opt/backup/dist_{{ rollback_time }}/"
+            dest: /opt/nginx/html/dist/
+            archive: yes
+            rsync_opts:
+              - "--owner"
+              - "--group"
+              - "--numeric-ids"
+          delegate_to: "{{ inventory_hostname }}"
+        - name: print dist current_time
+          debug:
+            msg: "rollback dir /opt/backup/dist_{{ current_time }}/"

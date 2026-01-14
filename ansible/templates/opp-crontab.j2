@@ -1,6 +1,5 @@
 10 * * * * bash /opt/squid_shell/resource_monitor_script.sh &>> /opt/squid_shell/logs/resource_monitor_script.log
 15 0 * * * bash /opt/squid_shell/ftp_accesslog.sh
-0 */8 * * * truncate -s 0 /opt/squid/var/log/cache.log
 1 * * * * /usr/bin/python3 /opt/squid_shell/hour_monitor.py &>> /opt/squid_shell/logs/nohup_monitor.log
 2 * * * * bash /opt/squid_shell/network_count.sh &>> /opt/squid_shell/logs/network_count.log
 1 * * * * bash /opt/squid_shell/monitor_matchlogs.sh &>> /opt/squid_shell/logs/monitor_matchlogs.log
@@ -13,4 +12,3 @@
 45 0 * * * /usr/sbin/logrotate -s /opt/logrotate/status/logrotate.status -f /opt/logrotate/etc/python_prod_logs &>> /opt/squid_shell/logs/logrotate.log
 0 1 * * * /usr/bin/curl -k https://127.0.0.1:8000/api/logs_del  &>> /opt/squid_shell/logs/php_logs_del.log
 0 1,13 * * * /usr/bin/curl -k https://127.0.0.1:8000/api/upredis_dir &>> /opt/squid_shell/logs/php_upredis_dir.log
-0 1 * * * sudo /usr/bin/find /var/crash -maxdepth 1 -name 'squid.*.core.*' -mtime +1 -print -delete
