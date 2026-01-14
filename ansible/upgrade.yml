@@ -5,3 +5,14 @@
   vars_files:
     - vars/app_vars.yml
   tasks:
+    - name: upgrade py_prod
+      become: yes
+      block:
+        - name: backup py_prod
+      ansible.builtin.copy:
+        src: /opt/py_prod/
+        dest: "/opt/backup/py_prod_{{ current_time }}/"
+        remote_src: yes
+        mode: preserve
+        directory_mode: yes
+      tags: upgrade_py_prod
