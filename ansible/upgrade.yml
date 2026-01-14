@@ -18,6 +18,9 @@
               - "--group"
               - "--numeric-ids"
           delegate_to: "{{ inventory_hostname }}"
+        - name: print py_prod current_time
+          debug:
+            msg: "backup dir /opt/backup/py_prod{{ current_time }}/"
         - name: sync py_prod
           ansible.posix.synchronize:
             src: /opt/py_prod/
@@ -39,6 +42,9 @@
               - "--group"
               - "--numeric-ids"
           delegate_to: "{{ inventory_hostname }}"
+        - name: print dist current_time
+          debug:
+            msg: "backup dir /opt/backup/dist_{{ current_time }}/"
         - name: sync dist
           ansible.posix.synchronize:
             src: /opt/nginx/html/dist/
@@ -58,6 +64,9 @@
               - "--group"
               - "--numeric-ids"
           delegate_to: "{{ inventory_hostname }}"
+        - name: print transproxy_admin current_time
+          debug:
+            msg: "backup dir /opt/backup/transproxy_admin_{{ current_time }}/"
         #- name: sync transproxy_admin
         #  ansible.posix.synchronize:
         #    src: /opt/nginx/html/transproxy_admin/
