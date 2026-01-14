@@ -45,3 +45,22 @@
             dest: /opt/nginx/html/dist/
             archive: yes
             delete: yes
+    - name: upgrade transproxy_admin
+      tags: upgrade_transproxy_admin
+      block:
+        - name: backup transproxy_admin
+          ansible.posix.synchronize:
+            src: /opt/nginx/html/transproxy_admin/
+            dest: "/opt/backup/transproxy_admin_{{ current_time }}/"
+            archive: yes
+            rsync_opts:
+              - "--owner"
+              - "--group"
+              - "--numeric-ids"
+          delegate_to: "{{ inventory_hostname }}"
+        #- name: sync transproxy_admin
+        #  ansible.posix.synchronize:
+        #    src: /opt/nginx/html/transproxy_admin/
+        #    dest: /opt/nginx/html/transproxy_admin/
+        #    archive: yes
+        #    delete: yes
