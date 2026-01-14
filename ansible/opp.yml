@@ -1217,7 +1217,7 @@
         create_home: yes
         groups: squid,www-group
         append: yes
-        password: "{{ 'logreader_password' | password_hash('sha512') }}"
+        password: "{{ logreader_password | password_hash('sha512') }}"
       tags: create_account_logreader
     - name: set logreader key
       become: yes

@@ -5,4 +5,5 @@ proxy_env:
 software_src_path: "/usr/opp/download"
 software_dest_path: "/usr/opp/download"
 backup_dest_path: "/opt/backup"
+current_time: "{{ lookup('pipe', 'date +%Y%m%d%H%M%S') }}"
 REDISCLI_AUTH: "StrongP@@ssw0rd123!"
