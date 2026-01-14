@@ -19,11 +19,11 @@
               - "--group"
               - "--numeric-ids"
           delegate_to: "{{ inventory_hostname }}"
-    - name: sync py_prod
-      ansible.posix.synchronize:
-        src: /opt/py_prod/
-        dest: /opt/py_prod/
-        archive: yes
-        delete: yes
-      rsync_opts:
-        - "--exclude=log/"
+        - name: sync py_prod
+          ansible.posix.synchronize:
+            src: /opt/py_prod/
+            dest: /opt/py_prod/
+            archive: yes
+            delete: yes
+            rsync_opts:
+              - "--exclude=log/"
