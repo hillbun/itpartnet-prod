@@ -10,8 +10,7 @@
       tags: upgrade_py_prod
       block:
         - name: backup py_prod
-          ansible.builtin.copy:
+          ansible.posix.synchronize:
             src: /opt/py_prod/
             dest: "/opt/backup/py_prod_{{ current_time }}/"
-            remote_src: yes
-            mode: preserve
+          delegate_to: "{{ inventory_hostname }}"
