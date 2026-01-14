@@ -81,10 +81,10 @@
               - "--exclude=public/fileData/threat/blacklist_summary.json"
               - "--exclude=public/fileData/threat/week_top_ip_10.json"
               - "--exclude=public/fileData/threat/week_top_url_10.json"
-              - "--exclude=storage/logs"
-    - name: rollback py_prod
-      tags: rollback_py_prod
-    - name: rollback dist
-      tags: rollback_dist
-    - name: rollback transproxy_admin
-      tags: rollback_transproxy_admin
+              - "--exclude=storage/logs/"
+    #- name: rollback py_prod
+    #  tags: rollback_py_prod
+    #- name: rollback dist
+    #  tags: rollback_dist
+    #- name: rollback transproxy_admin
+    #  tags: rollback_transproxy_admin
