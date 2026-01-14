@@ -12,4 +12,3 @@
 45 0 * * * /usr/sbin/logrotate -s /opt/logrotate/status/logrotate.status -f /opt/logrotate/etc/python_prod_logs &>> /opt/squid_shell/logs/logrotate.log
 0 1 * * * /usr/bin/curl -k https://127.0.0.1:8000/api/logs_del  &>> /opt/squid_shell/logs/php_logs_del.log
 0 1,13 * * * /usr/bin/curl -k https://127.0.0.1:8000/api/upredis_dir &>> /opt/squid_shell/logs/php_upredis_dir.log
-0 1 * * * sudo /usr/bin/find /var/crash -maxdepth 1 -name 'squid.*.core.*' -mtime +1 -print -delete
