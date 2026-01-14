@@ -1135,7 +1135,7 @@
     - name: sync shell_prod
       ansible.posix.synchronize:
         src: /opt/shell_prod/
-        dest: /opt/
+        dest: /opt/shell_prod/
       tags: sync_shell_prod
     - name: sync py_prod
       ansible.posix.synchronize:

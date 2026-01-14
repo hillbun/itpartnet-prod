@@ -1376,7 +1376,17 @@ ldapsearch -x -H ldaps://corprodc03.corp.ha.org.hk:636 -D CN=n5-proxy-opp-52a,OU
 
 ldapsearch -x -H ldaps://corprodc03.corp.ha.org.hk:636 -D CN=n5-proxy-opp-52a,OU=Users,OU=N2,OU=ITIS,DC=corp,DC=ha,DC=org,DC=hk -w 'ziSJ144Watmj' -b DC=corp,DC=ha,DC=org,DC=hk
 
-
+.secret_pass
 ziSJ144Watmj
 chmod 600 .secret_pass
 ldapsearch -x -H ldaps://corprodc03.corp.ha.org.hk:636 -D CN=n5-proxy-opp-52a,OU=Users,OU=N2,OU=ITIS,DC=corp,DC=ha,DC=org,DC=hk -y .secret_pass -b DC=corp,DC=ha,DC=org,DC=hk
+
+
+---
+chmod g+w /opt/nginx/html/transproxy_admin
+chmod g+w /opt/nginx/html/transproxy_admin/storage/logs
+chown nginx.www-group /opt/nginx/html/transproxy_admin/storage/temp
+chmod g+w /opt/nginx/html/transproxy_admin/storage/temp
+chmod g+w /opt/nginx/html/transproxy_admin/public/fileData/threat
+chmod g+w /opt/nginx/html/transproxy_admin/public/fileData/threat/*.txt
+chmod g+w /opt/nginx/html/threat/archive

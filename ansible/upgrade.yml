@@ -86,5 +86,19 @@
     #  tags: rollback_py_prod
     #- name: rollback dist
     #  tags: rollback_dist
-    #- name: rollback transproxy_admin
-    #  tags: rollback_transproxy_admin
+    - name: rollback dist
+      tags: rollback_dist
+      block:
+        - name: backup py_prod
+          ansible.posix.synchronize:
+            src: "/opt/backup/dist_{{ rollback_time }}/"
+            dest: /opt/nginx/html/dist/
+            archive: yes
+            rsync_opts:
+              - "--owner"
+              - "--group"
+              - "--numeric-ids"
+          delegate_to: "{{ inventory_hostname }}"
+        - name: print dist current_time
+          debug:
+            msg: "rollback dir /opt/backup/dist_{{ current_time }}/"
