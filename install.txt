@@ -1380,3 +1380,19 @@ ldapsearch -x -H ldaps://corprodc03.corp.ha.org.hk:636 -D CN=n5-proxy-opp-52a,OU
 ziSJ144Watmj
 chmod 600 .secret_pass
 ldapsearch -x -H ldaps://corprodc03.corp.ha.org.hk:636 -D CN=n5-proxy-opp-52a,OU=Users,OU=N2,OU=ITIS,DC=corp,DC=ha,DC=org,DC=hk -y .secret_pass -b DC=corp,DC=ha,DC=org,DC=hk
+
+
+---
+# 1. 加载模块，但不要直接写文件，而是发送到 syslog 内部通道
+module(load="impstats" interval="10" severity="7" log.syslog="on")
+
+# 2. 定义专门的规则来捕获这些统计日志，并写入文件（同时设置用户/组）
+if $programname == 'rsyslogd-pstats' then {
+    action(type="omfile"
+           file="/opt/squid/var/log/rsyslog-stats.log"
+           fileOwner="squid"      # 设置文件属主
+           fileGroup="squid"      # 设置文件属组
+           fileCreateMode="0644"  # 设置文件权限
+    )
+    stop  # 处理完后停止，防止这些日志再漏到 /var/log/messages
+}
