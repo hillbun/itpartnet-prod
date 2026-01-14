@@ -26,3 +26,22 @@
             delete: yes
             rsync_opts:
               - "--exclude=log/"
+    - name: upgrade dist
+      tags: upgrade_dist
+      block:
+        - name: backup dist
+          ansible.posix.synchronize:
+            src: /opt/nginx/html/dist/
+            dest: "/opt/backup/dist_{{ current_time }}/"
+            archive: yes
+            rsync_opts:
+              - "--owner"
+              - "--group"
+              - "--numeric-ids"
+          delegate_to: "{{ inventory_hostname }}"
+        - name: sync dist
+          ansible.posix.synchronize:
+            src: /opt/nginx/html/dist/
+            dest: /opt/nginx/html/dist/
+            archive: yes
+            delete: yes
