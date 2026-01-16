@@ -1458,3 +1458,5 @@ netstat -na | awk 'NR>2 && $5 != "0.0.0.0:*" {print $5}' | sort -u
 
 netstat -na | awk 'NR>2 && $5 != "0.0.0.0:*" {count[$5]++} END {for (addr in count) print count[addr], addr}'
 
+
+
