@@ -1452,3 +1452,7 @@ curl / proxy / API 全部异常
 lsns -t net
 ip netns exec default sysctl net.ipv4.ip_local_port_range
 
+netstat -na | awk 'NR>2 && $5 != "0.0.0.0:*" {print $5}' | sort | uniq -c | sort -rn
+
+
+
