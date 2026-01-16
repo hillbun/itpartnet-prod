@@ -1413,6 +1413,7 @@ chmod g+w /opt/nginx/html/threat/archive
 USER_TO_PROXY=$(ss -ant | awk '$1=="ESTAB" && $4 ~ /:8080$/ {count++} END {print count+0}')
 
 ss -ant state established '( sport = :8080 )' | wc -l
+ss -ant | awk '$1=="ESTAB" && $4 ~ /:8080$/'
 
 
 
