@@ -1416,8 +1416,37 @@ ss -ant state established '( sport = :8080 )' | wc -l
 ss -ant | awk '$1=="ESTAB" && $4 ~ /:8080$/'
 
 
-
-
 # proxy -> outside (非8080端口, 非127.0.0.1, 目标端口为80或443)
 PROXY_TO_OUTSIDE=$(ss -ant | awk '$1=="ESTAB" && $4 !~ /:8080$/ && $5 !~ /:8080$/ && $5 !~ /^127\.0\.0\.1:/ && $5 ~ /:(80|443)$/ {count++} END {print count+0}')
 
+net.ipv4.ip_local_port_range = 1024 65535
+
+为什么这个参数这么重要？
+1️⃣ 每一个 ESTABLISHED / TIME_WAIT 都占一个本地端口
+ip:local_port + dst_ip:dst_port + protocol
+
+
+TCP 四元组中，本地端口必须唯一
+
+TIME_WAIT 期间端口不能立即复用（默认 ~60s）
+
+2️⃣ 端口耗尽会发生什么？
+
+如果：
+
+65535 - 1024 ≈ 64512 个端口
+
+
+用完了：
+
+新的 connect() 直接失败
+
+常见错误：
+
+Cannot assign requested address
+
+EADDRNOTAVAIL
+
+curl / proxy / API 全部异常
+
+lsns -t net
