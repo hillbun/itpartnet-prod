@@ -1,0 +1,291 @@
+bash: 1: command not found...
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 3, in <module>
+    import psutil
+ModuleNotFoundError: No module named 'psutil'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 3, in <module>
+    import psutil
+ModuleNotFoundError: No module named 'psutil'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'
+Traceback (most recent call last):
+  File "/opt/squid_shell/hour_monitor.py", line 71, in <module>
+    save_usage_to_json()
+  File "/opt/squid_shell/hour_monitor.py", line 66, in save_usage_to_json
+    with open(data_file, "w") as json_file:
+PermissionError: [Errno 13] Permission denied: '/usr/nginx/html/transproxy_admin/system_usage.json'

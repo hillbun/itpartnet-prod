@@ -1,0 +1,991 @@
+日志文件: /opt/squid/var/log/access.log-20251002.gz
+删除7天前的日志: 2025-09-25
+统计完成，结果已追加到：/usr/nginx/html/transproxy_admin/public/fileData/threat/logstatus_7days.json
+{
+  "2025-09-26": {
+    "403": 98,
+    "407": 8354,
+    "502": 0,
+    "504": 0
+  },
+  "2025-09-27": {
+    "403": 6,
+    "407": 1413,
+    "502": 0,
+    "504": 0
+  },
+  "2025-09-28": {
+    "403": 0,
+    "407": 66,
+    "502": 0,
+    "504": 0
+  },
+  "2025-09-29": {
+    "403": 0,
+    "407": 51,
+    "502": 0,
+    "504": 0
+  },
+  "2025-09-30": {
+    "403": 0,
+    "407": 67,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-01": {
+    "403": 0,
+    "407": 190,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-02": {
+    "403": 0,
+    "407": 102,
+    "502": 0,
+    "504": 0
+  }
+}
+日志文件: /opt/squid/var/log/access.log-20251003.gz
+删除7天前的日志: 2025-09-26
+统计完成，结果已追加到：/usr/nginx/html/transproxy_admin/public/fileData/threat/logstatus_7days.json
+{
+  "2025-09-27": {
+    "403": 6,
+    "407": 1413,
+    "502": 0,
+    "504": 0
+  },
+  "2025-09-28": {
+    "403": 0,
+    "407": 66,
+    "502": 0,
+    "504": 0
+  },
+  "2025-09-29": {
+    "403": 0,
+    "407": 51,
+    "502": 0,
+    "504": 0
+  },
+  "2025-09-30": {
+    "403": 0,
+    "407": 67,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-01": {
+    "403": 0,
+    "407": 190,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-02": {
+    "403": 0,
+    "407": 102,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-03": {
+    "403": 0,
+    "407": 200,
+    "502": 0,
+    "504": 0
+  }
+}
+日志文件: /opt/squid/var/log/access.log-20251004.gz
+删除7天前的日志: 2025-09-27
+统计完成，结果已追加到：/usr/nginx/html/transproxy_admin/public/fileData/threat/logstatus_7days.json
+{
+  "2025-09-28": {
+    "403": 0,
+    "407": 66,
+    "502": 0,
+    "504": 0
+  },
+  "2025-09-29": {
+    "403": 0,
+    "407": 51,
+    "502": 0,
+    "504": 0
+  },
+  "2025-09-30": {
+    "403": 0,
+    "407": 67,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-01": {
+    "403": 0,
+    "407": 190,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-02": {
+    "403": 0,
+    "407": 102,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-03": {
+    "403": 0,
+    "407": 200,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-04": {
+    "403": 2,
+    "407": 146,
+    "502": 0,
+    "504": 0
+  }
+}
+日志文件: /opt/squid/var/log/access.log-20251005.gz
+删除7天前的日志: 2025-09-28
+统计完成，结果已追加到：/usr/nginx/html/transproxy_admin/public/fileData/threat/logstatus_7days.json
+{
+  "2025-09-29": {
+    "403": 0,
+    "407": 51,
+    "502": 0,
+    "504": 0
+  },
+  "2025-09-30": {
+    "403": 0,
+    "407": 67,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-01": {
+    "403": 0,
+    "407": 190,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-02": {
+    "403": 0,
+    "407": 102,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-03": {
+    "403": 0,
+    "407": 200,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-04": {
+    "403": 2,
+    "407": 146,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-05": {
+    "403": 0,
+    "407": 63,
+    "502": 0,
+    "504": 0
+  }
+}
+日志文件: /opt/squid/var/log/access.log-20251006.gz
+删除7天前的日志: 2025-09-29
+统计完成，结果已追加到：/usr/nginx/html/transproxy_admin/public/fileData/threat/logstatus_7days.json
+{
+  "2025-09-30": {
+    "403": 0,
+    "407": 67,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-01": {
+    "403": 0,
+    "407": 190,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-02": {
+    "403": 0,
+    "407": 102,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-03": {
+    "403": 0,
+    "407": 200,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-04": {
+    "403": 2,
+    "407": 146,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-05": {
+    "403": 0,
+    "407": 63,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-06": {
+    "403": 0,
+    "407": 55,
+    "502": 0,
+    "504": 0
+  }
+}
+日志文件: /opt/squid/var/log/access.log-20251007.gz
+删除7天前的日志: 2025-09-30
+统计完成，结果已追加到：/usr/nginx/html/transproxy_admin/public/fileData/threat/logstatus_7days.json
+{
+  "2025-10-01": {
+    "403": 0,
+    "407": 190,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-02": {
+    "403": 0,
+    "407": 102,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-03": {
+    "403": 0,
+    "407": 200,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-04": {
+    "403": 2,
+    "407": 146,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-05": {
+    "403": 0,
+    "407": 63,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-06": {
+    "403": 0,
+    "407": 55,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-07": {
+    "403": 0,
+    "407": 155,
+    "502": 0,
+    "504": 0
+  }
+}
+日志文件: /opt/squid/var/log/access.log-20251008.gz
+删除7天前的日志: 2025-10-01
+统计完成，结果已追加到：/usr/nginx/html/transproxy_admin/public/fileData/threat/logstatus_7days.json
+{
+  "2025-10-02": {
+    "403": 0,
+    "407": 102,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-03": {
+    "403": 0,
+    "407": 200,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-04": {
+    "403": 2,
+    "407": 146,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-05": {
+    "403": 0,
+    "407": 63,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-06": {
+    "403": 0,
+    "407": 55,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-07": {
+    "403": 0,
+    "407": 155,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-08": {
+    "403": 27,
+    "407": 5607,
+    "502": 0,
+    "504": 0
+  }
+}
+日志文件: /opt/squid/var/log/access.log-20251009.gz
+删除7天前的日志: 2025-10-02
+统计完成，结果已追加到：/usr/nginx/html/transproxy_admin/public/fileData/threat/logstatus_7days.json
+{
+  "2025-10-03": {
+    "403": 0,
+    "407": 200,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-04": {
+    "403": 2,
+    "407": 146,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-05": {
+    "403": 0,
+    "407": 63,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-06": {
+    "403": 0,
+    "407": 55,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-07": {
+    "403": 0,
+    "407": 155,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-08": {
+    "403": 27,
+    "407": 5607,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-09": {
+    "403": 0,
+    "407": 228,
+    "502": 0,
+    "504": 0
+  }
+}
+日志文件: /opt/squid/var/log/access.log-20251010.gz
+删除7天前的日志: 2025-10-03
+统计完成，结果已追加到：/usr/nginx/html/transproxy_admin/public/fileData/threat/logstatus_7days.json
+{
+  "2025-10-04": {
+    "403": 2,
+    "407": 146,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-05": {
+    "403": 0,
+    "407": 63,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-06": {
+    "403": 0,
+    "407": 55,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-07": {
+    "403": 0,
+    "407": 155,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-08": {
+    "403": 27,
+    "407": 5607,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-09": {
+    "403": 0,
+    "407": 228,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-10": {
+    "403": 0,
+    "407": 0,
+    "502": 0,
+    "504": 0
+  }
+}
+日志文件: /opt/squid/var/log/access.log-20251011.gz
+删除7天前的日志: 2025-10-04
+统计完成，结果已追加到：/usr/nginx/html/transproxy_admin/public/fileData/threat/logstatus_7days.json
+{
+  "2025-10-05": {
+    "403": 0,
+    "407": 63,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-06": {
+    "403": 0,
+    "407": 55,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-07": {
+    "403": 0,
+    "407": 155,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-08": {
+    "403": 27,
+    "407": 5607,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-09": {
+    "403": 0,
+    "407": 228,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-10": {
+    "403": 0,
+    "407": 0,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-11": {
+    "403": 633,
+    "407": 6641,
+    "502": 0,
+    "504": 0
+  }
+}
+日志文件: /opt/squid/var/log/access.log-20251012.gz
+删除7天前的日志: 2025-10-05
+统计完成，结果已追加到：/usr/nginx/html/transproxy_admin/public/fileData/threat/logstatus_7days.json
+{
+  "2025-10-06": {
+    "403": 0,
+    "407": 55,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-07": {
+    "403": 0,
+    "407": 155,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-08": {
+    "403": 27,
+    "407": 5607,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-09": {
+    "403": 0,
+    "407": 228,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-10": {
+    "403": 0,
+    "407": 0,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-11": {
+    "403": 633,
+    "407": 6641,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-12": {
+    "403": 826,
+    "407": 12510,
+    "502": 0,
+    "504": 0
+  }
+}
+日志文件: /opt/squid/var/log/access.log-20251013.gz
+删除7天前的日志: 2025-10-06
+统计完成，结果已追加到：/usr/nginx/html/transproxy_admin/public/fileData/threat/logstatus_7days.json
+{
+  "2025-10-07": {
+    "403": 0,
+    "407": 155,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-08": {
+    "403": 27,
+    "407": 5607,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-09": {
+    "403": 0,
+    "407": 228,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-10": {
+    "403": 0,
+    "407": 0,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-11": {
+    "403": 633,
+    "407": 6641,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-12": {
+    "403": 826,
+    "407": 12510,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-13": {
+    "403": 1345,
+    "407": 12257,
+    "502": 0,
+    "504": 0
+  }
+}
+日志文件: /opt/squid/var/log/access.log-20251014.gz
+删除7天前的日志: 2025-10-07
+统计完成，结果已追加到：/usr/nginx/html/transproxy_admin/public/fileData/threat/logstatus_7days.json
+{
+  "2025-10-08": {
+    "403": 27,
+    "407": 5607,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-09": {
+    "403": 0,
+    "407": 228,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-10": {
+    "403": 0,
+    "407": 0,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-11": {
+    "403": 633,
+    "407": 6641,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-12": {
+    "403": 826,
+    "407": 12510,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-13": {
+    "403": 1345,
+    "407": 12257,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-14": {
+    "403": 1326,
+    "407": 25737,
+    "502": 0,
+    "504": 0
+  }
+}
+日志文件: /opt/squid/var/log/access.log-20251015.gz
+删除7天前的日志: 2025-10-08
+统计完成，结果已追加到：/usr/nginx/html/transproxy_admin/public/fileData/threat/logstatus_7days.json
+{
+  "2025-10-09": {
+    "403": 0,
+    "407": 228,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-10": {
+    "403": 0,
+    "407": 0,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-11": {
+    "403": 633,
+    "407": 6641,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-12": {
+    "403": 826,
+    "407": 12510,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-13": {
+    "403": 1345,
+    "407": 12257,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-14": {
+    "403": 1326,
+    "407": 25737,
+    "502": 0,
+    "504": 0
+  },
+  "2025-10-15": {
+    "403": 1310,
+    "407": 21721,
+    "502": 1,
+    "504": 0
+  }
+}
+日志文件: /opt/squid/var/log/access.log-20251016.gz
+删除7天前的日志: 2025-10-09
+统计完成，结果已追加到：/usr/nginx/html/transproxy_admin/public/fileData/threat/logstatus_7days.json
+{
+  "2025-09-12": {
+    "403": 59791,
+    "407": 7311607,
+    "502": 9,
+    "504": 0
+  },
+  "2025-09-13": {
+    "403": 13625,
+    "407": 29880,
+    "502": 0,
+    "504": 0
+  },
+  "2025-09-14": {
+    "403": 16314,
+    "407": 36557,
+    "502": 0,
+    "504": 0
+  },
+  "2025-09-15": {
+    "403": 16314,
+    "407": 36557,
+    "502": 0,
+    "504": 0
+  },
+  "2025-09-16": {
+    "403": 19743,
+    "407": 10646741,
+    "502": 26,
+    "504": 0
+  },
+  "2025-09-17": {
+    "403": 22531,
+    "407": 17001327,
+    "502": 18,
+    "504": 1
+  },
+  "2025-09-18": {
+    "403": 18320,
+    "407": 10573574,
+    "502": 24,
+    "504": 0
+  },
+  "2025-10-16": {
+    "403": 14719,
+    "407": 659668,
+    "502": 94,
+    "504": 0
+  }
+}
+日志文件: /opt/squid/var/log/access.log-20251018.gz
+删除7天前的日志: 2025-10-11
+日志文件 /opt/squid/var/log/access.log-20251018.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251019.gz
+删除7天前的日志: 2025-10-12
+日志文件 /opt/squid/var/log/access.log-20251019.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251020.gz
+删除7天前的日志: 2025-10-13
+日志文件 /opt/squid/var/log/access.log-20251020.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251021.gz
+删除7天前的日志: 2025-10-14
+日志文件 /opt/squid/var/log/access.log-20251021.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251022.gz
+删除7天前的日志: 2025-10-15
+日志文件 /opt/squid/var/log/access.log-20251022.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251023.gz
+删除7天前的日志: 2025-10-16
+日志文件 /opt/squid/var/log/access.log-20251023.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251024.gz
+删除7天前的日志: 2025-10-17
+日志文件 /opt/squid/var/log/access.log-20251024.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251025.gz
+删除7天前的日志: 2025-10-18
+日志文件 /opt/squid/var/log/access.log-20251025.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251026.gz
+删除7天前的日志: 2025-10-19
+日志文件 /opt/squid/var/log/access.log-20251026.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251027.gz
+删除7天前的日志: 2025-10-20
+日志文件 /opt/squid/var/log/access.log-20251027.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251028.gz
+删除7天前的日志: 2025-10-21
+日志文件 /opt/squid/var/log/access.log-20251028.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251029.gz
+删除7天前的日志: 2025-10-22
+日志文件 /opt/squid/var/log/access.log-20251029.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251030.gz
+删除7天前的日志: 2025-10-23
+日志文件 /opt/squid/var/log/access.log-20251030.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251031.gz
+删除7天前的日志: 2025-10-24
+日志文件 /opt/squid/var/log/access.log-20251031.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251101.gz
+删除7天前的日志: 2025-10-25
+日志文件 /opt/squid/var/log/access.log-20251101.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251102.gz
+删除7天前的日志: 2025-10-26
+日志文件 /opt/squid/var/log/access.log-20251102.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251103.gz
+删除7天前的日志: 2025-10-27
+日志文件 /opt/squid/var/log/access.log-20251103.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251104.gz
+删除7天前的日志: 2025-10-28
+日志文件 /opt/squid/var/log/access.log-20251104.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251105.gz
+删除7天前的日志: 2025-10-29
+日志文件 /opt/squid/var/log/access.log-20251105.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251106.gz
+删除7天前的日志: 2025-10-30
+日志文件 /opt/squid/var/log/access.log-20251106.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251107.gz
+删除7天前的日志: 2025-10-31
+日志文件 /opt/squid/var/log/access.log-20251107.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251108.gz
+删除7天前的日志: 2025-11-01
+日志文件 /opt/squid/var/log/access.log-20251108.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251109.gz
+删除7天前的日志: 2025-11-02
+日志文件 /opt/squid/var/log/access.log-20251109.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251110.gz
+删除7天前的日志: 2025-11-03
+日志文件 /opt/squid/var/log/access.log-20251110.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251111.gz
+删除7天前的日志: 2025-11-04
+日志文件 /opt/squid/var/log/access.log-20251111.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251112.gz
+删除7天前的日志: 2025-11-05
+日志文件 /opt/squid/var/log/access.log-20251112.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251113.gz
+删除7天前的日志: 2025-11-06
+日志文件 /opt/squid/var/log/access.log-20251113.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251114.gz
+删除7天前的日志: 2025-11-07
+日志文件 /opt/squid/var/log/access.log-20251114.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251115.gz
+删除7天前的日志: 2025-11-08
+日志文件 /opt/squid/var/log/access.log-20251115.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251116.gz
+删除7天前的日志: 2025-11-09
+日志文件 /opt/squid/var/log/access.log-20251116.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251117.gz
+删除7天前的日志: 2025-11-10
+日志文件 /opt/squid/var/log/access.log-20251117.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251118.gz
+删除7天前的日志: 2025-11-11
+日志文件 /opt/squid/var/log/access.log-20251118.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251119.gz
+删除7天前的日志: 2025-11-12
+日志文件 /opt/squid/var/log/access.log-20251119.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251120.gz
+删除7天前的日志: 2025-11-13
+日志文件 /opt/squid/var/log/access.log-20251120.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251121.gz
+删除7天前的日志: 2025-11-14
+日志文件 /opt/squid/var/log/access.log-20251121.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251122.gz
+删除7天前的日志: 2025-11-15
+日志文件 /opt/squid/var/log/access.log-20251122.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251123.gz
+删除7天前的日志: 2025-11-16
+日志文件 /opt/squid/var/log/access.log-20251123.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251124.gz
+删除7天前的日志: 2025-11-17
+日志文件 /opt/squid/var/log/access.log-20251124.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251125.gz
+删除7天前的日志: 2025-11-18
+日志文件 /opt/squid/var/log/access.log-20251125.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251126.gz
+删除7天前的日志: 2025-11-19
+日志文件 /opt/squid/var/log/access.log-20251126.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251127.gz
+删除7天前的日志: 2025-11-20
+日志文件 /opt/squid/var/log/access.log-20251127.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251128.gz
+删除7天前的日志: 2025-11-21
+日志文件 /opt/squid/var/log/access.log-20251128.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251129.gz
+删除7天前的日志: 2025-11-22
+日志文件 /opt/squid/var/log/access.log-20251129.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251130.gz
+删除7天前的日志: 2025-11-23
+日志文件 /opt/squid/var/log/access.log-20251130.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251201.gz
+删除7天前的日志: 2025-11-24
+日志文件 /opt/squid/var/log/access.log-20251201.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251202.gz
+删除7天前的日志: 2025-11-25
+日志文件 /opt/squid/var/log/access.log-20251202.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251203.gz
+删除7天前的日志: 2025-11-26
+日志文件 /opt/squid/var/log/access.log-20251203.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251204.gz
+删除7天前的日志: 2025-11-27
+日志文件 /opt/squid/var/log/access.log-20251204.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251205.gz
+删除7天前的日志: 2025-11-28
+日志文件 /opt/squid/var/log/access.log-20251205.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251206.gz
+删除7天前的日志: 2025-11-29
+日志文件 /opt/squid/var/log/access.log-20251206.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251207.gz
+删除7天前的日志: 2025-11-30
+日志文件 /opt/squid/var/log/access.log-20251207.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251208.gz
+删除7天前的日志: 2025-12-01
+日志文件 /opt/squid/var/log/access.log-20251208.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251209.gz
+删除7天前的日志: 2025-12-02
+日志文件 /opt/squid/var/log/access.log-20251209.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251210.gz
+删除7天前的日志: 2025-12-03
+日志文件 /opt/squid/var/log/access.log-20251210.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251211.gz
+删除7天前的日志: 2025-12-04
+日志文件 /opt/squid/var/log/access.log-20251211.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251212.gz
+删除7天前的日志: 2025-12-05
+日志文件 /opt/squid/var/log/access.log-20251212.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251213.gz
+删除7天前的日志: 2025-12-06
+日志文件 /opt/squid/var/log/access.log-20251213.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251214.gz
+删除7天前的日志: 2025-12-07
+日志文件 /opt/squid/var/log/access.log-20251214.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251215.gz
+删除7天前的日志: 2025-12-08
+日志文件 /opt/squid/var/log/access.log-20251215.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251216.gz
+删除7天前的日志: 2025-12-09
+日志文件 /opt/squid/var/log/access.log-20251216.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251217.gz
+删除7天前的日志: 2025-12-10
+日志文件 /opt/squid/var/log/access.log-20251217.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251218.gz
+删除7天前的日志: 2025-12-11
+日志文件 /opt/squid/var/log/access.log-20251218.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251219.gz
+删除7天前的日志: 2025-12-12
+日志文件 /opt/squid/var/log/access.log-20251219.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251220.gz
+删除7天前的日志: 2025-12-13
+日志文件 /opt/squid/var/log/access.log-20251220.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251221.gz
+删除7天前的日志: 2025-12-14
+日志文件 /opt/squid/var/log/access.log-20251221.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251222.gz
+删除7天前的日志: 2025-12-15
+日志文件 /opt/squid/var/log/access.log-20251222.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251223.gz
+删除7天前的日志: 2025-12-16
+日志文件 /opt/squid/var/log/access.log-20251223.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251224.gz
+删除7天前的日志: 2025-12-17
+日志文件 /opt/squid/var/log/access.log-20251224.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251225.gz
+删除7天前的日志: 2025-12-18
+日志文件 /opt/squid/var/log/access.log-20251225.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251226.gz
+删除7天前的日志: 2025-12-19
+日志文件 /opt/squid/var/log/access.log-20251226.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251227.gz
+删除7天前的日志: 2025-12-20
+日志文件 /opt/squid/var/log/access.log-20251227.gz 不存在，跳过统计
+bash: 1: command not found...
+日志文件: /opt/squid/var/log/access.log-20251228.gz
+删除7天前的日志: 2025-12-21
+日志文件 /opt/squid/var/log/access.log-20251228.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251229.gz
+删除7天前的日志: 2025-12-22
+日志文件 /opt/squid/var/log/access.log-20251229.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251230.gz
+删除7天前的日志: 2025-12-23
+日志文件 /opt/squid/var/log/access.log-20251230.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20251231.gz
+删除7天前的日志: 2025-12-24
+日志文件 /opt/squid/var/log/access.log-20251231.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20260101.gz
+删除7天前的日志: 2025-12-25
+日志文件 /opt/squid/var/log/access.log-20260101.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20260102.gz
+删除7天前的日志: 2025-12-26
+日志文件 /opt/squid/var/log/access.log-20260102.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20260103.gz
+删除7天前的日志: 2025-12-27
+日志文件 /opt/squid/var/log/access.log-20260103.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20260104.gz
+删除7天前的日志: 2025-12-28
+日志文件 /opt/squid/var/log/access.log-20260104.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20260105.gz
+删除7天前的日志: 2025-12-29
+日志文件 /opt/squid/var/log/access.log-20260105.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20260106.gz
+删除7天前的日志: 2025-12-30
+日志文件 /opt/squid/var/log/access.log-20260106.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20260107.gz
+删除7天前的日志: 2025-12-31
+日志文件 /opt/squid/var/log/access.log-20260107.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20260108.gz
+删除7天前的日志: 2026-01-01
+日志文件 /opt/squid/var/log/access.log-20260108.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20260109.gz
+删除7天前的日志: 2026-01-02
+日志文件 /opt/squid/var/log/access.log-20260109.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20260110.gz
+删除7天前的日志: 2026-01-03
+日志文件 /opt/squid/var/log/access.log-20260110.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20260110.gz
+删除7天前的日志: 2026-01-03
+日志文件 /opt/squid/var/log/access.log-20260110.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20260111.gz
+删除7天前的日志: 2026-01-04
+日志文件 /opt/squid/var/log/access.log-20260111.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20260112.gz
+删除7天前的日志: 2026-01-05
+日志文件 /opt/squid/var/log/access.log-20260112.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20260112.gz
+删除7天前的日志: 2026-01-05
+日志文件 /opt/squid/var/log/access.log-20260112.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20260113.gz
+删除7天前的日志: 2026-01-06
+日志文件 /opt/squid/var/log/access.log-20260113.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20260114.gz
+删除7天前的日志: 2026-01-07
+日志文件 /opt/squid/var/log/access.log-20260114.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20260115.gz
+删除7天前的日志: 2026-01-08
+日志文件 /opt/squid/var/log/access.log-20260115.gz 不存在，跳过统计
+日志文件: /opt/squid/var/log/access.log-20260116.gz
+删除7天前的日志: 2026-01-09
+日志文件 /opt/squid/var/log/access.log-20260116.gz 不存在，跳过统计

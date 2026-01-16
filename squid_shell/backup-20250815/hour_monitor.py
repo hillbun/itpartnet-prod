@@ -1,0 +1,77 @@
+import json
+import os
+import psutil
+from datetime import datetime, timedelta
+
+
+def get_system_usage():
+    usage = {
+        "cpu_usage_percent": psutil.cpu_percent(interval=1),
+        "memory_usage_percent": psutil.virtual_memory().percent,
+        "disk_usage_percent": psutil.disk_usage('/').percent,
+    }
+    return usage
+
+
+def get_network_usage():
+    net_io = psutil.net_io_counters()
+    received_bytes = int(net_io.bytes_recv / (1024 * 1024))  # 转换为MB，取整
+    sent_bytes = int(net_io.bytes_sent / (1024 * 1024))      # 转换为MB，取整
+    return {
+        "received_bytes": received_bytes,
+        "sent_bytes": sent_bytes
+    }
+
+
+def save_usage_to_json():
+    system_usage = get_system_usage()
+    network_usage = get_network_usage()
+    current_hour = datetime.now().strftime("%Y-%m-%d_%H")
+
+    data_file = "/usr/local/nginx/html/transproxy_admin/system_usage.json"
+    if os.path.exists(data_file):
+        with open(data_file, "r") as json_file:
+            data = json.load(json_file)
+    else:
+        data = {}
+
+    prev_hour = (datetime.now() - timedelta(hours=1)).strftime("%Y-%m-%d_%H")
+    if prev_hour in data:
+        prev_net_usage = data[prev_hour]["network_usage"]
+        # 修正：使用上一小时的“累计”字段来计算增量
+        rx_diff = network_usage["received_bytes"] - prev_net_usage["received_bytes_increment"]
+        tx_diff = network_usage["sent_bytes"] - prev_net_usage["sent_bytes_increment"]
+        if rx_diff < 0:
+            rx_diff = 0
+        if tx_diff < 0:
+            tx_diff = 0
+    else:
+        rx_diff = 0
+        tx_diff = 0
+
+    data[current_hour] = {
+        "system_usage": system_usage,
+        "network_usage": {
+            "received_bytes_increment": network_usage["received_bytes"],  # 当前累计
+            "sent_bytes_increment": network_usage["sent_bytes"],         # 当前累计
+            "received_bytes": rx_diff,                                   # 本小时增量
+            "sent_bytes": tx_diff                                        # 本小时增量
+        }
+    }
+
+    # 清理三天前的数据
+    three_days_ago = datetime.now() - timedelta(days=3)
+    keys_to_delete = [
+        key for key in data.keys()
+        if datetime.strptime(key, "%Y-%m-%d_%H") < three_days_ago
+    ]
+    for key in keys_to_delete:
+        del data[key]
+
+    with open(data_file, "w") as json_file:
+        json.dump(data, json_file, indent=4)
+
+
+if __name__ == "__main__":
+    save_usage_to_json()
+

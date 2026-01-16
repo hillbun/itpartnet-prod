@@ -1,0 +1,112 @@
+[2025-09-08 11:20:54] Memory usage is 2.00% (threshold: 1%)
+[2025-09-08 11:20:54] Disk usage on /usr/ is 38% (threshold: 1%)
+[2025-09-08 11:20:54] Disk usage on / is 32% (threshold: 1%)
+[2025-09-26 16:31:18] Memory usage is 2.00% (threshold: 1%)
+[2025-09-26 16:31:18] Disk usage on /usr/ is 48% (threshold: 1%)
+[2025-09-26 16:31:18] Disk usage on / is 36% (threshold: 1%)
+[2025-10-29 00:10:01] Disk usage on /opt/ is 91% (threshold: 85%)
+[2025-11-04 15:10:02] Disk usage on /opt/ is 51% (threshold: 50%) Waring
+[2025-11-04 16:10:02] Disk usage on /opt/ is 52% (threshold: 50%) Waring
+[2025-11-04 17:10:02] Disk usage on /opt/ is 54% (threshold: 50%) Waring
+[2025-11-04 18:10:02] Disk usage on /opt/ is 55% (threshold: 50%) Waring
+[2025-11-04 19:10:01] Disk usage on /opt/ is 57% (threshold: 50%) Waring
+[2025-11-04 20:10:01] Disk usage on /opt/ is 58% (threshold: 50%) Waring
+[2025-11-04 21:10:01] Disk usage on /opt/ is 60% (threshold: 50%) Waring
+[2025-11-04 22:10:01] Disk usage on /opt/ is 61% (threshold: 50%) Waring
+[2025-11-04 23:10:01] Disk usage on /opt/ is 63% (threshold: 50%) Waring
+[2025-11-05 00:10:14] Disk usage on /opt/ is 100% (threshold: 50%) Alert
+[2025-12-23 17:49:33] Disk usage on /usr/ is 98% (threshold: 80%)
+[2025-12-23 17:49:33] Disk usage on / is 100% (threshold: 80%)
+[2025-12-23 18:10:01] Disk usage on / is 100% (threshold: 80%)
+[2025-12-23 19:10:01] Disk usage on / is 100% (threshold: 80%)
+[2025-12-23 20:10:01] Disk usage on / is 100% (threshold: 80%)
+[2025-12-23 21:10:01] Disk usage on / is 100% (threshold: 80%)
+[2025-12-23 22:10:01] Disk usage on / is 100% (threshold: 80%)
+[2025-12-23 23:10:01] Disk usage on / is 100% (threshold: 80%)
+[2025-12-24 00:10:01] Disk usage on / is 100% (threshold: 80%)
+[2025-12-24 01:10:01] Disk usage on / is 100% (threshold: 80%)
+[2025-12-24 02:10:01] Disk usage on / is 100% (threshold: 80%)
+[2025-12-24 03:10:01] Disk usage on / is 100% (threshold: 80%)
+[2025-12-24 04:10:01] Disk usage on / is 100% (threshold: 80%)
+[2025-12-24 05:10:01] Disk usage on / is 100% (threshold: 80%)
+[2025-12-24 06:10:01] Disk usage on / is 100% (threshold: 80%)
+[2025-12-24 07:10:01] Disk usage on / is 100% (threshold: 80%)
+[2025-12-24 08:10:01] Disk usage on / is 100% (threshold: 80%)
+[2025-12-24 09:10:01] Disk usage on / is 100% (threshold: 80%)
+[2025-12-24 10:10:01] Disk usage on / is 100% (threshold: 80%)
+[2025-12-24 11:10:01] Disk usage on / is 100% (threshold: 80%)
+[2025-12-24 12:10:01] Disk usage on / is 100% (threshold: 80%)
+[2025-12-24 13:10:01] Disk usage on / is 100% (threshold: 80%)
+[2025-12-24 14:10:01] Disk usage on / is 100% (threshold: 80%)
+[2025-12-24 15:10:01] Disk usage on / is 100% (threshold: 80%)
+[2025-12-24 16:10:01] Disk usage on / is 100% (threshold: 80%)
+[2025-12-24 17:10:01] Disk usage on / is 100% (threshold: 80%)
+[2026-01-08 16:14:59] Memory usage is 2.00% (threshold: 1%)
+[2026-01-08 16:14:59] Disk usage on /usr/ is 34% (threshold: 80%)
+[2026-01-08 16:14:59] Disk usage on /opt/ is 2% (threshold: 1%) Waring
+[2026-01-08 16:14:59] Disk usage on / is 6% (threshold: 80%)
+[2026-01-14 11:31:21] Disk usage on /usr/ is 35% (threshold: 80%)
+[2026-01-14 11:31:21] Disk usage on /opt/ is 2% (threshold: 1%) Waring
+[2026-01-14 11:31:21] Disk usage on / is 10% (threshold: 80%)
+[2026-01-14 16:04:55] Disk usage on /usr/ is 35% (threshold: 80%)
+[2026-01-14 16:04:55] Disk usage on /opt/ is 2% (threshold: 1%) Waring
+[2026-01-14 16:04:55] Disk usage on / is 10% (threshold: 80%)
+[2026-01-14 16:04:57] Disk usage on /usr/ is 35% (threshold: 80%)
+[2026-01-14 16:04:57] Disk usage on /opt/ is 2% (threshold: 1%) Waring
+[2026-01-14 16:04:57] Disk usage on / is 10% (threshold: 80%)
+[2026-01-14 16:05:21] Disk usage on /usr/ is 35% (threshold: 80%)
+[2026-01-14 16:05:21] Disk usage on /opt/ is 2% (threshold: 1%) Waring
+[2026-01-14 16:05:21] Disk usage on / is 10% (threshold: 80%)
+[2026-01-14 16:07:30] Disk usage on /usr/ is 35% (threshold: 80%)
+[2026-01-14 16:07:30] Disk usage on /opt/ is 2% (threshold: 1%) Waring
+[2026-01-14 16:07:30] Disk usage on / is 10% (threshold: 80%)
+[2026-01-14 16:10:01] Disk usage on /usr/ is 35% (threshold: 80%)
+[2026-01-14 16:10:01] Disk usage on /opt/ is 2% (threshold: 1%) Waring
+[2026-01-14 16:10:01] Disk usage on / is 10% (threshold: 80%)
+[2026-01-14 16:20:01] Disk usage on /usr/ is 35% (threshold: 80%)
+[2026-01-14 16:20:01] Disk usage on /opt/ is 2% (threshold: 1%) Waring
+[2026-01-14 16:20:01] Disk usage on / is 10% (threshold: 80%)
+[2026-01-14 16:30:01] Disk usage on /usr/ is 35% (threshold: 80%)
+[2026-01-14 16:30:01] Disk usage on /opt/ is 2% (threshold: 1%) Waring
+[2026-01-14 16:30:01] Disk usage on / is 10% (threshold: 80%)
+[2026-01-14 16:40:01] Disk usage on /usr/ is 35% (threshold: 80%)
+[2026-01-14 16:40:01] Disk usage on /opt/ is 2% (threshold: 1%) Waring
+[2026-01-14 16:40:01] Disk usage on / is 10% (threshold: 80%)
+[2026-01-14 16:50:01] Disk usage on /usr/ is 35% (threshold: 80%)
+[2026-01-14 16:50:01] Disk usage on /opt/ is 2% (threshold: 1%) Waring
+[2026-01-14 16:50:01] Disk usage on / is 10% (threshold: 80%)
+[2026-01-14 17:00:01] Disk usage on /usr/ is 35% (threshold: 80%)
+[2026-01-14 17:00:01] Disk usage on /opt/ is 2% (threshold: 1%) Waring
+[2026-01-14 17:00:01] Disk usage on / is 10% (threshold: 80%)
+[2026-01-14 17:10:01] Disk usage on /usr/ is 35% (threshold: 80%)
+[2026-01-14 17:10:01] Disk usage on /opt/ is 2% (threshold: 1%) Waring
+[2026-01-14 17:10:01] Disk usage on / is 10% (threshold: 80%)
+[2026-01-14 17:20:01] Disk usage on /usr/ is 35% (threshold: 80%)
+[2026-01-14 17:20:01] Disk usage on /opt/ is 2% (threshold: 1%) Waring
+[2026-01-14 17:20:01] Disk usage on / is 10% (threshold: 80%)
+[2026-01-14 17:30:01] Disk usage on /usr/ is 35% (threshold: 80%)
+[2026-01-14 17:30:01] Disk usage on /opt/ is 2% (threshold: 1%) Waring
+[2026-01-14 17:30:01] Disk usage on / is 10% (threshold: 80%)
+[2026-01-14 17:40:01] Disk usage on /usr/ is 35% (threshold: 80%)
+[2026-01-14 17:40:01] Disk usage on /opt/ is 2% (threshold: 1%) Waring
+[2026-01-14 17:40:01] Disk usage on / is 23% (threshold: 80%)
+[2026-01-14 17:50:01] Disk usage on /usr/ is 35% (threshold: 80%)
+[2026-01-14 17:50:01] Disk usage on /opt/ is 2% (threshold: 1%) Waring
+[2026-01-14 17:50:01] Disk usage on / is 23% (threshold: 80%)
+[2026-01-14 18:00:01] Disk usage on /usr/ is 35% (threshold: 80%)
+[2026-01-14 18:00:01] Disk usage on /opt/ is 2% (threshold: 1%) Waring
+[2026-01-14 18:00:01] Disk usage on / is 23% (threshold: 80%)
+[2026-01-14 18:10:01] Disk usage on /usr/ is 35% (threshold: 80%)
+[2026-01-14 18:10:01] Disk usage on /opt/ is 2% (threshold: 1%) Waring
+[2026-01-14 18:10:01] Disk usage on / is 23% (threshold: 80%)
+[2026-01-14 18:20:01] Disk usage on /usr/ is 35% (threshold: 80%)
+[2026-01-14 18:20:01] Disk usage on /opt/ is 2% (threshold: 1%) Waring
+[2026-01-14 18:20:01] Disk usage on / is 23% (threshold: 80%)
+[2026-01-14 18:23:14] Disk usage on /usr/ is 35% (threshold: 80%)
+[2026-01-14 18:23:14] Disk usage on /opt/ is 2% (threshold: 1%) Waring
+[2026-01-14 18:23:14] Disk usage on / is 23% (threshold: 80%)
+[2026-01-15 16:00:54] Disk usage on /usr/ is 35% (threshold: 80%)
+[2026-01-15 16:00:54] Disk usage on /opt/ is 2% (threshold: 1%) Waring
+[2026-01-15 16:00:54] Disk usage on / is 23% (threshold: 80%)
+[2026-01-15 16:00:54] Disk usage on /var is 7% (threshold: 1%) Waring
+[2026-01-15 16:06:23] Disk usage on /usr/ is 35% (threshold: 30%)

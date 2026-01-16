@@ -1,0 +1,87 @@
+error: destination /opt/squid/var/log/access.log-20251002.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/cache.log-20251002.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/access-tianji-blacklist.log-20251002.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/access.log-20251003.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/cache.log-20251003.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/access-tianji-blacklist.log-20251003.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/access.log-20251004.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/cache.log-20251004.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/access-tianji-blacklist.log-20251004.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/access.log-20251005.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/cache.log-20251005.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/access-tianji-blacklist.log-20251005.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/access.log-20251006.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/cache.log-20251006.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/access-tianji-blacklist.log-20251006.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/access.log-20251007.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/cache.log-20251007.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/access-tianji-blacklist.log-20251007.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/access.log-20251009.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/cache.log-20251009.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/access-tianji-blacklist.log-20251009.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/access.log-20251010.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/cache.log-20251010.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/access-tianji-blacklist.log-20251010.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/access.log-20251011.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/cache.log-20251011.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/access-tianji-blacklist.log-20251011.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/access.log-20251012.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/cache.log-20251012.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/access-tianji-blacklist.log-20251012.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/access.log-20251013.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/cache.log-20251013.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/access-tianji-blacklist.log-20251013.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/access.log-20251014.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/cache.log-20251014.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/access-tianji-blacklist.log-20251014.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/access.log-20251015.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/cache.log-20251015.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/access-tianji-blacklist.log-20251015.gz already exists, skipping rotation
+error: error writing to /opt/squid/var/log/cache.log-20251105: No space left on device
+error: error copying /opt/squid/var/log/cache.log to /opt/squid/var/log/cache.log-20251105: No sbash: 5: command not found...
+error: error switching euid to 661 and egid to 661: Operation not permitted
+error: error creating output file /var/lib/logrotate/logrotate.status.tmp: Permission denied
+error: error switching euid to 661 and egid to 661: Operation not permitted
+error: error creating output file /var/lib/logrotate/logrotate.status.tmp: Permission denied
+error: destination /opt/squid/var/log/access.log-20260110.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/cache.log-20260110.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/access-tianji-blacklist.log-20260110.gz already exists, skipping rotation
+sudo: 1 incorrect password attempt
+sudo: a password is required
+sudo: 3 incorrect password attempts
+error: destination /opt/squid/var/log/access.log-20260110.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/cache.log-20260110.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/access-tianji-blacklist.log-20260110.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/access.log-20260110.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/cache.log-20260110.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/access-tianji-blacklist.log-20260110.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/access.log-20260110.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/cache.log-20260110.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/access-tianji-blacklist.log-20260110.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/access.log-20260110.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/cache.log-20260110.gz already exists, skipping rotation
+error: destination /opt/squid/var/log/access-tianji-blacklist.log-20260110.gz already exists, skipping rotation
+sudo: sorry, you must have a tty to run sudo
+error: failed to rename /opt/nginx/logs/access_oproxy.log to /opt/nginx/logs/access_oproxy.log-20260111: Permission denied
+error: /opt/logrotate/etc/python_prod_logs:10 extra arguments for create
+error: found error in /opt/py_prod/log/*.log , skipping
+sudo: sorry, you must have a tty to run sudo
+error: failed to rename /opt/nginx/logs/access_oproxy.log to /opt/nginx/logs/access_oproxy.log-20260112: Permission denied
+error: /opt/logrotate/etc/python_prod_logs:10 extra arguments for create
+error: found error in /opt/py_prod/log/*.log , skipping
+sudo: sorry, you must have a tty to run sudo
+error: failed to rename /opt/nginx/logs/access_oproxy.log to /opt/nginx/logs/access_oproxy.log-20260113: Permission denied
+error: /opt/logrotate/etc/python_prod_logs:10 extra arguments for create
+error: found error in /opt/py_prod/log/*.log , skipping
+sudo: sorry, you must have a tty to run sudo
+error: failed to rename /opt/nginx/logs/access_oproxy.log to /opt/nginx/logs/access_oproxy.log-20260114: Permission denied
+error: /opt/logrotate/etc/python_prod_logs:10 extra arguments for create
+error: found error in /opt/py_prod/log/*.log , skipping
+sudo: sorry, you must have a tty to run sudo
+error: failed to rename /opt/nginx/logs/access_oproxy.log to /opt/nginx/logs/access_oproxy.log-20260115: Permission denied
+error: /opt/logrotate/etc/python_prod_logs:10 extra arguments for create
+error: found error in /opt/py_prod/log/*.log , skipping
+sudo: sorry, you must have a tty to run sudo
+error: failed to rename /opt/nginx/logs/access_oproxy.log to /opt/nginx/logs/access_oproxy.log-20260116: Permission denied
+error: /opt/logrotate/etc/python_prod_logs:10 extra arguments for create
+error: found error in /opt/py_prod/log/*.log , skipping
