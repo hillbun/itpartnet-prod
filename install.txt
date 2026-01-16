@@ -1462,3 +1462,29 @@ netstat -ant | awk 'NR>2 {count[$4" "$5]++} END {for (c in count) print count[c]
 
 ss -o state time-wait | tail -n +2 | sort -k6 -h
 
+
+---
+| 参数                    | 作用                  |
+| --------------------- | ------------------- |
+| `client_lifetime`     | 控制单个客户端连接的最大存活时间    |
+| `client_idle_timeout` | 控制空闲多久的连接会被关闭       |
+| `max_filedesc`        | 文件描述符总数上限，间接限制最大连接数 |
+
+
+client_ip_max_connections：限制 单个客户端 IP 的最大并发连接数，默认是 无限制（no limit）
+
+
+# 统计代理到上游的 ESTABLISHED + TIME_WAIT 连接数
+AGENT_CONN=$(ss -H -o state established '( sport = :1024-65535 )' | wc -l)
+
+
+if [ "$AGENT_CONN" -gt 64000 ]; then
+    iptables -I INPUT -p tcp --dport 3128 -j REJECT
+else
+    iptables -D INPUT -p tcp --dport 3128 -j REJECT
+fi
+
+
+---
+/opt/squid/bin/squidclient -h 127.0.0.1 -p 8080 mgr:connections
+
