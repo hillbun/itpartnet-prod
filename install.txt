@@ -1412,5 +1412,11 @@ chmod g+w /opt/nginx/html/threat/archive
 # user -> proxy (目标端口为8080)
 USER_TO_PROXY=$(ss -ant | awk '$1=="ESTAB" && $4 ~ /:8080$/ {count++} END {print count+0}')
 
+ss -ant state established '( sport = :8080 )' | wc -l
+
+
+
+
 # proxy -> outside (非8080端口, 非127.0.0.1, 目标端口为80或443)
 PROXY_TO_OUTSIDE=$(ss -ant | awk '$1=="ESTAB" && $4 !~ /:8080$/ && $5 !~ /:8080$/ && $5 !~ /^127\.0\.0\.1:/ && $5 ~ /:(80|443)$/ {count++} END {print count+0}')
+
