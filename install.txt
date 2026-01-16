@@ -1460,3 +1460,5 @@ netstat -na | awk 'NR>2 && $5 != "0.0.0.0:*" {count[$5]++} END {for (addr in cou
 
 netstat -ant | awk 'NR>2 {count[$4" "$5]++} END {for (c in count) print count[c], c}' | sort -rn | head -10
 
+ss -o state time-wait | tail -n +2 | sort -k6 -h
+
