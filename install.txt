@@ -1488,3 +1488,6 @@ fi
 ---
 /opt/squid/bin/squidclient -h 127.0.0.1 -p 8080 mgr:connections
 
+--
+ss -ant | awk 'NR>1 && $5 !~ /^\*:/ && $5 !~ /^127\./ && $5 !~ /^:::/ {print $1":"$5}' | sort | uniq -c | sort -rn
+
