@@ -1576,3 +1576,6 @@ ESTAB      0      0      192.168.152.101:50434    52.70.125.53:443
 --
 ss -ant | awk '$5 ~ /:8080$/ && $1 != "LISTEN" {split($6,arr,":"); ip=arr[1]; count[ip]++} END {for(ip in count) print count[ip], ip}' | sort -rn
 
+
+
+
