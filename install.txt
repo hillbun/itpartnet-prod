@@ -1600,5 +1600,5 @@ END {
     for (ip in count) {
         print ip ": " count[ip]
     }
-}'
+}' | sort -t: -k2 -nr
 
