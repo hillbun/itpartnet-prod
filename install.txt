@@ -1577,5 +1577,28 @@ ESTAB      0      0      192.168.152.101:50434    52.70.125.53:443
 ss -ant | awk '$5 ~ /:8080$/ && $1 != "LISTEN" {split($6,arr,":"); ip=arr[1]; count[ip]++} END {for(ip in count) print count[ip], ip}' | sort -rn
 
 
-
+ss -ant | awk '
+$1 == "ESTAB" && $4 ~ /:8080$/ {
+    peer = $5
+    # 提取IP部分
+    if (peer ~ /^\[/) {
+        gsub(/.*\[|\].*/, "", peer)
+    } else {
+        split(peer, a, ":")
+        peer = a[1]
+    }
+    
+    if (peer != "") {
+        # 处理IPv4映射的IPv6地址
+        if (peer ~ /^::ffff:/) {
+            peer = substr(peer, 8)
+        }
+        count[peer]++
+    }
+}
+END {
+    for (ip in count) {
+        print ip ": " count[ip]
+    }
+}'
 
