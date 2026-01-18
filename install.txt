@@ -1491,3 +1491,6 @@ fi
 --
 ss -ant | awk 'NR>1 && $5 !~ /^\*:/ && $5 !~ /^127\./ && $5 !~ /^:::/ {print $1":"$5}' | sort | uniq -c | sort -rn
 
+ss -ant | awk 'NR>1 {split($4, a, ":"); if (a[2] != 8080) count++} END {print count}'
+
+
