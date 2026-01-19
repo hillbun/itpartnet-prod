@@ -1,0 +1,337 @@
+http://proxypac.ha.org.hk/open2.pac
+
+function FindProxyForURL(url, host)
+{
+	var lcurl=url.toLowerCase();
+	var lchost=host.toLowerCase();
+
+if (
+	dnsDomainIs(lchost, "ekg.org.hk")  ||
+	dnsDomainIs(lchost, ".ekg.org.hk")
+)
+ return "DIRECT" ;
+
+else if (
+    dnsDomainIs(lchost, "zoom.us") ||
+	dnsDomainIs(lchost, ".zoomgov.com") ||
+	dnsDomainIs(lchost, ".zoomonprem.com") ||
+	dnsDomainIs(lchost, ".qsh1.cn") ||
+	dnsDomainIs(lchost, ".quanshi.com") ||
+	dnsDomainIs(lchost, ".quan.sinosdwan.net") ||
+	dnsDomainIs(lchost, "quanshihuiyi.com") ||
+	dnsDomainIs(lchost, "quanshimeeting.com") ||
+	dnsDomainIs(lchost, "199.59.231.183") ||
+	dnsDomainIs(lchost, "159.100.206.168") ||
+	dnsDomainIs(lchost, "159.100.206.84") ||
+	dnsDomainIs(lchost, "159.100.206.227") ||
+	dnsDomainIs(lchost, "199.59.231.188") ||
+	dnsDomainIs(lchost, "167.179.32.57") ||
+	dnsDomainIs(lchost, "199.59.231.119") ||
+	dnsDomainIs(lchost, "159.100.206.33") ||
+	dnsDomainIs(lchost, "140.179.236.32") ||
+	dnsDomainIs(lchost, "140.179.235.47") ||
+	dnsDomainIs(lchost, "140.179.236.6") ||
+	dnsDomainIs(lchost, "159.100.206.203") ||
+	dnsDomainIs(lchost, "212.59.90.228") ||
+	dnsDomainIs(lchost, ".quanshimeet.com") ||
+	dnsDomainIs(lchost, ".quanshimeet.cn") ||
+	dnsDomainIs(lchost, ".gnetmeet.com") ||
+	dnsDomainIs(lchost, ".quanshicloud.com") ||
+	dnsDomainIs(lchost, ".qsh1.com")
+)
+ return "PROXY mproxy.ha.org.hk:8080";
+
+else if (
+	dnsDomainIs(lchost, ".ccgo.hksarg") ||
+	dnsDomainIs(lchost, "phis.ccgo.hksarg") ||
+	dnsDomainIs(lchost, "webrat.ext.ha.org.hk") ||
+	shExpMatch(lcurl, "https://10.13.170.241/hrmis*") ||
+	dnsDomainIs(lchost, ".dh.hksarg") ||
+	dnsDomainIs(lchost, ".csdi-devb.hksarg") ||
+	dnsDomainIs(lchost, "recon-portal.hhbeh0.ehro.hksarg") ||
+	dnsDomainIs(lchost, ".eim.hksarg")
+)
+ return "PROXY extpx.ha.org.hk:8080";
+
+else if (
+	dnsDomainIs(lchost, ".core.ehr2.gov.hk") ||
+	dnsDomainIs(lchost, ".uat.ehr2.gov.hk") ||
+	dnsDomainIs(lchost, "sit.ehr2.gov.hk") ||
+	dnsDomainIs(lchost, ".core.dhc.gov.hk") ||
+	dnsDomainIs(lchost, "dap-dashboard.uat.ehro.hksarg") ||
+	dnsDomainIs(lchost, "dap-dashboard.core.ehro.hksarg")
+)
+ return "PROXY ehrpx.ha.org.hk:8080";
+
+else if (
+	dnsDomainIs(lchost, ".uat.ehr.gov.hk") ||
+	dnsDomainIs(lchost, ".portaluat.ehealth.gov.hk")
+)
+ return "PROXY mdepx.ha.org.hk:8080";
+
+else if (
+	dnsDomainIs(lchost, "192.168.50.217")
+)
+ return "PROXY 192.168.50.217:8080";
+
+else if (
+	dnsDomainIs(lchost, "192.168.50.218")
+)
+ return "PROXY 192.168.50.218:8080";
+ 
+else if (
+	dnsDomainIs(lchost, "192.168.50.219")
+)
+ return "PROXY 192.168.50.219:8080";
+ 
+else if (
+	dnsDomainIs(lchost, "192.168.150.217")
+)
+ return "PROXY 192.168.150.217:8080";
+
+else if (
+	dnsDomainIs(lchost, "192.168.150.218")
+)
+ return "PROXY 192.168.150.218:8080";
+
+else if (
+	dnsDomainIs(lchost, "192.168.150.219")
+)
+ return "PROXY 192.168.150.219:8080";
+
+else if (
+	dnsDomainIs(lchost, "192.168.50.230")
+)
+ return "PROXY 192.168.50.230:8080";
+
+else if (
+	dnsDomainIs(lchost, "192.168.150.230")
+)
+ return "PROXY 192.168.150.230:8080";
+
+else if (
+	dnsDomainIs(lchost, "192.168.150.234")
+)
+ return "PROXY 192.168.150.234:8080";
+ 
+else if (
+	dnsDomainIs(lchost, "192.168.52.208")
+)
+ return "PROXY 192.168.52.208:8080";
+
+else if (
+	dnsDomainIs(lchost, "192.168.52.203")
+)
+ return "PROXY 192.168.52.203:8080";
+
+else if (
+	dnsDomainIs(lchost, "192.168.152.251")
+)
+ return "PROXY 192.168.152.251:8080";
+
+else if (
+	dnsDomainIs(lchost, "192.168.50.72")
+)
+ return "PROXY 192.168.50.72:8080";
+
+else if (
+	dnsDomainIs(lchost, "192.168.150.69")
+)
+ return "PROXY 192.168.150.69:8080";
+
+else if (
+	dnsDomainIs(lchost, "192.168.150.70")
+)
+ return "PROXY 192.168.150.70:8080";
+
+else if (
+	dnsDomainIs(lchost, "192.168.52.210")
+)
+ return "PROXY 192.168.52.210:8080";
+
+else if (
+	dnsDomainIs(lchost, "192.168.152.210")
+)
+ return "PROXY 192.168.152.210:8080";
+
+else if (
+	dnsDomainIs(lchost, "192.168.152.211")
+)
+ return "PROXY 192.168.152.211:8080";
+
+else if (
+	dnsDomainIs(lchost, "cmc.antitb.org.hk") ||
+	dnsDomainIs(lchost, "pwhhope.weebly.com") ||
+	dnsDomainIs(lchost, "vis.ha.org.hk") ||
+	dnsDomainIs(lchost, "www2.ha.org.hk") ||
+	dnsDomainIs(lchost, "data.ha.org.hk") ||
+	dnsDomainIs(lchost, "nltd-enquiry.ha.org.hk") ||
+	dnsDomainIs(lchost, "www2-stg.ha.org.hk") ||
+	dnsDomainIs(lchost, "www2-dev.ha.org.hk") ||
+	dnsDomainIs(lchost, "api.ha.org.hk") ||
+	dnsDomainIs(lchost, "hagithub.ha.org.hk") ||
+	dnsDomainIs(lchost, ".hago.ha.org.hk") ||
+	dnsDomainIs(lchost, "vmc.ha.org.hk") ||
+	dnsDomainIs(lchost, "kecsys.ha.org.hk") ||
+	dnsDomainIs(lchost, "ewsecal.ha.org.hk") ||
+	dnsDomainIs(lchost, "hacopilot.ha.org.hk") ||
+	dnsDomainIs(lchost, "ccps.ha.org.hk") ||
+	dnsDomainIs(lchost, "sfecal.ha.org.hk") ||
+	dnsDomainIs(lchost, "cams.ha.org.hk") ||
+	dnsDomainIs(lchost, "clmdm.ha.org.hk") ||
+	dnsDomainIs(lchost, "clmdmdev.ha.org.hk") ||
+	dnsDomainIs(lchost, "ccpcc2026hk.ha.org.hk")
+)
+ return "PROXY opp.ha.org.hk:8080";
+
+else if (
+	dnsDomainIs(lchost, "gs.apple.com")
+)
+ return "PROXY tproxy.ha.org.hk:8080";
+
+else if (
+	isPlainHostName(lchost) ||
+	dnsDomainIs(lchost, "160.101.21.23") ||
+	dnsDomainIs(lchost, "160.101.21.24") ||
+	dnsDomainIs(lchost, "160.101.21.25") ||
+	dnsDomainIs(lchost, "160.101.21.26") ||
+	dnsDomainIs(lchost, "160.101.21.36") ||
+	dnsDomainIs(lchost, "160.101.21.37") ||
+	dnsDomainIs(lchost, "160.101.153.150") ||
+	shExpMatch(lcurl,"http://hoit.*") ||
+	shExpMatch(lcurl,"http://nte*.*") ||
+	shExpMatch(lcurl,"http://ntec.*") ||
+	shExpMatch(lcurl,"http://kwh.*") ||
+	shExpMatch(lcurl,"http://pwh*.*") ||
+	shExpMatch(lcurl,"http:///pwh.*") ||
+	shExpMatch(lcurl,"http://uch.*") ||
+	shExpMatch(lcurl,"http://uch*") ||
+	shExpMatch(lcurl,"http://*.home/*") ||
+	shExpMatch(lcurl,"https://*.home/*") ||
+	shExpMatch(lcurl, "http://webtest:8590.*") ||
+	shExpMatch(lcurl, "http://pyn_dcms*") ||
+	shExpMatch(lcurl,"http://188.*") ||
+	shExpMatch(lcurl,"http://185.*") ||
+	dnsDomainIs(lchost, "184.1.7.87") ||
+	dnsDomainIs(lchost, "184.1.7.88") ||
+	dnsDomainIs(lchost, "160.87.20.5") ||
+	dnsDomainIs(lchost, "184.1.7.41") ||
+	dnsDomainIs(lchost, "160.7.13.55") ||
+	dnsDomainIs(lchost, "160.8.12.4") ||
+	dnsDomainIs(lchost, "160.41.19.139") ||
+	dnsDomainIs(lchost, "160.19.55.192") || 
+	dnsDomainIs(lchost, "179.101.7.9") ||
+	dnsDomainIs(lchost, "180.19.7.100") ||
+	dnsDomainIs(lchost, "186.19.8.248") ||
+	dnsDomainIs(lchost, "186.101.8.75") ||
+	dnsDomainIs(lchost, "176.19.8.155") ||
+	dnsDomainIs(lchost, "127.0.0.1") ||
+	dnsDomainIs(lchost, ".home") ||
+	dnsDomainIs(lchost, ".pdc") ||
+	( dnsDomainIs(lchost, ".eis") && !(dnsDomainIs(lchost, ".eiss")) ) ||
+	dnsDomainIs(lchost, ".erms") ||
+	dnsDomainIs(lchost, "pmh.pathology") ||
+	dnsDomainIs(lchost, "pmh.apps1") ||
+	dnsDomainIs(lchost, "ha.nrr") ||
+	dnsDomainIs(lchost, "183.30.7.71") ||
+	dnsDomainIs(lchost, "160.81.16.103") ||
+	dnsDomainIs(lchost, "160.19.12.9") ||
+	(shExpMatch(lcurl, "http://dp.*") && dnsDomainIs(lchost, ".hksarg")) ||
+	(shExpMatch(lcurl, "https://dp.*") && dnsDomainIs(lchost, ".hksarg")) ||
+	shExpMatch(lcurl,"http://172.16.*") ||
+	shExpMatch(lcurl,"http://172.17.*") ||
+	shExpMatch(lcurl,"http://172.18.*") ||
+	shExpMatch(lcurl,"http://172.19.*") ||
+	shExpMatch(lcurl,"http://172.20.*") ||
+	shExpMatch(lcurl,"http://172.21.*") ||
+	shExpMatch(lcurl,"http://172.22.*") ||
+	shExpMatch(lcurl,"http://172.23.*") ||
+	shExpMatch(lcurl,"http://172.24.*") ||
+	shExpMatch(lcurl,"http://172.25.*") ||
+	shExpMatch(lcurl,"http://172.26.*") ||
+	shExpMatch(lcurl,"http://172.27.*") ||
+	shExpMatch(lcurl,"http://172.28.*") ||
+	shExpMatch(lcurl,"http://172.29.*") ||
+	shExpMatch(lcurl,"http://172.30.*") ||
+	shExpMatch(lcurl,"http://172.31.*") ||
+	shExpMatch(lcurl,"http://192.168.*") ||
+	shExpMatch(lcurl,"http://10.*") ||
+	shExpMatch(lcurl,"https://172.16.*") ||
+	shExpMatch(lcurl,"https://172.17.*") ||
+	shExpMatch(lcurl,"https://172.18.*") ||
+	shExpMatch(lcurl,"https://172.19.*") ||
+	shExpMatch(lcurl,"https://172.20.*") ||
+	shExpMatch(lcurl,"https://172.21.*") ||
+	shExpMatch(lcurl,"https://172.22.*") ||
+	shExpMatch(lcurl,"https://172.23.*") ||
+	shExpMatch(lcurl,"https://172.24.*") ||
+	shExpMatch(lcurl,"https://172.25.*") ||
+	shExpMatch(lcurl,"https://172.26.*") ||
+	shExpMatch(lcurl,"https://172.27.*") ||
+	shExpMatch(lcurl,"https://172.28.*") ||
+	shExpMatch(lcurl,"https://172.29.*") ||
+	shExpMatch(lcurl,"https://172.30.*") ||
+	shExpMatch(lcurl,"https://172.31.*") ||
+	shExpMatch(lcurl,"https://192.168.*") ||
+	shExpMatch(lcurl,"https://10.*") ||
+	dnsDomainIs(lchost, "182.19.9.199") ||
+	dnsDomainIs(lchost, ".ha.org.hk")  ||
+	dnsDomainIs(lchost, "160.44.150.1") ||
+	dnsDomainIs(lchost, "160.30.30.33") ||
+	shExpMatch(lcurl,"http://cmc.*") ||
+	shExpMatch(lcurl,"http://cmc*") ||
+	shExpMatch(lcurl,"http://hacmc*") ||
+	dnsDomainIs(lchost, "160.80.25.1")  ||
+	dnsDomainIs(lchost, "160.80.25.2")  ||
+	dnsDomainIs(lchost, "160.84.25.4")  ||
+	dnsDomainIs(lchost, "160.84.25.5")  ||
+	shExpMatch(lcurl,"http://dp.home.*") ||
+	dnsDomainIs(lchost, "160.54.34.154") ||
+	dnsDomainIs(lchost, "160.54.34.155") ||
+	dnsDomainIs(lchost, "160.54.34.157") ||
+	dnsDomainIs(lchost, "kwhexg2") ||
+	dnsDomainIs(lchost, "160.69.159.2") ||
+	dnsDomainIs(lchost, "160.22.154.41") ||
+	dnsDomainIs(lchost, "160.19.152.150") ||
+	dnsDomainIs(lchost, "160.8.230.66") ||
+	dnsDomainIs(lchost, "160.85.26.5") ||
+	dnsDomainIs(lchost, "160.84.104.1") ||
+	dnsDomainIs(lchost, "160.85.28.21") ||
+	dnsDomainIs(lchost, "160.84.28.24") ||
+	dnsDomainIs(lchost, "oc-jfsc-app1") ||
+	dnsDomainIs(lchost, "160.10.230.41") ||
+	dnsDomainIs(lchost, "160.55.231.233") ||
+	dnsDomainIs(lchost, "160.55.231.248") ||
+	shExpMatch(lcurl,"http://160.87.76.*") ||
+	shExpMatch(lcurl,"http://160.88.57.*") ||
+	shExpMatch(lcurl,"http://*.cms/*") ||
+	shExpMatch(lcurl,"https://*.cms/*") ||
+	dnsDomainIs(lchost, "160.88.107.159") ||
+	dnsDomainIs(lchost, "160.88.107.30") ||
+	dnsDomainIs(lchost, "160.93.107.20") ||
+	dnsDomainIs(lchost, "160.88.107.21") ||
+	dnsDomainIs(lchost, ".cldpaast1") ||
+	dnsDomainIs(lchost, ".cldpaast71") ||
+	shExpMatch(lcurl,"http://160.87.83.*") ||
+	shExpMatch(lcurl,"http://160.89.57.*") ||
+	dnsDomainIs(lchost, ".cmseap") ||
+	dnsDomainIs(lchost, "cldpaast71.serverdev.hadev.org.hk") ||
+	dnsDomainIs(lchost, "tstcld61.serverdev.hadev.org.hk") ||
+	dnsDomainIs(lchost, "tstcld62.serverdev.hadev.org.hk") ||
+	dnsDomainIs(lchost, "cmseap-corp-miscg-sit.serverdev.hadev.org.hk") ||
+	dnsDomainIs(lchost, "cs5-corp-misc5-dev.serverdev.hadev.org.hk") ||
+	dnsDomainIs(lchost, "cmseap-corp-mobile-sit.serverdev.hadev.org.hk") ||
+	dnsDomainIs(lchost, "mail.cmmp.hksarg")
+)
+ return "DIRECT" ;
+
+else
+ return "PROXY opp.ha.org.hk:8080" ;
+}
+
+
+   DNS Servers . . . . . . . . . . . : 160.87.34.103
+                                       160.88.82.103
+                                       160.88.81.101
+
+
