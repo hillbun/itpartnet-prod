@@ -20,6 +20,15 @@
 ### chmod g+w /opt/nginx/html/transproxy_admin/public/fileData/threat/*.txt
 ### chmod g+w /opt/nginx/html/threat/archive
 ### chmod 644 /etc/logrotate.d/squid
+
+        - /opt/nginx/html/transproxy_admin/system_usage.json
+        - /opt/nginx/html/transproxy_admin/public/fileData/threat/netstat_status.json
+        - /opt/nginx/html/transproxy_admin/public/fileData/threat/blacklist_summary.json
+        - /opt/nginx/html/transproxy_admin/public/fileData/threat/week_top_ip_10.json
+        - /opt/nginx/html/transproxy_admin/public/fileData/threat/week_top_url_10.json
+        - /opt/nginx/html/transproxy_admin/public/fileData/threat/logstatus_7days.json
+
+
 ### create account logreader
 ### run logrote as logreader
 ### run crontab as logreader
