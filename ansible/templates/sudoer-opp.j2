@@ -1,4 +1,5 @@
 # Allows logreader user to sudo cmd list without password
+Defaults:logreader !requiretty
 Cmnd_Alias LOGREADER_SUDO_CMD = /usr/bin/systemctl * nginx, \
                                 /usr/bin/systemctl * squid, \
                                 /usr/bin/systemctl * redis, \
