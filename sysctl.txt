@@ -1,0 +1,35 @@
+# Controls the System Request debugging functionality of the kernel
+kernel.sysrq = 1
+
+# Controls IP packet forwarding
+net.ipv4.ip_forward = 0
+
+# Do not accept source routing
+net.ipv4.conf.default.accept_source_route = 0
+
+# Local port range
+net.ipv4.ip_local_port_range = 1024 65535
+
+# Do not accept redirect packets
+net.ipv4.conf.all.accept_redirects = 0
+net.ipv4.conf.default.accept_redirects = 0
+net.ipv4.conf.all.secure_redirects = 0
+net.ipv4.conf.default.secure_redirects = 0
+
+# Accept asymmetrically routed (outgoing routes and incoming routes are differen
+t) packets
+net.ipv4.conf.all.rp_filter = 1
+net.ipv4.conf.default.rp_filter = 1
+
+### Increase Process Identifiers Limit (PID) ###
+kernel.pid_max=65536
+vm.min_free_kbytes = 1048576
+
+#### BEGIN ADDED BY OPP INSTALLATION ####
+vm.overcommit_memory = 1
+net.core.somaxconn = 512
+net.ipv4.icmp_echo_ignore_all = 0
+fs.file-max = 1000000
+net.ipv4.tcp_max_tw_buckets = 2000000
+#### END ADDED BY OPP INSTALLATION ####
+
