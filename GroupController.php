@@ -120,92 +120,6 @@ class GroupController extends Controller
 
     public function upDirinfo()
     {
-	
-        ini_set('memory_limit', '5G');
-        set_time_limit(0);
-        $host = $this->ladps['hostname'];
-        $port = $this->ladps['port'];
-        $user = $this->ladps['ladpdn'];
-        $pass = $this->ladps['password'];
-        $baseDn = $this->ladps['basedn'];
-
-        // ============ 基础配置 全部保留 无修改 ============
-        $retryTimes = 3;        // 失败重试次数，足够应对随机连接失败
-        $connectTimeout = 10;   // 连接超时时间（秒），内网最优值
-        $readTimeout = 30;      // 读写超时时间（秒），适配大量数据查询
-        // ============ 循环测试配置 ============
-        $testLoopNum = 20;      // 自定义连续测试次数，可改50/100次压测
-        $successNum = 0;        // 成功次数统计
-        $failNum = 0;           // 失败次数统计
-        $startTime = microtime(true);
-
-        // ============ 核心：循环测试LDAP连续连接 ============
-        echo "开始循环测试LDAP连接，总次数：{$testLoopNum} 次，单次重试{$retryTimes}次 \r\n";
-        for ($loop = 1; $loop <= $testLoopNum; $loop++) {
-            $ldapConn = false;
-            $bindSuccess = false;
-            $currentRetry = 0;
-            $loopErrorMsg = '';
-
-            // 单次连接的重试逻辑 - 核心逻辑不变
-            while ($currentRetry < $retryTimes && !$bindSuccess) {
-                // 创建LDAP连接
-                $ldapConn = ldap_connect($host, $port);
-                if (!$ldapConn) {
-                    $currentRetry++;
-                    usleep(500000); // 休眠500毫秒，避免高频请求触发防火墙限流
-                    continue;
-                }
-
-                // ============ PHP7.4 有效且必须的 LDAP核心稳定配置 全部保留 ============
-                ldap_set_option($ldapConn, LDAP_OPT_PROTOCOL_VERSION, 3); // ★必须配置，无则必失败
-                ldap_set_option($ldapConn, LDAP_OPT_REFERRALS, 0);        // ★关闭引用，查询更稳定
-                ldap_set_option($ldapConn, LDAP_OPT_NETWORK_TIMEOUT, $connectTimeout); // ★解决90%的超时抖动
-                ldap_set_option($ldapConn, LDAP_OPT_TIMELIMIT, $readTimeout);         // ★查询超时保护
-
-                // 绑定账号密码，屏蔽原生警告
-                $bindSuccess = @ldap_bind($ldapConn, $user, $pass);
-                if (!$bindSuccess) {
-                    $currentRetry++;
-                    $loopErrorMsg = $ldapConn ? ldap_error($ldapConn) : 'LDAP服务器连接创建失败';
-                    @ldap_unbind($ldapConn); // 释放失败连接，防止内存泄漏
-                    usleep(500000);
-                    continue;
-                }
-            }
-
-            // ============ 单次连接结果判断 ============
-            if ($bindSuccess && $ldapConn) {
-                $successNum++;
-                echo "【第{$loop}次】✅ LDAP连接&绑定成功 \r\n";
-                @ldap_unbind($ldapConn); // 仅需unbind即可，自动关闭连接，PHP7.4最优写法
-            } else {
-                $failNum++;
-                echo "【第{$loop}次】❌ LDAP连接失败，错误信息：{$loopErrorMsg} \r\n";
-                if($ldapConn) @ldap_unbind($ldapConn); // 容错释放，杜绝资源警告
-            }
-            // 模拟真实请求间隔，可删除
-            usleep(300000);
-        }
-
-        // ============ 测试完成-统计结果 ============
-        $endTime = microtime(true);
-        $totalTime = round($endTime - $startTime, 2);
-        echo "====================================================\r\n";
-        echo "✅ LDAP连续连接测试完成 | PHP7.4 无报错版 \r\n";
-        echo "总测试次数：{$testLoopNum} 次 \r\n";
-        echo "成功次数：{$successNum} 次 \r\n";
-        echo "失败次数：{$failNum} 次 \r\n";
-        echo "总耗时：{$totalTime} 秒 \r\n";
-        echo "成功率：" . round(($successNum/$testLoopNum)*100, 2) . "% \r\n";
-        echo "====================================================\r\n";
-
-        // 失败时终止程序（按需开启）
-        if ($failNum > 0) {
-            die("⚠️ LDAP连续连接异常，共失败{$failNum}次，请排查网络或LDAP服务！");
-        }
-        exit;
-	
         ini_set('memory_limit', '5G');
         set_time_limit(0);
         $host = $this->ladps['hostname'];
@@ -246,7 +160,8 @@ class GroupController extends Controller
             $bindSuccess = @ldap_bind($ldap, $user, $pass); // @屏蔽错误提示，自己控制重试逻辑
             if (!$bindSuccess) {
                 $currentRetry++;
-                ldap_close($ldap); // 关闭失败的连接，释放资源
+                ldap_unbind($ldap); // 关闭失败的连接，释放资源
+                $ldap = false; // 释放后标记为false，避免后续误用
                 usleep(500000);
                 continue;
             }
@@ -254,11 +169,15 @@ class GroupController extends Controller
 
         // ============ 最终判断：重试完还是失败，抛出异常 ============
         if (!$bindSuccess || !$ldap) {
-            $error = ldap_error($ldap); // 获取具体的LDAP错误信息
-            ldap_close($ldap);
+            // 先判断LDAP资源是否有效，再调用ldap_error
+            if ($ldap && is_resource($ldap) && get_resource_type($ldap) === 'ldap link') {
+                $error = ldap_error($ldap);
+                ldap_unbind($ldap);
+            } else {
+                $error = 'LDAP连接资源无效（可能是服务器不可达/连接被释放）';
+            }
             die("LDAP连接绑定失败，重试{$retryTimes}次均失败，错误信息：{$error}");
         }
-
 
         /* ---------- 2. 分页拉取全部节点 ---------- */
         $filter = '(|(objectClass=user)(objectClass=group)(objectClass=top))';
@@ -294,11 +213,10 @@ class GroupController extends Controller
             ldap_parse_result($ldap, $sr, $errcode, $matcheddn, $errmsg, $referrals, $serverControls);
             $cookie = $serverControls[LDAP_CONTROL_PAGEDRESULTS]['value']['cookie'] ?? '';
         } while (!empty($cookie));
-        //dd($nodes, $baseDn);
+
         $tree = $this->buildTreeFromNodes($nodes, $baseDn);
         $tree = $this->upAdinfo($ldap, $tree);
-        // LDAP操作全部完成后执行
-        ldap_unbind($ldap); // 解绑账号
+        ldap_unbind($ldap);
 
         Redis::set('tree_adinfo_content', json_encode($tree, true));
 
