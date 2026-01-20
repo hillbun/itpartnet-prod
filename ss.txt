@@ -84,8 +84,10 @@ ESTAB      0      0            127.0.0.1:12456       127.0.0.1:47619
 ESTAB      0      0      192.168.152.103:18450     4.145.79.81:443
 ESTAB      0      0      192.168.152.103:8080    160.22.40.101:52254
 
-请用一条ss命令，过滤出状态不是LISTEN，Local Address:Port中的Local Address不是127.0.0.1,Port不是8080的所有记录
-
-
+请用一条ss命令，过滤出状态不是LISTEN，Local Address:Port中的Local Address不是127.0.0.1, Port不是8080的所有记录
 ss -ant | awk '$1 != "LISTEN" && $4 !~ /^127\.0\.0\.1:/ && $4 !~ /:8080$/'
+
+---
+请用一条ss命令，过滤出状态不是LISTEN，Local Address:Port中的Local Address不是127.0.0.1, Port大于1024而且不是8080的所有记录
+ss -ant | awk '$1 != "LISTEN" && $4 !~ /^127\.0\.0\.1:/ && $4 !~ /:8080$/ && match($4, /:([0-9]+)$/, a) && a[1] > 1024'
 
