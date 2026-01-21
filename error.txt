@@ -41,3 +41,5 @@ ErrorException: ldap_bind(): Unable to bind to server: Can't contact LDAP server
 #38 {main}
 -->
 
+LDAP连接绑定失败，重试3次均失败，错误信息：LDAP连接资源无效（可能是服务器不可达/连接被释放）
+
