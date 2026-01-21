@@ -91,3 +91,86 @@ ss -ant | awk '$1 != "LISTEN" && $4 !~ /^127\.0\.0\.1:/ && $4 !~ /:8080$/'
 请用一条ss命令，过滤出状态不是LISTEN，Local Address:Port中的Local Address不是127.0.0.1, Port大于1024而且不是8080的所有记录
 ss -ant | awk '$1 != "LISTEN" && $4 !~ /^127\.0\.0\.1:/ && $4 !~ /:8080$/ && match($4, /:([0-9]+)$/, a) && a[1] > 1024'
 
+ss -ant | awk '$1 != "LISTEN" && $4 !~ /^127\.0\.0\.1:/ && $4 !~ /:8080$/ && match($4, /:([0-9]+)$/, a) && a[1] > 1024' | wc -l
+
+#!/bin/bash
+
+# 当前非监听、高端口 TCP 连接数
+conn_count=$(ss -ant | awk '$1 != "LISTEN" && $4 !~ /^127\.0\.0\.1:/ && $4 !~ /:8080$/ && match($4, /:([0-9]+)$/, a) && a[1] > 1024' | wc -l)
+
+# iptables 规则标记
+RULE_EXISTS=$(iptables -C INPUT -p tcp --dport 8080 -j REJECT 2>/dev/null)
+
+# 阈值
+THRESHOLD=100
+
+if [ "$conn_count" -ge "$THRESHOLD" ]; then
+    # 超过阈值，添加阻止规则（如果没添加过）
+    if [ -z "$RULE_EXISTS" ]; then
+        iptables -I INPUT -p tcp --dport 8080 -j REJECT
+        echo "$(date): 连接数 $conn_count ≥ $THRESHOLD，已阻止外部访问 8080"
+    fi
+else
+    # 低于阈值，删除阻止规则（如果存在）
+    if [ -n "$RULE_EXISTS" ]; then
+        iptables -D INPUT -p tcp --dport 8080 -j REJECT
+        echo "$(date): 连接数 $conn_count < $THRESHOLD，已恢复 8080 访问"
+    fi
+fi
+
+
+---
+
+#!/bin/bash
+
+# 当前非监听、高端口 TCP 连接数
+conn_count=$(ss -ant | awk '$1 != "LISTEN" && $4 !~ /^127\.0\.0\.1:/ && $4 !~ /:8080$/ && match($4, /:([0-9]+)$/, a) && a[1] > 1024' | wc -l)
+
+# 检查iptables规则是否存在
+iptables -C INPUT -p tcp --dport 8080 -j REJECT &>/dev/null
+# 根据返回值判断规则是否存在
+if [ $? -eq 0 ]; then
+    RULE_EXISTS=1
+else
+    RULE_EXISTS=0
+fi
+
+# 阈值
+THRESHOLD=100
+
+echo '1 - ' . $conn_count
+echo '2 - ' . $RULE_EXISTS
+echo '3 - ' . $THRESHOLD
+
+if [ "$conn_count" -ge "$THRESHOLD" ]; then
+    # 超过阈值，添加阻止规则（如果没添加过）
+    if [ $RULE_EXISTS -eq 0 ]; then
+	    echo "4"
+        iptables -I INPUT -p tcp --dport 8080 -j REJECT
+        #echo "$(date): 连接数 $conn_count ≥ $THRESHOLD，已阻止外部访问 8080"
+    else
+	    echo "5"
+	fi
+else
+    # 低于阈值，删除阻止规则（如果存在）
+    if [ $RULE_EXISTS -eq 1 ]; then
+	    echo "6"
+        iptables -D INPUT -p tcp --dport 8080 -j REJECT
+        #echo "$(date): 连接数 $conn_count < $THRESHOLD，已恢复 8080 访问"
+    fi
+    else
+	    echo "7"
+	fi
+fi
+
+
+
+
+if [ $RULE_EXISTS -eq 0 ]; then
+    iptables -I INPUT -p tcp --dport 8080 -j REJECT
+    echo "$(date): 连接数 $conn_count ≥ $THRESHOLD，已阻止外部访问 8080"
+else
+    # 在这里添加else分支要执行的代码
+    echo "$(date): 连接数 $conn_count ≥ $THRESHOLD，但规则已存在，无需重复添加"
+fi
+
