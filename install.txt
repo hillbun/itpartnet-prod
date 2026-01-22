@@ -1630,6 +1630,11 @@ END {
     printf "Unique IPs: %d\n", length(ip_count)
 }' | sort -k2 -nr
 
+---
+
+
+ss -ant | grep -v "LISTEN" | awk 'NR>1 && $4 !~ /:8080$/ && match($4, /:([0-9]+)$/, a) && a[1] > 1024 && $5 != "*:*"' | awk '{print $1}' | sort | uniq -c | awk '{printf "%-10s: %d\n", $2, $1}'
+
 
 --
 https://downloads.isc.org/isc/bind9/9.17.15/BIND9.17.15.x64.zip
