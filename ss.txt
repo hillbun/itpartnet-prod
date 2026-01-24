@@ -15,7 +15,7 @@ ESTAB     : 1308
 CLOSE-WAIT: 2
 ESTAB: 4004
 TIME-WAIT: 1
-## ss -ant | grep -v "LISTEN" | awk 'NR>1 && $4 ~ /:8080$/' | awk '{print $5}' | cut -d[ -f2 | cut -d] -f1 | cut -d: -f4 | sort | uniq -c | sort -n
+## ss -ant | grep -v "LISTEN" | awk 'NR>1 && $4 ~ /:8080$/ {print $5}' | sed -E 's/\[.*:([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)\].*/\1/;t; s/:.*//' | sort | uniq -c | sort -n
 3 10.2.12.70
 9 10.2.3.207
 999 10.2.3.205
@@ -23,6 +23,4 @@ TIME-WAIT: 1
 1000 10.2.3.206
 1000 10.2.3.208
 
-
-ss -ant | grep -v "LISTEN" | awk 'NR>1 && $4 ~ /:8080$/ {print $5}' | sed -E 's/\[.*:([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)\].*/\1/;t; s/:.*//' | sort | uniq -c | sort -n
 
