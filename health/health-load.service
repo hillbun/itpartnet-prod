@@ -1,0 +1,13 @@
+[Unit]
+Description=Health Load HTTP API
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /opt/shell_prod/health_load.py
+Restart=always
+RestartSec=3
+User=root
+
+[Install]
+WantedBy=multi-user.target
