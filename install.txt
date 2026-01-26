@@ -1632,6 +1632,21 @@ END {
     printf "Unique IPs: %d\n", length(ip_count)
 }' | sort -k2 -nr
 
+---
+
+
+ss -ant | grep -v "LISTEN" | awk 'NR>1 && $4 !~ /:8080$/ && match($4, /:([0-9]+)$/, a) && a[1] > 1024 && $5 != "*:*"' | awk '{print $1}' | sort | uniq -c | awk '{printf "%-10s: %d\n", $2, $1}'
+
 
 --
 https://downloads.isc.org/isc/bind9/9.17.15/BIND9.17.15.x64.zip
+
+
+--
+openssl s_client -connect 4.145.79.80:443 -servername anydomain.com 2>/dev/null | openssl x509 -noout -text | grep -A1 "Subject Alternative Name"
+
+grep "squid.hk/index.html" /opt/squid/var/log/access.log | awk '{print $3}' | sort | uniq -c | sort -n
+tail -50000 /opt/squid/var/log/access.log | grep "squid.hk/index.html" | awk '{print $3}' | sort | uniq -c | sort -n
+
+
+
