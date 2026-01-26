@@ -6,7 +6,7 @@
 1 0 * * * bash /opt/squid_shell/count_week_ip_url.sh &>> /opt/squid_shell/logs/monitor_week_top.log
 1 0 * * * bash /opt/squid_shell/count_week_status.sh &>> /opt/squid_shell/logs/count_week_status.log
 1 * * * * bash /opt/squid_shell/count_estab.sh &>> /opt/squid_shell/logs/count_estab.log
-0 1 * * * /usr/bin/python3 /opt/nginx/html/threat/IOCsApi_csv.py &>> /opt/squid_shell/logs/ioc_script.log
+0 11 * * * /usr/bin/python3 /opt/nginx/html/threat/IOCsApi_csv.py &>> /opt/squid_shell/logs/ioc_script.log
 5 0 * * * sudo cp /opt/logrotate/etc/squid /root/logrotate-squid;sudo /usr/sbin/logrotate -s /opt/logrotate/status/logrotate-squid.status -f /root/logrotate-squid &>> /opt/squid_shell/logs/logrotate.log
 30 0 * * * /usr/sbin/logrotate -s /opt/logrotate/status/logrotate.status -f /opt/logrotate/etc/nginx &>> /opt/squid_shell/logs/logrotate.log
 45 0 * * * /usr/sbin/logrotate -s /opt/logrotate/status/logrotate.status -f /opt/logrotate/etc/python_prod_logs &>> /opt/squid_shell/logs/logrotate.log
