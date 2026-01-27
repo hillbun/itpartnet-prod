@@ -1688,6 +1688,9 @@ sysctl -w net.ipv4.tcp_keepalive_time=30
 sysctl -w net.ipv4.tcp_keepalive_probes=5
 sysctl -w net.ipv4.tcp_keepalive_intvl=3
 
+
+curl -x http://LH511:tyP6Jx?urY1@192.168.152.120:8080 http://www.baidu.com/
+
 ---
 
 2026/01/27 17:02:49 kid10| helperOpenServers: Starting 0/100 'python3' processes
