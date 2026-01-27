@@ -1665,7 +1665,7 @@ done
 
 /opt/squid/sbin/squid -k reconfigure
 
-
+tail -f /var/log/squid/cache.log | grep -E "(helper|external_acl|reconfigure)"
 
 ---
 # 改进的测试脚本
