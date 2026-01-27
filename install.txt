@@ -1673,7 +1673,7 @@ while true; do
     timestamp=$(date +%s.%3N)
     result=$(curl -s -o /dev/null \
              -w "%{http_code}" \
-             --proxy http://localhost:8080 \
+             --proxy http://LH511:tyP6Jx?urY1@localhost:8080 \
              --connect-timeout 1 \
              --max-time 3 \
              http://www.baidu.com/ 2>/dev/null || echo "FAIL")
