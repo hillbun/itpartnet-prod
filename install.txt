@@ -1682,6 +1682,19 @@ while true; do
 done
 
 
+while true; do
+    timestamp=$(date +%s.%3N)
+    result=$(curl -s -o /dev/null \
+             -w "%{http_code}" \
+             --proxy http://LH511:tyP6Jx?urY1@192.168.52.238:8080 \
+             --connect-timeout 1 \
+             --max-time 3 \
+             http://www.baidu.com/ 2>/dev/null || echo "FAIL")
+    echo "$timestamp $result"
+    sleep 0.1
+done
+
+
 ---
 
 sysctl -w net.ipv4.tcp_keepalive_time=30
