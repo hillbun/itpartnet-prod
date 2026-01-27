@@ -1663,3 +1663,7 @@ while true; do
     sleep 0.1
 done
 
+/opt/squid/sbin/squid -k reconfigure
+
+
+
