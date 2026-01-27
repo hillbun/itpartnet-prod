@@ -1667,3 +1667,16 @@ done
 
 
 
+---
+# 改进的测试脚本
+while true; do
+    timestamp=$(date +%s.%3N)
+    result=$(curl -s -o /dev/null \
+             -w "%{http_code}" \
+             --proxy http://localhost:8080 \
+             --connect-timeout 1 \
+             --max-time 3 \
+             http://www.baidu.com/ 2>/dev/null || echo "FAIL")
+    echo "$timestamp $result"
+    sleep 0.1  # 更密集的测试
+done
