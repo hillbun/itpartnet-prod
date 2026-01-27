@@ -1678,7 +1678,7 @@ while true; do
              --max-time 3 \
              http://www.baidu.com/ 2>/dev/null || echo "FAIL")
     echo "$timestamp $result"
-    sleep 0.1  # 更密集的测试
+    sleep 0.1
 done
 
 
