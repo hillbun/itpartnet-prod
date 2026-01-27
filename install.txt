@@ -1682,4 +1682,15 @@ while true; do
 done
 
 
+---
+
+sysctl -w net.ipv4.tcp_keepalive_time=30
+sysctl -w net.ipv4.tcp_keepalive_probes=5
+sysctl -w net.ipv4.tcp_keepalive_intvl=3
+
+
+
+
+
+
 
