@@ -1383,6 +1383,8 @@ ldapsearch -x -H ldaps://corprodc03.corp.ha.org.hk:636 -D CN=n5-proxy-opp-52a,OU
 
 ldapsearch -x -H ldaps://corprodc03.corp.ha.org.hk:636 -D CN=n5-proxy-opp-52a,OU=Users,OU=N2,OU=ITIS,DC=corp,DC=ha,DC=org,DC=hk -w 'ziSJ144Watmj' -b DC=corp,DC=ha,DC=org,DC=hk
 
+ldapsearch -x -H ldaps://160.98.39.18:636 -D CN=n5-proxy-opp-52a,OU=Users,OU=N2,OU=ITIS,DC=corp,DC=ha,DC=org,DC=hk -w 'ziSJ144Watmj' -b DC=corp,DC=ha,DC=org,DC=hk
+
 .secret_pass
 ziSJ144Watmj
 chmod 600 .secret_pass
@@ -1649,4 +1651,15 @@ grep "squid.hk/index.html" /opt/squid/var/log/access.log | awk '{print $3}' | so
 tail -50000 /opt/squid/var/log/access.log | grep "squid.hk/index.html" | awk '{print $3}' | sort | uniq -c | sort -n
 
 
+
+--
+52c 绑定失败
+52d 绑定失败
+
+---
+
+while true; do
+    curl -s -o /dev/null -w "%{http_code}\n" --proxy http://localhost:8080 http://www.baidu.com/
+    sleep 0.1
+done
 
