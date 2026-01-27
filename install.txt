@@ -1667,7 +1667,7 @@ done
 
 tail -f /opt/squid/var/log/cache.log | grep -E "(helper|external_acl|reconfigure)"
 
-
+shutdown_lifetime 60 seconds
 
 ---
 # 改进的测试脚本
