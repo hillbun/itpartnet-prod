@@ -1667,6 +1667,8 @@ done
 
 tail -f /opt/squid/var/log/cache.log | grep -E "(helper|external_acl|reconfigure)"
 
+
+
 ---
 # 改进的测试脚本
 while true; do
