@@ -1709,6 +1709,16 @@ curl -x http://LH511:tyP6Jx?urY1@192.168.152.120:8080 http://www.baidu.com/
 2026/01/27 17:02:49 kid10| helperOpenServers: No 'python3' processes needed.
 
 
+---
+external_acl_type check_ip_allow_check ttl=604800 negative_ttl=360 children-max=100 %SRC %DST /usr/bin/python3 /opt/py_prod/check_ip_allow.py
+external_acl_type check_ip_deny_check  ttl=604800 negative_ttl=360 children-max=100 %SRC %DST /usr/bin/python3 /opt/py_prod/check_ip_deny.py
+
+external_acl_type check_ip_allow_check ttl=604800 negative_ttl=360 children-startup=5 children-max=100 %SRC %DST /usr/bin/python3 /opt/py_prod/check_ip_allow.py
+external_acl_type check_ip_deny_check  ttl=604800 negative_ttl=360 children-startup=5 children-max=100 %SRC %DST /usr/bin/python3 /opt/py_prod/check_ip_deny.py
+
+
+
+
 
 
 
