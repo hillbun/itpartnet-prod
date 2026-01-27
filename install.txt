@@ -1696,6 +1696,10 @@ while true; do
     sleep 0.1
 done
 
+--
+
+squidclient mgr:5min | grep -A 2 client_http.requests
+
 
 ---
 
