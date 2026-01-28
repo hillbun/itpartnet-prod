@@ -7,11 +7,8 @@
     dateformat -%Y%m%d
     rotate 7
     compress
-    copytruncate   #使用复制截断
+    copytruncate
     missingok
     ifempty
     nodelaycompress
-    postrotate
-        {{ squid_path }}/sbin/squid -k reconfigure >/dev/null 2>&1 || true
-    endscript
 }
