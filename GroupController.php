@@ -119,68 +119,6 @@ class GroupController extends Controller
     }
 
 
-    // ============ 辅助函数 ============
-    private function logConnectionAttempt($host, $port, $attempt, $error) {
-        $timestamp = date('Y-m-d H:i:s');
-        $logMessage = "[{$timestamp}] 第{$attempt}次尝试连接 {$host}:{$port} 失败 - {$error}\n";
-        
-        // 同时记录到文件和临时变量
-        error_log($logMessage);
-        file_put_contents('/tmp/ldap_connection.log', $logMessage, FILE_APPEND);
-    }
-
-    private function getDetailedErrorInfo($host, $port, $user, $lastError) {
-        $info = [];
-        $info[] = "最后错误: " . $lastError;
-        
-        // 网络诊断
-        $info[] = "网络诊断:";
-        
-        // 1. 检查DNS解析
-        $ip = @gethostbyname($host);
-        $info[] = "  DNS解析: " . ($ip === $host ? "失败" : "成功({$ip})");
-        
-        // 2. 检查端口连通性
-        $fp = @fsockopen($host, $port, $errno, $errstr, 5);
-        if ($fp) {
-            fclose($fp);
-            $info[] = "  端口{$port}: 开放";
-        } else {
-            $info[] = "  端口{$port}: 不可达 ({$errstr}, {$errno})";
-        }
-        
-        // 3. 检查防火墙
-        $output = [];
-        exec("timeout 3 telnet {$host} {$port} 2>&1", $output, $returnCode);
-        $info[] = "  Telnet测试: " . ($returnCode === 0 ? "成功" : "失败");
-        
-        // 4. 检查LDAP服务状态
-        $info[] = "  LDAP服务检查:";
-        $ldapCheck = @ldap_connect($host, $port);
-        if ($ldapCheck) {
-            $info[] = "    - 连接对象创建: 成功";
-            @ldap_unbind($ldapCheck);
-        } else {
-            $info[] = "    - 连接对象创建: 失败";
-        }
-        
-        // 5. 添加时间戳和随机性检查
-        $info[] = "\n时间信息:";
-        $info[] = "  当前时间: " . date('Y-m-d H:i:s');
-        $info[] = "  服务器时间差异: " . $this->checkTimeSync($host);
-        
-        return implode("\n", $info);
-    }
-
-    private function checkTimeSync($host) {
-        // LDAP对时间同步敏感，特别是Kerberos认证
-        $localTime = time();
-        
-        // 尝试获取远程服务器时间（通过HTTP或其他方式）
-        // 这里只是一个示例，实际需要根据你的环境调整
-        return "未知（请检查时间同步）";
-    }
-
     public function upDirinfo()
     {
         ini_set('memory_limit', '5G');
@@ -192,89 +130,22 @@ class GroupController extends Controller
         $baseDn = $this->ladps['basedn'];
 
         /* ---------- 1. 连接 & 绑定 ---------- */
-        $retryTimes = 3;
-        $connectTimeout = 10;
-        $readTimeout = 30;
-
-        $ldap = false;
-        $bindSuccess = false;
-        $currentRetry = 0;
-        $lastError = '';
-
-        // ============ 改进的重试逻辑 ============
-        while ($currentRetry < $retryTimes && !$bindSuccess) {
-            // 记录尝试开始时间
-            $startTime = microtime(true);
-            
-            // 1. 创建LDAP连接
-            $ldap = @ldap_connect($host, $port);
-            if (!$ldap) {
-                // 关键修复：记录ldap_connect失败的错误
-                $lastError = "ldap_connect()返回false，可能是：\n" .
-                             "1. 主机不可达: {$host}:{$port}\n" .
-                             "2. 网络连接超时\n" .
-                             "3. PHP LDAP扩展问题";
-                
-                $currentRetry++;
-                
-                // 增加诊断信息
-                // $this->logConnectionAttempt($host, $port, $currentRetry, $lastError);
-                
-                // 使用递增的等待时间（指数退避）
-                $sleepTime = 500000 * pow(2, $currentRetry);
-                usleep($sleepTime);
-                continue;
-            }
-
-            // 2. 配置LDAP核心参数
-            ldap_set_option($ldap, LDAP_OPT_PROTOCOL_VERSION, 3);
-            ldap_set_option($ldap, LDAP_OPT_REFERRALS, 0);
-            ldap_set_option($ldap, LDAP_OPT_NETWORK_TIMEOUT, $connectTimeout);
-            ldap_set_option($ldap, LDAP_OPT_TIMELIMIT, $readTimeout);
-            
-            // 重要：添加连接超时设置
-            ldap_set_option($ldap, LDAP_OPT_CONNECT_TIMEOUT, $connectTimeout);
-
-            // 3. 绑定LDAP账号密码
-            $bindSuccess = @ldap_bind($ldap, $user, $pass);
-            
-            if (!$bindSuccess) {
-                // 获取具体的LDAP错误
-                $lastError = "LDAP绑定失败: " . ldap_error($ldap) . " (错误码: " . ldap_errno($ldap) . ")";
-                
-                // 检查特定错误码
-                $errorCode = ldap_errno($ldap);
-                if (in_array($errorCode, [0x51, 0x52])) { // LDAP_SERVER_DOWN, LDAP_LOCAL_ERROR
-                    $lastError .= "\n可能是网络问题或服务器暂时不可用";
-                }
-                
-                $currentRetry++;
-                
-                // 清理资源
-                if ($ldap && is_resource($ldap)) {
-                    @ldap_unbind($ldap);
-                }
-                $ldap = false;
-                
-                $sleepTime = 500000 * pow(2, $currentRetry);
-                usleep($sleepTime);
-                continue;
-            }
-            
-            // 记录成功连接的时间
-            $connectDuration = microtime(true) - $startTime;
-            error_log("LDAP连接成功，耗时: " . round($connectDuration, 3) . "秒");
+        // 创建连接
+        $ldap = ldap_connect($host, $port);
+        if (!$ldap) {
+            die("无法连接到 LDAP 服务器");
         }
 
-        // ============ 最终判断：重试完还是失败 ============
-        if (!$bindSuccess || !$ldap) {
-            // 获取更详细的错误信息
-            $detailedError = $this->getDetailedErrorInfo($host, $port, $user, $lastError);
-            
-            // 记录到日志便于分析
-            error_log("LDAP连接失败详情: " . $detailedError);
-            
-            die("LDAP连接绑定失败，重试{$retryTimes}次均失败\n错误信息：\n{$detailedError}");
+        // 设置选项
+        ldap_set_option($ldap, LDAP_OPT_PROTOCOL_VERSION, 3);
+        ldap_set_option($ldap, LDAP_OPT_REFERRALS, 0);
+
+        // 绑定
+        if (ldap_bind($ldap, $user, $pass)) {
+            // echo "LDAP 绑定成功！";
+            // ldap_unbind($ldap);
+        } else {
+            die("绑定失败：" . ldap_error($ldap));
         }
         
         /* ---------- 2. 分页拉取全部节点 ---------- */
