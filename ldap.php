@@ -24,4 +24,5 @@ if (ldap_bind($ldapConn, $ldapUser, $ldapPassword)) {
 } else {
     echo "绑定失败：" . ldap_error($ldapConn);
 }
+echo "\n";
 ?>
