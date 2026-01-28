@@ -1,4 +1,4 @@
-10 * * * * bash /opt/squid_shell/resource_monitor_script.sh &>> /opt/squid_shell/logs/resource_monitor_script.log
+*/10 * * * * bash /opt/squid_shell/resource_monitor_script.sh &>> /opt/squid_shell/logs/resource_monitor_script.log
 15 0 * * * bash /opt/squid_shell/ftp_accesslog.sh
 1 * * * * /usr/bin/python3 /opt/squid_shell/hour_monitor.py &>> /opt/squid_shell/logs/nohup_monitor.log
 2 * * * * bash /opt/squid_shell/network_count.sh &>> /opt/squid_shell/logs/network_count.log
@@ -7,8 +7,9 @@
 1 0 * * * bash /opt/squid_shell/count_week_status.sh &>> /opt/squid_shell/logs/count_week_status.log
 1 * * * * bash /opt/squid_shell/count_estab.sh &>> /opt/squid_shell/logs/count_estab.log
 0 23 * * * /usr/bin/python3 /opt/nginx/html/threat/IOCsApi_csv.py &>> /opt/squid_shell/logs/ioc_script.log
+{{ crontab_upredis }} * * * /usr/bin/curl -k https://127.0.0.1:8000/api/upredis_dir &>> /opt/squid_shell/logs/php_upredis_dir.log
 5 0 * * * sudo cp /opt/logrotate/etc/squid /root/logrotate-squid;sudo /usr/sbin/logrotate -s /opt/logrotate/status/logrotate-squid.status -f /root/logrotate-squid &>> /opt/squid_shell/logs/logrotate.log
 30 0 * * * /usr/sbin/logrotate -s /opt/logrotate/status/logrotate.status -f /opt/logrotate/etc/nginx &>> /opt/squid_shell/logs/logrotate.log
 45 0 * * * /usr/sbin/logrotate -s /opt/logrotate/status/logrotate.status -f /opt/logrotate/etc/python_prod_logs &>> /opt/squid_shell/logs/logrotate.log
+{{ crontab_reload_squid }} * * * sudo systemctl reload squid
 0 1 * * * /usr/bin/curl -k https://127.0.0.1:8000/api/logs_del  &>> /opt/squid_shell/logs/php_logs_del.log
-{{ crontab_upredis }} * * * /usr/bin/curl -k https://127.0.0.1:8000/api/upredis_dir &>> /opt/squid_shell/logs/php_upredis_dir.log
