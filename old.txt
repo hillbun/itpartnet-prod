@@ -1,0 +1,6 @@
+192.168.52.236 poxappprd41a.server.ha.org.hk
+192.168.52.238 poxappprd41b.server.ha.org.hk
+192.168.52.97 poxappprd41c.server.ha.org.hk
+192.168.152.101 poxappprd51a.server.ha.org.hk
+192.168.152.102 poxappprd51b.server.ha.org.hk
+192.168.152.103 poxappprd51c.server.ha.org.hk
