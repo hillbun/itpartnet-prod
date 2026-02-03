@@ -4,3 +4,9 @@
 192.168.152.101 poxappprd51a.server.ha.org.hk
 192.168.152.102 poxappprd51b.server.ha.org.hk
 192.168.152.103 poxappprd51c.server.ha.org.hk
+
+
+
+date "+%Y-%m-%d %H:%M:%S"
+
+
