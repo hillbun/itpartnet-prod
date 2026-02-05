@@ -1811,3 +1811,7 @@ cut -d' ' -f8 /opt/squid/var/log/access.log | sort | uniq -c | sort -rn
 
 
 head -10 /opt/squid/var/log/access.log | awk '{print $6}'
+
+
+--
+subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
