@@ -1868,3 +1868,14 @@ make test
 
 # 安装（需要 root 权限）
 sudo make install
+
+---
+获取源码：
+通常从 Debian 的源码包获取或通过 git 克隆。
+bash
+git clone https://git.joeyh.name/git/moreutils.git
+cd moreutils
+编译与安装：
+bash
+make
+sudo make install
