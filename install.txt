@@ -1890,3 +1890,21 @@ for i in {1..100}; do
   nc -zv 10.2.3.93 8080
   sleep 1
 done 2>&1 | tee result.txt
+
+
+--
+
+ping -D www.baidu.com | while read line; do
+  if [[ "$line" =~ \[([0-9]+\.[0-9]+)\] ]]; then
+    ts=${BASH_REMATCH[1]}
+    human=$(TZ=Asia/Shanghai date -d "@$ts" "+%F %T.%6N")
+    echo "[$human] ${line#*\] }"
+  else
+    echo "$line"
+  fi
+done
+
+
+
+
+
