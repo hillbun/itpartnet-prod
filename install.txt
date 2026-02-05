@@ -1793,3 +1793,5 @@ ansible opp_prod -i hosts.ini -m shell -a "more  /var/spool/cron/logreader"
 11.68.63.86 - - [05/Feb/2026:11:48:54 +0800] "CONNECT alive.github.com:443 HTTP/1.1" 200 4590 57674 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" TCP_TUNNEL:HIER_DIRECT 200
 160.66.137.158 - - [05/Feb/2026:11:48:54 +0800] "CONNECT us-v20.events.data.microsoft.com:443 HTTP/1.1" 200 4717 49858 "-" "-" TCP_TUNNEL:HIER_DIRECT 200
 
+awk '{print $8}' /opt/squid/var/log/access.log | sort | uniq -c | sort -rn
+awk 'NF>7 {print $8}' /opt/squid/var/log/access.log | sort | uniq -c | sort -rn
