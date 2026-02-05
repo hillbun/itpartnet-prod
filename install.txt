@@ -1815,3 +1815,19 @@ head -10 /opt/squid/var/log/access.log | awk '{print $6}'
 
 --
 subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
+
+
+# 安装必要的编译工具
+dnf install -y gcc make perl-devel wget
+
+# 安装 Perl 模块依赖（需要 perl-CPAN）
+dnf install -y perl-CPAN
+
+# 或者通过系统包安装依赖
+dnf install -y perl-IPC-Run perl-TimeDate
+
+# 如果系统包中没有，通过 CPAN 安装
+cpan IPC::Run
+cpan TimeDate
+# 或者用一条命令
+cpan IPC::Run TimeDate
