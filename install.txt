@@ -1743,7 +1743,7 @@ external_acl_type check_ip_deny_check  ttl=604800 negative_ttl=360 children-star
 
 
 
+0----
 
-
-
-
+ansible-playbook -i hosts.ini opp.yml --tags "opp_crontab_config"
+ansible opp_prod -i hosts.ini -m shell -a "more  /var/spool/cron/logreader"
