@@ -3,6 +3,10 @@ LH511
 CORP\LH511
 tyP6Jx?urY1
 
+
+n5-testing4@corp.ha.org.hk
+P@ssw0rd1234
+
 CORP-LOGON
 
 sshgateway
