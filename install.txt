@@ -1798,3 +1798,4 @@ awk 'NF>7 {print $8}' /opt/squid/var/log/access.log | sort | uniq -c | sort -rn
 cut -d' ' -f8 /opt/squid/var/log/access.log | sort | uniq -c | sort -rn
 
 
+head -10 /opt/squid/var/log/access.log | awk '{print $6}'
