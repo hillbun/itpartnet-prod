@@ -1879,3 +1879,6 @@ cd moreutils
 bash
 make
 sudo make install
+
+---
+for i in {1..100}; do nc -zv 10.2.3.93 8080; donefor i in {1..100}; do nc -zv 10.2.3.93 8080; done
