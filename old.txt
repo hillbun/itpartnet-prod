@@ -12,7 +12,7 @@ date "+%Y-%m-%d %H:%M:%S"
 while true; do
     timestamp=$(date "+%Y-%m-%d %H:%M:%S")
     result=$(curl -s -o /dev/null \
-             -w "%{http_code}" \
+             -w "%{http_code} %{time_total}" \
              --proxy http://LH511:tyP6Jx?urY1@192.168.52.236:8080 \
              --connect-timeout 1 \
              --max-time 3 \
