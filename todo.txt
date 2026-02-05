@@ -37,7 +37,7 @@
 ### delete tianjiyoumeng csv files crontab
 ### run ansible-playbook as logreader
 ### Ansible Vault
-### kubespray
+### kubespray reset scale upgrade downgrade
 ### zabbix
 ### terraform
 
