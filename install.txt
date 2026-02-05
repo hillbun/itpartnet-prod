@@ -1747,3 +1747,49 @@ external_acl_type check_ip_deny_check  ttl=604800 negative_ttl=360 children-star
 
 ansible-playbook -i hosts.ini opp.yml --tags "opp_crontab_config"
 ansible opp_prod -i hosts.ini -m shell -a "more  /var/spool/cron/logreader"
+
+
+11.68.4.2 - - [05/Feb/2026:11:48:54 +0800] "CONNECT browser.events.data.msn.com:443 HTTP/1.1" 200 7088 61665 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0" TCP_TUNNEL:HIER_DIRECT 200
+160.102.43.104 - - [05/Feb/2026:11:48:54 +0800] "CONNECT login.microsoftonline.com:443 HTTP/1.0" 200 5175 52064 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.26100" TCP_TUNNEL:HIER_DIRECT 200
+160.36.90.133 - - [05/Feb/2026:11:48:54 +0800] "CONNECT cc-api-data.adobe.io:443 HTTP/1.1" 200 4175 49716 "-" "-" TCP_TUNNEL:HIER_DIRECT 200
+160.36.30.14 - - [05/Feb/2026:11:48:54 +0800] "CONNECT polka.typekit.com:443 HTTP/1.1" 200 4668 55066 "-" "-" TCP_TUNNEL:HIER_DIRECT 200
+160.66.137.194 - - [05/Feb/2026:11:48:54 +0800] "CONNECT polka.typekit.com:443 HTTP/1.1" 200 4668 57541 "-" "-" TCP_TUNNEL:HIER_DIRECT 200
+160.28.17.140 - - [05/Feb/2026:11:48:54 +0800] "CONNECT ssl.gstatic.com:443 HTTP/1.1" 200 1373 62809 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" TCP_TUNNEL:HIER_DIRECT 200
+160.33.18.104 - - [05/Feb/2026:11:48:54 +0800] "CONNECT mtalk.google.com:5228 HTTP/1.1" 200 7123 55636 "-" "-" TCP_TUNNEL:HIER_DIRECT 200
+11.68.101.6 - - [05/Feb/2026:11:48:54 +0800] "CONNECT central.github.com:443 HTTP/1.1" 200 14610 52896 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) GitHubDesktop/3.5.4 Chrome/140.0.7339.133 Electron/38.2.0 Safari/537.36" TCP_TUNNEL:HIER_DIRECT 200
+11.68.100.166 - - [05/Feb/2026:11:48:54 +0800] "CONNECT ss-prod-an1-ns.aws.adobess.com:443 HTTP/1.1" 200 5009 54831 "-" "-" TCP_TUNNEL:HIER_DIRECT 200
+11.68.4.207 - - [05/Feb/2026:11:48:54 +0800] "CONNECT translate.google.com:443 HTTP/1.1" 200 5264 58319 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" TCP_TUNNEL:HIER_DIRECT 200
+160.66.197.13 - - [05/Feb/2026:11:48:54 +0800] "CONNECT ssl.gstatic.com:443 HTTP/1.1" 200 3168 60558 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36" TCP_TUNNEL:HIER_DIRECT 200
+160.102.76.9 - - [05/Feb/2026:11:48:54 +0800] "CONNECT safebrowsing.googleapis.com:443 HTTP/1.1" 200 13999 51834 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36" TCP_TUNNEL:HIER_DIRECT 200
+11.68.99.94 - - [05/Feb/2026:11:48:54 +0800] "CONNECT mtalk.google.com:5228 HTTP/1.1" 200 7123 64787 "-" "-" TCP_TUNNEL:HIER_DIRECT 200
+160.66.137.144 - - [05/Feb/2026:11:48:54 +0800] "CONNECT dox.grammarly.com:443 HTTP/1.1" 200 5583 53172 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36" TCP_TUNNEL:HIER_DIRECT 200
+160.48.19.113 - - [05/Feb/2026:11:48:54 +0800] "CONNECT unitedstates.cp.wd.microsoft.com:443 HTTP/1.1" 200 4215 53437 "-" "-" TCP_TUNNEL:HIER_DIRECT 200
+11.120.120.18 - - [05/Feb/2026:11:48:54 +0800] "CONNECT accounts.google.com:443 HTTP/1.1" 200 4695 64768 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36" TCP_TUNNEL:HIER_DIRECT 200
+11.68.97.25 - LTH361@CORP.HA.ORG.HK [05/Feb/2026:11:48:54 +0800] "CONNECT mssdk.bytedance.com:443 HTTP/1.1" 200 1792 60533 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36" TCP_TUNNEL:HIER_DIRECT 200
+160.36.90.211 - - [05/Feb/2026:11:48:54 +0800] "CONNECT ogs.google.com:443 HTTP/1.1" 200 24189 53433 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36" TCP_TUNNEL:HIER_DIRECT 200
+160.102.31.26 - - [05/Feb/2026:11:48:54 +0800] "CONNECT passwordsleakcheck-pa.googleapis.com:443 HTTP/1.1" 200 5703 57506 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36" TCP_TUNNEL:HIER_DIRECT 200
+160.102.92.62 - - [05/Feb/2026:11:48:54 +0800] "CONNECT track1.aniview.com:443 HTTP/1.1" 407 472 56381 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36" TCP_DENIED:HIER_NONE 407
+160.102.92.62 - - [05/Feb/2026:11:48:54 +0800] "CONNECT track1.aniview.com:443 HTTP/1.1" 407 472 52874 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36" TCP_DENIED:HIER_NONE 407
+160.102.92.62 - - [05/Feb/2026:11:48:54 +0800] "CONNECT go1.aniview.com:443 HTTP/1.1" 407 472 51835 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36" TCP_DENIED:HIER_NONE 407
+160.61.17.56 - - [05/Feb/2026:11:48:54 +0800] "CONNECT windows.msn.com:443 HTTP/1.1" 200 6023 59619 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36 Edg/144.0.0.0" TCP_TUNNEL:HIER_DIRECT 200
+160.61.17.56 - - [05/Feb/2026:11:48:54 +0800] "CONNECT www.msn.com:443 HTTP/1.1" 200 18127 52666 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36 Edg/144.0.0.0" TCP_TUNNEL:HIER_DIRECT 200
+160.61.17.56 - - [05/Feb/2026:11:48:54 +0800] "CONNECT assets.msn.com:443 HTTP/1.1" 200 7084 61217 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36 Edg/144.0.0.0" TCP_TUNNEL:HIER_DIRECT 200
+160.61.17.56 - - [05/Feb/2026:11:48:54 +0800] "CONNECT th.bing.com:443 HTTP/1.1" 200 44637 49872 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36 Edg/144.0.0.0" TCP_TUNNEL:HIER_DIRECT 200
+160.61.17.56 - - [05/Feb/2026:11:48:54 +0800] "CONNECT api.msn.com:443 HTTP/1.1" 200 9130 57788 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36 Edg/144.0.0.0" TCP_TUNNEL:HIER_DIRECT 200
+160.61.17.56 - - [05/Feb/2026:11:48:54 +0800] "CONNECT api.msn.com:443 HTTP/1.1" 200 8788 64700 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36 Edg/144.0.0.0" TCP_TUNNEL:HIER_DIRECT 200
+160.61.17.56 - - [05/Feb/2026:11:48:54 +0800] "CONNECT srtb.msn.com:443 HTTP/1.1" 200 6693 61882 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36 Edg/144.0.0.0" TCP_TUNNEL:HIER_DIRECT 200
+160.61.17.56 - - [05/Feb/2026:11:48:54 +0800] "CONNECT windows.msn.com:443 HTTP/1.1" 200 6023 64735 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36 Edg/144.0.0.0" TCP_TUNNEL:HIER_DIRECT 200
+160.61.17.56 - - [05/Feb/2026:11:48:54 +0800] "CONNECT assets.msn.com:443 HTTP/1.1" 200 7858 52848 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36 Edg/144.0.0.0" TCP_TUNNEL:HIER_DIRECT 200
+160.102.70.1 - - [05/Feb/2026:11:48:54 +0800] "CONNECT us-v20.events.data.microsoft.com:443 HTTP/1.1" 200 4720 65526 "-" "-" TCP_TUNNEL:HIER_DIRECT 200
+172.16.52.139 - - [05/Feb/2026:11:48:54 +0800] "CONNECT www.dm5.com:443 HTTP/1.1" 407 472 59314 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36" TCP_DENIED:HIER_NONE 407
+160.57.90.125 - - [05/Feb/2026:11:48:54 +0800] "GET http://edgedl.me.gvt1.com/edgedl/release2/chrome_component/dbuh2tuaqmxbqdarxeri6f6w6u_10326/hfnkpimlhhgieaddgfemjhofmfblmnib_10326_all_gimxw3vwci25nwfcx6aw7v72g4.crx3 HTTP/1.1" 206 9483 52231 "-" "Microsoft BITS/7.8" TCP_MISS:HIER_DIRECT 206
+160.130.89.6 - - [05/Feb/2026:11:48:54 +0800] "CONNECT us-v20.events.data.microsoft.com:443 HTTP/1.1" 200 4720 55489 "-" "-" TCP_TUNNEL:HIER_DIRECT 200
+160.7.102.82 - - [05/Feb/2026:11:48:54 +0800] "CONNECT winatp-gw-cus3.microsoft.com:443 HTTP/1.1" 200 6517 64655 "-" "-" TCP_TUNNEL:HIER_DIRECT 200
+11.68.98.27 - - [05/Feb/2026:11:48:54 +0800] "GET http://msedge.b.tlu.dl.delivery.mp.microsoft.com/filestreamingservice/files/aeee40bc-5e6e-48fa-a38f-7990dcdbcd2d? HTTP/1.1" 206 9087 52724 "-" "Microsoft BITS/7.8" TCP_MISS:HIER_DIRECT 206
+11.68.107.78 - - [05/Feb/2026:11:48:54 +0800] "CONNECT self.events.data.microsoft.com:443 HTTP/1.0" 200 5182 63633 "-" "-" TCP_TUNNEL:HIER_DIRECT 200
+160.36.160.66 - - [05/Feb/2026:11:48:54 +0800] "GET http://msedge.b.tlu.dl.delivery.mp.microsoft.com/filestreamingservice/files/88ab58c8-363a-4ed8-a142-6f84754f3960? HTTP/1.1" 206 9097 52099 "-" "Microsoft BITS/7.8" TCP_MISS:HIER_DIRECT 206
+160.48.19.74 - - [05/Feb/2026:11:48:54 +0800] "CONNECT winatp-gw-cus3.microsoft.com:443 HTTP/1.1" 200 6452 52882 "-" "-" TCP_TUNNEL:HIER_DIRECT 200
+172.16.52.184 - SLC430@CORP.HA.ORG.HK [05/Feb/2026:11:48:54 +0800] "CONNECT s81.ipcamlive.com:443 HTTP/1.1" 200 1061 52960 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36" TCP_TUNNEL:HIER_DIRECT 200
+11.68.63.86 - - [05/Feb/2026:11:48:54 +0800] "CONNECT alive.github.com:443 HTTP/1.1" 200 4590 57674 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" TCP_TUNNEL:HIER_DIRECT 200
+160.66.137.158 - - [05/Feb/2026:11:48:54 +0800] "CONNECT us-v20.events.data.microsoft.com:443 HTTP/1.1" 200 4717 49858 "-" "-" TCP_TUNNEL:HIER_DIRECT 200
+
