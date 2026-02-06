@@ -1911,3 +1911,9 @@ done
 curl -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36" https://example.com
 
 
+irefox：
+
+默认不会使用系统 Kerberos，需要在 about:config 配置 network.negotiate-auth.trusted-uris 才能启用。
+
+同样可以访问基于 Kerberos 的网站。
+
