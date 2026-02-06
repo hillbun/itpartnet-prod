@@ -1917,3 +1917,7 @@ irefox：
 
 同样可以访问基于 Kerberos 的网站。
 
+
+
+----
+30 23 * * * /usr/bin/python3 /opt/squid_shell/share_account_pcname_check.py --dns 160.87.34.103  --squidtxt /opt/nginx/html/transproxy_admin/public/fileData/specify_ip_pop_ldaps.txt
