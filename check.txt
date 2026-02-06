@@ -1,0 +1,225 @@
+ldapsearch -x -H ldaps://160.98.39.18:636 -D CN=n5-proxy-opp-52a,OU=Users,OU=N2,OU=ITIS,DC=corp,DC=ha,DC=org,DC=hk -w 'ziSJ144Watmj' -b DC=corp,DC=ha,DC=org,DC=hk
+
+curl  --proxy http://n5-testing4:P%40ssw0rd1234@192.168.52.236:8080 https://www.facebook.com/
+
+screen -S 41a-curl
+
+while true; do
+    timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+    result=$(curl -s -o /dev/null \
+             -w "%{http_code} %{time_total} " \
+             --proxy http://n5-testing4:P%40ssw0rd1234@192.168.52.236:8080 \
+             --connect-timeout 1 \
+             --max-time 3 \
+             https://www.facebook.com/ 2>/dev/null || echo "FAIL")
+    echo "$timestamp $result" >> /tmp/41a-curl.txt
+    sleep 1
+done
+
+screen -S 41a-nc
+
+while true; do
+    date;
+    nc -zv 192.168.52.236 8080
+    sleep 1
+done >> /tmp/41a-nc.txt 2>&1
+
+
+screen -S 41a-ping
+
+ping -D 192.168.52.236 | while read line; do
+  if [[ "$line" =~ \[([0-9]+\.[0-9]+)\] ]]; then
+    ts=${BASH_REMATCH[1]}
+    human=$(TZ=Asia/Shanghai date -d "@$ts" "+%F %T.%6N")
+    echo "[$human] ${line#*\] }"
+  else
+    echo "$line"
+  fi
+done >> /tmp/41a-ping.txt 2>&1
+
+----------------
+
+screen -S 41b-curl
+
+while true; do
+    timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+    result=$(curl -s -o /dev/null \
+             -w "%{http_code} %{time_total} " \
+             --proxy http://n5-testing4:P%40ssw0rd1234@192.168.52.238:8080 \
+             --connect-timeout 1 \
+             --max-time 3 \
+             https://www.facebook.com/ 2>/dev/null || echo "FAIL")
+    echo "$timestamp $result" >> /tmp/41b-curl.txt
+    sleep 1
+done
+
+screen -S 41b-nc
+
+while true; do
+    date;
+    nc -zv 192.168.52.238 8080
+    sleep 1
+done >> /tmp/41b-nc.txt 2>&1
+
+
+screen -S 41b-ping
+
+ping -D 192.168.52.238 | while read line; do
+  if [[ "$line" =~ \[([0-9]+\.[0-9]+)\] ]]; then
+    ts=${BASH_REMATCH[1]}
+    human=$(TZ=Asia/Shanghai date -d "@$ts" "+%F %T.%6N")
+    echo "[$human] ${line#*\] }"
+  else
+    echo "$line"
+  fi
+done >> /tmp/41b-ping.txt 2>&1
+
+----------------------
+
+screen -S 41c-curl
+
+while true; do
+    timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+    result=$(curl -s -o /dev/null \
+             -w "%{http_code} %{time_total} " \
+             --proxy http://n5-testing4:P%40ssw0rd1234@192.168.52.97:8080 \
+             --connect-timeout 1 \
+             --max-time 3 \
+             https://www.facebook.com/ 2>/dev/null || echo "FAIL")
+    echo "$timestamp $result" >> /tmp/41c-curl.txt
+    sleep 1
+done
+
+screen -S 41c-nc
+
+while true; do
+    date;
+    nc -zv 192.168.52.97 8080
+    sleep 1
+done >> /tmp/41c-nc.txt 2>&1
+
+
+screen -S 41c-ping
+
+ping -D 192.168.52.97 | while read line; do
+  if [[ "$line" =~ \[([0-9]+\.[0-9]+)\] ]]; then
+    ts=${BASH_REMATCH[1]}
+    human=$(TZ=Asia/Shanghai date -d "@$ts" "+%F %T.%6N")
+    echo "[$human] ${line#*\] }"
+  else
+    echo "$line"
+  fi
+done >> /tmp/41c-ping.txt 2>&1
+
+----------------------
+
+screen -S 51a-curl
+
+while true; do
+    timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+    result=$(curl -s -o /dev/null \
+             -w "%{http_code} %{time_total} " \
+             --proxy http://n5-testing4:P%40ssw0rd1234@192.168.152.101:8080 \
+             --connect-timeout 1 \
+             --max-time 3 \
+             https://www.facebook.com/ 2>/dev/null || echo "FAIL")
+    echo "$timestamp $result" >> /tmp/51a-curl.txt
+    sleep 1
+done
+
+screen -S 51a-nc
+
+while true; do
+    date;
+    nc -zv 192.168.152.101 8080
+    sleep 1
+done >> /tmp/51a-nc.txt 2>&1
+
+
+screen -S 51a-ping
+
+ping -D 192.168.152.101 | while read line; do
+  if [[ "$line" =~ \[([0-9]+\.[0-9]+)\] ]]; then
+    ts=${BASH_REMATCH[1]}
+    human=$(TZ=Asia/Shanghai date -d "@$ts" "+%F %T.%6N")
+    echo "[$human] ${line#*\] }"
+  else
+    echo "$line"
+  fi
+done >> /tmp/51a-ping.txt 2>&1
+
+----------------------
+
+screen -S 51b-curl
+
+while true; do
+    timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+    result=$(curl -s -o /dev/null \
+             -w "%{http_code} %{time_total} " \
+             --proxy http://n5-testing4:P%40ssw0rd1234@192.168.152.102:8080 \
+             --connect-timeout 1 \
+             --max-time 3 \
+             https://www.facebook.com/ 2>/dev/null || echo "FAIL")
+    echo "$timestamp $result" >> /tmp/51b-curl.txt
+    sleep 1
+done
+
+screen -S 51b-nc
+
+while true; do
+    date;
+    nc -zv 192.168.152.102 8080
+    sleep 1
+done >> /tmp/51b-nc.txt 2>&1
+
+
+screen -S 51b-ping
+
+ping -D 192.168.152.102 | while read line; do
+  if [[ "$line" =~ \[([0-9]+\.[0-9]+)\] ]]; then
+    ts=${BASH_REMATCH[1]}
+    human=$(TZ=Asia/Shanghai date -d "@$ts" "+%F %T.%6N")
+    echo "[$human] ${line#*\] }"
+  else
+    echo "$line"
+  fi
+done >> /tmp/51b-ping.txt 2>&1
+
+----
+----------------------
+
+screen -S 51c-curl
+
+while true; do
+    timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+    result=$(curl -s -o /dev/null \
+             -w "%{http_code} %{time_total} " \
+             --proxy http://n5-testing4:P%40ssw0rd1234@192.168.152.103:8080 \
+             --connect-timeout 1 \
+             --max-time 3 \
+             https://www.facebook.com/ 2>/dev/null || echo "FAIL")
+    echo "$timestamp $result" >> /tmp/51c-curl.txt
+    sleep 1
+done
+
+screen -S 51c-nc
+
+while true; do
+    date;
+    nc -zv 192.168.152.103 8080
+    sleep 1
+done >> /tmp/51c-nc.txt 2>&1
+
+
+screen -S 51c-ping
+
+ping -D 192.168.152.103 | while read line; do
+  if [[ "$line" =~ \[([0-9]+\.[0-9]+)\] ]]; then
+    ts=${BASH_REMATCH[1]}
+    human=$(TZ=Asia/Shanghai date -d "@$ts" "+%F %T.%6N")
+    echo "[$human] ${line#*\] }"
+  else
+    echo "$line"
+  fi
+done >> /tmp/51c-ping.txt 2>&1
+

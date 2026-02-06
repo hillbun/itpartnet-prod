@@ -1813,5 +1813,101 @@ cut -d' ' -f8 /opt/squid/var/log/access.log | sort | uniq -c | sort -rn
 head -10 /opt/squid/var/log/access.log | awk '{print $6}'
 
 
+--
+subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
+
+
+# 安装必要的编译工具
+dnf install -y gcc make perl-devel wget
+
+# 安装 Perl 模块依赖（需要 perl-CPAN）
+dnf install -y perl-CPAN
+
+# 或者通过系统包安装依赖
+dnf install -y perl-IPC-Run perl-TimeDate
+
+# 如果系统包中没有，通过 CPAN 安装
+cpan IPC::Run
+cpan TimeDate
+# 或者用一条命令
+cpan IPC::Run TimeDate
+
+
+
+mkdir -p ~/src
+cd ~/src
+
+# 下载最新版本源代码（可从 GitHub 获取最新版本）
+wget https://github.com/thrig/moreutils/archive/refs/tags/0.63.tar.gz
+# 或者使用官方下载链接
+# wget https://ftp.osuosl.org/pub/jodies/moreutils/moreutils-0.63.tar.gz
+
+# 解压
+tar -xzf 0.63.tar.gz
+cd moreutils-0.63
+步骤 3：编译和安装
+bash
+# 查看可用的安装选项
+cat README
+cat INSTALL
+
+# 编译（通常 moreutils 使用 Makefile.PL）
+perl Makefile.PL
+
+# 检查是否有缺失的依赖
+make test  # 这会显示需要哪些 Perl 模块
+
+# 如果缺少 Perl 模块，安装它们
+cpan $(perl -ne 'print if s/.*requires //' MYMETA.json 2>/dev/null || cat META.yml 2>/dev/null)
+
+# 编译
+make
+
+# 可选：运行测试
+make test
+
+# 安装（需要 root 权限）
+sudo make install
+
+---
+获取源码：
+通常从 Debian 的源码包获取或通过 git 克隆。
+bash
+git clone https://git.joeyh.name/git/moreutils.git
+cd moreutils
+编译与安装：
+bash
+make
+sudo make install
+
+---
+for i in {1..100}; do nc -zv 10.2.3.93 8080; donefor i in {1..100}; do nc -zv 10.2.3.93 8080; done
+
+
+---
+for i in {1..100}; do
+  echo "===== Try $i : $(date '+%F %T') ====="
+  nc -zv 10.2.3.93 8080
+  sleep 1
+done 2>&1 | tee result.txt
+
+
+--
+
+ping -D www.baidu.com | while read line; do
+  if [[ "$line" =~ \[([0-9]+\.[0-9]+)\] ]]; then
+    ts=${BASH_REMATCH[1]}
+    human=$(TZ=Asia/Shanghai date -d "@$ts" "+%F %T.%6N")
+    echo "[$human] ${line#*\] }"
+  else
+    echo "$line"
+  fi
+done
+
+
+
+
+
 curl -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36" https://example.com
+
 
