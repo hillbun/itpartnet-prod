@@ -442,12 +442,6 @@
         groups: squid
         append: yes
       tags: add_nginx_squid_group
-    - name: nginx service start init
-      ansible.builtin.systemd:
-        name: nginx
-        state: started
-        enabled: yes
-      tags: nginx_service_start_init
     - name: add www-group
       ansible.builtin.group:
         name: www-group
@@ -508,6 +502,12 @@
           WantedBy=multi-user.target
       notify: reload systemd
       tags: nginx_service_create
+    - name: nginx service start init
+      ansible.builtin.systemd:
+        name: nginx
+        state: started
+        enabled: yes
+      tags: nginx_service_start_init
     - name: download epel
       get_url:
         url: https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
