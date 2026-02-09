@@ -942,8 +942,8 @@
         path: "{{ item }}"
         state: absent
       loop:
-        - /opt/squid_shell/logs/*
-        - /opt/py_prod/log/*
+        - /opt/squid_shell/logs/*.*
+        - /opt/py_prod/log/*.*
         - /opt/shell_prod/log_count.log
         - /opt/shell_prod/squid_error.log
       tags: delete_log_files
