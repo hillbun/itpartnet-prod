@@ -1,8 +1,8 @@
 proxy_env:
   #http_proxy: "http://192.168.152.120:8080"
   #https_proxy: "http://192.168.152.120:8080"
-  http_proxy: "http://n5-testing4:P%ssw0rd1234@192.168.152.120:8080
-  https_proxy: "http://n5-testing4:P%ssw0rd1234@192.168.152.120:8080
+  http_proxy: "http://n5-testing4:P%ssw0rd1234@192.168.152.120:8080"
+  https_proxy: "http://n5-testing4:P%ssw0rd1234@192.168.152.120:8080"
   NO_PROXY: "localhost,127.0.0.1"
 software_src_path: "/usr/opp/download"
 software_dest_path: "/opt/download"
