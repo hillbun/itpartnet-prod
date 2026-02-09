@@ -546,6 +546,8 @@
       ansible.builtin.dnf:
         name: php
         state: present
+      environment: "{{ proxy_env }}"
+      become: yes
       tags: reset_php
     - name: enable php
       ansible.builtin.dnf:
