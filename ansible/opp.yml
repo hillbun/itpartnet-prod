@@ -936,6 +936,17 @@
         src: /opt/py_prod
         dest: /opt/
       tags: sync_py_prod
+    - name: delete log files
+      become: yes
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - /opt/squid_shell/logs/*
+        - /opt/py_prod/log/*
+        - /opt/shell_prod/log_count.log
+        - /opt/shell_prod/squid_error.log
+      tags: delete_log_files
     - name: edit ftp_accesslog
       ansible.builtin.replace:
         path: /opt/squid_shell/ftp_accesslog.sh
