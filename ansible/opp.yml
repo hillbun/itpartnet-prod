@@ -83,6 +83,7 @@
     #      nameserver 210.87.250.48
     #      nameserver 210.87.253.13
     #  tags: setup_resolv_conf
+    #### todo /etc/security/limits.d/opp.conf
     - name: setup limits
       blockinfile:
         path: /etc/security/limits.conf
@@ -223,10 +224,10 @@
       become: yes
       shell: alternatives --set pip3 /usr/local/python-3.9.20/bin/pip3
       tags: alternatives_pip_3_9_20_config
-    - name: old version pip remove
-      become: yes
-      shell: mv /usr/local/bin/pip3 /usr/local/bin/pip3.bak
-      tags: old_version_pip_remove
+    #- name: old version pip remove
+    #  become: yes
+    #  shell: mv /usr/local/bin/pip3 /usr/local/bin/pip3.bak
+    #  tags: old_version_pip_remove
     - name: install python module
       become: yes
       shell: umask 0022;python3 -m pip install --upgrade pip;python3 -m pip install jinja2 redis psutil requests
