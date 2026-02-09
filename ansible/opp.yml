@@ -508,12 +508,12 @@
         state: started
         enabled: yes
       tags: nginx_service_start_init
-    - name: download epel
-      get_url:
-        url: https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-        dest: "{{ software_src_path }}/epel-release-latest-8.noarch.rpm"
-      delegate_to: localhost
-      run_once: true
+    #- name: download epel
+    #  get_url:
+    #    url: https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+    #    dest: "{{ software_src_path }}/epel-release-latest-8.noarch.rpm"
+    #  delegate_to: localhost
+    #  run_once: true
       tags: download_epel
     - name: copy epel
       ansible.builtin.copy:
