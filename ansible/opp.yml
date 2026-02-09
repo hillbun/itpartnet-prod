@@ -240,13 +240,13 @@
         system: yes
         state: present
       tags: add_squid_user
-    - name: download squid-6.11
-      get_url:
-        url: https://www.squid-cache.org/Versions/v6/squid-6.11.tar.gz
-        dest: "{{ software_src_path }}/squid-6.11.tar.gz"
-      delegate_to: localhost
-      run_once: true
-      tags: download_squid_6_11
+    #- name: download squid-6.11
+    #  get_url:
+    #    url: https://www.squid-cache.org/Versions/v6/squid-6.11.tar.gz
+    #    dest: "{{ software_src_path }}/squid-6.11.tar.gz"
+    #  delegate_to: localhost
+    #  run_once: true
+    #  tags: download_squid_6_11
     - name: copy squid-6.11.tar.gz
       ansible.builtin.copy:
         src: "{{ software_src_path }}/squid-6.11.tar.gz"
