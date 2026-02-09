@@ -59,16 +59,16 @@
         state: restarted
         enabled: yes
       tags: sshd_service_restart
-    #- name: setup hosts
-    #  blockinfile:
-    #    path: /etc/hosts
-    #    block: |
-    #      160.88.114.70 corprodc02.corp.ha.org.hk
-    #      160.98.39.18 corprodc03.corp.ha.org.hk
-    #    marker: "#### {mark} ADDED BY OPP INSTALLATION ####"
-    #    backup: yes
-    #    state: present
-    #  tags: setup_hosts
+    - name: setup hosts
+      blockinfile:
+        path: /etc/hosts
+        block: |
+          160.88.114.70 corprodc02.corp.ha.org.hk
+          160.98.39.18 corprodc03.corp.ha.org.hk
+        marker: "#### {mark} ADDED BY OPP INSTALLATION ####"
+        backup: yes
+        state: present
+      tags: setup_hosts
     #- name: setup resolv.conf
     #  ansible.builtin.copy:
     #    dest: /etc/resolv.conf
