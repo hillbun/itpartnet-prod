@@ -16,17 +16,17 @@
         path: "{{ backup_dest_path }}"
         state: directory
       tags: create_backup_dest_path
-    #- name: setup yum proxy
-    #  blockinfile:
-    #    path: /etc/yum.conf
+    - name: setup yum proxy
+      blockinfile:
+        path: /etc/yum.conf
     #    block: |
     #      proxy=http://192.168.189.195:8080
-    #    block: |
-    #      proxy={{ proxy_env.http_proxy }}
-    #    marker: "#### {mark} ADDED BY OPP INSTALLATION ####"
-    #    backup: yes
-    #    state: present
-    #  tags: setup_yum_proxy
+        block: |
+          proxy={{ proxy_env.http_proxy }}
+        marker: "#### {mark} ADDED BY OPP INSTALLATION ####"
+        backup: yes
+        state: present
+      tags: setup_yum_proxy
     - name: edit sshd config ciphers
       ansible.builtin.replace:
         path: /etc/ssh/sshd_config
