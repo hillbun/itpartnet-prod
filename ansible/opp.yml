@@ -516,7 +516,6 @@
         state: link
         force: yes
       tags: nginx_symbolic_link
-  tags: nginx_link
     #- name: download epel
     #  get_url:
     #    url: https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
