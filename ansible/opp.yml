@@ -13,8 +13,8 @@
     #- name: setup yum proxy
     #  blockinfile:
     #    path: /etc/yum.conf
-        #block: |
-        #  proxy=http://192.168.189.195:8080
+    #    block: |
+    #      proxy=http://192.168.189.195:8080
     #    block: |
     #      proxy={{ proxy_env.http_proxy }}
     #    marker: "#### {mark} ADDED BY OPP INSTALLATION ####"
