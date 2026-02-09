@@ -1,4 +1,220 @@
 ---
+- name: install app
+  hosts: opp_prod
+  gather_facts: no
+  vars_files:
+    - vars/app_vars.yml
+  tasks:
+    - name: local create account logreader
+      delegate_to: localhost
+      run_once: true
+      become: yes
+      ansible.builtin.user:
+        name: logreader
+        state: present
+        shell: /bin/bash
+        create_home: yes
+        groups: squid,www-group
+        append: yes
+        password: "{{ logreader_password | password_hash('sha512') }}"
+      tags: local_create_account_logreader
+    - name: local create logreader ssh
+      delegate_to: localhost
+      become: yes
+      become_user: logreader
+      run_once: true
+      ansible.builtin.file:
+        path: "~/.ssh"
+        state: directory
+        mode: '0700'
+        owner: logreader
+      tags: local_create_logreader_ssh
+    - name: local logreader keygen
+      delegate_to: localhost
+      become: yes
+      become_user: logreader
+      run_once: true
+      community.crypto.openssh_keypair:
+        path: "~/.ssh/id_rsa"
+        type: rsa
+        size: 2048
+      tags: local_logreader_keygen
+    - name: local create opp sudoer
+      delegate_to: localhost
+      become: yes
+      run_once: true
+      ansible.builtin.template:
+        src: templates/sudoer-opp.j2
+        dest: /etc/sudoers.d/opp
+        owner: root
+        group: root
+        mode: '0440'
+        validate: '/usr/sbin/visudo -cf %s'
+      tags: local_create_opp_sudoer
+    - name: local chown squid_shell
+      delegate_to: localhost
+      become: yes
+      run_once: true
+      ansible.builtin.file:
+        path: /opt/squid_shell
+        state: directory
+        owner: logreader
+        group: logreader
+        mode: '0755'
+        recurse: yes
+      tags: local_chown_squid_shell
+    - name: local create logrotate dir
+      delegate_to: localhost
+      become: yes
+      run_once: true
+      ansible.builtin.file:
+        path: /opt/logrotate
+        state: directory
+        owner: logreader
+        group: logreader
+        mode: '0755'
+      tags: local_create_logrotate_dir
+    - name: local create logrotate config
+      delegate_to: localhost
+      become: yes
+      become_user: logreader
+      run_once: true
+      block:
+        - name: logrotate sub dir
+          ansible.builtin.file:
+            path: "/opt/logrotate/{{ item }}"
+            state: directory
+          loop:
+            - "etc"
+            - "status"
+        - name: logrotate config squid
+          ansible.builtin.template:
+            src: templates/logrotate_config_squid.j2
+            dest: /opt/logrotate/etc/squid
+          vars:
+            access_log_path: "/opt/squid/var/log/access.log"
+            cache_log_path: "/opt/squid/var/log/cache.log"
+            access_tianji_blacklist_log_path: "/opt/squid/var/log/access-tianji-blacklist.log"
+            squid_path: "/opt/squid"
+        - name: logrotate config nginx
+          ansible.builtin.template:
+            src: templates/logrotate_config_nginx.j2
+            dest: /opt/logrotate/etc/nginx
+          vars:
+            log_path: "/opt/nginx/logs/*.log"
+            nginx_path: "/opt/nginx"
+        - name: logrotate config python_prod_logs
+          ansible.builtin.template:
+            src: templates/logrotate_config_python_prod_logs.j2
+            dest: /opt/logrotate/etc/python_prod_logs
+          vars:
+            log_path: "/opt/py_prod/log/*.log"
+      tags: local_create_logrotate_config
+    - name: local create opp-crontab dir
+      delegate_to: localhost
+      become: yes
+      run_once: true
+      ansible.builtin.file:
+        path: /opt/crontab
+        state: directory
+        owner: logreader
+        group: logreader
+        mode: '0755'
+      tags: local_create_opp_crontab_dir
+    - name: local opp-crontab config
+      delegate_to: localhost
+      become: yes
+      become_user: logreader
+      run_once: true
+      block:
+        - name: create opp-crontab
+          ansible.builtin.template:
+            src: templates/opp-crontab.j2
+            dest: /opt/crontab/opp-crontab
+        - name: run opp-crontab
+          ansible.builtin.shell:
+            cmd: "crontab /opt/crontab/opp-crontab"
+      tags: local_opp_crontab_config
+    - name: local Python-3.9.20 download
+      delegate_to: localhost
+      become: yes
+      run_once: true
+      get_url:
+        url: https://www.python.org/ftp/python/3.9.20/Python-3.9.20.tgz
+        dest: "{{ software_src_path }}/Python-3.9.20.tgz"
+      tags: local_python_3_9_20_download
+    - name: local Python-3.9.20 unarchive
+      delegate_to: localhost
+      become: yes
+      run_once: true
+      unarchive:
+        src: "{{ software_src_path }}/Python-3.9.20.tgz"
+        dest: "{{ software_src_path }}"
+      tags: local_python_3_9_20_unarchive
+    - name: local Python-3.9.20 configure
+      delegate_to: localhost
+      become: yes
+      run_once: true
+      shell: |
+        ./configure --prefix=/usr/local/python-3.9.20
+      args:
+        chdir: "{{ software_src_path }}/Python-3.9.20"
+      tags: local_python_3_9_20_configure
+    - name: local Python-3.9.20 install
+      delegate_to: localhost
+      become: yes
+      run_once: true
+      shell: make && make install
+      args:
+        chdir: "{{ software_src_path }}/Python-3.9.20"
+        creates: /usr/local/python-3.9.20
+      tags: local_python_3_9_20_install
+    - name: local alternatives python-3.9.20 install
+      delegate_to: localhost
+      become: yes
+      run_once: true
+      shell: alternatives --install /usr/bin/python3 python3 /usr/local/python-3.9.20/bin/python3.9 1
+      tags: local_alternatives_python_3_9_20_install
+    - name: local alternatives python-3.9.20 config
+      delegate_to: localhost
+      become: yes
+      run_once: true
+      shell: alternatives --set python3 /usr/local/python-3.9.20/bin/python3.9
+      tags: local_alternatives_python_3_9_20_config
+    - name: local create redis_bak dir
+      delegate_to: localhost
+      become: yes
+      run_once: true
+      ansible.builtin.file:
+        path: /opt/redis_bak
+        state: directory
+        owner: redis
+        group: redis
+        mode: '0755'
+      tags: local_create_redis_bak_dir
+    - name: local create fileData_bak dir
+      delegate_to: localhost
+      become: yes
+      run_once: true
+      ansible.builtin.file:
+        path: /opt/fileData_bak
+        state: directory
+        owner: nginx
+        group: nginx
+        mode: '0755'
+      tags: local_create_filedata_bak_dir
+#######################################################
+    - name: ping
+      ping:
+      tags: ping_hosts
+    - name: create software_src_path
+      file:
+        path: "{{ software_src_path }}"
+        state: directory
+        mode: '0755'
+      delegate_to: localhost
+      run_once: true
+      tags: create_software_src_path
     - name: create software_dest_path
       ansible.builtin.file:
         path: "{{ software_dest_path }}"
@@ -10,17 +226,15 @@
         path: "{{ backup_dest_path }}"
         state: directory
       tags: create_backup_dest_path
-    #- name: setup yum proxy
-    #  blockinfile:
-    #    path: /etc/yum.conf
-        #block: |
-        #  proxy=http://192.168.189.195:8080
-    #    block: |
-    #      proxy={{ proxy_env.http_proxy }}
-    #    marker: "#### {mark} ADDED BY OPP INSTALLATION ####"
-    #    backup: yes
-    #    state: present
-    #  tags: setup_yum_proxy
+    - name: setup yum proxy
+      blockinfile:
+        path: /etc/yum.conf
+        block: |
+          proxy=http://192.168.189.195:8080
+        marker: ""
+        backup: yes
+        state: present
+      tags: setup_yum_proxy
     - name: edit sshd config ciphers
       ansible.builtin.replace:
         path: /etc/ssh/sshd_config
@@ -53,30 +267,30 @@
         state: restarted
         enabled: yes
       tags: sshd_service_restart
-    #- name: setup hosts
-    #  blockinfile:
-    #    path: /etc/hosts
-    #    block: |
-    #      160.88.114.70 corprodc02.corp.ha.org.hk
-    #      160.98.39.18 corprodc03.corp.ha.org.hk
-    #    marker: "#### {mark} ADDED BY OPP INSTALLATION ####"
-    #    backup: yes
-    #    state: present
-    #  tags: setup_hosts
-    #- name: setup resolv.conf
-    #  ansible.builtin.copy:
-    #    dest: /etc/resolv.conf
-    #    owner: root
-    #    group: root
-    #    mode: '0644'
-    #    backup: yes
-    #    content: |
-    #      options timeout:5 attempts:1
-    #      search     corp.ha.org.hk server.ha.org.hk ha.org.hk
-    #
-    #      nameserver 210.87.250.48
-    #      nameserver 210.87.253.13
-    #  tags: setup_resolv_conf
+    - name: setup hosts
+      blockinfile:
+        path: /etc/hosts
+        block: |
+          160.88.114.70 corprodc02.corp.ha.org.hk
+          160.98.39.18 corprodc03.corp.ha.org.hk
+        marker: "#### {mark} ADDED BY OPP INSTALLATION ####"
+        backup: yes
+        state: present
+      tags: setup_hosts
+    - name: setup resolv.conf
+      ansible.builtin.copy:
+        dest: /etc/resolv.conf
+        owner: root
+        group: root
+        mode: '0644'
+        backup: yes
+        content: |
+          options timeout:5 attempts:1
+          search     corp.ha.org.hk server.ha.org.hk ha.org.hk
+
+          nameserver 210.87.250.48
+          nameserver 210.87.253.13
+      tags: setup_resolv_conf
     - name: setup limits
       blockinfile:
         path: /etc/security/limits.conf
@@ -174,6 +388,7 @@
         - { old: '^server hktsrvprd51a iburst', new: 'server 192.168.150.104 iburst' }
       notify: restart chronyd
       tags: edit_chrony_server
+
     - name: Python-3.9.20 copy
       become: yes
       ansible.builtin.copy:
