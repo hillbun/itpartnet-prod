@@ -514,19 +514,19 @@
     #    dest: "{{ software_src_path }}/epel-release-latest-8.noarch.rpm"
     #  delegate_to: localhost
     #  run_once: true
-      tags: download_epel
+    #  tags: download_epel
     - name: copy epel
       ansible.builtin.copy:
         src: "{{ software_src_path }}/epel-release-latest-8.noarch.rpm"
         dest: "{{ software_dest_path }}/epel-release-latest-8.noarch.rpm"
       tags: copy_epel
-    - name: download remi
-      get_url:
-        url: https://rpms.remirepo.net/enterprise/remi-release-8.rpm
-        dest: "{{ software_src_path }}/remi-release-8.rpm"
-      delegate_to: localhost
-      run_once: true
-      tags: download_remi
+    #- name: download remi
+    #  get_url:
+    #    url: https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+    #    dest: "{{ software_src_path }}/remi-release-8.rpm"
+    #  delegate_to: localhost
+    #  run_once: true
+    #  tags: download_remi
     - name: copy remi
       ansible.builtin.copy:
         src: "{{ software_src_path }}/remi-release-8.rpm"
