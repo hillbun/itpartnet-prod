@@ -938,11 +938,10 @@
       tags: sync_py_prod
     - name: delete all log files
       become: yes
-      ansible.builtin.shell: |
-        rm -f /opt/squid_shell/logs/*.*
-        rm -f /opt/py_prod/log/*.*
-      args:
-        warn: false
+      ansible.builtin.shell: "rm -f {{ item }}"
+      loop:
+        - "/opt/squid_shell/logs/*.*"
+        - "/opt/py_prod/log/*.*"
       tags: delete_all_log_files
     - name: delete log files
       become: yes
