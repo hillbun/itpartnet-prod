@@ -1,4 +1,10 @@
 ---
+- name: install app
+  hosts: opp_prod
+  gather_facts: no
+  vars_files:
+    - vars/app_vars.yml
+  tasks:
     - name: create software_dest_path
       ansible.builtin.file:
         path: "{{ software_dest_path }}"
