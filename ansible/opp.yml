@@ -539,7 +539,7 @@
           - https://rpms.remirepo.net/enterprise/remi-release-8.rpm
         state: present  
         disable_gpg_check: yes
-      #environment: "{{ proxy_env }}"
+      environment: "{{ proxy_env }}"
       become: yes
       tags: install_repo
     - name: reset php
