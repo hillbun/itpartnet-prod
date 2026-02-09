@@ -508,6 +508,15 @@
         state: started
         enabled: yes
       tags: nginx_service_start_init
+    - name: nginx symbolic link
+      become: yes
+      ansible.builtin.file:
+        src: /opt/nginx
+        dest: /usr/nginx
+        state: link
+        force: yes
+      tags: nginx_symbolic_link
+  tags: nginx_link
     #- name: download epel
     #  get_url:
     #    url: https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
