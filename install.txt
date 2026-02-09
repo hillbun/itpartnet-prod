@@ -1921,3 +1921,7 @@ irefox：
 
 ----
 30 23 * * * /usr/bin/python3 /opt/squid_shell/share_account_pcname_check.py --dns 160.87.34.103  --squidtxt /opt/nginx/html/transproxy_admin/public/fileData/specify_ip_pop_ldaps.txt
+
+
+ansible-playbook --step --limit opp_prod_42 -i hosts.ini opp.yml --start-at-task "copy rsyslog oproxy"
+ansible opp_prod_42 -i hosts.ini -m shell -a "ip a"
