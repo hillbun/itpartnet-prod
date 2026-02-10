@@ -11,3 +11,4 @@ Feb 10 10:42:15 <authpriv.debug> poxappprd52a crontab[20034]:pam_unix(crond:acco
 Feb 10 10:43:02 <authpriv.debug> poxappprd52a sshd[20053]:pam_unix(sshd:account): expired password for user logreader (password aged)
 Feb 10 10:43:38 <authpriv.debug> poxappprd52a crontab[20944]:pam_unix(crond:account): expired password for user logreader (password aged)
 
+chage -M -1 logreader
