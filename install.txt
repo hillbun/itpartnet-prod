@@ -45,7 +45,17 @@ https://ka9rcghfcff.feishu.cn/drive/folder/Qzd3fkfOsl2eOwdRbP2cKFtDn3f
 ROLLOUT
 https://ka9rcghfcff.feishu.cn/sheets/ZQSCsPCPoh7lEwtVRkCcKwjLnSd?sheet=MDvHFV
 
+已完成：
+OPP初始化部署
 
+未完成：
+CHECKLIST
+ISO SCAN
+连通ldaps://160.98.39.18:636
+LDAP AUTH账号分配
+SSL证书
+FTP上传目录分配
+服务器连通公网
 
 
 
@@ -1924,4 +1934,25 @@ irefox：
 
 
 ansible-playbook --step --limit opp_prod_42 -i hosts.ini opp.yml --start-at-task "copy rsyslog oproxy"
+ansible-playbook --step --limit opp_prod_42 -i hosts.ini opp.yml --tag "copy_rsyslog_oproxy"
 ansible opp_prod_42 -i hosts.ini -m shell -a "ip a"
+ansible opp_prod_42 -i hosts.ini -m ping
+
+
+---
+cleanup_iocs
+
+vi /usr/local/bin/cleanup_iocs.sh
+
+
+#!/bin/bash
+
+ARCHIVE_DIR="/opt/nginx/html/threat/archive"
+LOG_FILE="/var/log/iocs_cleanup.log"
+
+echo "==== $(date '+%F %T') Cleanup start ====" >> "$LOG_FILE"
+
+find "$ARCHIVE_DIR" -type f -name "IOCS_*.csv" -mtime +7 -print -delete >> "$LOG_FILE" 2>&1
+
+echo "==== $(date '+%F %T') Cleanup end ====" >> "$LOG_FILE"
+echo >> "$LOG_FILE"

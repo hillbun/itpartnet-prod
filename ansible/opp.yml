@@ -1,5 +1,5 @@
 ---
-- name: install app
+- name: install opp
   hosts: opp_prod:opp_prod_42
   gather_facts: no
   vars_files:
