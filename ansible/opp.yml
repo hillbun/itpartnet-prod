@@ -1041,6 +1041,9 @@
         groups: squid,www-group
         append: yes
         password: "{{ logreader_password | password_hash('sha512') }}"
+        password_expire_min: 0
+        password_expire_max: -1
+        password_lock: false
       tags: create_account_logreader
     - name: set logreader key
       become: yes
