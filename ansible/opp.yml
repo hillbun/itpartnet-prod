@@ -69,20 +69,19 @@
         backup: yes
         state: present
       tags: setup_hosts
-    #- name: setup resolv.conf
-    #  ansible.builtin.copy:
-    #    dest: /etc/resolv.conf
-    #    owner: root
-    #    group: root
-    #    mode: '0644'
-    #    backup: yes
-    #    content: |
-    #      options timeout:5 attempts:1
-    #      search     corp.ha.org.hk server.ha.org.hk ha.org.hk
-    #
-    #      nameserver 210.87.250.48
-    #      nameserver 210.87.253.13
-    #  tags: setup_resolv_conf
+    - name: setup resolv.conf
+      ansible.builtin.copy:
+        dest: /etc/resolv.conf
+        owner: root
+        group: root
+        mode: '0644'
+        backup: yes
+        content: |
+          options timeout:5 attempts:1
+          search     corp.ha.org.hk server.ha.org.hk ha.org.hk
+          nameserver 210.87.250.48
+          nameserver 210.87.253.13
+      tags: setup_resolv_conf
     #### todo /etc/security/limits.d/opp.conf
     - name: setup limits
       blockinfile:
