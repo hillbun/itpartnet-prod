@@ -1,0 +1,24 @@
+192.168.152.120 poxappprd52a.server.ha.org.hk 192.168.189.36
+192.168.152.121 poxappprd52b.server.ha.org.hk 192.168.189.37
+192.168.152.122 poxappprd52c.server.ha.org.hk 192.168.189.38
+192.168.152.123 poxappprd52d.server.ha.org.hk 192.168.189.39
+192.168.152.124 poxappprd52e.server.ha.org.hk 192.168.189.40
+
+pox@N5OPP
+
+192.168.52.236 poxappprd41a.server.ha.org.hk  192.168.89.53
+192.168.52.238 poxappprd41b.server.ha.org.hk  192.168.89.54
+192.168.52.97 poxappprd41c.server.ha.org.hk   192.168.48.65
+192.168.152.101 poxappprd51a.server.ha.org.hk 192.168.189.33
+192.168.152.102 poxappprd51b.server.ha.org.hk 192.168.189.34
+192.168.152.103 poxappprd51c.server.ha.org.hk 192.168.189.35 sudo
+
+ssh logreader@poxappprd51b
+P@ssw0rd4321
+P@ssw0rd123
+
+192.168.50.159 poxappprd42a  	        192.168.89.27
+192.168.50.160 poxappprd42b		192.168.89.28
+192.168.50.161 poxappprd42c		192.168.89.29
+192.168.50.162 poxappprd42d		192.168.89.33
+192.168.50.163 poxappprd42e		192.168.89.37
