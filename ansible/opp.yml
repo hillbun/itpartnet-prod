@@ -168,6 +168,7 @@
           - systemd-devel
           - ftp
           - go
+          - screen
         state: present
       tags: install_dnf_package
     - name: edit chrony server
