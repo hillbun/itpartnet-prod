@@ -13,3 +13,21 @@
 45 0 * * * /usr/sbin/logrotate -s /opt/logrotate/status/logrotate.status -f /opt/logrotate/etc/python_prod_logs &>> /opt/squid_shell/logs/logrotate.log
 0 0 * * * sudo systemctl reload squid
 0 1 * * * /usr/bin/curl -k https://127.0.0.1:8000/api/logs_del  &>> /opt/squid_shell/logs/php_logs_del.log
+
+
+
+
+不同发行版的差异
+发行版	执行机制	默认执行时间
+Ubuntu/Debian	/etc/cron.daily/logrotate	早上 6:25
+RHEL/CentOS	/etc/cron.daily/logrotate	通常凌晨 4:02
+通过 systemd timer	logrotate.timer	每日随机时间
+
+
+为什么不是固定时间？
+设计目的
+避免所有服务器同时执行 - 防止"午夜惊群效应"
+
+适应非24/7运行的系统 - 笔记本电脑、可能重启的服务器
+
+负载均衡 - 分散系统维护任务的压力
