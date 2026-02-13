@@ -1960,3 +1960,17 @@ find "$ARCHIVE_DIR" -type f -name "IOCS_*.csv" -mtime +7 -print -delete >> "$LOG
 
 echo "==== $(date '+%F %T') Cleanup end ====" >> "$LOG_FILE"
 echo >> "$LOG_FILE"
+
+
+---
+ELK 主要看 
+通过rsyslog服务同步的
+/opt/squid/var/log/access.log(squid的日志)  
+/opt/squid_shell/resource_monitor_script.log(监控磁盘告警)
+
+FTP服务呢就会执行
+脚本：/opt/squid_shell/ftp_accesslog.sh
+日志：/opt/squid/var/log/ftp_upload.log
+这里就是会议说到的 每天把前一天的access.log.gz 压缩包传到他们的FTP服务器
+
+清理的log目前定时任务只有 /opt/squid/var/log/cache.log
