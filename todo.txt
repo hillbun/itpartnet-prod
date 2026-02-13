@@ -35,11 +35,13 @@
 ### fix logrote issue
 
 ### delete tianjiyoumeng csv files crontab
-### run ansible-playbook as logreader
-### Ansible Vault
+
+----------------------------
 ### kubespray reset scale upgrade downgrade
+### Ansible Vault
 ### zabbix
 ### terraform
+
 
 
 

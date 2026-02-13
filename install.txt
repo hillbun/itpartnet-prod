@@ -39,7 +39,7 @@ check list
 https://ka9rcghfcff.feishu.cn/wiki/EPyHwemmKiBgmdkgKDlc3lLInOf?sheet=0GAPui
 
 check list
-42af
+poxappprd42a poxappprd42e
 https://ka9rcghfcff.feishu.cn/wiki/KbgJwagrvivZqykfdvzcQAChnLb
 
 服务器状态
@@ -49,17 +49,22 @@ https://ka9rcghfcff.feishu.cn/drive/folder/Qzd3fkfOsl2eOwdRbP2cKFtDn3f
 ROLLOUT
 https://ka9rcghfcff.feishu.cn/sheets/ZQSCsPCPoh7lEwtVRkCcKwjLnSd?sheet=MDvHFV
 
-已完成：
-OPP初始化部署
 
-未完成：
+OPP初始化部署
 CHECKLIST
-ISO SCAN
-连通ldaps://160.98.39.18:636
-LDAP AUTH账号分配
-SSL证书
-FTP上传目录分配
-服务器连通公网
+
+
+Dear Daniel,
+
+The checklist for OPP servers poxappprd42a to poxappprd42e is shown below.
+
+Since the following procedures have not been completed yet, please assist it so that we can finish the remaining parts(already marked in the document).
+
+1. LDAP authentication account for each server.
+2. SSL certificate files for each server.
+3. FTP server 160.93.34.26 upload directory for each server.
+4. ISO scanning for each server.
+5. Internet connection for each server.
 
 
 
@@ -984,7 +989,8 @@ systemctl restart chronyd
 TCP
 nc -vz <服务器IP> <端口号>
 
-nc -z -v -u <服务器IP> 123
+UDP
+nc -zuv <服务器IP> 123
 
 
 ----
