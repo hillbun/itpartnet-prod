@@ -1,6 +1,75 @@
 ldapsearch -x -H ldaps://160.98.39.18:636 -D CN=n5-proxy-opp-52a,OU=Users,OU=N2,OU=ITIS,DC=corp,DC=ha,DC=org,DC=hk -w 'ziSJ144Watmj' -b DC=corp,DC=ha,DC=org,DC=hk
 
-curl  --proxy http://n5-testing4:P%40ssw0rd1234@192.168.52.236:8080 https://www.facebook.com/
+curl  --proxy http://n5-testing4:P%40ssw0rd1234@192.168.52.236:8080 https://www.hk01.com/
+
+curl -s -o /dev/null -w "%{http_code} %{time_total} " --proxy http://n5-testing4:P%40ssw0rd1234@192.168.152.120:8080 https://www.hk01.com/
+
+
+date;systemctl reload squid;date;curl -s -o /dev/null -w "%{http_code} %{time_total} " --proxy http://n5-testing4:P%40ssw0rd1234@192.168.152.120:8080 https://www.hk01.com/;echo "";date
+
+
+ps -u squid -o cmd | grep -o '/opt/py_prod/[^ ]*\.py' | sort | uniq -c
+
+     46 /opt/py_prod/check_ip_allow.py
+     48 /opt/py_prod/check_ip_deny.py
+     49 /opt/py_prod/check_iprange_allow.py
+     49 /opt/py_prod/check_iprange_deny.py
+     49 /opt/py_prod/check_special_user_allow.py
+     49 /opt/py_prod/check_special_user_deny.py
+      9 /opt/py_prod/check_ua.py
+     49 /opt/py_prod/check_user.py
+
+ps -u squid -o cmd | grep -o '/opt/py_prod/[^ ]*\.py' | sort | uniq -c
+    539 /opt/py_prod/check_ip_allow.py
+    650 /opt/py_prod/check_ip_deny.py
+    714 /opt/py_prod/check_iprange_allow.py
+    758 /opt/py_prod/check_iprange_deny.py
+    142 /opt/py_prod/check_special_user_allow.py
+    163 /opt/py_prod/check_special_user_deny.py
+    413 /opt/py_prod/check_ua.py
+    166 /opt/py_prod/check_user.py
+
+192.168.52.236 poxappprd41a
+
+watch -n 1 'ps axu  |grep "/opt/py_prod" |wc -l'
+
+
+while true; do
+    timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+    result=$(curl -s -o /dev/null \
+             -w "%{http_code} %{time_total} " \
+             --proxy http://n5-testing4:P%40ssw0rd1234@192.168.152.120:8080 \
+             --connect-timeout 1 \
+             --max-time 3 \
+             https://www.hk01.com/ 2>/dev/null || echo "FAIL")
+    echo "$timestamp $result"
+    sleep 1
+done
+
+while true; do
+    date;
+    nc -zv 192.168.152.120 8080
+    sleep 1
+done
+
+
+ss -ant | grep -v "LISTEN" | awk 'NR>1 && $4 ~ /:8080$/ {print $5}' | sed -E 's/\[.*:([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)\].*/\1/;t; s/:.*//' | sort | uniq -c | sort -n
+      5 11.68.100.79
+     10 160.7.103.138
+     29 160.7.47.75
+   5267 192.168.152.121
+   
+ss -ant | grep -v "LISTEN" | awk 'NR>1 && $4 !~ /:8080$/ && match($4, /:([0-9]+)$/, a) && a[1] > 1024 && $5 != "*:*" {print $5}' | sort | uniq -c | sort -n
+11064 192.168.152.120:443
+
+
+ps axu |grep "py_prod" |wc -l
+
+
+/opt/squid/sbin/squid -k reconfigure
+systemctl reload squid
+
+
 
 screen -S 41a-curl
 
