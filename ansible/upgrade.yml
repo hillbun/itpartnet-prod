@@ -96,18 +96,18 @@
     - name: rollback dist
       tags: rollback_dist
       block:
-        - name: set current time
-          set_fact:
-            current_time: "{{ lookup('pipe', 'date +%Y%m%d%H%M%S') }}"
-        - name: backup py_prod
-          ansible.posix.synchronize:
-            src: "/opt/backup/dist_{{ rollback_time }}/"
-            dest: /opt/nginx/html/dist/
-            archive: yes
-            rsync_opts:
-              - "--owner"
-              - "--group"
-              - "--numeric-ids"
         - name: print current_time
           debug:
-            msg: "rollback dir /opt/backup/dist_{{ current_time }}/"
+            msg: "rollback dir /opt/backup/dist_{{ rollback_time }}/"
+        #- name: backup py_prod
+        #  ansible.posix.synchronize:
+        #    src: "/opt/backup/dist_{{ rollback_time }}/"
+        #    dest: /opt/nginx/html/dist/
+        #    archive: yes
+        #    rsync_opts:
+        #      - "--owner"
+        #      - "--group"
+        #      - "--numeric-ids"
+        #- name: print current_time
+        #  debug:
+        #    msg: "rollback dir /opt/backup/dist_{{ rollback_time }}/"
