@@ -1,6 +1,7 @@
 cd /usr/opp/deploy/itpartnet-prod/ansible/
 
 ansible-playbook --step --limit "opp_prod_42,opp_prod_52" -i hosts.ini opp.yml --tag "opp_crontab_config"
+ansible-playbook --step --limit "opp_prod_52" -i hosts.ini upgrade.yml --tag "upgrade_dist"
 
 ansible opp_prod_42,opp_prod_52 -i hosts.ini -m ping
 ansible opp_prod_old -i hosts.ini -m shell -a "ls -al /opt/squid/var/log/*"
