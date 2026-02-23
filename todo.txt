@@ -39,6 +39,8 @@
 ----------------------------
 ### kubespray reset scale upgrade downgrade
 ### Ansible Vault
+### ansible upgrade
+### ansible rollback
 ### zabbix
 ### terraform
 

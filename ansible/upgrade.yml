@@ -1,6 +1,6 @@
 ---
 - name: upgrade opp
-  hosts: opp_prod
+  hosts: opp_prod_52:opp_prod_42
   gather_facts: no
   vars_files:
     - vars/app_vars.yml
