@@ -39,8 +39,9 @@
 ----------------------------
 ### kubespray reset scale upgrade downgrade
 ### Ansible Vault
-### zabbix
-### terraform
+### zabbix https://www.zabbix.com/download
+### terraform multiple env
+### kubernetes squid daemonset
 
 
 
