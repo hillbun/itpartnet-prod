@@ -41,7 +41,7 @@
               - "--owner"
               - "--group"
               - "--numeric-ids"
-          delegate_to: "{{ inventory_hostname }}"
+          #delegate_to: "{{ inventory_hostname }}"
         - name: print dist current_time
           debug:
             msg: "backup dir /opt/backup/dist_{{ current_time }}/"
