@@ -5,6 +5,10 @@
   vars_files:
     - vars/app_vars.yml
   tasks:
+    - name: set current time
+      tags: set_current_time
+      set_fact:
+        current_time: "{{ lookup('pipe', 'date +%Y%m%d%H%M%S') }}"
     - name: upgrade py_prod
       tags: upgrade_py_prod
       block:
@@ -32,19 +36,15 @@
     - name: upgrade dist
       tags: upgrade_dist
       block:
-        - name: init current_time
-          debug:
-            msg: "init /opt/backup/dist_{{ current_time }}/"
-        - name: backup dist
-          ansible.posix.synchronize:
-            src: /opt/nginx/html/dist/
-            dest: "/opt/backup/dist_{{ current_time }}/"
-            archive: yes
-            rsync_opts:
-              - "--owner"
-              - "--group"
-              - "--numeric-ids"
-          #delegate_to: "{{ inventory_hostname }}"
+        #- name: backup dist
+        #  ansible.posix.synchronize:
+        #    src: /opt/nginx/html/dist/
+        #    dest: "/opt/backup/dist_{{ current_time }}/"
+        #    archive: yes
+        #    rsync_opts:
+        #      - "--owner"
+        #      - "--group"
+        #      - "--numeric-ids"
         - name: print dist current_time
           debug:
             msg: "backup dir /opt/backup/dist_{{ current_time }}/"
@@ -52,15 +52,6 @@
           ansible.builtin.pause:
             seconds: 5
         - name: print dist current_time 2
-          debug:
-            msg: "backup dir /opt/backup/dist_{{ current_time }}/"
-        - name: print dist current_time 3
-          debug:
-            msg: "backup dir /opt/backup/dist_{{ current_time }}/"
-        - name: print dist current_time 4
-          debug:
-            msg: "backup dir /opt/backup/dist_{{ current_time }}/"
-        - name: print dist current_time 5
           debug:
             msg: "backup dir /opt/backup/dist_{{ current_time }}/"
         #- name: sync dist
