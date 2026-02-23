@@ -5,10 +5,6 @@
   vars_files:
     - vars/app_vars.yml
   tasks:
-    - name: set current time
-      tags: set_current_time
-      set_fact:
-        current_time: "{{ lookup('pipe', 'date +%Y%m%d%H%M%S') }}"
     - name: upgrade py_prod
       tags: upgrade_py_prod
       block:
@@ -36,6 +32,9 @@
     - name: upgrade dist
       tags: upgrade_dist
       block:
+        - name: set current time
+          set_fact:
+            current_time: "{{ lookup('pipe', 'date +%Y%m%d%H%M%S') }}"
         #- name: backup dist
         #  ansible.posix.synchronize:
         #    src: /opt/nginx/html/dist/
