@@ -37,12 +37,14 @@
 ### delete tianjiyoumeng csv files crontab
 
 ----------------------------
-### kubespray reset scale upgrade downgrade
+### squid external_acl_type Unix Socket
+### kubespray reset scale remove-node upgrade downgrade
 ### Ansible Vault
 ### ansible upgrade
 ### ansible rollback
 ### zabbix
 ### terraform
+### security sas
 
 
 
