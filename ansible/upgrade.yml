@@ -32,6 +32,9 @@
     - name: upgrade dist
       tags: upgrade_dist
       block:
+        - name: init current_time
+          debug:
+            msg: "init /opt/backup/dist_{{ current_time }}/"
         - name: backup dist
           ansible.posix.synchronize:
             src: /opt/nginx/html/dist/
