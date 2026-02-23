@@ -48,6 +48,9 @@
         - name: print dist current_time
           debug:
             msg: "backup dir /opt/backup/dist_{{ current_time }}/"
+        - name: pause for 5 seconds
+          ansible.builtin.pause:
+            seconds: 5
         - name: print dist current_time 2
           debug:
             msg: "backup dir /opt/backup/dist_{{ current_time }}/"
