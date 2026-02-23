@@ -47,12 +47,12 @@
         - name: print dist current_time
           debug:
             msg: "backup dir /opt/backup/dist_{{ current_time }}/"
-        #- name: sync dist
-        #  ansible.posix.synchronize:
-        #    src: /opt/nginx/html/dist/
-        #    dest: /opt/nginx/html/dist/
-        #    archive: yes
-        #    delete: yes
+        - name: sync dist
+          ansible.posix.synchronize:
+            src: /opt/nginx/html/dist/
+            dest: /opt/nginx/html/dist/
+            archive: yes
+            delete: yes
     - name: upgrade transproxy_admin
       tags: upgrade_transproxy_admin
       block:
