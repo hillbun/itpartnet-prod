@@ -35,22 +35,16 @@
         - name: set current time
           set_fact:
             current_time: "{{ lookup('pipe', 'date +%Y%m%d%H%M%S') }}"
-        #- name: backup dist
-        #  ansible.posix.synchronize:
-        #    src: /opt/nginx/html/dist/
-        #    dest: "/opt/backup/dist_{{ current_time }}/"
-        #    archive: yes
-        #    rsync_opts:
-        #      - "--owner"
-        #      - "--group"
-        #      - "--numeric-ids"
+        - name: backup dist
+          ansible.posix.synchronize:
+            src: /opt/nginx/html/dist/
+            dest: "/opt/backup/dist_{{ current_time }}/"
+            archive: yes
+            rsync_opts:
+              - "--owner"
+              - "--group"
+              - "--numeric-ids"
         - name: print dist current_time
-          debug:
-            msg: "backup dir /opt/backup/dist_{{ current_time }}/"
-        - name: pause for 5 seconds
-          ansible.builtin.pause:
-            seconds: 5
-        - name: print dist current_time 2
           debug:
             msg: "backup dir /opt/backup/dist_{{ current_time }}/"
         #- name: sync dist
