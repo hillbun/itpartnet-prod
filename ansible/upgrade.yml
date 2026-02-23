@@ -1,6 +1,6 @@
 ---
 - name: upgrade opp
-  hosts: opp_prod
+  hosts: opp_prod_52:opp_prod_42
   gather_facts: no
   vars_files:
     - vars/app_vars.yml
@@ -8,6 +8,9 @@
     - name: upgrade py_prod
       tags: upgrade_py_prod
       block:
+        - name: set current time
+          set_fact:
+            current_time: "{{ lookup('pipe', 'date +%Y%m%d%H%M%S') }}"
         - name: backup py_prod
           ansible.posix.synchronize:
             src: /opt/py_prod/
@@ -18,7 +21,7 @@
               - "--group"
               - "--numeric-ids"
           delegate_to: "{{ inventory_hostname }}"
-        - name: print py_prod current_time
+        - name: print current_time
           debug:
             msg: "backup dir /opt/backup/py_prod{{ current_time }}/"
         - name: sync py_prod
@@ -32,6 +35,9 @@
     - name: upgrade dist
       tags: upgrade_dist
       block:
+        - name: set current time
+          set_fact:
+            current_time: "{{ lookup('pipe', 'date +%Y%m%d%H%M%S') }}"
         - name: backup dist
           ansible.posix.synchronize:
             src: /opt/nginx/html/dist/
@@ -41,8 +47,7 @@
               - "--owner"
               - "--group"
               - "--numeric-ids"
-          delegate_to: "{{ inventory_hostname }}"
-        - name: print dist current_time
+        - name: print current_time
           debug:
             msg: "backup dir /opt/backup/dist_{{ current_time }}/"
         - name: sync dist
@@ -54,6 +59,9 @@
     - name: upgrade transproxy_admin
       tags: upgrade_transproxy_admin
       block:
+        - name: set current time
+          set_fact:
+            current_time: "{{ lookup('pipe', 'date +%Y%m%d%H%M%S') }}"
         - name: backup transproxy_admin
           ansible.posix.synchronize:
             src: /opt/nginx/html/transproxy_admin/
@@ -63,8 +71,7 @@
               - "--owner"
               - "--group"
               - "--numeric-ids"
-          delegate_to: "{{ inventory_hostname }}"
-        - name: print transproxy_admin current_time
+        - name: print current_time
           debug:
             msg: "backup dir /opt/backup/transproxy_admin_{{ current_time }}/"
         - name: sync transproxy_admin
@@ -89,16 +96,18 @@
     - name: rollback dist
       tags: rollback_dist
       block:
-        - name: backup py_prod
-          ansible.posix.synchronize:
-            src: "/opt/backup/dist_{{ rollback_time }}/"
-            dest: /opt/nginx/html/dist/
-            archive: yes
-            rsync_opts:
-              - "--owner"
-              - "--group"
-              - "--numeric-ids"
-          delegate_to: "{{ inventory_hostname }}"
-        - name: print dist current_time
+        - name: print current_time
           debug:
-            msg: "rollback dir /opt/backup/dist_{{ current_time }}/"
+            msg: "rollback dir /opt/backup/dist_{{ rollback_time }}/"
+        #- name: backup py_prod
+        #  ansible.posix.synchronize:
+        #    src: "/opt/backup/dist_{{ rollback_time }}/"
+        #    dest: /opt/nginx/html/dist/
+        #    archive: yes
+        #    rsync_opts:
+        #      - "--owner"
+        #      - "--group"
+        #      - "--numeric-ids"
+        #- name: print current_time
+        #  debug:
+        #    msg: "rollback dir /opt/backup/dist_{{ rollback_time }}/"
