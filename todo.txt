@@ -37,20 +37,19 @@
 ### delete tianjiyoumeng csv files crontab
 
 ----------------------------
+### node_exporter
 ### squid external_acl_type Unix Socket
 ### kubespray reset scale remove-node upgrade downgrade
 ### Ansible Vault
-<<<<<<< HEAD
 ### zabbix https://www.zabbix.com/download
 ### terraform multiple env
 ### kubernetes squid daemonset
-=======
 ### ansible upgrade
 ### ansible rollback
 ### zabbix
 ### terraform
 ### security sas
->>>>>>> 3473ab54e406c5fc82c22f9646205e72256983e9
+
 
 
 

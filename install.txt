@@ -50,6 +50,15 @@ ROLLOUT
 https://ka9rcghfcff.feishu.cn/sheets/ZQSCsPCPoh7lEwtVRkCcKwjLnSd?sheet=MDvHFV
 
 
+Server Weekly Report
+https://ka9rcghfcff.feishu.cn/sheets/ZQSCsPCPoh7lEwtVRkCcKwjLnSd?sheet=MDvHFV
+
+
+LOGFILE
+https://ka9rcghfcff.feishu.cn/sheets/ZQSCsPCPoh7lEwtVRkCcKwjLnSd?sheet=9hOuWp
+
+
+
 OPP初始化部署
 CHECKLIST
 
