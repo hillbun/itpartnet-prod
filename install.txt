@@ -57,7 +57,7 @@ https://ka9rcghfcff.feishu.cn/sheets/ZQSCsPCPoh7lEwtVRkCcKwjLnSd?sheet=MDvHFV
 LOGFILE
 https://ka9rcghfcff.feishu.cn/sheets/ZQSCsPCPoh7lEwtVRkCcKwjLnSd?sheet=9hOuWp
 
-
+/opt/nginx/html/threat/archive/*.csv
 
 OPP初始化部署
 CHECKLIST
@@ -90,6 +90,15 @@ pox@N5OPP
 ssh logreader@192.168.52.236
 P@ssw0rd123
 
+---
+1. ftp -> sftp
+2. tianjiyoumeng block history json   alert list source, user, export  top10
+3. python_prod logs
+
+
+forcepoint IPs  assign 3 internal IPs ->  52a   2026/02/26
+
+IP connection  bandwidth limit
 
 ----
 
