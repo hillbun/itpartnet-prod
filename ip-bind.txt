@@ -1,26 +1,58 @@
-ip a show team0
+测试目的
 
-配置
+将以下主机的IP
+poxappprd52b 192.168.152.121
+poxappprd52c 192.168.152.122
+poxappprd52d 192.168.152.123
+绑定到
+poxappprd52a 192.168.152.120
+
+浏览器依次配置代理服务器为以下地址
+http://192.168.152.120:8080/
+http://192.168.152.121:8080/
+http://192.168.152.122:8080/
+http://192.168.152.123:8080/
+
+可以正常完成用户认证和网站访问
+
+1. 服务器team0对应IP地址确认
+
+ip a show team0
+poxappprd52a 192.168.152.120
+poxappprd52b 192.168.152.121
+poxappprd52c 192.168.152.122
+poxappprd52d 192.168.152.123
+
+2. 配置
 poxappprd52b
 nmcli con down team0
+ip a show team0
 
 poxappprd52c
 nmcli con down team0
+ip a show team0
 
 poxappprd52d
 nmcli con down team0
+ip a show team0
 
 poxappprd52a
 nmcli con mod team0 ipv4.addresses "192.168.152.120/24, 192.168.152.121/24, 192.168.152.122/24, 192.168.152.123/24"
 nmcli device reapply team0
 ip a show team0
 
----
-proxy配置测试
+3. proxy代理服务器配置测试
 
----
+浏览器依次配置代理服务器为以下地址
+http://192.168.152.120:8080/
+http://192.168.152.121:8080/
+http://192.168.152.122:8080/
+http://192.168.152.123:8080/
 
-恢复
+可以正常完成用户认证和网站访问
+
+4. 恢复操作
+
 poxappprd52a
 nmcli con mod team0 ipv4.addresses "192.168.152.120/24"
 nmcli device reapply team0
