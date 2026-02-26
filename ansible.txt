@@ -4,6 +4,7 @@ ansible-playbook --step --limit "opp_prod_42:opp_prod_52" -i hosts.ini opp.yml -
 ansible-playbook --step --limit "opp_prod_42" -i hosts.ini upgrade.yml --tag "upgrade_dist"
 ansible-playbook --step --limit "opp_prod_42" -i hosts.ini upgrade.yml --tag "rollback_dist" -e "rollback_time=20260223173449"
 
+ansible-playbook --step --limit "opp_prod_42" -i hosts.ini opp-extra.yml
 
 ansible-playbook --step --limit "192.168.50.159:192.168.50.160" -i hosts.ini upgrade.yml --tag "upgrade_dist"
 ansible-playbook --step --limit "192.168.50.159" -i hosts.ini upgrade.yml --tag "upgrade_opp_redis"
