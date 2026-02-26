@@ -108,6 +108,7 @@
         - name: print current_time
           debug:
             msg: "backup dir /opt/backup/redis_{{ current_time }}/"
+        #### sync redis data file
         - name: redis service start
           ansible.builtin.systemd:
             name: redis

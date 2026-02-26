@@ -1,0 +1,56 @@
+Plugin Output: 
+The following client-to-server Cipher Block Chaining (CBC) algorithms
+are supported : 
+
+  aes256-gcm@openssh.com,aes256-ctr,aes256-cbc,aes128-gcm@openssh.com,aes128-ctr,aes128-cbc
+
+The following server-to-client Cipher Block Chaining (CBC) algorithms
+are supported : 
+
+  aes256-gcm@openssh.com,aes256-ctr,aes256-cbc,aes128-gcm@openssh.com,aes128-ctr,aes128-cbc
+  
+  
+The SSH server is configured to support Cipher Block Chaining (CBC) encryption.  This may allow an attacker to recover the plaintext message from the ciphertext. 
+
+Note that this plugin only checks for the options of the SSH server and does not check for vulnerable software versions.
+
+---
+要验证 SSH 服务器支持哪些加密算法，最直接的方法是使用 ssh 客户端自带的测试功能或专用的扫描工具。
+
+以下是三种最常用的命令行验证方法，按推荐程度排序：
+
+方法一：使用 ssh -Q cipher (本地查询)
+在修改配置前后，你可以先查看你的 SSH 客户端支持哪些算法。这虽然不直接测试服务器，但能让你知道哪些选项是可用的。
+
+Bash
+ssh -Q cipher
+方法二：使用 nmap 进行远程扫描 (最推荐)
+这是验证扫描报告结果最权威的方法。nmap 有一个专门的脚本可以列出目标服务器实际开启的所有 SSH 算法。
+
+Bash
+# 将 <target_ip> 替换为你的服务器 IP
+nmap --script ssh2-enum-algos -sV -p 22 <target_ip>
+如何解读输出：
+在输出结果的 encryption_algorithms 部分，检查是否还存在带有 -cbc 后缀的算法。如果已经成功修复，你应该只能看到 gcm 或 ctr 结尾的算法。
+
+方法三：手动指定算法连接测试 (最简单)
+你可以尝试强制使用 cbc 算法连接服务器。如果服务器已经禁用了该算法，连接将会失败并报错。
+
+测试步骤：
+执行以下命令，尝试使用报告中提到的 aes256-cbc 进行连接：
+
+Bash
+ssh -o Ciphers=aes256-cbc <username>@<target_ip>
+如果修复成功： 你会看到类似 Unable to negotiate with <IP> port 22: no matching cipher found. 的错误提示。这意味着服务器拒绝了该不安全算法。
+
+如果修复失败： 系统会正常提示你输入密码。
+
+方法四：使用 sshd 检查配置语法
+如果你刚刚修改了 /etc/ssh/sshd_config 但还没有重启服务，可以用这个命令检查你的配置是否正确生效：
+
+Bash
+sshd -T | grep ciphers
+这个命令会打印出当前运行实例（包含配置文件解析后）最终确定的算法列表。
+
+验证后的下一步建议
+如果 nmap 或手动测试证实 cbc 算法已经移除，那么你的安全漏洞就已经修复完成了。
