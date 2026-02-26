@@ -50,6 +50,7 @@ ROLLOUT
 https://ka9rcghfcff.feishu.cn/sheets/ZQSCsPCPoh7lEwtVRkCcKwjLnSd?sheet=MDvHFV
 
 
+周一
 Server Weekly Report
 https://ka9rcghfcff.feishu.cn/sheets/ZQSCsPCPoh7lEwtVRkCcKwjLnSd?sheet=MDvHFV
 
@@ -92,6 +93,21 @@ P@ssw0rd123
 
 
 
+Logreader
+41a: P@ssw0rd4321
+41b: P@ssw0rd4321
+41c: P@ssw0rd4321
+51a: P@ssw0rd4321
+51b: P@ssw0rd4321
+51c: P@@ssw0rd
+
+
+/opt/nginx/html/transproxy_admin/public/fileData/threat/week_top_url_10.json
+/opt/nginx/html/transproxy_admin/public/fileData/threat/week_top_ip_10.json
+/opt/nginx/html/transproxy_admin/public/fileData/threat/blacklist_summary.json
+/opt/nginx/html/transproxy_admin/public/fileData/threat/logstatus_7days.json
+/opt/nginx/html/transproxy_admin/public/fileData/threat/netstat_status.json
+/opt/nginx/html/transproxy_admin/system_usage.json
 
 
 ---
