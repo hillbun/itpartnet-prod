@@ -100,11 +100,11 @@
             name: redis
             state: stopped
         - name: backup opp redis
-          ansible.builtin.copy:
+          ansible.posix.synchronize:
             src: /opt/redis/
-            dest: "/opt/backup/redis_{{ current_time }}/"
-            remote_src: yes
-            mode: preserve
+            dest: /opt/backup/redis_{{ current_time }}/
+            archive: yes
+          delegate_to: "{{ inventory_hostname }}"
         - name: print current_time
           debug:
             msg: "backup dir /opt/backup/redis_{{ current_time }}/"
