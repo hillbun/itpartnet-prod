@@ -6,7 +6,7 @@ ansible-playbook --step --limit "opp_prod_42" -i hosts.ini upgrade.yml --tag "ro
 
 
 ansible-playbook --step --limit "poxappprd42a" -i hosts.ini upgrade.yml --tag "upgrade_dist"
-ansible-playbook --step --limit "opp_prod_42:!poxappprd42a:!poxappprd42b:!poxappprd42c:!poxappprd42e" -i hosts.ini ...
+ansible-playbook --step --limit "opp_prod_42:!poxappprd42a:!poxappprd42b:!poxappprd42c:!poxappprd42e" -i hosts.ini upgrade.yml --tag "upgrade_dist"
 
 
 ####ansible-playbook --step --limit "opp_prod_42" -i hosts.ini upgrade.yml --tag "rollback_dist" -e "version=1.2.3 env=prod"
