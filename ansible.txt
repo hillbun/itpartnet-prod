@@ -6,6 +6,7 @@ ansible-playbook --step --limit "opp_prod_42" -i hosts.ini upgrade.yml --tag "ro
 
 
 ansible-playbook --step --limit "192.168.50.159:192.168.50.160" -i hosts.ini upgrade.yml --tag "upgrade_dist"
+ansible-playbook --step --limit "192.168.50.159" -i hosts.ini upgrade.yml --tag "upgrade_opp_redis"
 ansible-playbook --step --limit 'opp_prod_42:!192.168.50.160:!192.168.50.161:!192.168.50.162:!192.168.50.163' -i hosts.ini upgrade.yml --tag "upgrade_dist" --list-hosts
 
 
