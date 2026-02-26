@@ -93,4 +93,25 @@ Ciphers aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes1
 # 消息认证码算法（禁用 SHA-1 类 MAC）
 MACs hmac-sha2-256,hmac-sha2-512,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com
 #### END ADDED BY OPP INSTALLATION ####
+Ciphers aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
+
+---
+sudo sed -i '1i # 安全加固配置\n
+
+
+KexAlgorithms curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256
+Ciphers aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
+MACs hmac-sha2-256,hmac-sha2-512,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com
+
+
+第一步：修改系统配置引用
+打开 /etc/sysconfig/sshd 文件（不是 sshd_config）：
+
+Bash
+vi /etc/sysconfig/sshd
+找到或添加这一行，确保它没有被注释：
+
+Bash
+CRYPTO_POLICY=
+
 
