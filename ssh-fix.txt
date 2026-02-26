@@ -54,3 +54,43 @@ sshd -T | grep ciphers
 
 验证后的下一步建议
 如果 nmap 或手动测试证实 cbc 算法已经移除，那么你的安全漏洞就已经修复完成了。
+
+---
+
+# Accept locale-related environment variables
+AcceptEnv LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES
+AcceptEnv LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT
+AcceptEnv LC_IDENTIFICATION LC_ALL LANGUAGE
+AcceptEnv XMODIFIERS
+
+# override default of no subsystems
+Subsystem       sftp    /usr/libexec/openssh/sftp-server
+
+# Example of overriding settings on a per-user basis
+#Match User anoncvs
+#       X11Forwarding no
+#       AllowTcpForwarding no
+#       PermitTTY no
+#       ForceCommand cvs server
+# default is hmac-md5,hmac-sha1,hmac-ripemd160,hmac-sha1-96,hmac-md5-96
+# To remove the hmac-md5 MACs with
+#MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com
+# default is aes128-ctr,aes192-ctr,aes256-ctr,arcfour256,arcfour128,
+# aes128-cbc,3des-cbc,blowfish-cbc,cast128-cbc,aes192-cbc,
+# aes256-cbc,arcfour
+# To remove the cbc ciphers by adding the line
+#Ciphers aes128-ctr,aes192-ctr,aes256-ctr
+MaxStartups 1024:100:1024
+# SSH session timeout
+TCPKeepAlive yes
+ClientAliveInterval 30m
+ClientAliveCountMax 0
+#### BEGIN ADDED BY OPP INSTALLATION ####
+# 密钥交换算法（禁用弱 DH/SHA-1 算法）
+KexAlgorithms curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256
+# 加密算法（禁用 3DES、CBC 模式等弱算法）
+Ciphers aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
+# 消息认证码算法（禁用 SHA-1 类 MAC）
+MACs hmac-sha2-256,hmac-sha2-512,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com
+#### END ADDED BY OPP INSTALLATION ####
+
