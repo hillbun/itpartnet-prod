@@ -55,15 +55,3 @@
         state: restarted
         enabled: yes
       tags: apply_nginx_custom_ssl
-  handlers:
-      - name: reload systemd
-        ansible.builtin.systemd:
-          daemon_reload: yes
-      - name: reload firewalld
-        ansible.builtin.service:
-          name: firewalld
-          state: reloaded
-      - name: restart chronyd
-        ansible.builtin.service:
-          name: chronyd
-          state: restarted
