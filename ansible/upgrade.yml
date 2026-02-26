@@ -89,6 +89,29 @@
               - "--exclude=public/fileData/threat/week_top_ip_10.json"
               - "--exclude=public/fileData/threat/week_top_url_10.json"
               - "--exclude=storage/logs/"
+    - name: upgrade opp redis
+      tags: upgrade_opp_redis
+      block:
+        - name: set current time
+          set_fact:
+            current_time: "{{ lookup('pipe', 'date +%Y%m%d%H%M%S') }}"
+        - name: redis service stop
+          ansible.builtin.systemd:
+            name: redis
+            state: stop
+        - name: backup opp redis
+          ansible.builtin.copy:
+            src: /opt/redis/
+            dest: "/opt/backup/redis_{{ current_time }}/"
+            remote_src: yes
+            mode: preserve
+        - name: print current_time
+          debug:
+            msg: "backup dir /opt/backup/redis_{{ current_time }}/"
+        - name: redis service start
+          ansible.builtin.systemd:
+            name: redis
+            state: start
     #- name: rollback py_prod
     #  tags: rollback_py_prod
     #- name: rollback dist
