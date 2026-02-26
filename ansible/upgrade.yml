@@ -98,7 +98,7 @@
         - name: redis service stop
           ansible.builtin.systemd:
             name: redis
-            state: stop
+            state: stopped
         - name: backup opp redis
           ansible.builtin.copy:
             src: /opt/redis/
@@ -111,7 +111,7 @@
         - name: redis service start
           ansible.builtin.systemd:
             name: redis
-            state: start
+            state: started
     #- name: rollback py_prod
     #  tags: rollback_py_prod
     #- name: rollback dist
