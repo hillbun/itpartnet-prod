@@ -1,3 +1,27 @@
+Login ID
+WX298
+
+Password
+NZ?HEs9zkJ1
+
+HA Intranet Mailbox Account
+
+Mailbox Display Name
+Xiaobin WU, HOIT&HI ITPSC(N5)18
+
+Alias
+WX298
+
+Intranet E-mail Address
+wx298@ho.ha.org.hk
+
+Distribution Lists
+Not Applicable
+
+https://remote.ha.org.hk/
+https://haportal.ha.org.hk/
+
+
 HA-RPAHOST-2
 LH511
 CORP\LH511
@@ -94,11 +118,11 @@ P@ssw0rd123
 
 
 Logreader
-41a: P@ssw0rd4321
-41b: P@ssw0rd4321
-41c: P@ssw0rd4321
-51a: P@ssw0rd4321
-51b: P@ssw0rd4321
+41a: P@@ssw0rd
+41b: P@@ssw0rd
+41c: P@@ssw0rd
+51a: P@@ssw0rd
+51b: P@@ssw0rd
 51c: P@@ssw0rd
 
 
