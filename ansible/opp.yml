@@ -53,6 +53,12 @@
         backup: yes
         state: present
       tags: edit_sshd_config
+    - name: edit sysconfig sshd
+      ansible.builtin.lineinfile:
+        path: /etc/sysconfig/sshd
+        regexp: '^#\s*CRYPTO_POLICY='
+        line: 'CRYPTO_POLICY='
+      tags: edit_sysconfig_sshd
     - name: sshd service restart
       ansible.builtin.systemd:
         name: sshd
