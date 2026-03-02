@@ -55,3 +55,30 @@
         state: restarted
         enabled: yes
       tags: apply_nginx_custom_ssl
+    - name: copy ldap ssl crt
+      ansible.builtin.copy:
+        src: "{{ software_src_path }}/{{ src_ssl_crt }}"
+        dest: "/opt/nginx/conf/ssl/{{ custom_hostname }}.crt"
+      when: ssl_crt_file.stat.exists | default(false)
+      tags: copy_ldap_ssl_crt
+    - name: config ldap cert
+      tags: config_ldap_cert
+      block:
+        - name: copy ldap cert
+          ansible.builtin.copy:
+            src: "{{ software_src_path }}/{{ src_ssl_crt }}"
+            dest: "/etc/pki/ca-trust/source/anchors/"
+          when: ssl_crt_file.stat.exists | default(false)            
+        - name: edit ldap cert
+          blockinfile:
+            path: /etc/openldap/ldap.conf
+            block: |
+              TLS_CACERTDIR /etc/pki/ca-trust/source/anchors
+              TLS_REQCERT never
+              TLS_CRLCHECK none
+
+              URI ldaps://corprodc03.corp.ha.org.hk:636
+              BASE dc=corp,dc=ha,dc=org,dc=hk
+            marker: "#### {mark} ADDED BY OPP INSTALLATION ####"
+            backup: yes
+            state: present

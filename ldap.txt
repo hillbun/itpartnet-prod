@@ -31,5 +31,19 @@ TLS_CRLCHECK none
 # Turning this off breaks GSSAPI used with krb5 when rdns = false
 SASL_NOCANON    on
 
+TLS_CACERTDIR /etc/pki/ca-trust/source/anchors
+TLS_REQCERT never
+TLS_CRLCHECK none
+
 URI ldaps://corprodc03.corp.ha.org.hk:636
 BASE dc=corp,dc=ha,dc=org,dc=hk
+
+
+
+---
+sudo update-ca-trust
+
+cd /etc/openldap/certs
+sudo openssl rehash ./
+
+
