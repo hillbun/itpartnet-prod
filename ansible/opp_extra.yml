@@ -5,12 +5,13 @@
   vars_files:
     - vars/app_vars.yml
   tasks:
-    - name: check nginx ssl crt exists
+    - name: check cert exists
       delegate_to: localhost
       ansible.builtin.stat:
         path: "{{ software_src_path }}/{{ src_ssl_crt }}"
       register: ssl_crt_file
       run_once: true
+      tags: check_cert_exists
     - name: copy nginx ssl crt
       ansible.builtin.copy:
         src: "{{ software_src_path }}/{{ src_ssl_crt }}"
@@ -20,13 +21,13 @@
         mode: '0400'
       when: ssl_crt_file.stat.exists | default(false)
       tags: apply_nginx_custom_ssl
-    - name: check nginx ssl key exists
+    - name: check key exists
       delegate_to: localhost
       ansible.builtin.stat:
         path: "{{ software_src_path }}/{{ src_ssl_key }}"
       register: ssl_key_file
       run_once: true
-      tags: apply_nginx_custom_ssla
+      tags: check_key_exists
     - name: copy nginx ssl key
       ansible.builtin.copy:
         src: "{{ software_src_path }}/{{ src_ssl_key }}"
@@ -54,12 +55,6 @@
         state: restarted
         enabled: yes
       tags: apply_nginx_custom_ssl
-    - name: copy ldap ssl crt
-      ansible.builtin.copy:
-        src: "{{ software_src_path }}/{{ src_ssl_crt }}"
-        dest: "/opt/nginx/conf/ssl/{{ custom_hostname }}.crt"
-      when: ssl_crt_file.stat.exists | default(false)
-      tags: copy_ldap_ssl_crt
     - name: config ldap cert
       tags: config_ldap_cert
       block:
