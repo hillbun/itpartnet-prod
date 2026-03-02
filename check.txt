@@ -11,6 +11,9 @@ curl --proxy http://n5-testing4:P%40ssw0rd1234@192.168.152.120:8080 https://rele
  10 3150M   10  320M    0     0  3818k      0  0:14:04  0:01:25  0:12:39 3236k
 
 
+
+
+
 date;systemctl reload squid;date;curl -s -o /dev/null -w "%{http_code} %{time_total} " --proxy http://n5-testing4:P%40ssw0rd1234@192.168.152.120:8080 https://www.hk01.com/;echo "";date
 
 
