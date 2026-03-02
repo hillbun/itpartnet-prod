@@ -12,6 +12,10 @@
       register: ssl_crt_file
       run_once: true
       tags: check_cert_exists
+    - name: output ssl_crt_file
+      debug:
+        var: ssl_crt_file
+      tags: check_cert_exists
     - name: copy nginx ssl crt
       ansible.builtin.copy:
         src: "{{ software_src_path }}/{{ src_ssl_crt }}"
