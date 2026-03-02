@@ -47,3 +47,9 @@ cd /etc/openldap/certs
 sudo openssl rehash ./
 
 
+openssl s_client -connect corprodc03.corp.ha.org.hk:636 -showcerts
+
+
+
+
+
