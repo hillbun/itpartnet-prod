@@ -48,6 +48,7 @@ sudo openssl rehash ./
 
 
 openssl s_client -connect corprodc03.corp.ha.org.hk:636 -showcerts
+openssl s_client -connect corprodc03.corp.ha.org.hk:636 -showcerts </dev/null 2>/dev/null | openssl x509 -noout -dates
 
 
 
