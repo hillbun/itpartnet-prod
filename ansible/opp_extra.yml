@@ -11,7 +11,6 @@
         path: "{{ software_src_path }}/{{ src_ssl_crt }}"
       register: ssl_crt_file
       run_once: true
-      tags: apply_nginx_custom_ssl
     - name: copy nginx ssl crt
       ansible.builtin.copy:
         src: "{{ software_src_path }}/{{ src_ssl_crt }}"
@@ -27,7 +26,7 @@
         path: "{{ software_src_path }}/{{ src_ssl_key }}"
       register: ssl_key_file
       run_once: true
-      tags: apply_nginx_custom_ssl
+      tags: apply_nginx_custom_ssla
     - name: copy nginx ssl key
       ansible.builtin.copy:
         src: "{{ software_src_path }}/{{ src_ssl_key }}"
