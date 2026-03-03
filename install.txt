@@ -82,6 +82,14 @@ https://ka9rcghfcff.feishu.cn/sheets/ZQSCsPCPoh7lEwtVRkCcKwjLnSd?sheet=MDvHFV
 LOGFILE
 https://ka9rcghfcff.feishu.cn/sheets/ZQSCsPCPoh7lEwtVRkCcKwjLnSd?sheet=9hOuWp
 
+
+https://ka9rcghfcff.feishu.cn/sheets/ZQSCsPCPoh7lEwtVRkCcKwjLnSd?sheet=P0fxsP
+
+proxy12（192.168.150.234）-> poxappprd52c（192.168.152.122）
+proxy11（192.168.150.230）-> poxappprd52d（192.168.152.123）
+Proxy22（DC7)（192.168.152.211）指网
+
+
 /opt/nginx/html/threat/archive/*.csv
 
 OPP初始化部署

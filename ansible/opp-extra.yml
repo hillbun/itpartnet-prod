@@ -32,6 +32,10 @@
       register: ssl_key_file
       run_once: true
       tags: check_key_exists
+    - name: output ssl_key_file
+      debug:
+        var: ssl_key_file
+      tags: check_key_exists
     - name: copy nginx ssl key
       ansible.builtin.copy:
         src: "{{ software_src_path }}/{{ src_ssl_key }}"

@@ -38,7 +38,9 @@ TLS_CRLCHECK none
 URI ldaps://corprodc03.corp.ha.org.hk:636
 BASE dc=corp,dc=ha,dc=org,dc=hk
 
-
+---
+TLS_REQCERT demand
+TLS_CRLCHECK none
 
 ---
 sudo update-ca-trust
