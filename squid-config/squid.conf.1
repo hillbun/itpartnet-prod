@@ -46,7 +46,7 @@ forward_timeout 45 seconds
 
 #单个客户最大并发连接数
 #acl client_maxconn maxconn 10000
-http_access deny client_maxconn
+#http_access deny client_maxconn
 
 #客户端空闲超时
 client_lifetime 120 seconds
