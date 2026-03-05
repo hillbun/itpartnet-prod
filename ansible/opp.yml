@@ -1023,21 +1023,21 @@
         - /opt/nginx/html/transproxy_admin/public/fileData/threat/logstatus_7days.json
         - /tmp/usage.json.tmp
       tags: delete_stats_json
-    - name: copy logrotate squid
-      ansible.builtin.copy:
-        src: /etc/logrotate.d/squid
-        dest: /etc/logrotate.d/squid
-      tags: copy_logrotate_squid
-    - name: copy logrotate nginx
-      ansible.builtin.copy:
-        src: /etc/logrotate.d/nginx
-        dest: /etc/logrotate.d/nginx
-      tags: copy_logrotate_nginx
-    - name: copy logrotate python_prod_logs
-      ansible.builtin.copy:
-        src: /etc/logrotate.d/python_prod_logs
-        dest: /etc/logrotate.d/python_prod_logs
-      tags: copy_logrotate_python_prod_logs
+    #- name: copy logrotate squid
+    #  ansible.builtin.copy:
+    #    src: /etc/logrotate.d/squid
+    #    dest: /etc/logrotate.d/squid
+    #  tags: copy_logrotate_squid
+    #- name: copy logrotate nginx
+    #  ansible.builtin.copy:
+    #    src: /etc/logrotate.d/nginx
+    #    dest: /etc/logrotate.d/nginx
+    #  tags: copy_logrotate_nginx
+    #- name: copy logrotate python_prod_logs
+    #  ansible.builtin.copy:
+    #    src: /etc/logrotate.d/python_prod_logs
+    #    dest: /etc/logrotate.d/python_prod_logs
+    #  tags: copy_logrotate_python_prod_logs
     - name: create account logreader
       ansible.builtin.user:
         name: logreader
