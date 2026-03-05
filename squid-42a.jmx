@@ -21,13 +21,13 @@
       </ThreadGroup>
       <hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request">
-          <stringProp name="HTTPSampler.proxyHost">192.168.50.160</stringProp>
+          <stringProp name="HTTPSampler.proxyHost">192.168.50.159</stringProp>
           <intProp name="HTTPSampler.proxyPort">8080</intProp>
           <stringProp name="HTTPSampler.proxyUser">n5-testing4</stringProp>
           <stringProp name="HTTPSampler.proxyPass">P@ssw0rd1234</stringProp>
           <intProp name="HTTPSampler.connect_timeout">15000</intProp>
           <intProp name="HTTPSampler.response_timeout">60000</intProp>
-          <stringProp name="HTTPSampler.domain">192.168.50.159</stringProp>
+          <stringProp name="HTTPSampler.domain">192.168.50.160</stringProp>
           <stringProp name="HTTPSampler.port">443</stringProp>
           <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.path">/</stringProp>
