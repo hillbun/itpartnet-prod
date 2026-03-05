@@ -135,6 +135,7 @@ Logreader
 51b: P@@ssw0rd
 51c: P@@ssw0rd
 
+41a,41b,41c,51a,51b,51c
 
 /opt/nginx/html/transproxy_admin/public/fileData/threat/week_top_url_10.json
 /opt/nginx/html/transproxy_admin/public/fileData/threat/week_top_ip_10.json
