@@ -87,9 +87,6 @@ https://ka9rcghfcff.feishu.cn/sheets/ZQSCsPCPoh7lEwtVRkCcKwjLnSd?sheet=9hOuWp
 
 https://ka9rcghfcff.feishu.cn/sheets/ZQSCsPCPoh7lEwtVRkCcKwjLnSd?sheet=P0fxsP
 
-proxy12（192.168.150.234）-> poxappprd52c（192.168.152.122）
-proxy11（192.168.150.230）-> poxappprd52d（192.168.152.123）
-Proxy22（DC7)（192.168.152.211）指网
 
 
 /opt/nginx/html/threat/archive/*.csv
@@ -111,13 +108,36 @@ Since the following procedures have not been completed yet, please assist it so 
 5. Internet connection for each server.
 
 
+proxy14+proxy18+proxy22
+avg(Requests), avg(Total Bytes)
 
-poxappprd41a  192.168.52.236
+Number of host: 35140
+Average Requests: 62
+Average Bytes: 2008160
+
+
+
+
+50000
+1G  10GB
+
+
+proxy11（192.168.150.230）-> poxappprd52d（192.168.152.123）
+
+LOG
+proxy12（192.168.150.234）-> poxappprd52c（192.168.152.122）
+
+
+Proxy22（DC7)（192.168.152.211）指网
+
+
 
 poxappprd52a  192.168.152.120
 poxappprd52b  192.168.152.121
+
 poxappprd52c  192.168.152.122
 poxappprd52d  192.168.152.123
+
 poxappprd52e  192.168.152.124
 
 pox@N5OPP
@@ -125,7 +145,12 @@ pox@N5OPP
 ssh logreader@192.168.52.236
 P@ssw0rd123
 
+---
+1. grafana  中文-英文
+2. CONNECTION 进/出
+3. 带宽 进/出
 
+---
 
 Logreader
 41a: P@@ssw0rd
