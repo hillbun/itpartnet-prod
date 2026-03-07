@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "--- not 8080 connect ---"
 ss -ant | grep -v "LISTEN" | awk 'NR>1 && $4 !~ /:8080$/ && match($4, /:([0-9]+)$/, a) && a[1] > 1024 && $5 != "*:*" {print $5}' | wc -l
-echo "--- 8080的连接数 ---"
+echo "--- 8080 connect ---"
 ss -ant | grep -v "LISTEN" | awk 'NR>1 && $4 ~ /:8080$/ {print $5}' | sed -E 's/\[.*:(([0-9]+\.){3}[0-9]+)\].*/\1/;t; s/:.*//' | wc -l
 
 watch -n 1 bash monitor.sh
