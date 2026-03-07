@@ -4,4 +4,20 @@ ss -ant | grep -v "LISTEN" | awk 'NR>1 && $4 !~ /:8080$/ && match($4, /:([0-9]+)
 echo "--- 8080 connect ---"
 ss -ant | grep -v "LISTEN" | awk 'NR>1 && $4 ~ /:8080$/ {print $5}' | sed -E 's/\[.*:(([0-9]+\.){3}[0-9]+)\].*/\1/;t; s/:.*//' | wc -l
 
-watch -n 1 bash monitor.sh
+
+#!/bin/bash
+n1=$(ss -ant | grep -v "LISTEN" | awk 'NR>1 && $4 !~ /:8080$/ && match($4, /:([0-9]+)$/, a) && a[1] > 1024 && $5 != "*:*" {print $5}' | wc -l)
+echo "--- not 8080 connect ---"
+echo "$n1"
+
+n2=$(ss -ant | grep -v "LISTEN" | awk 'NR>1 && $4 ~ /:8080$/ {print $5}' | sed -E 's/\[.*:(([0-9]+\.){3}[0-9]+)\].*/\1/;t; s/:.*//' | wc -l)
+echo "--- 8080 connect ---"
+echo "$n2"
+
+echo "--- Total ---"
+echo $((n1 + n2))
+
+watch -n 1 bash watch.sh
+
+
+watch -n 1 "ss -ant | awk 'NR>1 && \$1 != \"LISTEN\" {if (\$4 ~ /:8080\$/ || (\$4 !~ /:8080\$/ && match(\$4, /:([0-9]+)\$/, a) && a[1] > 1024 && \$5 != \"*:*\")) count++} END {print count}'"
