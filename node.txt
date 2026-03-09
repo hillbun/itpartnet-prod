@@ -1,0 +1,14 @@
+---
+/etc/systemd/system/node_exporter.service
+
+
+/usr/local/node_exporter/node_exporter --web.listen-address=:9100 --collector.textfile.directory=/usr/local/node_exporter/textfile_collector
+
+
+curl http://127.0.0.1:9100/metrics |grep node_netstat_Tcp_CurrEstab
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  3927    0  3927    0     0  42684      0 --:--:-- --:--:-- --:--:-- 42225# HELP node_netstat_Tcp_CurrEstab Statistic TcpCurrEstab.
+# TYPE node_netstat_Tcp_CurrEstab untyped
+node_netstat_Tcp_CurrEstab 48781
+
