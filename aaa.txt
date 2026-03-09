@@ -21,6 +21,7 @@ scp jmeter/squid-42a-1.jmx root@192.168.50.162:/opt/download/jmeter/
 
 
 ------------
+squid.conf.2
 
 ps -u squid -o cmd | grep -o '/opt/py_prod/[^ ]*\.py' | sort | uniq -c
     630 /opt/py_prod/check_ip_allow.py
@@ -43,6 +44,31 @@ watch -n 1 'ps axu  |grep "/opt/py_prod" |wc -l'
 10:12:32 - 10:13:13
 10:12:32 - 10:13:13
 10:13:33 - 10:14:10
+
+------
+squid.conf.3
+
+     36 /opt/py_prod/check_ip_allow.py
+     36 /opt/py_prod/check_ip_deny.py
+     36 /opt/py_prod/check_iprange_allow.py
+     36 /opt/py_prod/check_iprange_deny.py
+     36 /opt/py_prod/check_special_user_allow.py
+     36 /opt/py_prod/check_special_user_deny.py
+     36 /opt/py_prod/check_ua.py
+     36 /opt/py_prod/check_user.py
+
+watch -n 1 'ps axu  |grep "/opt/py_prod" |wc -l'
+293
+
+
+10:37:45 - 10:37:53
+10:39:31 - 10:39:37
+10:40:52 - 10:40:59
+10:41:28 - 10:41:37
+10:41:28 - 10:41:37
+10:42:42 - 10:42:51
+
+
 
 -----
 
