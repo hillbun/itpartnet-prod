@@ -1,0 +1,175 @@
+42a
+squid
+
+scp squid-config/squid.conf.1 root@192.168.50.159:/root/
+cp squid.conf.1 /opt/squid/etc/squid.conf
+
+scp squid-config/squid.conf.2 root@192.168.50.159:/root/
+cp squid.conf.2 /opt/squid/etc/squid.conf
+
+/opt/squid/sbin/squid -k parse
+systemctl reload squid
+
+ls -al /opt/py_prod/log/
+
+curl https://poxappprd42b -k
+
+
+scp jmeter/squid-42a-1.jmx root@192.168.50.161:/opt/download/jmeter/
+scp jmeter/squid-42a-1.jmx root@192.168.50.162:/opt/download/jmeter/
+
+
+
+------------
+
+ps -u squid -o cmd | grep -o '/opt/py_prod/[^ ]*\.py' | sort | uniq -c
+    630 /opt/py_prod/check_ip_allow.py
+    720 /opt/py_prod/check_ip_deny.py
+    810 /opt/py_prod/check_iprange_allow.py
+    810 /opt/py_prod/check_iprange_deny.py
+    180 /opt/py_prod/check_special_user_allow.py
+    180 /opt/py_prod/check_special_user_deny.py
+    450 /opt/py_prod/check_ua.py
+    180 /opt/py_prod/check_user.py
+
+
+
+watch -n 1 'ps axu  |grep "/opt/py_prod" |wc -l'
+3964
+
+10:05:47 - 10:06:27
+10:08:58 - 10:09:41
+10:10:35 - 10:09:41
+10:12:32 - 10:13:13
+10:12:32 - 10:13:13
+10:13:33 - 10:14:10
+
+-----
+
+while true; do
+    timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+    result=$(curl -s -o /dev/null \
+             -w "%{http_code} %{time_total} " \
+             --proxy http://n5-testing:P%40ssw0rd1234@192.168.50.159:8080 \
+             --connect-timeout 1 \
+             --max-time 3 \
+             https://poxappprd42b -k 2>/dev/null || echo "FAIL")
+    echo "$timestamp $result"
+    sleep 1
+done
+
+
+-----
+
+ss -ant | grep -v "LISTEN" | awk 'NR>1 && $4 ~ /:8080$/ {print $5}' | sed -E 's/\[.*:([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)\].*/\1/;t; s/:.*//' | sort | uniq -c | sort -n
+
+
+while true; do
+    timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+    result=$(ps axu  |grep "/opt/py_prod" |wc -l)
+    echo "$timestamp $result"
+    sleep 1
+done
+
+
+while true; do
+    timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+    result=$(curl -s -o /dev/null \
+             -w "%{http_code} %{time_total} " \
+             --proxy http://n5-testing:P%40ssw0rd1234@192.168.50.159:8080 \
+             --connect-timeout 1 \
+             --max-time 3 \
+             https://poxappprd42b -k 2>/dev/null || echo "FAIL")
+    echo "$timestamp $result"
+    sleep 1
+done
+
+
+curl --proxy http://n5-testing:P%40ssw0rd1234@192.168.50.159:8080 https://poxappprd42b -k
+
+
+while true; do
+    date;
+    nc -zv 192.168.50.159 8080
+    sleep 1
+done
+
+
+while true; do
+    timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+    result=$(curl -s -o /dev/null \
+             -w "%{http_code} %{time_total} " \
+             https://poxappprd42b -k 2>/dev/null || echo "FAIL")
+    echo "$timestamp $result"
+    sleep 1
+done
+
+
+curl -s --proxy http://n5-testing:P%40ssw0rd1234@192.168.50.159:8080 https://poxappprd42b -k
+
+
+
+------
+
+42b
+
+vi /opt/nginx/conf/conf.d/poxmgtprd.server.ha.org.hk.conf
+
+#access_log  /opt/nginx/logs/access_oproxy.log main;
+
+
+
+------------
+
+watch -n 1 'ps axu  |grep "/opt/py_prod" |wc -l'
+
+---------------------------------------------------------
+
+while true; do
+    timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+    result=$(curl -s -o /dev/null \
+             -w "%{http_code} %{time_total} " \
+             --proxy http://n5-testing:P%40ssw0rd1234@192.168.50.159:8080 \
+             --connect-timeout 1 \
+             --max-time 3 \
+             https://poxappprd42b -k 2>/dev/null || echo "FAIL")
+    echo "$timestamp $result"
+    sleep 1
+done
+
+
+while true; do
+    timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+    result=$(curl -s -o /dev/null \
+             -w "%{http_code} %{time_total} " \
+             --proxy http://n5-testing:P%40ssw0rd1234@192.168.152.124:8080 \
+             --connect-timeout 1 \
+             --max-time 3 \
+             https://www.hk01.com/ 2>/dev/null || echo "FAIL")
+    echo "$timestamp $result"
+    sleep 1
+done
+
+while true; do
+    timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+    result=$(curl -s -o /dev/null \
+             -w "%{http_code} %{time_total} " \
+             --proxy http://n5-testing2:P%40ssw0rd1234@192.168.152.124:8080 \
+             --connect-timeout 1 \
+             --max-time 3 \
+             https://www.hk01.com/ 2>/dev/null || echo "FAIL")
+    echo "$timestamp $result"
+    sleep 1
+done
+
+while true; do
+    timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+    result=$(curl -s -o /dev/null \
+             -w "%{http_code} %{time_total} " \
+             --proxy http://n5-testing4:P%40ssw0rd1234@192.168.152.124:8080 \
+             --connect-timeout 1 \
+             --max-time 3 \
+             https://www.hk01.com/ 2>/dev/null || echo "FAIL")
+    echo "$timestamp $result"
+    sleep 1
+done
