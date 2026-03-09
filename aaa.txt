@@ -71,6 +71,9 @@ watch -n 1 'ps axu  |grep "/opt/py_prod" |wc -l'
 
 7.8s
 
+
+
+300/request
 -----
 
 

@@ -12,3 +12,28 @@ curl http://127.0.0.1:9100/metrics |grep node_netstat_Tcp_CurrEstab
 # TYPE node_netstat_Tcp_CurrEstab untyped
 node_netstat_Tcp_CurrEstab 48781
 
+
+等价于：
+ss -ant | grep -c ESTAB
+
+
+node_netstat_Tcp_CurrEstab      多少个 TCP 连接处于已建立（ESTABLISHED）状态
+node_netstat_Tcp_ActiveOpens	主动打开的连接数	系统作为客户端发起的 TCP 连接增速。
+node_netstat_Tcp_PassiveOpens	被动打开的连接数	系统作为服务端接收的 TCP 连接增速。
+node_netstat_Tcp_AttemptFails	连接尝试失败次数	握手失败。值升高通常意味着网络不通或对端拒绝连接。
+node_netstat_Tcp_EstabResets	已建立连接被重置次数	连接在 ESTABLISHED 状态下被强制中断（收到 RST 包）。
+node_netstat_Tcp_RetransSegs	重传的数据包总数	极重要！ 衡量网络质量。值越高，丢包或延迟越严重。
+node_netstat_Tcp_OutRsts	发送的 RST 包数量	本机主动重置连接的数量，可能因为端口未监听或负载过高。
+
+
+----
+
+
+#!/bin/bash
+# 统计 TIME_WAIT 连接数
+count=$(ss -ant state time-wait | wc -l)
+# 按照 Prometheus 格式写入文件
+echo "custom_tcp_timewait_count $count" > /var/lib/node_exporter/textfile_collector/tcp_status.prom.$$
+# 原子性替换文件
+mv /var/lib/node_exporter/textfile_collector/tcp_status.prom.$$ /var/lib/node_exporter/textfile_collector/tcp_status.prom
+
