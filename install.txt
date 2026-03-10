@@ -115,7 +115,10 @@ Number of host: 35140
 Average Requests: 62
 Average Bytes: 2008160
 
+Remaining capacity
 
+289160
+50000*8=400000
 
 
 50000
@@ -144,6 +147,12 @@ pox@N5OPP
 
 ssh logreader@192.168.52.236
 P@ssw0rd123
+
+---
+
+
+---
+
 
 ---
 1. grafana  中文-英文
