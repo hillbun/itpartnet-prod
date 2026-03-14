@@ -147,6 +147,24 @@ ss -ant | grep -v "LISTEN" | awk 'NR>1 && $4 ~ /:8080$/ {print $5}' | sed -E 's/
 ss -ant | grep -v "LISTEN" | awk 'NR>1 && $4 ~ /:8080$/ {print $5}' | sed -E 's/\[.*:([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)\].*/\1/;t; s/:.*//' | sort | uniq -c | sort -n | awk '{printf "custom_outside_to_proxy_by_ip{client_ip=\"%s\"} %d\n", $2, $1}'
 
 
+custom_outside_to_proxy_by_ip{client_ip="172.16.52.162"} 30
+custom_outside_to_proxy_by_ip{client_ip="160.5.75.81"} 31
+custom_outside_to_proxy_by_ip{client_ip="160.22.27.46"} 33
+custom_outside_to_proxy_by_ip{client_ip="160.102.163.3"} 34
+custom_outside_to_proxy_by_ip{client_ip="160.5.51.25"} 34
+custom_outside_to_proxy_by_ip{client_ip="160.102.79.12"} 35
+custom_outside_to_proxy_by_ip{client_ip="160.22.106.15"} 35
+custom_outside_to_proxy_by_ip{client_ip="160.5.64.58"} 37
+custom_outside_to_proxy_by_ip{client_ip="160.102.171.20"} 38
+custom_outside_to_proxy_by_ip{client_ip="160.22.94.144"} 38
+custom_outside_to_proxy_by_ip{client_ip="160.22.62.42"} 45
+custom_outside_to_proxy_by_ip{client_ip="160.5.29.115"} 51
+custom_outside_to_proxy_by_ip{client_ip="160.22.41.101"} 55
+custom_outside_to_proxy_by_ip{client_ip="11.5.6.63"} 152
+
+
+
+
 
 
 ss -ant | grep ESTAB | awk '{print $5}' | cut -d: -f1 | sort | uniq -c
