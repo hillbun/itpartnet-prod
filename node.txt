@@ -37,3 +37,20 @@ echo "custom_tcp_timewait_count $count" > /var/lib/node_exporter/textfile_collec
 # 原子性替换文件
 mv /var/lib/node_exporter/textfile_collector/tcp_status.prom.$$ /var/lib/node_exporter/textfile_collector/tcp_status.prom
 
+
+--
+#!/bin/bash
+# 统计每个 IP 的连接数并输出为 Prometheus 格式
+OUT_FILE="/var/lib/node_exporter/textfile_collector/tcp_conns.prom"
+
+echo "# HELP node_tcp_connections_by_ip TCP connections count per source IP" > $OUT_FILE.tmp
+echo "# TYPE node_tcp_connections_by_ip gauge" >> $OUT_FILE.tmp
+
+# 执行你的 ss 统计命令 (假设你想统计所有已建立的连接)
+ss -ant | grep ESTAB | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | \
+awk '{printf "node_tcp_connections_by_ip{client_ip=\"%s\"} %d\n", $2, $1}' >> $OUT_FILE.tmp
+
+mv $OUT_FILE.tmp $OUT_FILE
+
+
+topk(10, node_tcp_connections_by_ip)
