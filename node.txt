@@ -5,6 +5,68 @@
 /usr/local/node_exporter/node_exporter --web.listen-address=:9100 --collector.textfile.directory=/usr/local/node_exporter/textfile_collector
 
 
+
+---
+
+more /etc/systemd/system/node_exporter.service
+[Unit]
+Description=node_exporter
+Documentation=https://github.com/prometheus/node_exporter
+After=network.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/local/node_exporter/node_exporter --web.listen-address=:9100 --collector.textfile.directory=/opt/node_exporter/textfile_collector
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+
+
+---
+
+* * * * * /opt/node_exporter/script/custom_tcp_connection_outside_to_proxy.sh
+* * * * * /opt/node_exporter/script/custom_tcp_connection_proxy_to_outside.sh
+* * * * * /opt/node_exporter/script/custom_number_py_prod.sh
+
+---
+
+more /opt/node_exporter/script/custom_tcp_connection_outside_to_proxy.sh
+
+
+#!/bin/bash
+COLLECTOR_PATH='/opt/node_exporter/textfile_collector'
+COLLECTOR_FILE='custom_tcp_connection_outside_to_proxy.prom'
+count=$(/usr/sbin/ss -ant | grep -v "LISTEN" | awk 'NR>1 && $4 ~ /:8080$/ {print $5}' | sed -E 's/\[.*:([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)\].*/\1/;t; s/:.*//' |wc -l)
+echo "custom_tcp_connection_outside_to_proxy $count" > $COLLECTOR_PATH/$COLLECTOR_FILE.$$
+mv $COLLECTOR_PATH/$COLLECTOR_FILE.$$ $COLLECTOR_PATH/$COLLECTOR_FILE
+
+
+
+more /opt/node_exporter/script/custom_tcp_connection_proxy_to_outside.sh
+
+#!/bin/bash
+COLLECTOR_PATH='/opt/node_exporter/textfile_collector'
+COLLECTOR_FILE='custom_tcp_connection_proxy_to_outside.prom'
+count=$(/usr/sbin/ss -ant | grep -v "LISTEN" | awk 'NR>1 && $4 !~ /127.0.0.1/ && $4 !~ /:8080$/ && match($4, /:([0-9]+)$/, a) && a[1] > 1024 && $5 != "*:*" {print $5}' |wc -l)
+echo "custom_tcp_connection_proxy_to_outside $count" > $COLLECTOR_PATH/$COLLECTOR_FILE.$$
+mv $COLLECTOR_PATH/$COLLECTOR_FILE.$$ $COLLECTOR_PATH/$COLLECTOR_FILE
+
+
+ more /opt/node_exporter/script/custom_number_py_prod.sh
+#!/bin/bash
+COLLECTOR_PATH='/opt/node_exporter/textfile_collector'
+COLLECTOR_FILE='custom_number_py_prod.prom'
+count=$(ps axu |grep "/opt/py_prod" |wc -l)
+echo "custom_number_py_prod $count" > $COLLECTOR_PATH/$COLLECTOR_FILE.$$
+mv $COLLECTOR_PATH/$COLLECTOR_FILE.$$ $COLLECTOR_PATH/$COLLECTOR_FILE
+
+
+
+
+---
+
 curl http://127.0.0.1:9100/metrics |grep node_netstat_Tcp_CurrEstab
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
@@ -54,3 +116,84 @@ mv $OUT_FILE.tmp $OUT_FILE
 
 
 topk(10, node_tcp_connections_by_ip)
+
+
+
+----
+ss -ant | grep -v "LISTEN" | awk 'NR>1 && $4 ~ /:8080$/ {print $5}' | sed -E 's/\[.*:([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)\].*/\1/;t; s/:.*//' | sort | uniq -c | sort -n
+
+     25 160.102.22.15
+     25 160.102.52.15
+     26 160.102.40.37
+     26 160.22.90.78
+     26 160.5.104.118
+     26 160.5.30.38
+     27 160.5.172.14
+     27 160.5.61.113
+     30 172.16.52.162
+     32 160.5.41.165
+     34 160.22.106.15
+     35 160.22.44.163
+     37 160.22.94.144
+     39 160.22.167.27
+     40 160.5.38.143
+     41 160.102.171.20
+     42 160.5.64.58
+     44 160.60.90.181
+     45 160.5.27.2
+     60 160.102.46.105
+
+
+
+
+ss -ant | grep ESTAB | awk '{print $5}' | cut -d: -f1 | sort | uniq -c
+
+     33 74.125.204.188
+     16 74.125.204.84
+      1 74.125.21.120
+      1 74.125.96.40
+      1 74.179.71.194
+      1 76.223.112.205
+      2 76.223.29.72
+      1 77.88.21.119
+      3 8.218.18.153
+      1 8.218.7.114
+      1 87.250.251.119
+      1 88.211.252.116
+      1 89.43.104.215
+      4 89.43.104.222
+      1 92.223.46.148
+      1 92.223.46.213
+      1 92.38.168.202
+      1 92.38.168.204
+      1 92.38.168.207
+      2 92.38.168.209
+      1 92.38.168.211
+      1 92.38.168.212
+      1 95.211.254.186
+      1 98.87.227.92
+
+
+
+ss -ant | grep ESTAB | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | awk '{printf "node_tcp_connections_by_ip{client_ip=\"%s\"} %d\n", $2, $1}'
+
+node_tcp_connections_by_ip{client_ip="8.218.18.153"} 3
+node_tcp_connections_by_ip{client_ip="8.218.7.114"} 1
+node_tcp_connections_by_ip{client_ip="87.250.251.119"} 1
+node_tcp_connections_by_ip{client_ip="88.211.252.116"} 1
+node_tcp_connections_by_ip{client_ip="89.43.104.215"} 1
+node_tcp_connections_by_ip{client_ip="89.43.104.222"} 4
+node_tcp_connections_by_ip{client_ip="92.223.46.148"} 1
+node_tcp_connections_by_ip{client_ip="92.223.46.213"} 1
+node_tcp_connections_by_ip{client_ip="92.38.168.202"} 1
+node_tcp_connections_by_ip{client_ip="92.38.168.204"} 1
+node_tcp_connections_by_ip{client_ip="92.38.168.207"} 1
+node_tcp_connections_by_ip{client_ip="92.38.168.209"} 2
+node_tcp_connections_by_ip{client_ip="92.38.168.211"} 1
+node_tcp_connections_by_ip{client_ip="92.38.168.212"} 1
+node_tcp_connections_by_ip{client_ip="98.87.227.92"} 1
+node_tcp_connections_by_ip{client_ip="98.87.248.152"} 1
+node_tcp_connections_by_ip{client_ip="98.87.87.249"} 1
+node_tcp_connections_by_ip{client_ip="98.90.49.216"} 10
+
+
