@@ -2112,3 +2112,4 @@ https://releases.ubuntu.com/24.04.3/ubuntu-24.04.3-live-server-amd64.iso
 
 
 curl -x http://10.2.3.93:8080 https://mirror.01link.hk/ubuntu-releases/focal/ubuntu-20.04.6-live-server-amd64.iso --output ubuntu-20.04.6-live-server-amd64.iso
+curl -x http://10.2.3.93:8080 https://mirror-hk.koddos.net/ubuntu-releases/24.04/ubuntu-24.04.4-live-server-amd64.iso --output ubuntu-24.04.4-live-server-amd64.iso
