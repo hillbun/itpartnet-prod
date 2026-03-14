@@ -144,7 +144,7 @@ ss -ant | grep -v "LISTEN" | awk 'NR>1 && $4 ~ /:8080$/ {print $5}' | sed -E 's/
      60 160.102.46.105
 
 
-ss -ant | grep -v "LISTEN" | awk 'NR>1 && $4 ~ /:8080$/ {print $5}' | sed -E 's/\[.*:([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)\].*/\1/;t; s/:.*//' | sort | uniq -c | sort -n | awk '{printf "node_tcp_connections_by_ip{client_ip=\"%s\"} %d\n", $2, $1}'
+ss -ant | grep -v "LISTEN" | awk 'NR>1 && $4 ~ /:8080$/ {print $5}' | sed -E 's/\[.*:([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)\].*/\1/;t; s/:.*//' | sort | uniq -c | sort -n | awk '{printf "custom_outside_to_proxy_by_ip{client_ip=\"%s\"} %d\n", $2, $1}'
 
 
 
