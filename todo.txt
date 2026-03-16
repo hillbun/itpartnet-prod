@@ -53,8 +53,10 @@
 ### security sas
 
 
-
-
+### SQUID qos
+### RCA report
+### SQUID HTTP acl client_maxconn maxconn 1000
+### prometheus by host
 
 ### sudo 
 ### nginx ALL=(root) NOPASSWD: /usr/bin/python3 *
