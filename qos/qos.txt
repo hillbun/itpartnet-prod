@@ -86,10 +86,21 @@ delay_parameters：为指定的延迟池设置具体的带宽参数，格式为 
 2 Mbps   262144
 5 Mbps   655360
 
-10 Mbp   1310720
+10 Mbps  1310720
 
-1,276 KB/s
+1,276 KB/s 浏览器
 10 MBit/s
+10 GB
+
+
+术语拆解
+Mbps: 是 Megabits per second 的缩写。
+MBit/s: 是 Megabits/second 的另一种书写方式。
+
+
+80Gb Mb/s} = 8000 \text{ 秒}$$
+
+
 
 ---
 

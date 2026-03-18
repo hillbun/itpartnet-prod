@@ -100,7 +100,7 @@ iftop -f "port 8080"
 
 iftop -f "host 10.2.3.205 and port 8080"
 iftop -f "net 10.2.3.0/24 and port 8080"
-t
+
 
 iftop -i eth0 -n -P -f "port 8080"
 iftop -f "not port 22"
@@ -178,3 +178,15 @@ Bash
 squid -k parse
 squid -k reconfigure
 
+
+
+---
+dnsDomainIs(lchost, "mesu.apple.com") ||
+	dnsDomainIs(lchost, "swscan.apple.com") ||
+	dnsDomainIs(lchost, "swquery.apple.com") ||
+	dnsDomainIs(lchost, "swdownload.apple.com") ||
+	dnsDomainIs(lchost, "swcdn.apple.com") ||
+	dnsDomainIs(lchost, "gdmf.apple.com") ||
+	dnsDomainIs(lchost, "updates-http.cdn-apple.com")
+	
+	
