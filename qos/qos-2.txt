@@ -1,0 +1,165 @@
+#1.1 全局放行端口设置
+#acl SSL_ports port 443
+#acl Safe_ports port 80          # http
+#acl Safe_ports port 443         # https
+#acl Safe_ports port 563
+#acl Safe_ports port 1025-65535  # unregistered ports
+include /opt/squid/etc/global_ssl_port.inc
+include /opt/squid/etc/global_port.inc
+http_access deny !Safe_ports
+acl CONNECT method CONNECT
+http_access deny CONNECT !SSL_ports
+
+# QOS POLOCY
+delay_pools 2
+
+acl qos_work_hours time MTWHF  9:00-18:00
+
+acl qos_src_1 src "/usr/local/nginx/html/transproxy_admin/public/fileData/qos_src_1.txt"
+acl qos_dstdomain_1 dstdomain "/usr/local/nginx/html/transproxy_admin/public/fileData/qos_dstdomain_1.txt"
+
+delay_class 1 1
+delay_parameters 1 1310720/1310720
+
+delay_access 1 allow qos_src_1 qos_dstdomain_1 qos_work_hours
+delay_access 1 deny all
+
+acl qos_src_2 src "/usr/local/nginx/html/transproxy_admin/public/fileData/qos_src_2.txt"
+acl qos_dstdomain_2 dstdomain "/usr/local/nginx/html/transproxy_admin/public/fileData/qos_dstdomain_2.txt"
+
+delay_class 2 2
+delay_parameters 2 1310720/1310720 655360/655360
+#delay_parameters 2 -1/-1 1048576/1048576
+
+delay_access 2 allow qos_src_2 qos_dstdomain_2 qos_work_hours
+delay_access 2 deny all
+
+#free url
+#1.2 目的ip地址白名单
+acl dst_ip_alone dst "/usr/local/nginx/html/transproxy_admin/public/fileData/dst_ip_alone.txt" 
+http_access allow dst_ip_alone
+
+#1.3 目的名白名单
+acl free-domain-white dstdomain "/usr/local/nginx/html/transproxy_admin/public/fileData/url-set.txt"
+http_access allow free-domain-white
+
+
+----
+/usr/local/nginx/html/transproxy_admin/public/fileData/qos_src_1.txt
+10.2.3.212/30
+10.2.3.205
+10.2.3.206
+
+
+/usr/local/nginx/html/transproxy_admin/public/fileData/qos_dstdomain_1.txt
+mirror-hk.koddos.net
+
+
+/usr/local/nginx/html/transproxy_admin/public/fileData/qos_src_2.txt
+10.2.3.207
+10.2.3.208
+10.2.3.209
+10.2.3.210
+
+
+/usr/local/nginx/html/transproxy_admin/public/fileData/qos_dstdomain_2.txt
+.01link.hk
+
+
+---
+#1.3 目的名白名单
+acl free-domain-white dstdomain "/usr/local/nginx/html/transproxy_admin/public/fileData/url-set.txt"
+http_access allow free-domain-white
+
+mirror-hk.koddos.net
+.01link.hk
+
+
+
+
+#3.4 Global Dst URL White list
+acl domain-white dstdomain "/usr/local/nginx/html/transproxy_admin/public/fileData/url-whitelist.txt"
+http_access allow domain-white
+
+mirror-hk.koddos.net
+.01link.hk
+
+
+
+
+----
+curl -x Ton:P%ssw0rd@http://10.2.3.221:8080 https://www.baidu.com/
+curl -x Ton:P%ssw0rd@http://10.2.3.221:8080 https://mirror-hk.koddos.net/ubuntu-releases/24.04/ubuntu-24.04.4-live-server-amd64.iso --output ubuntu-24.04.4-live-server-amd64.iso
+curl -x Ton:P%ssw0rd@http://10.2.3.221:8080 https://mirror.01link.hk/ubuntu-releases/focal/ubuntu-20.04.6-live-server-amd64.iso --output ubuntu-20.04.6-live-server-amd64.iso
+
+
+--
+iftop -F 192.168.1.0/24
+iftop -f "host 1.1.1.1"
+iftop -f "port 8080"
+
+iftop -f "host 10.2.3.205 and port 8080"
+iftop -f "net 10.2.3.0/24 and port 8080"
+t
+
+iftop -i eth0 -n -P -f "port 8080"
+iftop -f "not port 22"
+
+
+
+---
+iftop 是 Linux 系统中非常实用的网络流量实时监控工具。它类似于 top 命令，但专注于显示网络接口的带宽使用情况，能够清晰地看到哪些 IP 正在消耗流量。
+
+## 1. 基础用法
+如果你只是想快速查看某个网卡的流量，可以使用以下命令：
+默认启动（监控默认网卡）：sudo iftop
+指定网卡：sudo iftop -i eth0
+以字节数显示（默认是比特 Bits）：sudo iftop -B
+不解析域名（直接显示 IP，速度更快）：sudo iftop -n
+显示端口号：sudo iftop -P
+
+## 2. 界面详解
+在 iftop 的运行界面中，信息主要分为三个部分：
+顶部： 刻度尺，显示流量密度的范围。
+中间： 流量列表。每行包含源 IP（或主机名）和目的 IP。
+=> 表示发送数据。
+<= 表示接收数据。
+最后三列分别代表：最近 2 秒、10 秒、40 秒的平均流量。
+
+底部： 统计数据。
+TX (Transmit)：发送流量。
+RX (Receive)：接收流量。
+TOTAL：总流量。
+cum：从运行开始的累计流量。
+peak：流量峰值。
+rates：对应的平均值。
+
+----
+是的，Squid 完全可以记录服务器（即 Squid 代理自身）的 IP 地址，但在默认的日志格式中，它通常更关注客户端 IP 和目标网站 IP。
+
+如果你需要记录 Squid 服务器自身的 IP，可以通过自定义 logformat 来实现。
+
+如何配置记录服务器 IP
+在 squid.conf 配置文件中，你可以使用 %la（Local IP address）这个宏来捕获 Squid 接收请求时的本地接口 IP 地址。
+
+定义自定义格式：
+在配置文件中添加一行 logformat。例如，我们创建一个名为 my_custom_log 的格式：
+
+Bash
+# %la 代表 Squid 服务器的本地 IP
+# %tl 代表本地时间
+# %client_ip 代表客户端 IP
+# %ru 代表请求的 URL
+logformat my_custom_log %tl %la %client_ip %ru %Ss/%03>Hs
+应用该格式：
+找到 access_log 指令，将其指向你刚刚定义的格式：
+
+Bash
+access_log daemon:/var/log/squid/access.log my_custom_log
+生效配置：
+修改后，检查语法并重新加载 Squid：
+
+Bash
+squid -k parse
+squid -k reconfigure
+

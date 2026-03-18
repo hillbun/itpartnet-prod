@@ -95,3 +95,7 @@ logreader ALL=(ALL) NOPASSWD:
 ldapsearch -x -H ldaps://160.98.39.18:636 -D CN=n5-proxy-opp-52a,OU=Users,OU=N2,OU=ITIS,DC=corp,DC=ha,DC=org,DC=hk -w 'ziSJ144Watmj' -b DC=corp,DC=ha,DC=org,DC=hk
 
 curl  --proxy http://LH511:tyP6Jx?urY1@192.168.52.236:8080 https://www.facebook.com/
+
+
+
+---

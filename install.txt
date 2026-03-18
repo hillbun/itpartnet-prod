@@ -148,6 +148,20 @@ pox@N5OPP
 ssh logreader@192.168.52.236
 P@ssw0rd123
 
+
+
+uat41a：
+poxadm@poxpxyvmcprd41a  
+poxadm
+Q8b/c#F8633
+
+uat51a：
+poxadm@poxpxyvmcprd51a  
+poxadm
+Q8b/c#F8633
+
+
+
 ---
 
 1. HA提供proxy12相关日志文件
