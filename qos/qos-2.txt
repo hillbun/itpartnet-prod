@@ -107,7 +107,20 @@ iftop -f "not port 22"
 
 ---
 
+启用 EPEL 仓库
+执行以下命令安装 EPEL 仓库配置包：
 
+bash
+yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+或者先安装 epel-release（如果已配置源）：
+
+bash
+yum install epel-release
+更新缓存并安装 iftop
+
+bash
+yum makecache
+yum install iftop
 
 ---
 iftop 是 Linux 系统中非常实用的网络流量实时监控工具。它类似于 top 命令，但专注于显示网络接口的带宽使用情况，能够清晰地看到哪些 IP 正在消耗流量。
