@@ -1,0 +1,14 @@
+[Unit]
+Description=node_exporter
+Documentation=https://github.com/prometheus/node_exporter
+After=network.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/local/node_exporter/node_exporter --web.listen-address=:9100 --collector.textfile.directory=/opt/node_exporter/textfile_collector
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+
