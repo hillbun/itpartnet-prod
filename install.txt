@@ -89,6 +89,16 @@ https://ka9rcghfcff.feishu.cn/sheets/ZQSCsPCPoh7lEwtVRkCcKwjLnSd?sheet=P0fxsP
 
 
 
+Open-Platform_Proxy_Solution/forcepoint-ip/
+
+https://hateams.ha.org.hk/workgroups/group/13446/disk/path/Open-Platform_Proxy_Solution/forcepoint-ip/
+
+
+PAC 文件
+https://ka9rcghfcff.feishu.cn/drive/folder/KHvlflEn6lLMgtdHdqMc4vdHnpb
+
+
+
 /opt/nginx/html/threat/archive/*.csv
 
 OPP初始化部署
