@@ -1,0 +1,66 @@
+steps:
+
+### 1. create backup dir
+
+mkdir -p /root/backup/20260323/
+
+### 2. node_exporter config update
+
+mkdir -p /opt/node_exporter
+cp -r /home/logreader/upgrade/node_exporter/script /opt/node_exporter/
+cp -r /home/logreader/upgrade/node_exporter/textfile_collector /opt/node_exporter/
+chown -R logreader.logreader /opt/node_exporter
+
+cp /etc/systemd/system/node_exporter.service /root/backup/20260323/node_exporter.service
+
+\cp /home/logreader/upgrade/node_exporter/node_exporter.service /etc/systemd/system/node_exporter.service
+systemctl restart node_exporter
+
+### 3. logreader crontab update
+
+cp /opt/crontab/opp-crontab /root/backup/20260323/opp-crontab
+\cp /home/logreader/upgrade/crontab/opp-crontab /opt/crontab/opp-crontab
+crontab -u logreader /opt/crontab/opp-crontab
+crontab -u logreader -l
+
+
+### 4. squid config update
+
+cp /opt/squid/etc/squid.conf /opt/squid/etc/squid.conf.20260323
+cp /home/logreader/upgrade/squid/squid.conf /opt/squid/etc/squid.conf
+/opt/squid/sbin/squid -k parse
+
+
+
+------
+verify monitor dashboard
+wait at 00:00 crontab run systemctl reload squid
+verify timeout status
+------
+
+
+upgrade note:
+
+
+1. /opt/node_exporter/
+
+new dir
+
+
+2. /etc/systemd/system/node_exporter.service
+
+old:
+
+ExecStart=/usr/local/node_exporter/node_exporter --web.listen-address=:9100
+
+new:
+ExecStart=/usr/local/node_exporter/node_exporter --web.listen-address=:9100 --collector.textfile.directory=/opt/node_exporter/textfile_collector
+
+
+3. /opt/squid/etc/squid.conf
+
+old:
+external_acl_type check_ip_allow_check ttl=604800 negative_ttl=360 children-max=100 %SRC %DST /usr/bin/python3 /opt/py_prod/check_ip_allow.py
+
+new:
+external_acl_type check_ip_allow_check ttl=604800 negative_ttl=360 children-startup=2 children-idle=2 %SRC %DST /usr/bin/python3 /opt/py_prod/check_ip_allow.py
