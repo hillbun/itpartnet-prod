@@ -97,6 +97,18 @@ https://hateams.ha.org.hk/workgroups/group/13446/disk/path/Open-Platform_Proxy_S
 PAC 文件
 https://ka9rcghfcff.feishu.cn/drive/folder/KHvlflEn6lLMgtdHdqMc4vdHnpb
 
+--
+https://hateams.home/workgroups/group/13446/disk/path/Open-Platform_Proxy_Solution/Forcepoint_Proxy/
+proxy6 and proxy12
+https://hateams.ha.org.hk/workgroups/group/13446/disk/path/Forcepoint_Proxy/Proxy6/
+https://hateams.ha.org.hk/workgroups/group/13446/disk/path/Forcepoint_Proxy/Proxy12/
+
+
+---
+https://wps365.home/weboffice/l/stJaf4i7SCTgI
+
+
+---
 
 
 /opt/nginx/html/threat/archive/*.csv
