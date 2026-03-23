@@ -2226,3 +2226,4 @@ monitor_memory
 monitor_disk
 
 ---
+grep -E "\.[a-zA-Z]{2,6}$" *
