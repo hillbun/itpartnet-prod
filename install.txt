@@ -2229,3 +2229,6 @@ monitor_disk
 grep -E "\.[a-zA-Z]{2,6}$" *
 
 
+grep -E "[^.]\.(com|co|net|io|info)$" *
+
+
