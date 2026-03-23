@@ -2233,5 +2233,9 @@ grep -E "[^.]\.(com|co|net|io|info)$" *
 
 
 grep -E "^\.(com|co|net|io|info)$" *
+grep -E "\.[a-z]{2,}$" *
+
+
+
 
 
