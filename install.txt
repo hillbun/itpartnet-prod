@@ -173,12 +173,12 @@ P@ssw0rd123
 
 
 uat41a：
-poxadm@poxpxyvmcprd41a  
+poxadm@poxpxyvmcprd41a
 poxadm
 Q8b/c#F8633
 
 uat51a：
-poxadm@poxpxyvmcprd51a  
+poxadm@poxpxyvmcprd51a
 poxadm
 Q8b/c#F8633
 
@@ -2299,7 +2299,7 @@ Ton@squid.hk
 P@ssw0rd
 
 
-
+proxy.ha.org.hk
 
 
 ----
