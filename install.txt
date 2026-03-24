@@ -2226,16 +2226,133 @@ monitor_memory
 monitor_disk
 
 ---
-grep -E "\.[a-zA-Z]{2,6}$" *
+cd /usr/nginx/html/transproxy_admin/public/fileData/threat
+grep "\.co$" *.txt
+
+grep -E "\.[a-zA-Z]{2,6}$" *.txt
 
 
-grep -E "[^.]\.(com|co|net|io|info)$" *
+grep -E "[^.]\.(com|co|net|io|info)$" *.txt
 
 
 grep -E "^\.(com|co|net|io|info)$" *
-grep -E "\.[a-z]{2,}$" *
+
+grep -E "^\.[a-z]{2,}$" *.txt
+
+c2-bak.txt:.art
+c2-bak.txt:.ing
+c2.txt:.art
+c2.txt:.ing
+malicious_website.txt:.shop
+malicious_website.txt:.site
+
+
+---
+cd /usr/local/nginx/html/transproxy_admin/public/fileData/threat
+
+
+.shop
+.site
+.co
+.art
+.ing
+
+
+/usr/local/nginx/html/transproxy_admin/app/Http/Controllers/Api/ThreatController.php
+/usr/local/nginx/html/transproxy_admin/app/Console/Commands/RemoveDup.php
 
 
 
+
+
+---
+more /opt/squid/etc/ldap_auth.conf
+
+auth_param basic program /opt/squid/libexec/basic_ldap_auth \
+    -d \
+    -R \
+    -b "DC=squid,DC=hk" \
+    -D "CN=funny,CN=Users,DC=squid,DC=hk" \
+    -W "/opt/squid/etc/ldap_password" \
+    -f sAMAccountName=%s \
+    -h ldap://10.2.3.180:389
+
+
+more /opt/squid/etc/kerberos_auth.conf
+
+auth_param negotiate program /opt/squid/libexec/negotiate_kerberos_auth -k /opt/squid/etc/proxy.keytab -d -s HTTP/proxy.squid.hk
+auth_param negotiate children 100 startup=10 idle=5
+auth_param negotiate keep_alive on
+auth_param negotiate realm SQUID.HK
+acl kerberos_auth proxy_auth REQUIRED
+
+
+more /opt/squid/etc/ldap_password
+P@ssw0rd
+
+
+ldapsearch -x -H ldap://10.2.3.180:389 -D CN=funny,CN=Users,DC=squid,DC=hk -w 'P@ssw0rd' -b DC=squid,DC=hk
+ldapsearch -x -H ldap://10.2.3.180:389 -D CN=Ton,CN=Users,DC=squid,DC=hk -w 'P@ssw0rd' -b DC=squid,DC=hk
+
+Ton
+Ton@squid.hk
+P@ssw0rd
+
+
+
+
+
+----
+OK
+
+kinit Ton@SQUID.HK
+
+
+curl -x http://proxy.squid.hk:8080 --proxy-negotiate -u Ton:P@ssw0rd -I https://www.facebook.com/
+curl -x http://proxy.squid.hk:8080 --proxy-negotiate -u Ton:P@ssw0rd -I https://api.vulcanlabs.co/
+
+curl -x http://proxy.squid.hk:8080 --proxy-negotiate -u mike:P@ssw0rd -I https://api.vulcanlabs.co/
+
+
+----
+
+
+
+
+curl -x http://proxy.squid.hk:8080 --proxy-negotiate -u Ton:P@ssw0rd -I https://www.facebook.com
+curl http://proxy.squid.hk:8080 -u Ton:P@ssw0rd -I https://www.facebook.com
+OK
+curl http://proxy.squid.hk:8080 -u Ton:P@ssw0rd https://www.facebook.com/
+
+curl -x http://proxy.squid.hk:8080 --proxy-user "Ton:P@ssw0rd" https://www.google.cn/
+
+
+curl -x http://proxy.squid.hk:8080 https://www.facebook.com/
+
+curl http://proxy.squid.hk:8080 -u Ton:P@ssw0rd https://api.vulcanlabs.co/
+
+
+curl -x http://proxy.squid.hk:8080 --proxy-user "Ton:P@ssw0rd" http://www.facebook.com
+
+curl -x http://10.2.3.162:8080 --proxy-user "Ton@squid.hk:P@ssw0rd" https://www.baidu.com/
+curl -x http://10.2.3.162:8080 --proxy-user "Ton:P@ssw0rd" https://www.facebook.com/
+
+
+curl -x Ton:P%ssw0rd@http://proxy.squid.hk:8080 https://www.facebook.com/
+
+curl -x http://10.2.3.162:8080 --proxy-user Ton:P@ssw0rd https://www.facebook.com/
+
+curl -x http://Ton:P%40ssw0rd@proxy.squid.hk:8080 https://www.baidu.com/
+curl -x Ton:P%ssw0rd@http://10.2.3.162:8080 https://www.baidu.com/
+
+
+10.2.3.162:8080
+ldapsearch -x -H ldap://10.2.3.180:389 -D CN=Ton,CN=Users,DC=squid,DC=hk -w 'P@ssw0rd' -b DC=squid,DC=hk
+
+
+funny@squid.hk
+P@ssw0rd
+
+more /usr/nginx/html/transproxy_admin/public/fileData/url-set.txt
 
 
