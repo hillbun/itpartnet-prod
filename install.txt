@@ -65,6 +65,7 @@ https://ka9rcghfcff.feishu.cn/wiki/EPyHwemmKiBgmdkgKDlc3lLInOf?sheet=0GAPui
 check list
 poxappprd42a poxappprd42e
 https://ka9rcghfcff.feishu.cn/wiki/KbgJwagrvivZqykfdvzcQAChnLb
+
 crontab
 https://ka9rcghfcff.feishu.cn/wiki/V1ZZwztmOiGjUakUOYhcvUinnRh
 
@@ -185,6 +186,18 @@ Q8b/c#F8633
 
 
 ---
+ELK
+
+https://dc6-cep-kb-prd.server.ha.org.hk:5601
+
+LH511
+tyP6Jx?urY1
+
+---
+
+
+
+---
 
 1. HA提供proxy12相关日志文件
 2. ITP根据日志文件，提取出IP地址列表文件
@@ -196,6 +209,8 @@ Q8b/c#F8633
 
 
 ---
+prometheus
+
 poxamd@poxmgtprd61a
 Q8b/c#F8633
 
