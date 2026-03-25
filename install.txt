@@ -200,15 +200,6 @@ https://poxmgtprd61a/dashboard/dashboards
 admin
 P@ssw0rd
 
-
----
-
-1. HA提供proxy12相关日志文件
-2. ITP根据日志文件，提取出IP地址列表文件
-3. HA/ITP根据IP地址列表文件找到相关联系人
-4. HA/ITP通知相关联系人进行PROXY设置变更
-5. ITP查询OPP日志文件进行IP地址确认
-
 ---
 
 
