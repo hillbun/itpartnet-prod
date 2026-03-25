@@ -194,7 +194,11 @@ LH511
 tyP6Jx?urY1
 
 ---
+GRAFANA
 
+https://poxmgtprd61a/dashboard/dashboards
+admin
+P@ssw0rd
 
 
 ---
