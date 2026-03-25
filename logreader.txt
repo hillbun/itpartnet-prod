@@ -62,4 +62,13 @@ uid=12602(logreader) gid=12602(logreader) groups=12602(logreader),661(squid),125
 
 
 
+---
+chage -l logreader
+Last password change                                    : Jan 09, 2026
+Password expires                                        : never
+Password inactive                                       : never
+Account expires                                         : never
+Minimum number of days between password change          : 0
+Maximum number of days between password change          : -1
+Number of days of warning before password expires       : 7
 
