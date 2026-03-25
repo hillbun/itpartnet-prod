@@ -1,0 +1,65 @@
+more /etc/sudoers.d/opp
+# Allows logreader user to sudo cmd list without password
+Defaults:logreader !requiretty
+Cmnd_Alias LOGREADER_SUDO_CMD = /usr/bin/systemctl * nginx, \
+                                /usr/bin/systemctl * squid, \
+                                /usr/bin/systemctl * redis, \
+                                /usr/bin/systemctl * php-fpm, \
+                                /usr/bin/systemctl * laravel-queue, \
+                                /usr/bin/systemctl * node_exporter, \
+                                /usr/bin/journalctl *, \
+                                /usr/bin/cp /opt/logrotate/etc/squid /root/logrotate-squid, \
+                                /usr/bin/cp /opt/logrotate/etc/python_prod_logs /root/logrotate-python_prod_logs, \
+                                /usr/sbin/logrotate *, \
+                                /opt/squid/sbin/squid -k reconfigure, \
+                                /usr/bin/php *, \
+                                /usr/bin/cp -f /opt/redis_bak/dump.rdb_release* /opt/redis/dump.rdb, \
+                                /usr/bin/rm -f /opt/redis/dump.rdb, \
+                                /usr/bin/chown -R redis.redis /opt/redis/dump.rdb, \
+                                /usr/bin/find /var/crash *
+
+logreader ALL=(root) NOPASSWD: LOGREADER_SUDO_CMD
+logreader ALL=(nginx) NOPASSWD: ALL
+logreader ALL=(redis) NOPASSWD: ALL
+
+# Allows nginx user to sudo cmd list without password
+Defaults:nginx !requiretty
+
+Cmnd_Alias NGINX_SUDO_CMD = /usr/bin/python3 /opt/py_prod/squid_ldap_modify.py, \
+                            /usr/bin/python3 /opt/py_prod/squid_kerberos_modify.py, \
+                            /opt/squid/sbin/squid -k reconfigure, \
+                            /opt/squid/sbin/squid -k reconfigure *
+nginx ALL=(root) NOPASSWD: NGINX_SUDO_CMD
+
+
+
+----
+more /opt/crontab/opp-crontab
+*/10 * * * * bash /opt/squid_shell/resource_monitor_script.sh &>> /opt/squid_shell/logs/resource_monitor_script.log
+15 0 * * * bash /opt/squid_shell/ftp_accesslog.sh
+1 * * * * /usr/bin/python3 /opt/squid_shell/hour_monitor.py &>> /opt/squid_shell/logs/nohup_monitor.log
+2 * * * * bash /opt/squid_shell/network_count.sh &>> /opt/squid_shell/logs/network_count.log
+1 * * * * bash /opt/squid_shell/monitor_matchlogs.sh &>> /opt/squid_shell/logs/monitor_matchlogs.log
+1 0 * * * bash /opt/squid_shell/count_week_ip_url.sh &>> /opt/squid_shell/logs/monitor_week_top.log
+1 0 * * * bash /opt/squid_shell/count_week_status.sh &>> /opt/squid_shell/logs/count_week_status.log
+1 * * * * bash /opt/squid_shell/count_estab.sh &>> /opt/squid_shell/logs/count_estab.log
+0 23 * * * /usr/bin/python3 /opt/nginx/html/threat/IOCsApi_csv.py &>> /opt/squid_shell/logs/ioc_script.log
+30 23 * * * bash /opt/squid_shell/cleanup_iocs.sh
+30 13,23 * * * /usr/bin/curl -k https://127.0.0.1:8000/api/upredis_dir &>> /opt/squid_shell/logs/php_upredis_dir.log
+40 23 * * * /usr/bin/python3 /opt/squid_shell/share_account_pcname_check.py --dns 160.87.34.103  --squidtxt /opt/nginx/html/transproxy_admin/public/fileData/specify_ip_pop_ldaps.txt
+5 0 * * * sudo cp /opt/logrotate/etc/squid /root/logrotate-squid;sudo /usr/sbin/logrotate -s /opt/logrotate/status/logrotate-squid.status -f /root/logrotate-squid &>> /opt/squid_shell/logs/logrotate.log
+5 0 * * * sudo cp /opt/logrotate/etc/python_prod_logs /root/logrotate-python_prod_logs;sudo /usr/sbin/logrotate -s /opt/logrotate/status/logrotate-python_prod_logs.status -f /root/logrotate-squid &>> /opt/squid_shell/logs/logrotate.log
+5 0 * * * /usr/sbin/logrotate -s /opt/logrotate/status/logrotate.status -f /opt/logrotate/etc/nginx &>> /opt/squid_shell/logs/logrotate.log
+20 0 * * * sudo systemctl reload squid
+0 1 * * * /usr/bin/curl -k https://127.0.0.1:8000/api/logs_del  &>> /opt/squid_shell/logs/php_logs_del.log
+
+
+----
+id logreader
+uid=12602(logreader) gid=12602(logreader) groups=12602(logreader),661(squid),12502(www-group)
+
+
+
+
+
+
