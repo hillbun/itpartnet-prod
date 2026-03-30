@@ -58,3 +58,5 @@ upgrade notes:
 transproxy/RemoveDup.php
 transproxy/ThreatController.php
 
+root crontab
+root jobs
