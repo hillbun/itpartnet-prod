@@ -2,8 +2,8 @@ upgrade steps:
 
 ### 0. export variable
 
-export $BACKUP_DIR=/root/backup/20260413/tianji-party
-export $UPGRADE_DIR=/home/logreader/upgrade/20260413/tianji-party
+export BACKUP_DIR=/root/backup/20260413/tianji-party
+export UPGRADE_DIR=/home/logreader/upgrade/20260413/tianji-party
 
 ### 1. create backup dir
 
@@ -32,11 +32,11 @@ grep "\.co$" *.txt
 grep -E "^\.[a-z]{2,}$" *.txt
 
 
-### 5. cleanup crontab
+### 5. cleanup script
 
 cp $UPGRADE_DIR/squid_shell/cleanup_iocs.sh /opt/squid_shell/cleanup_iocs.sh
 
-### 6. crontab
+### 6. cleanup crontab
 
 ### 0 23 * * * bash /usr/bin/python3 /opt/nginx/html/threat/IOCsApi_csv.py ....
 ### add this crontab

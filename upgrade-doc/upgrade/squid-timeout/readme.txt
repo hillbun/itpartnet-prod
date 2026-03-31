@@ -2,8 +2,8 @@ upgrade steps:
 
 ### 0. export variable
 
-export $BACKUP_DIR=/root/backup/20260409/squid-timeout
-export $UPGRADE_DIR=/home/logreader/upgrade/20260409/squid-timeout
+export BACKUP_DIR=/root/backup/20260409/squid-timeout
+export UPGRADE_DIR=/home/logreader/upgrade/20260409/squid-timeout
 
 ### 1. create backup dir
 

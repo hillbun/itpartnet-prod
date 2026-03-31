@@ -1,7 +1,7 @@
 #!/bin/bash
 
-export $BACKUP_DIR=/root/backup/20260413/tianji-party
-export $UPGRADE_DIR=/home/logreader/upgrade/20260413/tianji-party
+export BACKUP_DIR=/root/backup/20260413/tianji-party
+export UPGRADE_DIR=/home/logreader/upgrade/20260413/tianji-party
 
 ### 1. create backup dir
 
