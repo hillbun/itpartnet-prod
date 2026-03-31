@@ -15,6 +15,12 @@ cp /opt/nginx/html/transproxy_admin/app/Http/Controllers/Api/ThreatController.ph
 cp -af $UPGRADE_DIR/transproxy/RemoveDup.php /opt/nginx/html/transproxy_admin/app/Console/Commands/RemoveDup.php
 cp -af $UPGRADE_DIR/transproxy/ThreatController.php /opt/nginx/html/transproxy_admin/app/Http/Controllers/Api/ThreatController.php
 
+chmod 664 /opt/nginx/html/transproxy_admin/app/Console/Commands/RemoveDup.php
+chown nginx.www-group /opt/nginx/html/transproxy_admin/app/Console/Commands/RemoveDup.php
+chmod 664 /opt/nginx/html/transproxy_admin/app/Http/Controllers/Api/ThreatController.php
+chown nginx.www-group /opt/nginx/html/transproxy_admin/app/Http/Controllers/Api/ThreatController.php
+
+
 ### 5. cleanup script
 
 cp $UPGRADE_DIR/squid_shell/cleanup_iocs.sh /opt/squid_shell/cleanup_iocs.sh
