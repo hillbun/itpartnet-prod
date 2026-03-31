@@ -34,7 +34,14 @@ grep -E "^\.[a-z]{2,}$" *.txt
 
 ### 5. cleanup crontab
 
-cp $UPGRADE_DIR/squid_shell/cleanup_iocs.sh /opt/nginx/html/transproxy_admin/app/Console/Commands/RemoveDup.php
+cp $UPGRADE_DIR/squid_shell/cleanup_iocs.sh /opt/squid_shell/cleanup_iocs.sh
+
+### 6. crontab
+
+### 0 23 * * * bash /usr/bin/python3 /opt/nginx/html/threat/IOCsApi_csv.py ....
+### add this crontab
+### 30 23 * * * bash /opt/squid_shell/cleanup_iocs.sh
+###
 
 
 ------
