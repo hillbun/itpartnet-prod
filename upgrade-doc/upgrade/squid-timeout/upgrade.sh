@@ -18,7 +18,7 @@ chown -R logreader.logreader /opt/node_exporter
 
 cp /etc/systemd/system/node_exporter.service $BACKUP_DIR/node_exporter.service
 
-\cp -f $UPGRADE_DIR/node_exporter/node_exporter.service /etc/systemd/system/node_exporter.service
+\cp -af $UPGRADE_DIR/node_exporter/node_exporter.service /etc/systemd/system/node_exporter.service
 systemctl daemon-reload
 systemctl restart node_exporter
 

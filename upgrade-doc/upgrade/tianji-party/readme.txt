@@ -20,8 +20,8 @@ grep -E "^\.[a-z]{2,}$" *.txt
 cp /opt/nginx/html/transproxy_admin/app/Console/Commands/RemoveDup.php $BACKUP_DIR/
 cp /opt/nginx/html/transproxy_admin/app/Http/Controllers/Api/ThreatController.php $BACKUP_DIR/
 
-cp -f $UPGRADE_DIR/transproxy/RemoveDup.php /opt/nginx/html/transproxy_admin/app/Console/Commands/RemoveDup.php
-cp -f $UPGRADE_DIR/transproxy/ThreatController.php /opt/nginx/html/transproxy_admin/app/Http/Controllers/Api/ThreatController.php
+cp -af $UPGRADE_DIR/transproxy/RemoveDup.php /opt/nginx/html/transproxy_admin/app/Console/Commands/RemoveDup.php
+cp -af $UPGRADE_DIR/transproxy/ThreatController.php /opt/nginx/html/transproxy_admin/app/Http/Controllers/Api/ThreatController.php
 
 ### 4. verify
 
@@ -31,14 +31,20 @@ cd /opt/nginx/html/transproxy_admin/public/fileData/threat
 grep "\.co$" *.txt
 grep -E "^\.[a-z]{2,}$" *.txt
 
+
+### 5. cleanup crontab
+
+cp $UPGRADE_DIR/squid_shell/cleanup_iocs.sh /opt/nginx/html/transproxy_admin/app/Console/Commands/RemoveDup.php
+
+
 ------
 
 rollback steps:
 
 ### 1. transproxy php
 
-cp -f $BACKUP_DIR/RemoveDup.php /opt/nginx/html/transproxy_admin/app/Console/Commands/RemoveDup.php
-cp -f $BACKUP_DIR/ThreatController.php /opt/nginx/html/transproxy_admin/app/Http/Controllers/Api/ThreatController.php
+cp -af $BACKUP_DIR/RemoveDup.php /opt/nginx/html/transproxy_admin/app/Console/Commands/RemoveDup.php
+cp -af $BACKUP_DIR/ThreatController.php /opt/nginx/html/transproxy_admin/app/Http/Controllers/Api/ThreatController.php
 
 
 ### 2. verify
