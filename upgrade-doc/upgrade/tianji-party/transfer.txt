@@ -1,0 +1,33 @@
+ln -s /usr/local/nginx/ /opt/nginx
+
+cp /opt/nginx/html/transproxy_admin/app/Console/Commands/RemoveDup.php $BACKUP_DIR/
+cp /opt/nginx/html/transproxy_admin/app/Http/Controllers/Api/ThreatController.php $BACKUP_DIR/
+
+
+scp -P 80 /opt/nginx/html/transproxy_admin/app/Console/Commands/RemoveDup.php ubuntu@119.28.43.244:/home/ubuntu/upgrade/tianji/
+scp -P 80 /opt/nginx/html/transproxy_admin/app/Http/Controllers/Api/ThreatController.php ubuntu@119.28.43.244:/home/ubuntu/upgrade/tianji/
+
+
+---
+scp -P 80 ubuntu@119.28.43.244:/home/ubuntu/upgrade/tianji/RemoveDup.php /root/upgrade/tianji/
+scp -P 80 ubuntu@119.28.43.244:/home/ubuntu/upgrade/tianji/ThreatController.php /root/upgrade/tianji/
+
+
+mkdir /root/backup/20260402/
+
+cp /opt/nginx/html/transproxy_admin/app/Console/Commands/RemoveDup.php /root/backup/20260402/RemoveDup.php
+cp /opt/nginx/html/transproxy_admin/app/Http/Controllers/Api/ThreatController.php /root/backup/20260402/ThreatController.php
+
+\cp -f /root/upgrade/tianji/RemoveDup.php /opt/nginx/html/transproxy_admin/app/Console/Commands/RemoveDup.php
+\cp -f /root/upgrade/tianji/ThreatController.php /opt/nginx/html/transproxy_admin/app/Http/Controllers/Api/ThreatController.php
+
+chmod 664 /opt/nginx/html/transproxy_admin/app/Console/Commands/RemoveDup.php
+chown nginx.www-group /opt/nginx/html/transproxy_admin/app/Console/Commands/RemoveDup.php
+chmod 664 /opt/nginx/html/transproxy_admin/app/Http/Controllers/Api/ThreatController.php
+chown nginx.www-group /opt/nginx/html/transproxy_admin/app/Http/Controllers/Api/ThreatController.php
+
+
+
+
+
+

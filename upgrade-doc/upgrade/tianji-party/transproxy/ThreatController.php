@@ -145,7 +145,8 @@ class ThreatController extends Controller
                 }
             }
 
-            //$tmp[0] = preg_replace('/^www\./i', '', $tmp[0]);
+	    //fix the issue where "www." is removed from "www.co"
+	    //$tmp[0] = preg_replace('/^www\./i', '', $tmp[0]); 
             $tmp[0] = "." . $tmp[0];
 
             if ($type == 'porn') {

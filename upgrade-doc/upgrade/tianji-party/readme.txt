@@ -20,12 +20,12 @@ grep -E "^\.[a-z]{2,}$" *.txt
 cp /opt/nginx/html/transproxy_admin/app/Console/Commands/RemoveDup.php $BACKUP_DIR/
 cp /opt/nginx/html/transproxy_admin/app/Http/Controllers/Api/ThreatController.php $BACKUP_DIR/
 
-cp -af $UPGRADE_DIR/transproxy/RemoveDup.php /opt/nginx/html/transproxy_admin/app/Console/Commands/RemoveDup.php
-cp -af $UPGRADE_DIR/transproxy/ThreatController.php /opt/nginx/html/transproxy_admin/app/Http/Controllers/Api/ThreatController.php
+\cp -f $UPGRADE_DIR/transproxy/RemoveDup.php /opt/nginx/html/transproxy_admin/app/Console/Commands/RemoveDup.php
+\cp -f $UPGRADE_DIR/transproxy/ThreatController.php /opt/nginx/html/transproxy_admin/app/Http/Controllers/Api/ThreatController.php
 
 ### 4. verify
 
-/usr/bin/python3 /usr/nginx/html/threat/IOCsApi_csv.py
+/usr/bin/python3 /opt/nginx/html/threat/IOCsApi_csv.py
 
 cd /opt/nginx/html/transproxy_admin/public/fileData/threat
 grep "\.co$" *.txt
@@ -71,5 +71,5 @@ upgrade notes:
 transproxy/RemoveDup.php
 transproxy/ThreatController.php
 
-root crontab
-root jobs
+
+

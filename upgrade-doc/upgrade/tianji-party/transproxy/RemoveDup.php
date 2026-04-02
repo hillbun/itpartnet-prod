@@ -12,12 +12,6 @@ class RemoveDup extends Command
     protected $signature = 'ioc:remove-dup';
     private $pypath = '/usr/nginx/html/threat/archive/';
     protected $description = '去掉子域，只保留父域';
-    protected $notInDomains = [
-                'www.shop',
-                'www.site',
-                'www.art',
-                'www.ing'
-            ];
 
     public function handle()
     {
@@ -41,9 +35,8 @@ class RemoveDup extends Command
         $records = [];
         foreach ($reader->getRecords() as $row) {
 
-            $isExactlyOneWww = preg_match('/^(www\.)(?!www\.)/i', trim($row['value']));
-
-            if($isExactlyOneWww == 1 && substr_count(trim($row['value']), '.') == 1 && !in_array(trim($row['value']), $this->notInDomains)){
+	    //Handle URLs with top-level domain names ending in .co, as well as the special domain name www.co
+            if(trim($row['value']) == 'www.co'){
                 $domain = trim($row['value']);
             }else{
                 $domain = preg_replace('/^(www\.)+/i', '', trim($row['value']));

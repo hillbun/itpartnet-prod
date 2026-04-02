@@ -48,6 +48,8 @@
 ### kubernetes squid daemonset
 ### ansible upgrade
 ### ansible rollback
+### health_load.py  service add
+### curl 127.0.0.1:8033/health.load
 ### zabbix
 ### terraform
 ### security sas
