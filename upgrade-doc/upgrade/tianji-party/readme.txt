@@ -39,10 +39,12 @@ cp $UPGRADE_DIR/squid_shell/cleanup_iocs.sh /opt/squid_shell/cleanup_iocs.sh
 ### 6. cleanup crontab
 
 ### 0 23 * * * bash /usr/bin/python3 /opt/nginx/html/threat/IOCsApi_csv.py ....
-### add this crontab
+### after add this crontab
 ### 30 23 * * * bash /opt/squid_shell/cleanup_iocs.sh
 ###
 
+
+/opt/squid/sbin/squid -k parse
 
 ------
 
@@ -62,6 +64,8 @@ cd /opt/nginx/html/transproxy_admin/public/fileData/threat
 grep "\.co$" *.txt
 grep -E "^\.[a-z]{2,}$" *.txt
 
+
+
 ------
 
 upgrade notes:
@@ -70,6 +74,11 @@ upgrade notes:
 
 transproxy/RemoveDup.php
 transproxy/ThreatController.php
+
+2. squid.conf
+
+squid/squid.conf
+
 
 
 
