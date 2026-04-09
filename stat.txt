@@ -1,0 +1,50 @@
+160.42.44.20 - - [09/Apr/2026:17:48:49 +0800] "CONNECT www.google.com.hk:443 HTTP/1.1" 200 1924 49437 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" TCP_TUNNEL:HIER_DIRECT 200
+160.42.44.20 - - [09/Apr/2026:17:48:49 +0800] "CONNECT pagead2.googlesyndication.com:443 HTTP/1.1" 200 2731 49428 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" TCP_TUNNEL:HIER_DIRECT 200
+160.42.44.20 - - [09/Apr/2026:17:48:49 +0800] "CONNECT play.google.com:443 HTTP/1.1" 200 37736 49422 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" TCP_TUNNEL:HIER_DIRECT 200
+160.42.44.20 - - [09/Apr/2026:17:48:49 +0800] "CONNECT www.google-analytics.com:443 HTTP/1.1" 200 2073 49448 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" TCP_TUNNEL:HIER_DIRECT 200
+160.42.44.20 - ucpunml1@CORP.HA.ORG.HK [09/Apr/2026:17:48:49 +0800] "CONNECT htlb.casalemedia.com:443 HTTP/1.1" 200 1936 49409 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" TCP_TUNNEL:HIER_DIRECT 200
+160.42.44.20 - ucpunml1@CORP.HA.ORG.HK [09/Apr/2026:17:48:49 +0800] "CONNECT a.teads.tv:443 HTTP/1.1" 200 1494 49406 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" TCP_TUNNEL:HIER_DIRECT 200
+160.42.44.20 - - [09/Apr/2026:17:48:49 +0800] "CONNECT analytics.google.com:443 HTTP/1.1" 200 2478 49433 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" TCP_TUNNEL:HIER_DIRECT 200
+160.102.172.6 - - [09/Apr/2026:17:48:49 +0800] "CONNECT us-v20.events.data.microsoft.com:443 HTTP/1.1" 200 4720 64537 "-" "-" TCP_TUNNEL:HIER_DIRECT 200
+160.42.82.4 - - [09/Apr/2026:17:48:49 +0800] "CONNECT us-v20.events.data.microsoft.com:443 HTTP/1.1" 200 4828 53672 "-" "-" TCP_TUNNEL:HIER_DIRECT 200
+160.42.33.41 - cym442@CORP.HA.ORG.HK [09/Apr/2026:17:48:49 +0800] "CONNECT fastlane.rubiconproject.com:443 HTTP/1.1" 200 2107 56671 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36" TCP_TUNNEL:HIER_DIRECT 200
+192.168.152.120 - n5-testing [09/Apr/2026:17:48:49 +0800] "CONNECT www.hk01.com:443 HTTP/1.1" 200 767892 35714 "-" "curl/7.61.1" TCP_TUNNEL:HIER_DIRECT 200
+160.19.76.10 - - [09/Apr/2026:17:48:49 +0800] "GET http://tlu.dl.delivery.mp.microsoft.com/filestreamingservice/files/4c851d6a-236c-4b56-96f3-5bbc31937f8e? HTTP/1.1" 206 66409 56174 "-" "Microsoft-Delivery-Optimization/10.1" TCP_MISS:HIER_DIRECT 206
+160.102.172.20 - - [09/Apr/2026:17:48:49 +0800] "GET http://1d.tlu.dl.delivery.mp.microsoft.com/filestreamingservice/files/c2b36ea4-a336-4832-ae6b-447c069e902b? HTTP/1.1" 206 1049590 65226 "-" "Microsoft-Delivery-Optimization/10.1" TCP_MISS:HIER_DIRECT 206
+160.42.76.48 - - [09/Apr/2026:17:48:49 +0800] "CONNECT ecs.office.com:443 HTTP/1.0" 200 1216 50994 "-" "-" TCP_TUNNEL:HIER_DIRECT 200
+160.102.61.32 - - [09/Apr/2026:17:48:49 +0800] "CONNECT outlook.office365.com:443 HTTP/1.1" 200 11019 58939 "-" "-" TCP_TUNNEL:HIER_DIRECT 200
+160.42.95.112 - - [09/Apr/2026:17:48:49 +0800] "GET http://msedge.b.tlu.dl.delivery.mp.microsoft.com/filestreamingservice/files/aeee40bc-5e6e-48fa-a38f-7990dcdbcd2d? HTTP/1.1" 206 9091 62947 "-" "Microsoft BITS/7.8" TCP_MISS:HIER_DIRECT 206
+160.42.86.16 - - [09/Apr/2026:17:48:49 +0800] "CONNECT winatp-gw-cus3.microsoft.com:443 HTTP/1.1" 200 6452 59511 "-" "-" TCP_TUNNEL:HIER_DIRECT 200
+160.102.43.92 - - [09/Apr/2026:17:48:49 +0800] "CONNECT us-v20.events.data.microsoft.com:443 HTTP/1.1" 200 4720 63672 "-" "-" TCP_TUNNEL:HIER_DIRECT 200
+160.42.44.20 - - [09/Apr/2026:17:48:49 +0800] "CONNECT cdn.hk01.com:443 HTTP/1.1" 407 4057 49452 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" TCP_DENIED:HIER_NONE 407
+160.42.32.21 - - [09/Apr/2026:17:48:49 +0800] "CONNECT us-v20.events.data.microsoft.com:443 HTTP/1.1" 200 4720 58249 "-" "-" TCP_TUNNEL:HIER_DIRECT 200
+160.42.44.20 - - [09/Apr/2026:17:48:49 +0800] "CONNECT web-data.api.hk01.com:443 HTTP/1.1" 407 4093 49455 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" TCP_DENIED:HIER_NONE 407
+160.42.95.22 - - [09/Apr/2026:17:48:49 +0800] "CONNECT ecs.office.com:443 HTTP/1.0" 200 7720 61208 "-" "-" TCP_TUNNEL:HIER_DIRECT 200
+160.42.44.20 - - [09/Apr/2026:17:48:49 +0800] "CONNECT 01web-strapi.hk01.com:443 HTTP/1.1" 407 4093 49453 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" TCP_DENIED:HIER_NONE 407
+160.42.44.20 - - [09/Apr/2026:17:48:49 +0800] "CONNECT rcfg-api.hk01.com:443 HTTP/1.1" 407 4077 49454 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" TCP_DENIED:HIER_NONE 407
+160.42.44.20 - - [09/Apr/2026:17:48:49 +0800] "CONNECT web-data.api.hk01.com:443 HTTP/1.1" 407 4093 49456 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" TCP_DENIED:HIER_NONE 407
+160.42.44.108 - - [09/Apr/2026:17:48:49 +0800] "CONNECT settings-win.data.microsoft.com:443 HTTP/1.1" 200 6679 58455 "-" "-" TCP_TUNNEL:HIER_DIRECT 200
+160.42.33.20 - - [09/Apr/2026:17:48:49 +0800] "CONNECT mobile.events.data.microsoft.com:443 HTTP/1.0" 200 4980 60377 "-" "-" TCP_TUNNEL:HIER_DIRECT 200
+160.42.32.149 - - [09/Apr/2026:17:48:49 +0800] "CONNECT us-v20.events.data.microsoft.com:443 HTTP/1.1" 200 4720 52876 "-" "-" TCP_TUNNEL:HIER_DIRECT 200
+160.42.39.86 - - [09/Apr/2026:17:48:49 +0800] "CONNECT winatp-gw-cus3.microsoft.com:443 HTTP/1.1" 200 6452 61427 "-" "-" TCP_TUNNEL:HIER_DIRECT 200
+160.42.44.20 - ucpunml1@CORP.HA.ORG.HK [09/Apr/2026:17:48:49 +0800] "CONNECT web-data.api.hk01.com:443 HTTP/1.1" 200 4869 49456 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" TCP_TUNNEL:HIER_DIRECT 200
+160.102.43.27 - yly203@CORP.HA.ORG.HK [09/Apr/2026:17:48:49 +0800] "CONNECT api.scite.ai:443 HTTP/1.1" 200 7648 57706 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36" TCP_TUNNEL:HIER_DIRECT 200
+160.42.39.47 - - [09/Apr/2026:17:48:49 +0800] "GET http://1d.tlu.dl.delivery.mp.microsoft.com/filestreamingservice/files/4c851d6a-236c-4b56-96f3-5bbc31937f8e? HTTP/1.1" 206 577780 54862 "-" "Microsoft-Delivery-Optimization/10.1" TCP_MISS_ABORTED:HIER_DIRECT 206
+160.102.43.27 - yly203@CORP.HA.ORG.HK [09/Apr/2026:17:48:49 +0800] "CONNECT cdn.doubleverify.com:443 HTTP/1.1" 200 104668 57718 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36" TCP_TUNNEL:HIER_DIRECT 200
+160.42.44.20 - - [09/Apr/2026:17:48:49 +0800] "CONNECT hk01-site-gateway.hk01.com:443 HTTP/1.1" 407 4113 49457 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" TCP_DENIED:HIER_NONE 407
+160.102.73.16 - - [09/Apr/2026:17:48:49 +0800] "CONNECT us-v20.events.data.microsoft.com:443 HTTP/1.1" 200 4720 54541 "-" "-" TCP_TUNNEL:HIER_DIRECT 200
+160.42.32.68 - - [09/Apr/2026:17:48:49 +0800] "CONNECT mdav.us.endpoint.security.microsoft.com:443 HTTP/1.0" 200 7233 62391 "-" "-" TCP_TUNNEL:HIER_DIRECT 200
+160.102.43.27 - - [09/Apr/2026:17:48:49 +0800] "CONNECT tps.doubleverify.com:443 HTTP/1.1" 407 4090 57724 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36" TCP_DENIED:HIER_NONE 407
+160.102.43.27 - - [09/Apr/2026:17:48:49 +0800] "CONNECT tps.doubleverify.com:443 HTTP/1.1" 407 4090 57725 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36" TCP_DENIED:HIER_NONE 407
+160.42.81.46 - - [09/Apr/2026:17:48:49 +0800] "CONNECT us-v20.events.data.microsoft.com:443 HTTP/1.1" 200 4720 53958 "-" "-" TCP_TUNNEL:HIER_DIRECT 200
+160.31.18.20 - - [09/Apr/2026:17:48:49 +0800] "GET http://tlu.dl.delivery.mp.microsoft.com/filestreamingservice/files/fc2ef799-df5f-4c07-a1d9-ec4324bb69c9? HTTP/1.1" 206 66404 52113 "-" "Microsoft-Delivery-Optimization/10.1" TCP_MISS:HIER_DIRECT 206
+160.19.76.10 - - [09/Apr/2026:17:48:49 +0800] "GET http://tlu.dl.delivery.mp.microsoft.com/filestreamingservice/files/4c851d6a-236c-4b56-96f3-5bbc31937f8e? HTTP/1.1" 206 66410 56172 "-" "Microsoft-Delivery-Optimization/10.1" TCP_MISS:HIER_DIRECT 206
+160.102.43.27 - yly203@CORP.HA.ORG.HK [09/Apr/2026:17:48:49 +0800] "CONNECT api.scite.ai:443 HTTP/1.1" 200 9080 57705 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36" TCP_TUNNEL:HIER_DIRECT 200
+160.102.43.27 - - [09/Apr/2026:17:48:49 +0800] "CONNECT cdn.pbgrd.com:443 HTTP/1.1" 407 4062 57719 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36" TCP_DENIED:HIER_NONE 407
+160.102.43.27 - - [09/Apr/2026:17:48:49 +0800] "CONNECT hm.baidu.com:443 HTTP/1.1" 200 862 57697 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36" TCP_TUNNEL:HIER_DIRECT 200
+
+
+
+
+logformat HAsquidlog %>a %ui %un [%tl] "%rm %ru HTTP/%rv" %>Hs %<st %>p "%{Referer}>h" "%{User-Agent}>h" %Ss:%Sh %>Hs
+
