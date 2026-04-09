@@ -17,7 +17,7 @@ crontab -u logreader -l
 
 ### 3. node_exporter config update
 
-cp -f $BACKUP_DIR/node_exporter.service /etc/systemd/system/node_exporter.service
+\cp -f $BACKUP_DIR/node_exporter.service /etc/systemd/system/node_exporter.service
 systemctl daemon-reload
 systemctl restart node_exporter
 

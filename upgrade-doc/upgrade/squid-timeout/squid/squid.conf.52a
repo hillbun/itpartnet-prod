@@ -2,6 +2,8 @@
 http_port 8080 
 error_directory /opt/squid/share/errors/en
 
+hosts_file /etc/hosts
+
 
 #2#######2：工作进程,CPU######################
 workers 16
@@ -25,8 +27,6 @@ coredump_dir /opt/squid/var/coredumps
 #cache_dir ufs /opt/squid/var/spool/squid 3000 16 256
 maximum_object_size 6 MB
 minimum_object_size 1 MB
-
-
 
 #5#######5: 持久连接配置 ######################
 client_persistent_connections on
@@ -71,6 +71,11 @@ request_timeout 180 seconds
 #icap_service svc_resp respmod_precache icap://127.0.0.1:1344/squidclamav bypass=off
 #adaptation_access svc_resp allow all
 
+######## 允许本地管理访问 #####################
+http_access allow localhost manager
+#http_access allow localnet manager
+http_access deny manager
+
 #######################################################################################################################################################
 #                                                                                                                                                    ##
 #                                                                  天际友盟 URL                                                                      ##
@@ -79,17 +84,17 @@ request_timeout 180 seconds
 
 #http_access allow all
 #天际友盟提供的url黑名单
-acl tianji-blacklist dstdomain "/usr/nginx/html/transproxy_admin/public/fileData/threat/botnet.txt"
-acl tianji-blacklist dstdomain "/usr/nginx/html/transproxy_admin/public/fileData/threat/c2.txt"
-acl tianji-blacklist dstdomain "/usr/nginx/html/transproxy_admin/public/fileData/threat/gambling.txt"
-acl tianji-blacklist dstdomain "/usr/nginx/html/transproxy_admin/public/fileData/threat/malicious_website.txt"
-acl tianji-blacklist dstdomain "/usr/nginx/html/transproxy_admin/public/fileData/threat/phishing.txt"
-acl tianji-blacklist dstdomain "/usr/nginx/html/transproxy_admin/public/fileData/threat/porn.txt"
-acl tianji-blacklist dstdomain "/usr/nginx/html/transproxy_admin/public/fileData/threat/ransomware.txt"
-acl tianji-blacklist dstdomain "/usr/nginx/html/transproxy_admin/public/fileData/threat/special_web.txt"
+acl tianji-blacklist dstdomain "/opt/nginx/html/transproxy_admin/public/fileData/threat/botnet.txt"
+acl tianji-blacklist dstdomain "/opt/nginx/html/transproxy_admin/public/fileData/threat/c2.txt"
+acl tianji-blacklist dstdomain "/opt/nginx/html/transproxy_admin/public/fileData/threat/gambling.txt"
+acl tianji-blacklist dstdomain "/opt/nginx/html/transproxy_admin/public/fileData/threat/malicious_website.txt"
+acl tianji-blacklist dstdomain "/opt/nginx/html/transproxy_admin/public/fileData/threat/phishing.txt"
+acl tianji-blacklist dstdomain "/opt/nginx/html/transproxy_admin/public/fileData/threat/porn.txt"
+acl tianji-blacklist dstdomain "/opt/nginx/html/transproxy_admin/public/fileData/threat/ransomware.txt"
+acl tianji-blacklist dstdomain "/opt/nginx/html/transproxy_admin/public/fileData/threat/special_web.txt"
 deny_info ERR_ACCESS_DENIED tianji-blacklist
 
-acl dst_url dst js.sbs
+acl dst_url dstdomain js.sbs
 http_access deny dst_url
 
 #1.1####################################################################################################################################################
@@ -107,12 +112,12 @@ http_access deny CONNECT !SSL_ports
 
 #free url
 #1.1 目的ip地址白名单
-acl dst_ip_alone dst "/usr/nginx/html/transproxy_admin/public/fileData/dst_ip_alone.txt"
+acl dst_ip_alone dst "/opt/nginx/html/transproxy_admin/public/fileData/dst_ip_alone.txt"
 http_access allow dst_ip_alone
 
 
 #1.2 目的域名白名单
-acl free-domain-white dstdomain "/usr/nginx/html/transproxy_admin/public/fileData/url-set.txt"
+acl free-domain-white dstdomain "/opt/nginx/html/transproxy_admin/public/fileData/url-set.txt"
 http_access allow free-domain-white
 
 #1.3 DST Domain port white
@@ -158,39 +163,39 @@ http_access deny check_iprange_deny
 
 
 #2.2.1
-acl source-ip-txt src "/usr/nginx/html/transproxy_admin/public/fileData/source-ip.txt"
-acl dest-iprange-txt dst "/usr/nginx/html/transproxy_admin/public/fileData/dest-iprange.txt"
-http_access allow source-ip-txt dest-iprange-txt
+#acl source-ip-txt src "/opt/nginx/html/transproxy_admin/public/fileData/source-ip.txt"
+#acl dest-iprange-txt dst "/opt/nginx/html/transproxy_admin/public/fileData/dest-iprange.txt"
+#http_access allow source-ip-txt dest-iprange-txt
 
 #2.3 Source IP/Range Blocking list
 # source ip 黑名单
-acl source-ip-black src "/usr/nginx/html/transproxy_admin/public/fileData/ip-blacklist.txt"
+acl source-ip-black src "/opt/nginx/html/transproxy_admin/public/fileData/ip-blacklist.txt"
 #note acl_tag _source-ip-black_
 http_access deny source-ip-black
 # source iprange 的黑名单
-acl source-iprange-black src "/usr/nginx/html/transproxy_admin/public/fileData/ip-blacklist-range.txt"
+acl source-iprange-black src "/opt/nginx/html/transproxy_admin/public/fileData/ip-blacklist-range.txt"
 http_access deny source-iprange-black
 
 #2.4 Global URL Blacklist list
 # 不带端口的url全局黑名单
-acl domain-block dstdomain "/usr/nginx/html/transproxy_admin/public/fileData/threat/url-blacklist.txt"
+acl domain-block dstdomain "/opt/nginx/html/transproxy_admin/public/fileData/threat/url-blacklist.txt"
 http_access deny domain-block
 # 带端口的url+port 全局黑名单
 #include /opt/squid/etc/deny_ipdomainport.inc
 # 目的ip黑名单
-acl dst-ip-block dst "/usr/nginx/html/transproxy_admin/public/fileData/dest_ip_blacklist_squid.txt"
+acl dst-ip-block dst "/opt/nginx/html/transproxy_admin/public/fileData/dest_ip_blacklist_squid.txt"
 http_access deny dst-ip-block
 # 目的iprange黑名单
-acl dst-iprange-block dst "/usr/nginx/html/transproxy_admin/public/fileData/des-iprange-black.txt"
+acl dst-iprange-block dst "/opt/nginx/html/transproxy_admin/public/fileData/des-iprange-black.txt"
 http_access deny dst-iprange-block
 
 
 #3.1
 #DST IP 白名单
-acl dest-ip-white dst "/usr/nginx/html/transproxy_admin/public/fileData/dest_ip_whitelist_squid.txt"
+acl dest-ip-white dst "/opt/nginx/html/transproxy_admin/public/fileData/dest_ip_whitelist_squid.txt"
 http_access allow dest-ip-white
 #Dst Iprange 白名单
-acl dest-iprange-white dst "/usr/nginx/html/transproxy_admin/public/fileData/des-iprange-white.txt"
+acl dest-iprange-white dst "/opt/nginx/html/transproxy_admin/public/fileData/des-iprange-white.txt"
 http_access allow dest-iprange-white
 # Dst IP/URL +port White
 #include /opt/squid/etc/allow_ipdomainport.inc
@@ -203,14 +208,14 @@ acl user_agent_list dstdomain .websense.net .blackspider.com
 acl allow_user_agent browser -i ssbc|CCA|TACO
 http_access allow user_agent_list allow_user_agent
 #全局ua验证
-acl useragent-white req_header User-Agent -i "/usr/nginx/html/transproxy_admin/public/fileData/user_agent_list.txt"
+acl useragent-white req_header User-Agent -i "/opt/nginx/html/transproxy_admin/public/fileData/user_agent_list.txt"
 http_access allow useragent-white !tianji-blacklist
 
 #3.3 Source IP White list + 天际友盟规则
-acl source-ip-white src "/usr/nginx/html/transproxy_admin/public/fileData/ip-whitelist.txt"
+acl source-ip-white src "/opt/nginx/html/transproxy_admin/public/fileData/ip-whitelist.txt"
 http_access allow source-ip-white !tianji-blacklist
 # Source IP Range White list + 天际友盟规则
-acl source-iprange-white src "/usr/nginx/html/transproxy_admin/public/fileData/ip-whitelist-range.txt"
+acl source-iprange-white src "/opt/nginx/html/transproxy_admin/public/fileData/ip-whitelist-range.txt"
 http_access allow source-iprange-white !tianji-blacklist
 
 #ua add
@@ -218,11 +223,11 @@ external_acl_type ua_dump ttl=604800 negative_ttl=360 children-startup=2 childre
 acl chrome_ua external ua_dump
 
 #3.4 Global Dst URL White list
-acl domain-white dstdomain "/usr/nginx/html/transproxy_admin/public/fileData/url-whitelist.txt"
+acl domain-white dstdomain "/opt/nginx/html/transproxy_admin/public/fileData/url-whitelist.txt"
 http_access allow domain-white !chrome_ua
 
 #ldap弹窗源IP列表
-acl stepup_ip src "/usr/nginx/html/transproxy_admin/public/fileData/specify_ip_pop_ldaps.txt"
+acl stepup_ip src "/opt/nginx/html/transproxy_admin/public/fileData/specify_ip_pop_ldaps.txt"
 auth_schemes basic stepup_ip
 
 
@@ -354,10 +359,6 @@ acl localnet src fe80::/10              # RFC 4291 link-local (directly plugged)
 ######## 拒绝非HTTPS的CONNECT请求 #############
 #http_access deny CONNECT !SSL_ports
 
-######## 允许本地管理访问 #####################
-http_access allow localhost manager
-#http_access allow localnet manager
-http_access deny manager
 
 
 ######## 保护本地服务 #########################
