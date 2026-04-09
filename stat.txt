@@ -49,6 +49,16 @@
 logformat HAsquidlog %>a %ui %un [%tl] "%rm %ru HTTP/%rv" %>Hs %<st %>p "%{Referer}>h" "%{User-Agent}>h" %Ss:%Sh %>Hs
 
 
+tail -n 1 /opt/squid/var/log/access.log | awk '{for(i=1;i<=NF;i++) print i ":" $i}'
+
+
+
+
+
+字段对应分析日志中的值对应的格式代码含义
+160.42.44.20%>a客户端 IP-%ui登录名（Ident）-%un用户名[09/Apr/2026:17:48:49 +0800][%tl]本地时间"CONNECT ... HTTP/1.1""%rm %ru HTTP/%rv"请求方法、URL、协议版本200%>HsHTTP 状态码1924%<st总传输大小（字节数）49437%>p目标服务器端口 (Destina
+
+
 
 #!/bin/bash
 
