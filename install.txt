@@ -79,6 +79,11 @@ ROLLOUT
 https://ka9rcghfcff.feishu.cn/sheets/ZQSCsPCPoh7lEwtVRkCcKwjLnSd?sheet=MDvHFV
 
 
+RELOAD TIMEOUT
+https://ka9rcghfcff.feishu.cn/sheets/ZQSCsPCPoh7lEwtVRkCcKwjLnSd?sheet=K7VFCs
+
+
+
 Project Blender
 https://ka9rcghfcff.feishu.cn/sheets/ZQSCsPCPoh7lEwtVRkCcKwjLnSd?sheet=1NgWqC
 
@@ -201,6 +206,17 @@ poxadm@poxpxyvmcprd51a
 poxadm
 Q8b/c#F8633
 
+
+---
+management platform
+
+prod
+poxadm@poxmgtprd61a
+Q8b/c#F8633
+
+uat
+poxadm@poxpxyvmcprd41b
+Q8b/c#F8633
 
 
 ---
@@ -1298,6 +1314,8 @@ YAML
 
 你想了解如何通过变量（Variables）来动态设置这些 IP 地址吗？
 
+--------------
+sysctl -w net.ipv4.ip_local_reserved_ports = 6379,8080,9100,9101
 
 --------------
 

@@ -110,7 +110,3 @@ external_acl_type special_user_deny_check  ttl=604800 negative_ttl=360 children-
 external_acl_type check_user ttl=604800 negative_ttl=360 children-startup=2 children-idle=2 %LOGIN %URI /usr/bin/python3 /opt/py_prod/check_user.py
 
 
-
-52a, 52b, 52c
-root crontab
-root jobs
