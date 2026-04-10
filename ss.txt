@@ -29,4 +29,5 @@ ss -ant | grep -v "LISTEN" | awk 'NR>1 && $4 !~ /:8080$/ && match($4, /:([0-9]+)
 
 ---
 ss -ant state time-wait | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -rn | head -n 10
+ss -antn state time-wait | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -rn | head -n 20
 
