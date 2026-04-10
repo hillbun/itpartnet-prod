@@ -1,16 +1,21 @@
 #!/bin/bash
 
-# 1. 获取传入的参数，默认为 5
-# 使用 printf "%d" 强制将输入转换为整数（如果是空或非数字会变为 0）
+# 1. 获取传入参数，若空则默认为 5
 raw_input=${1:-5}
+
+# 2. 校验是否为纯数字，不是则强制转为 0
 if [[ "$raw_input" =~ ^[0-9]+$ ]]; then
     MINUTES=$((raw_input))
 else
     MINUTES=0
 fi
 
-# 2. 限制最大值为 60
-if [ "$MINUTES" -gt 60 ]; then
+# 3. 区间限制逻辑
+# 如果小于 5 (包含 0 或非数字转换后的 0)，则设为 5
+if [ "$MINUTES" -lt 5 ]; then
+    MINUTES=5
+# 如果大于 60，则设为 60
+elif [ "$MINUTES" -gt 60 ]; then
     MINUTES=60
 fi
 
