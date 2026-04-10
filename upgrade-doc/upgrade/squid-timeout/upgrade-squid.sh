@@ -1,9 +1,7 @@
 #!/bin/bash
 
-### 0. export variable
-
-export BACKUP_DIR=/root/backup/20260413/tianji-party
-export UPGRADE_DIR=/home/logreader/upgrade/20260413/tianji-party
+export BACKUP_DIR=/root/backup/20260409/squid-timeout
+export UPGRADE_DIR=/home/logreader/upgrade/20260409/squid-timeout
 
 ### 1. create backup dir
 
@@ -15,4 +13,3 @@ cp /opt/squid/etc/squid.conf $BACKUP_DIR/
 \cp -f $UPGRADE_DIR/squid/squid.conf /opt/squid/etc/squid.conf
 chown squid.squid /opt/squid/etc/squid.conf
 /opt/squid/sbin/squid -k parse
-
