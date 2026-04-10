@@ -19,9 +19,6 @@ elif [ "$MINUTES" -gt 60 ]; then
     MINUTES=60
 fi
 
-echo $MINUTES
-exit
-
 # 日志路径
 LOG_FILE="/opt/squid/var/log/access.log"
 
