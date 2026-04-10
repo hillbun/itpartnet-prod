@@ -5,7 +5,8 @@ $minutes = 15;
 
 // 执行脚本并获取输出内容
 // 注意：escapeshellarg 是为了防止命令注入攻击
-$output = shell_exec(bash . " " . escapeshellarg($scriptPath) . " " . escapeshellarg($minutes));
+$command = "bash " . escapeshellarg($scriptPath) . " " . escapeshellarg($minutes);
+$output = shell_exec($command);
 
 if ($output === null) {
     echo json_encode(["error" => "NO DATA"]);
