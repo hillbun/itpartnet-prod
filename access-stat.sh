@@ -16,4 +16,4 @@ awk -v start="$START_TIME" '
             }
         }
     }
-}' /opr/squid/var/log/access.log > /tmp/access_stat.log
+}' /opt/squid/var/log/access.log > /tmp/access_stat.log
