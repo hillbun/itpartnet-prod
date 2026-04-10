@@ -32,4 +32,7 @@ ss -ant state time-wait | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort
 ss -antn state time-wait | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -rn | head -n 20
 
 ss -antn state time-wait | awk 'NR>1 {print $4}' | cut -d: -f1 | sort | uniq -c | sort -rn
+ss -antn state time-wait | awk 'NR>1 {print $4}' | cut -d: -f1 | sort | uniq -c | sort -rn
+
+ss -antn state time-wait | awk 'NR>1 {print $4}' | awk -F: '{print $(NF-1)}' | sort | uniq -c | sort -rn
 
