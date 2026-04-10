@@ -26,5 +26,5 @@ chown nginx.www-group /opt/nginx/html/transproxy_admin/app/Http/Controllers/Api/
 ### 3. cleanup script
 
 cp $UPGRADE_DIR/squid_shell/cleanup_iocs.sh /opt/squid_shell/cleanup_iocs.sh
-chown logreader.logreader $UPGRADE_DIR/squid_shell/cleanup_iocs.sh /opt/squid_shell/cleanup_iocs.sh
+chown squid.squid $UPGRADE_DIR/squid_shell/cleanup_iocs.sh /opt/squid_shell/cleanup_iocs.sh
 

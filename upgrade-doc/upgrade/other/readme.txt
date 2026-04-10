@@ -27,10 +27,10 @@ chown logreader.logreader /opt/squid_shell/cleanup_iocs.sh
 
 未完成：41b，51a，51b
 
-6. 52a jobs  kill monitor
+6. /opt/squid_shell/resource_monitor_script.sh
+需完成：41a,41b,41c,51a,51b,51c
 
-7. /opt/squid_shell/resource_monitor_script.sh
-
+7. 52a jobs  kill monitor
 
 ---
 
