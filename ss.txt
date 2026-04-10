@@ -36,3 +36,15 @@ ss -antn state time-wait | awk 'NR>1 {print $4}' | cut -d: -f1 | sort | uniq -c 
 
 ss -antn state time-wait | awk 'NR>1 {print $4}' | awk -F: '{print $(NF-1)}' | sort | uniq -c | sort -rn
 
+
+ss -antn state time-wait | awk 'NR>1 {print $4}' | awk -F: '{print $(NF-1)}' | sort | uniq -c | sort -rn
+
+
+#!/bin/bash
+
+# 定义 60 分钟前的时间戳（格式需与日志一致：日/月/年:时:分）
+START_TIME=$(date -d "60 minutes ago" +"%d/%b/%Y:%H:%M")
+
+# 使用 awk 筛选并保存
+awk -v start="$START_TIME" '$4 > "["start' access.log > last_60_min_access.log
+
