@@ -112,3 +112,8 @@ awk -v start="$START_TIME" '
 
 ---
 grep "13/Apr/2026:17" /opt/squid/var/log/access.log | awk '{print $1}' | sort | uniq -c | awk '{sum+=$1; count+=1} END {if (count > 0) print "平均请求数: " sum/count; else print "无数据"}'
+
+
+
+---
+conntrack -L | awk '{print $6}' | sort | uniq -c
