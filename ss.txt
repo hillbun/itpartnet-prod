@@ -75,3 +75,4 @@ awk -v start="$START_TIME" '
 }' /opr/squid/var/log/access.log > /tmp/access_stat.log
 
 ---
+grep "13/Apr/2026:17" /opt/squid/var/log/access.log | awk '{print $1}' | sort | uniq -c | awk '{sum+=$1; count+=1} END {if (count > 0) print "平均请求数: " sum/count; else print "无数据"}'
