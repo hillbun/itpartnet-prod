@@ -121,3 +121,8 @@ cat /proc/net/nf_conntrack | awk '{print $6}' | sort | uniq -c
 
 
 find /lib/modules/$(uname -r) -name "nf_conntrack*.ko*"
+
+grep -r "nf_conntrack" /etc/modprobe.d/
+
+lsmod | grep nf_conntrack
+modprobe --dry-run nf_conntrack
