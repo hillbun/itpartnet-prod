@@ -118,3 +118,6 @@ grep "13/Apr/2026:17" /opt/squid/var/log/access.log | awk '{print $1}' | sort | 
 ---
 conntrack -L | awk '{print $6}' | sort | uniq -c
 cat /proc/net/nf_conntrack | awk '{print $6}' | sort | uniq -c
+
+
+find /lib/modules/$(uname -r) -name "nf_conntrack*.ko*"
