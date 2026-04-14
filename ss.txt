@@ -164,3 +164,6 @@ conntrack v1.4.4 (conntrack-tools): 108 flow entries have been shown.
 	
 ---
 gzip -dc access.log-20260407.gz | awk '{print $1}' | sort | uniq -c | awk '{sum+=$1; count++} END {print "独立IP数:", count, "总访问次数:", sum}'
+
+
+gzip -dc access.log-20260407.gz | awk '{count[$1]++; total++} END {print "独立IP总数: " length(count); print "访问请求总和: " total}'
