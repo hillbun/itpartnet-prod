@@ -15,20 +15,14 @@ chmod 640 /etc/logrotate.d/python_prod_logs
 
 chown logreader.logreader /opt/squid_shell/cleanup_iocs.sh
 
-需完成：41a,41b,41c,51a,51b,51c: 
-已完成：41a
+需完成：51a,51b,51c: 
+
 
 3 /opt/squid_shell/resource_monitor_script.sh
 需完成：41a,41b,41c,51a,51b,51c
 
 4. squid cache.log 日志文件级别调整
 
-5. node_exporter调整
-
-未完成：41b，51a，51b
-
-6. /opt/squid_shell/resource_monitor_script.sh
-需完成：41a,41b,41c,51a,51b,51c
 
 7. 52a jobs  kill monitor
 

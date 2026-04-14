@@ -154,3 +154,9 @@ conntrack v1.4.4 (conntrack-tools): 108 flow entries have been shown.
       1 53
       1 83
       2 89
+	  
+	  
+---
+conntrack -L | awk '{print $1}' | sort | uniq -c
+conntrack v1.4.4 (conntrack-tools): 108 flow entries have been shown.
+    108 tcp
