@@ -167,3 +167,8 @@ gzip -dc access.log-20260407.gz | awk '{print $1}' | sort | uniq -c | awk '{sum+
 
 
 gzip -dc access.log-20260407.gz | awk '{count[$1]++; total++} END {print "独立IP总数: " length(count); print "访问请求总和: " total}'
+
+
+awk '{print $1}' access.log | sort -u | wc -l
+
+awk '{print $1}' gzip -dc access.log-20260407.gz | sort -u | wc -l
