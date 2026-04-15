@@ -107,4 +107,160 @@ END {
 
 
 
+----
+
+
+while true; do
+    timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+    result=$(sysctl net.netfilter.nf_conntrack_count)
+    echo "$timestamp $result" >> /tmp/52e-conntrack.txt
+    sleep 1
+done
+
+while true; do
+    timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+    result=$(ss -ant | grep -v "LISTEN" | awk 'NR>1 && $4 !~ /127.0.0.1/ && $4 !~ /:8080$/ && match($4, /:([0-9]+)$/, a) && a[1] > 1024 && $5 != "*:*" {print $5}' | sort | uniq -c | sort -n | tail -n 10)
+    echo "$timestamp $result" >> /tmp/52e-ss-count.txt
+    sleep 1
+done
+
+while true; do
+    timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+    result=$(ss -ant | grep -v "LISTEN" | awk 'NR>1 && $4 !~ /:8080$/ && match($4, /:([0-9]+)$/, a) && a[1] > 1024 && $5 != "*:*"' | awk '{print $1}' | sort | uniq -c | awk '{printf "%-10s: %d\n", $2, $1}')
+    echo "$timestamp $result" >> /tmp/52e-ss-status.txt
+    sleep 1
+done
+
+-----
+
+
+
+while true; do
+    timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+    result=$(ps axu  |grep "/opt/py_prod" |wc -l)
+    echo "$timestamp $result" >> /tmp/41a-ps.txt
+    sleep 1
+done &
+
+
+
+while true; do
+    timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+    result=$(ps axu  |grep "/opt/py_prod" |wc -l)
+    echo "$timestamp $result" >> /tmp/51a-ps.txt
+    sleep 1
+done &
+
+
+while true; do
+    timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+    result=$(curl -s -o /dev/null \
+             -w "%{http_code} %{time_total} " \
+             --proxy http://n5-testing4:P%40ssw0rd1234@192.168.152.101:8080 \
+             --connect-timeout 1 \
+             --max-time 3 \
+             https://www.hk01.com/ 2>/dev/null || echo "FAIL")
+    echo "$timestamp $result" >> /tmp/51a-curl.txt
+    sleep 1
+done &
+
+----
+
+
+while true; do
+    timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+    result=$(ps axu  |grep "/opt/py_prod" |wc -l)
+    echo "$timestamp $result" >> /tmp/51a-1-ps.txt
+    sleep 1
+done &
+
+
+---
+
+custom_tcp_connection_proxy_to_outside{instance=~'$node'} * on(instance) group_left(nodename) node_uname_info
+
+{{nodename}}-{{instance}}
+
+----
+
+more /etc/systemd/system/node_exporter.service
+[Unit]
+Description=node_exporter
+Documentation=https://github.com/prometheus/node_exporter
+After=network.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/local/node_exporter/node_exporter --web.listen-address=:9100 --collector.textfile.directory=/opt/node_exporter/textfile_collector
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+
+
+---
+
+more /appl/n5/prometheus/prometheus.yml
+# my global config
+global:
+  scrape_interval: 15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          # - alertmanager:9093
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: "prometheus"
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+      - targets: []
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        regex: "([^:]+):.*"
+        replacement: "$1"
+  - job_name: "PRD_41a"
+    static_configs:
+      - targets: ["192.168.52.236:9100"]
+
+  - job_name: "PRD_41b"
+    static_configs:
+      - targets: ["192.168.52.238:9100"]
+
+  - job_name: "PRD_41c"
+    static_configs:
+      - targets: ["192.168.52.97:9100"]
+
+  - job_name: "PRD_51a"
+    static_configs:
+      - targets: ["192.168.152.101:9100"]
+
+  - job_name: "PRD_51b"
+    static_configs:
+      - targets: ["192.168.152.102:9100"]
+
+  - job_name: "PRD_51c"
+    static_configs:
+      - targets: ["192.168.152.103:9100"]
+
+  - job_name: "PRD_52a"
+    static_configs:
+      - targets: ["192.168.152.120:9100"]
 

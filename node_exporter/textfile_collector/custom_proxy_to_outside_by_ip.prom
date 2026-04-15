@@ -1,0 +1,2 @@
+custom_proxy_to_outside_by_ip{client_ip="11.157.52.10:62890"} 1
+custom_proxy_to_outside_by_ip{client_ip="162.14.18.71:443"} 1
