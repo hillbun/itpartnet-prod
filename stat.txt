@@ -107,4 +107,69 @@ END {
 
 
 
+----
 
+
+while true; do
+    timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+    result=$(sysctl net.netfilter.nf_conntrack_count)
+    echo "$timestamp $result" >> /tmp/52e-conntrack.txt
+    sleep 1
+done
+
+while true; do
+    timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+    result=$(ss -ant | grep -v "LISTEN" | awk 'NR>1 && $4 !~ /127.0.0.1/ && $4 !~ /:8080$/ && match($4, /:([0-9]+)$/, a) && a[1] > 1024 && $5 != "*:*" {print $5}' | sort | uniq -c | sort -n | tail -n 10)
+    echo "$timestamp $result" >> /tmp/52e-ss-count.txt
+    sleep 1
+done
+
+while true; do
+    timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+    result=$(ss -ant | grep -v "LISTEN" | awk 'NR>1 && $4 !~ /:8080$/ && match($4, /:([0-9]+)$/, a) && a[1] > 1024 && $5 != "*:*"' | awk '{print $1}' | sort | uniq -c | awk '{printf "%-10s: %d\n", $2, $1}')
+    echo "$timestamp $result" >> /tmp/52e-ss-status.txt
+    sleep 1
+done
+
+-----
+
+
+
+while true; do
+    timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+    result=$(ps axu  |grep "/opt/py_prod" |wc -l)
+    echo "$timestamp $result" >> /tmp/41a-ps.txt
+    sleep 1
+done &
+
+
+
+while true; do
+    timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+    result=$(ps axu  |grep "/opt/py_prod" |wc -l)
+    echo "$timestamp $result" >> /tmp/51a-ps.txt
+    sleep 1
+done &
+
+
+while true; do
+    timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+    result=$(curl -s -o /dev/null \
+             -w "%{http_code} %{time_total} " \
+             --proxy http://n5-testing4:P%40ssw0rd1234@192.168.152.101:8080 \
+             --connect-timeout 1 \
+             --max-time 3 \
+             https://www.hk01.com/ 2>/dev/null || echo "FAIL")
+    echo "$timestamp $result" >> /tmp/51a-curl.txt
+    sleep 1
+done &
+
+----
+
+
+while true; do
+    timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+    result=$(ps axu  |grep "/opt/py_prod" |wc -l)
+    echo "$timestamp $result" >> /tmp/51a-1-ps.txt
+    sleep 1
+done &
