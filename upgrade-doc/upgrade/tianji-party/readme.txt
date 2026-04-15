@@ -88,11 +88,6 @@ poxappprd41a  192.168.52.236	DC6
 poxappprd41b  192.168.52.238	DC6
 poxappprd41c  192.168.52.97		DC6
 
-poxappprd42a  192.168.50.159 	DC6
-poxappprd42b  192.168.50.160 	DC6
-poxappprd42c  192.168.50.161	DC6
-poxappprd42d  192.168.50.162 	DC6
-poxappprd42e  192.168.50.163 	DC6
 
 
 15/04 23:00 DC7 squid log format update, threat intelligence update
@@ -100,9 +95,19 @@ poxappprd42e  192.168.50.163 	DC6
 poxappprd51a  192.168.152.101	DC7
 poxappprd51b  192.168.152.102	DC7
 poxappprd51c  192.168.152.103	DC7
-
 poxappprd52a  192.168.152.120 	DC7
 poxappprd52b  192.168.152.121 	DC7
 poxappprd52c  192.168.152.122	DC7
-poxappprd52d  192.168.152.123 	DC7
 poxappprd52e  192.168.152.124 	DC7
+
+
+
+------------
+
+poxappprd42a  192.168.50.159 	DC6
+poxappprd42b  192.168.50.160 	DC6
+poxappprd42c  192.168.50.161	DC6
+poxappprd42d  192.168.50.162 	DC6
+poxappprd42e  192.168.50.163 	DC6
+
+poxappprd52d  192.168.152.123 	DC7
