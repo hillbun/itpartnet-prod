@@ -73,40 +73,11 @@ rm -rf /opt/node_exporter
 upgrade notes:
 
 
-1. /opt/node_exporter/script
-
-node_exporter scripts
-
-2. /etc/systemd/system/node_exporter.service
-
-old:
-
-ExecStart=/usr/local/node_exporter/node_exporter --web.listen-address=:9100
-
-new:
-ExecStart=/usr/local/node_exporter/node_exporter --web.listen-address=:9100 --collector.textfile.directory=/opt/node_exporter/textfile_collector
+1. /opt/squid/etc/squid.conf
 
 
-3. /opt/squid/etc/squid.conf
 
-old:
-external_acl_type check_ip_allow_check ttl=604800 negative_ttl=360 children-max=100 %SRC %DST /usr/bin/python3 /opt/py_prod/check_ip_allow.py
-external_acl_type check_ip_deny_check  ttl=604800 negative_ttl=360 children-max=100 %SRC %DST /usr/bin/python3 /opt/py_prod/check_ip_deny.py
-external_acl_type check_iprange_allow_check  ttl=604800 negative_ttl=360 children-max=100 %SRC %DST /usr/bin/python3 /opt/py_prod/check_iprange_allow.py
-external_acl_type check_iprange_deny_check   ttl=604800 negative_ttl=360 children-max=100 %SRC %DST /usr/bin/python3 /opt/py_prod/check_iprange_deny.py
-external_acl_type ua_dump ttl=604800 negative_ttl=360 children-max=100 %DST %{User-Agent}>h /usr/bin/python3 /opt/py_prod/check_ua.py
-external_acl_type special_user_allow_check  ttl=604800 negative_ttl=360 children-max=100 %LOGIN %DST /usr/bin/python3 /opt/py_prod/check_special_user_allow.py
-external_acl_type special_user_deny_check  ttl=604800 negative_ttl=360 children-max=100 %LOGIN %DST /usr/bin/python3 /opt/py_prod/check_special_user_deny.py
-external_acl_type check_user ttl=604800 negative_ttl=360 children-max=100 %LOGIN %URI /usr/bin/python3 /opt/py_prod/check_user.py
+2. /opt/nginx/html/transproxy_admin/app/Http/Controllers/Api/IndexController.php
 
-new:
-external_acl_type check_ip_allow_check ttl=604800 negative_ttl=360 children-startup=2 children-idle=2 %SRC %DST /usr/bin/python3 /opt/py_prod/check_ip_allow.py
-external_acl_type check_ip_deny_check  ttl=604800 negative_ttl=360 children-startup=2 children-idle=2 %SRC %DST /usr/bin/python3 /opt/py_prod/check_ip_deny.py
-external_acl_type check_iprange_allow_check  ttl=604800 negative_ttl=360 children-startup=2 children-idle=2 %SRC %DST /usr/bin/python3 /opt/py_prod/check_iprange_allow.py
-external_acl_type check_iprange_deny_check   ttl=604800 negative_ttl=360 children-startup=2 children-idle=2 %SRC %DST /usr/bin/python3 /opt/py_prod/check_iprange_deny.py
-external_acl_type ua_dump ttl=604800 negative_ttl=360 children-startup=2 children-idle=2 %DST %{User-Agent}>h /usr/bin/python3 /opt/py_prod/check_ua.py
-external_acl_type special_user_allow_check  ttl=604800 negative_ttl=360 children-startup=2 children-idle=2 %LOGIN %DST /usr/bin/python3 /opt/py_prod/check_special_user_allow.py
-external_acl_type special_user_deny_check  ttl=604800 negative_ttl=360 children-startup=2 children-idle=2 %LOGIN %DST /usr/bin/python3 /opt/py_prod/check_special_user_deny.py
-external_acl_type check_user ttl=604800 negative_ttl=360 children-startup=2 children-idle=2 %LOGIN %URI /usr/bin/python3 /opt/py_prod/check_user.py
 
 
