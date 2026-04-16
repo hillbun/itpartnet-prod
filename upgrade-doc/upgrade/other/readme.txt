@@ -30,8 +30,7 @@ chown logreader.logreader /opt/squid_shell/cleanup_iocs.sh
 
 
 6. 52a jobs  kill monitor
-
----
+需完成：52a
 
 
 

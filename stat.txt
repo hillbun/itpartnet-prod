@@ -264,3 +264,61 @@ scrape_configs:
     static_configs:
       - targets: ["192.168.152.120:9100"]
 
+-----
+# 全局配置
+global:
+  scrape_interval: 15s 
+  evaluation_interval: 15s 
+  scrape_timeout: 10s
+
+# 告警配置 (建议后期取消注释并配置 Alertmanager)
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: 
+          # - "localhost:9093"
+
+# 规则文件 (建议将告警规则写入独立文件)
+rule_files:
+  # - "rules/*.yml"
+
+scrape_configs:
+  # 1. Prometheus 自身监控
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  # 2. 生产环境主机监控 (Node Exporter)
+  - job_name: "production_nodes"
+    # 统一提取 IP，去掉端口号，使 instance 标签纯净
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        regex: "([^:]+):.*"
+        replacement: "$1"
+    
+    static_configs:
+      # PRD_41 系列
+      - targets:
+          - "192.168.52.236:9100"
+          - "192.168.52.238:9100"
+          - "192.168.52.97:9100"
+        labels:
+          env: "prd"
+          region: "zone_41"
+
+      # PRD_51 系列
+      - targets:
+          - "192.168.152.101:9100"
+          - "192.168.152.102:9100"
+          - "192.168.152.103:9100"
+        labels:
+          env: "prd"
+          region: "zone_51"
+
+      # PRD_52 系列
+      - targets:
+          - "192.168.152.120:9100"
+        labels:
+          env: "prd"
+          region: "zone_52"
