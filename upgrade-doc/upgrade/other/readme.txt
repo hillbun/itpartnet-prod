@@ -16,7 +16,7 @@ chmod 640 /etc/logrotate.d/python_prod_logs
 
 chown logreader.logreader /opt/squid_shell/cleanup_iocs.sh
 
-需检查：41a,41b,41c,51a,51b,51c
+需检查：51a,51b,51c
 
 
 3 /opt/squid_shell/resource_monitor_script.sh
