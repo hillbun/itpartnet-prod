@@ -1995,7 +1995,7 @@ class IndexController extends Controller
                 'code' => -1,'reload_failed_time' => Redis::get('restart_squid_failed_time'),'reload_failed_reason' => Redis::get('restart_squid_failed_reason')]);
         }
 	/*
-        $python_file_addr="\/opt\/py_test_new\/";
+        $python_file_addr="\/opt\/py_prod\/";
         // 检测squid调用的外部py程序配置参数以及py程序
         $filePath = $this->squid_addr;
         // 读取文件，每行作为数组元素（保留换行符）
@@ -2007,25 +2007,25 @@ class IndexController extends Controller
         $pyAcl = array_values(array_filter($pyAcl));
 
         //1、检测 check_ip_allow.py
-        // external_acl_type check_ip_allow_check ttl=0 negative_ttl=0 s  children-max=100 s %SRC %DST /usr/bin/python3 /opt/py_test_new/check_ip_allow.py
+        // external_acl_type check_ip_allow_check ttl=0 negative_ttl=0 s  children-max=100 s %SRC %DST /usr/bin/python3 /opt/py_prod/check_ip_allow.py
         $check_ip_allow=false;
         //2、检测 check_ip_deny.py
-        // external_acl_type check_ip_deny_check ttl=0 negative_ttl=0  children-max=100  %SRC %DST /usr/bin/python3 /opt/py_test_new/check_ip_deny.py
+        // external_acl_type check_ip_deny_check ttl=0 negative_ttl=0  children-max=100  %SRC %DST /usr/bin/python3 /opt/py_prod/check_ip_deny.py
         $check_ip_deny=false;
         //3、检测 check_iprange_allow.py
-        // external_acl_type check_iprange_allow_check ttl=0 negative_ttl=0  children-max=100  %SRC %DST /usr/bin/python3 /opt/py_test_new/check_iprange_allow.py
+        // external_acl_type check_iprange_allow_check ttl=0 negative_ttl=0  children-max=100  %SRC %DST /usr/bin/python3 /opt/py_prod/check_iprange_allow.py
         $check_iprange_allow=false;
         //4、检测 check_iprange_deny.py
-        // external_acl_type check_iprange_deny_check  ttl=0 negative_ttl=0  children-max=100  %SRC %DST /usr/bin/python3 /opt/py_test_new/check_iprange_deny.py
+        // external_acl_type check_iprange_deny_check  ttl=0 negative_ttl=0  children-max=100  %SRC %DST /usr/bin/python3 /opt/py_prod/check_iprange_deny.py
         $check_iprange_deny=false;
         //5、检测 check_special_user_allow.py
-        // external_acl_type special_user_allow_check ttl=0 negative_ttl=0  children-max=100  %LOGIN %DST /usr/bin/python3 /opt/py_test_new/check_special_user_allow.py
+        // external_acl_type special_user_allow_check ttl=0 negative_ttl=0  children-max=100  %LOGIN %DST /usr/bin/python3 /opt/py_prod/check_special_user_allow.py
         $check_special_user_allow=false;
         //6、检测 check_special_user_deny.py
-        // external_acl_type special_user_deny_check ttl=0 negative_ttl=0   children-max=100  %LOGIN %DST /usr/bin/python3 /opt/py_test_new/check_special_user_deny.py
+        // external_acl_type special_user_deny_check ttl=0 negative_ttl=0   children-max=100  %LOGIN %DST /usr/bin/python3 /opt/py_prod/check_special_user_deny.py
         $check_special_user_deny=false;
         //7、检测 check_user.py
-        // external_acl_type check_user ttl=0 negative_ttl=0  children-max=100  %LOGIN %URI /usr/bin/python3 /opt/py_test_new/check_user.py
+        // external_acl_type check_user ttl=0 negative_ttl=0  children-max=100  %LOGIN %URI /usr/bin/python3 /opt/py_prod/check_user.py
         $check_user=false;
         foreach ($pyAcl as $key => $value) {
             if(
@@ -2129,7 +2129,7 @@ class IndexController extends Controller
 	}
 	*/
         /*
-        $python_file_addr_spec="/opt/py_test_new/";
+        $python_file_addr_spec="/opt/py_prod/";
         // 检测py文件语法是否错误
         $command = "sudo /usr/bin/python3 {$python_file_addr_spec}check_ip_allow.py 2>&1 ";
         $output = [];
