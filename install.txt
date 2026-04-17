@@ -59,7 +59,7 @@ SERVER LIST
 https://ka9rcghfcff.feishu.cn/wiki/MftkwbS0qiIGXlkEoVLcKyCBnme?table=tblGdNWJ8ybel69A&view=vewkIjaPvb
 
 运维事项跟进
-https://ka9rcghfcff.feishu.cn/wiki/MftkwbS0qiIGXlkEoVLcKyCBnme?table=tblKZj0TQ9XeaiJB&view=vewrfZPWkz
+https://ka9rcghfcff.feishu.cn/wiki/MftkwbS0qiIGXlkEoVLcKyCBnme?table=tblKZj0TQ9XeaiJB&view=vewfJd3ElQ
 
 check list
 https://ka9rcghfcff.feishu.cn/wiki/EPyHwemmKiBgmdkgKDlc3lLInOf?sheet=0GAPui
@@ -110,7 +110,7 @@ Open-Platform_Proxy_Solution/forcepoint-ip/
 https://hateams.ha.org.hk/workgroups/group/13446/disk/path/Open-Platform_Proxy_Solution/forcepoint-ip/
 
 
-
+upgrade-procedure
 https://hateams.ha.org.hk/workgroups/group/13446/disk/path/Open-Platform_Proxy_Solution/upgrade-procedure/
 
 
