@@ -101,13 +101,17 @@ https://ka9rcghfcff.feishu.cn/sheets/ZQSCsPCPoh7lEwtVRkCcKwjLnSd?sheet=P0fxsP
 
 
 User Issue LIST
-
+https://ka9rcghfcff.feishu.cn/sheets/ZQSCsPCPoh7lEwtVRkCcKwjLnSd?sheet=AwhtGq
 
 
 
 Open-Platform_Proxy_Solution/forcepoint-ip/
 
 https://hateams.ha.org.hk/workgroups/group/13446/disk/path/Open-Platform_Proxy_Solution/forcepoint-ip/
+
+
+
+https://hateams.ha.org.hk/workgroups/group/13446/disk/path/Open-Platform_Proxy_Solution/upgrade-procedure/
 
 
 PAC 文件
