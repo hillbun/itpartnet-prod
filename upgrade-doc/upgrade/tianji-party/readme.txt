@@ -97,9 +97,10 @@ poxappprd51b  192.168.152.102	DC7
 poxappprd51c  192.168.152.103	DC7
 poxappprd52a  192.168.152.120 	DC7 !!!!!!!!!!!!!!!!!
 poxappprd52b  192.168.152.121 	DC7
-poxappprd52c  192.168.152.122	DC7
 
 
+https://speechnotes.co/yue/
+https://www.svchost.co/
 
 
 ------------
@@ -109,6 +110,13 @@ poxappprd42b  192.168.50.160 	DC6
 poxappprd42c  192.168.50.161	DC6
 poxappprd42d  192.168.50.162 	DC6
 poxappprd42e  192.168.50.163 	DC6
+poxappprd52c  192.168.152.122	DC7
+poxappprd52c
+logreader
+P@ssw0rd123
 poxappprd52d  192.168.152.123 	DC7
 
 poxappprd52e  192.168.152.124 	DC7
+
+
+
