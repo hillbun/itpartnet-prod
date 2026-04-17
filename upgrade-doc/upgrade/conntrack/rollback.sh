@@ -9,4 +9,5 @@ export BACKUP_DIR=/root/backup/20260422/conntrack
 \cp $BACKUP_DIR/sysctl.conf /etc/sysctl.conf
 
 sysctl -p
+sysctl -w net.netfilter.nf_conntrack_max=262144
 
