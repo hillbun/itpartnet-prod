@@ -19,7 +19,10 @@ sysctl -p
 ------
 verify
 
-
+sysctl net.netfilter.nf_conntrack_max
+4194304
+sysctl net.netfilter.nf_conntrack_count
+?????
 
 ------
 
@@ -41,7 +44,10 @@ sysctl -p
 ------
 verify
 
-
+sysctl net.netfilter.nf_conntrack_max
+262144
+sysctl net.netfilter.nf_conntrack_count
+?????
 
 ------
 
