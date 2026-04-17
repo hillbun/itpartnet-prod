@@ -10,15 +10,6 @@ chmod 640 /etc/logrotate.d/python_prod_logs
 已完成：51c
 失败：41a,41b,41c,51a,51b
 
-2. 添加天际友盟清理定时任务（参考52a： 30 23 * * * bash /opt/squid_shell/cleanup_iocs.sh）
-
-30 23 * * * bash /opt/squid_shell/cleanup_iocs.sh
-
-chown logreader.logreader /opt/squid_shell/cleanup_iocs.sh
-
-需检查：51a,51b,51c
-
-
 3 /opt/squid_shell/resource_monitor_script.sh
 需完成：41a,41b,41c,51a,51b,51c
 
