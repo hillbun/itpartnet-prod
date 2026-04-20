@@ -179,3 +179,6 @@ max by (instance, nodename) ((up{instance=~"$node"} * on(instance) group_left(no
 max by (instance, nodename) ((up{instance=~"$node"} * on(instance) group_left(nodename) node_uname_info) or (up{instance=~"$node"}))
 
 max by (instance, nodename) ((up{instance=~"$node"} * on(instance) group_left(nodename) node_uname_info) or (label_replace(up{instance=~"$node"}, "nodename", "", "", "")))
+
+max by (instance, nodename) (label_join(up{instance=~"$node"}, "nodename", "", "") * on(instance) group_left(nodename) node_uname_info or label_join(up{instance=~"$node"}, "nodename", "", ""))
+max by (instance, nodename) (group(up{instance=~"$node"} * on(instance) group_left(nodename) node_uname_info) by (instance, nodename) or label_replace(up{instance=~"$node"}, "nodename", "$1", "instance", "(.*)"))
