@@ -243,4 +243,7 @@ max by (instance, nodename) (
 100 * (1 - avg by(instance) (irate(node_cpu_seconds_total{instance=~"$node",mode="idle"}[5m]))) * on(instance) group_left(nodename) node_uname_info
 
 
+100 * (1 - (node_memory_MemAvailable_bytes{instance=~"$node"} / node_memory_MemTotal_bytes{instance=~"$node"}))  * on(instance) group_left(nodename) node_uname_info
+
+
 
