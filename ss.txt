@@ -227,3 +227,13 @@ max by (instance, nodename) (
     unless on(instance) node_uname_info
   )
 )
+
+
+max by (instance, nodename) (
+  (up{instance=~"$node"} * on(instance) group_left(nodename) node_uname_info)
+  or
+  (
+    label_replace(up{instance=~"$node"}, "nodename", "Job: $1", "job", "(.*)")
+    unless on(instance) node_uname_info
+  )
+)
