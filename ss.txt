@@ -207,3 +207,13 @@ max by (instance, nodename) (
   or
   (label_replace(up{instance=~"$node"}, "nodename", "$1", "instance", "(.*)"))
 )
+
+
+max by (instance, nodename) (
+  label_replace(
+    (up{instance=~"$node"} * on(instance) group_left(nodename) node_uname_info)
+    or
+    (up{instance=~"$node"}),
+    "nodename", "$1", "instance", "(.*)"
+  )
+)
