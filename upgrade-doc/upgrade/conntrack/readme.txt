@@ -38,7 +38,7 @@ rollback steps:
 
 export BACKUP_DIR=/root/backup/20260422/conntrack
 
-### 1. transproxy php
+### 1. sysctl.conf rollback
 
 \cp $BACKUP_DIR/sysctl.conf /etc/sysctl.conf
 
