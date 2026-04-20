@@ -175,3 +175,5 @@ awk '{print $1}' gzip -dc access.log-20260407.gz | sort -u | wc -l
 
 
 max by (instance, nodename) ((up{instance=~"$node"} * on(instance) group_left(nodename) node_uname_info) or label_replace(up{instance=~"$node"}, "nodename", "$1", "job", "(.*)"))
+
+max by (instance, nodename) ((up{instance=~"$node"} * on(instance) group_left(nodename) node_uname_info) or (up{instance=~"$node"}))
