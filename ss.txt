@@ -336,6 +336,12 @@ irate(node_network_transmit_bytes_total{instance=~'$node',device=~"$device"}[5m]
 100  687k    0  687k    0     0  5454k      0 --:--:-- --:--:-- --:--:-- 5454k
 node_network_receive_bytes_total{device="team0"} 1.08675350447459e+14
 
+1.08675350447459e+14
+它的单位是：
+bytes（字节）
+
+
+
 irate(node_network_receive_bytes_total{instance=~'$node',device=~"$device"}[5m])*8 * on(instance) group_left(nodename) node_uname_info
 
 
