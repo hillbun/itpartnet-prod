@@ -324,7 +324,13 @@ table - 2
 100 * ( irate(node_network_transmit_bytes_total{instance=~'$node',device=~"$device"}[5m]) * 8 * on(instance) group_left(nodename) node_uname_info ) / 1000000000
 
 
+ curl http://127.0.0.1:9100/metrics |grep node_network_receive_bytes_total |grep team0
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  687k    0  687k    0     0  5454k      0 --:--:-- --:--:-- --:--:-- 5454k
+node_network_receive_bytes_total{device="team0"} 1.08675350447459e+14
 
+irate(node_network_receive_bytes_total{instance=~'$node',device=~"$device"}[5m])*8 * on(instance) group_left(nodename) node_uname_info
 
 
 ----
