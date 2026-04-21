@@ -323,6 +323,12 @@ table - 2
 
 100 * ( irate(node_network_transmit_bytes_total{instance=~'$node',device=~"$device"}[5m]) * 8 * on(instance) group_left(nodename) node_uname_info ) / 1000000000
 
+irate(node_network_receive_bytes_total{instance=~'$node',device=~"$device"}[5m])*8 * on(instance) group_left(nodename) node_uname_info
+irate(node_network_transmit_bytes_total{instance=~'$node',device=~"$device"}[5m]) * 8 * on(instance) group_left(nodename) node_uname_info
+
+
+---
+1Gbps   -> 125000000  bytes/s
 
 
 
