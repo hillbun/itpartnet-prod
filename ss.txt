@@ -290,4 +290,31 @@ table - 2
 100 * (1 - (node_memory_MemAvailable_bytes{instance=~"$node"} / node_memory_MemTotal_bytes{instance=~"$node"}))  * on(instance) group_left(nodename) node_uname_info
 
 
+----
+
+
+cpu
+
+old color table
+
+(1 - avg (irate(node_cpu_seconds_total{instance=~"$node",mode="idle"}[5m])) by (job, instance))*100* on(instance) group_left(nodename) node_uname_info
+(1 - (node_memory_MemAvailable_bytes{instance=~"$node"} / (node_memory_MemTotal_bytes{instance=~"$node"})))* 100 * on(instance) group_left(nodename) node_uname_info
+
+time
+avg(irate(node_cpu_seconds_total{job=~"$",mode="system"}[5m])) by (instance) *100 * on(instance) group_left(nodename) node_uname_info
+(1 - (node_memory_MemAvailable_bytes{instance=~"$node"} / (node_memory_MemTotal_bytes{instance=~"$node"})))* 100 * on(instance) group_left(nodename) node_uname_info
+
+
+table
+100 * (1 - avg by(instance) (rate(node_cpu_seconds_total{instance=~"$node",mode="idle"}[5m]))) * on(instance) group_left(nodename) node_uname_info
+
+clamp_min(
+  100 * (1 - (node_memory_MemAvailable_bytes{instance=~"$node"} / node_memory_MemTotal_bytes{instance=~"$node"})),
+  0
+) * on(instance) group_left(nodename) node_uname_info
+
+
+table - 2
+100 * (1 - avg by(instance) (irate(node_cpu_seconds_total{instance=~"$node",mode="idle"}[5m]))) * on(instance) group_left(nodename) node_uname_info
+100 * (1 - (node_memory_MemAvailable_bytes{instance=~"$node"} / node_memory_MemTotal_bytes{instance=~"$node"}))  * on(instance) group_left(nodename) node_uname_info
 
