@@ -252,4 +252,21 @@ clamp_min(
 
 100 * (1 - avg by(instance) (rate(node_cpu_seconds_total{instance=~"$node",mode="idle"}[5m]))) * on(instance) group_left(nodename) node_uname_info
 
+---
+
+cpu
+
+old table
+
+
+(1 - avg (irate(node_cpu_seconds_total{instance=~"$node",mode="idle"}[5m])) by (job, instance))*100* on(instance) group_left(nodename) node_uname_info
+
+time
+avg(irate(node_cpu_seconds_total{job=~"$",mode="system"}[5m])) by (instance) *100 * on(instance) group_left(nodename) node_uname_info
+
+table
+100 * (1 - avg by(instance) (rate(node_cpu_seconds_total{instance=~"$node",mode="idle"}[5m]))) * on(instance) group_left(nodename) node_uname_info
+
+
+
 
