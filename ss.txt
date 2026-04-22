@@ -328,6 +328,15 @@ irate(node_network_transmit_bytes_total{instance=~'$node',device=~"$device"}[5m]
 
 
 ---
+| 转换方向          | 公式           |
+| ---------------- | ------------- |
+| Bytes/s → bits/s | × 8           |
+| bits/s → Mbps    | ÷ 1e6         |
+| bits/s → Gbps    | ÷ 1e9         |
+| Bytes/s → MB/s   | ÷ 1e6         |
+| Bytes/s → MiB/s  | ÷ 1024 ÷ 1024 |
+
+
 
 单位	    进制	            常见场景
 MB/s	1000（十进制）	网络带宽（厂商、Prometheus常用）
@@ -367,6 +376,7 @@ node_network_receive_bytes_total{device="team0"} 1.08675350447459e+14
 
 rate(node_network_receive_bytes_total{instance=~'$node',device="team0"}[5m])*8 * on(instance) group_left(nodename) node_uname_info
 Bytes/s（比特每秒）
+125,000,000
 
 ----
 
