@@ -386,3 +386,6 @@ poxappprd41a:6379> BGSAVE
 Background saving started
 poxappprd41a:6379>
 
+scp /opt/redis/dump.rdb logreader@pox192.168.50.159:/home/logreader/upgrade/20260422/redis-upgrade/redis/
+P@ssw0rd123
+

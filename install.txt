@@ -123,6 +123,20 @@ proxy6 and proxy12
 https://hateams.ha.org.hk/workgroups/group/13446/disk/path/Forcepoint_Proxy/Proxy6/
 https://hateams.ha.org.hk/workgroups/group/13446/disk/path/Forcepoint_Proxy/Proxy12/
 
+---
+mgt client
+
+SZ-Remoter-Host2
+
+https://mtp.opp.ha.org.hk/login
+wei
+wei@88
+
+
+centos8.4-物理机
+192.168.40.62
+
+
 
 ---
 https://wps365.home/weboffice/l/stJaf4i7SCTgI
