@@ -328,28 +328,49 @@ irate(node_network_transmit_bytes_total{instance=~'$node',device=~"$device"}[5m]
 
 
 ---
-1Gbps   -> 125000000  bytes/s
 
- curl http://127.0.0.1:9100/metrics |grep node_network_receive_bytes_total |grep team0
+单位	    进制	            常见场景
+MB/s	1000（十进制）	网络带宽（厂商、Prometheus常用）
+MiB/s	1024（二进制）	Linux系统、内存工具
+
+千兆网卡
+
+1 Mbps = 1000 Kbps
+1 Gbps = 1000 Mbps（兆比特每秒）
+
+1 Gbps = 125,000,000 Bytes/s
+1 MB   = 1,000,000 Bytes
+1 Gbps = 125,000,000/1,000,000   = 125 MB/s
+1 Gbps = 125,000,000/(1024X1024) = 119.2 MiB/s
+
+1 Byte = 8 bit
+1 Gbps ÷ 8 = 125 MB/s
+
+
+1 MiB = 1024 × 1024 Bytes = 1,048,576 Bytes
+1 MB                      = 1,000,000 Bytes
+
+
+
+curl http://127.0.0.1:9100/metrics |grep node_network_receive_bytes_total |grep team0
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 100  687k    0  687k    0     0  5454k      0 --:--:-- --:--:-- --:--:-- 5454k
 node_network_receive_bytes_total{device="team0"} 1.08675350447459e+14
 
 1.08675350447459e+14
-它的单位是：
-bytes（字节）
+1.08675350447459×10(14)
+= 108,675,350,447,459
+108,675,350,447,459 bytes
 
 
 
-irate(node_network_receive_bytes_total{instance=~'$node',device=~"$device"}[5m])*8 * on(instance) group_left(nodename) node_uname_info
-
+rate(node_network_receive_bytes_total{instance=~'$node',device="team0"}[5m])*8 * on(instance) group_left(nodename) node_uname_info
+Bytes/s（比特每秒）
 
 ----
 
-[logreader@poxappprd42a ~]$ ^C
-[logreader@poxappprd42a ~]$ ^C
-[logreader@poxappprd42a ~]$ redis-cli -h poxappprd41a -a StrongP@@ssw0rd123!
+redis-cli -h poxappprd41a -a StrongP@@ssw0rd123!
 Warning: Using a password with '-a' or '-u' option on the command line interface may not be safe.
 poxappprd41a:6379> BGSAVE
 Background saving started
