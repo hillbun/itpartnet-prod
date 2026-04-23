@@ -76,13 +76,13 @@ upgrade notes:
 1. mtransproxy_admin
 
 add files:
-/usr/local/nginx/html/mtransproxy_admin/public/mangerTxt/connection_status.txt
+####/usr/local/nginx/html/mtransproxy_admin/public/mangerTxt/connection_status.txt
 /usr/local/nginx/html/mtransproxy_admin/app/Http/Controllers/Api/ConnectionstatusController.php
 
 modify files:
 /usr/local/nginx/html/mtransproxy_admin/routes/api.php
 
-2. mtransproxy_admin
+2. mtransproxy_dist
 
 modify files:
 /usr/local/nginx/html/dist
@@ -95,3 +95,21 @@ modify files:
 
 tar cvf /home/logreader/backup/20260101/test/dist.tar -C /opt/nginx/html dist
 tar xvf /home/logreader/backup/20260101/test/dist.tar -C /home/logreader/backup/20260101/test --transform='s/dist/new-dist/'
+
+4. stat.sh
+
+/opt/squid_shell/stat.sh
+
+
+
+scp /opt/squid_shell/stat.sh ubuntu@119.28.43.244:/home/ubuntu/mgt-upgrade/
+
+scp /usr/local/nginx/html/mtransproxy_admin/app/Http/Controllers/Api/ConnectionstatusController.php ubuntu@119.28.43.244:/home/ubuntu/mgt-upgrade/
+scp /usr/local/nginx/html/mtransproxy_admin/routes/api.php ubuntu@119.28.43.244:/home/ubuntu/mgt-upgrade/
+scp /usr/local/nginx/html/dist-20260416.tar ubuntu@119.28.43.244:/home/ubuntu/mgt-upgrade/
+
+scp /usr/local/nginx/html/transproxy_admin/routes/api.php ubuntu@119.28.43.244:/home/ubuntu/mgt-upgrade/transproxy_admin/
+scp /usr/local/nginx/html/transproxy_admin/app/Http/Controllers/Api/IndexController.php ubuntu@119.28.43.244:/home/ubuntu/mgt-upgrade/transproxy_admin/
+
+
+scp /opt/squid_shell/stat.sh ubuntu@119.28.43.244:/home/ubuntu/mgt-upgrade/
