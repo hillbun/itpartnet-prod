@@ -34,14 +34,6 @@ cp /opt/squid/etc/squid.conf $BACKUP_DIR/squid.conf
 cp $UPGRADE_DIR/squid/squid.conf /opt/squid/etc/squid.conf
 /opt/squid/sbin/squid -k parse
 
-
-------
-verify monitor dashboard
-wait at 00:00 crontab run systemctl reload squid
-verify timeout status
-
-tail -f /tmp/51a-1-curl.txt
-tail -f /tmp/51a-1-ps.txt
 ------
 
 
@@ -113,3 +105,10 @@ scp /usr/local/nginx/html/transproxy_admin/app/Http/Controllers/Api/IndexControl
 
 
 scp /opt/squid_shell/stat.sh ubuntu@119.28.43.244:/home/ubuntu/mgt-upgrade/
+
+
+
+
+
+
+
