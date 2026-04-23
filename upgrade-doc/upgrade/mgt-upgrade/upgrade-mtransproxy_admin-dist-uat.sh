@@ -15,5 +15,5 @@ tar cvf $BACKUP_DIR/mtransproxy_admin-dist/dist.tar -C /usr/nginx/html/dist dist
 
 rm -rf /usr/nginx/html/dist
 
-tar xvf $UPGRADE_DIR/mtransproxy_admin-dist/dist.tar -C /usr/nginx/html/
+tar xvf $UPGRADE_DIR/mtransproxy_admin-dist/dist-20260416.tar -C /usr/nginx/html/
 
