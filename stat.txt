@@ -201,6 +201,15 @@ WantedBy=multi-user.target
 
 ---
 
+| scrape_interval | 推荐 range |
+| --------------- | -------- |
+| 15s             | 30s ~ 2m |
+| 30s             | 1m ~ 5m  |
+| 60s             | 5m       |
+
+
+---
+
 more /appl/n5/prometheus/prometheus.yml
 # my global config
 global:

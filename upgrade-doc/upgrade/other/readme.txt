@@ -24,6 +24,11 @@ chmod 640 /etc/logrotate.d/python_prod_logs
 需完成：52a
 
 
+ps -ef --forest | grep -B 5 sleep
+
+nohup bash -c 'while true; do timestamp=$(date "+%Y-%m-%d %H:%M:%S"); result=$(curl -s -o /dev/null -w "%{http_code} %{time_total} " --proxy http://n5-testing:P%40ssw0rd1234@192.168.50.163:8080 --connect-timeout 1 --max-time 3 https://www.hk01.com/ 2>/dev/null || echo "FAIL"); echo "$timestamp $result" >> /tmp/42e-curl.txt; sleep 1; done' > /dev/null 2>&1 &
+ps -ef | grep "while true"
+
 
 
 

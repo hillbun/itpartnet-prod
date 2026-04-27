@@ -351,6 +351,7 @@ MiB/s	1024（二进制）	Linux系统、内存工具
 1 MB   = 1,000,000 Bytes
 1 Gbps = 125,000,000/1,000,000   = 125 MB/s
 1 Gbps = 125,000,000/(1024X1024) = 119.2 MiB/s
+1 Gbps = 1000 MB/s
 
 1 Byte = 8 bit
 1 Gbps ÷ 8 = 125 MB/s
@@ -358,6 +359,23 @@ MiB/s	1024（二进制）	Linux系统、内存工具
 
 1 MiB = 1024 × 1024 Bytes = 1,048,576 Bytes
 1 MB                      = 1,000,000 Bytes
+
+
+44729046 Bytes/s  = 44729046/1000000  MB/s
+
+1 Gbps = 1000 Mb/s（兆比特每秒）。
+说明
+G 代表吉（Giga），1 G = 109109
+M 代表兆（Mega），1 M = 106106
+因此 1 Gbps = 109109 bps = 1000×1061000×106 bps = 1000 Mb/s
+
+
+这三者的核心区别在于：字节 vs 比特，以及十进制前缀 vs 二进制前缀。
+
+单位	全称	含义	换算关系
+MB/s	Megabyte per second	每秒传输 10⁶ 字节（1,000,000 Bytes）	1 MB/s = 8 Mb/s
+MiB/s	Mebibyte per second	每秒传输 2²⁰ 字节（1,048,576 Bytes）	1 MiB/s ≈ 1.048576 MB/s ≈ 8.3886 Mb/s
+Mb/s	Megabit per second	每秒传输 10⁶ 比特（1,000,000 bits）	1 Mb/s = 0.125 MB/s
 
 
 
@@ -380,12 +398,4 @@ Bytes/s（比特每秒）
 
 ----
 
-redis-cli -h poxappprd41a -a StrongP@@ssw0rd123!
-Warning: Using a password with '-a' or '-u' option on the command line interface may not be safe.
-poxappprd41a:6379> BGSAVE
-Background saving started
-poxappprd41a:6379>
-
-scp /opt/redis/dump.rdb logreader@pox192.168.50.159:/home/logreader/upgrade/20260422/redis-upgrade/redis/
-P@ssw0rd123
-
+nohup bash -c 'while true; do timestamp=$(date "+%Y-%m-%d %H:%M:%S"); result=$(curl -s -o /dev/null -w "%{http_code} %{time_total} " --proxy http://n5-testing:P%40ssw0rd1234@192.168.152.122:8080 --connect-timeout 1 --max-time 3 https://www.hk01.com/ 2>/dev/null || echo "FAIL"); echo "$timestamp $result" >> /tmp/52c-curl.txt; sleep 1; done' > /dev/null 2>&1 &
