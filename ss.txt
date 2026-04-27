@@ -399,3 +399,9 @@ Bytes/s（比特每秒）
 ----
 
 nohup bash -c 'while true; do timestamp=$(date "+%Y-%m-%d %H:%M:%S"); result=$(curl -s -o /dev/null -w "%{http_code} %{time_total} " --proxy http://n5-testing:P%40ssw0rd1234@192.168.152.122:8080 --connect-timeout 1 --max-time 3 https://www.hk01.com/ 2>/dev/null || echo "FAIL"); echo "$timestamp $result" >> /tmp/52c-curl.txt; sleep 1; done' > /dev/null 2>&1 &
+
+
+
+---
+awk -F'[][]' '$2 >= "24/Apr/2026:03:27:00" && $2 <= "24/Apr/2026:03:32:00"' /opt/squid/var/log/access.log | awk '{print $9}' | sort | uniq -c
+
