@@ -10,12 +10,10 @@ export UPGRADE_DIR=/app1/n5/software/upgrade/20260425/mgt-upgrade
 mkdir -p $BACKUP_DIR
 mkdir -p $BACKUP_DIR/mtransproxy_admin
 
-cp /app1/n5/nginx/html/mtransproxy_admin/mtransproxy_admin/ConnectionstatusController.php $BACKUP_DIR/mtransproxy_admin/ConnectionstatusController.php
-cp /app1/n5/nginx/html/mtransproxy_admin/routes/api.php $BACKUP_DIR/mtransproxy_admin/api.php
-
+cp /usr/nginx/html/mtransproxy_admin/routes/api.php $BACKUP_DIR/mtransproxy_admin/api.php
 
 ### 2. mtransproxy_admin upgrade
 
-\cp $UPGRADE_DIR/mgt-upgrade/mtransproxy_admin/ConnectionstatusController.php /app1/n5/nginx/html/mtransproxy_admin/mtransproxy_admin/ConnectionstatusController.php
-\cp $UPGRADE_DIR/mgt-upgrade/mtransproxy_admin/api.php /app1/n5/nginx/html/mtransproxy_admin/routes/api.php
+\cp $UPGRADE_DIR/mtransproxy_admin/api.php /usr/nginx/html/mtransproxy_admin/routes/api.php
+cp $UPGRADE_DIR/mtransproxy_admin/ConnectionstatusController.php /app1/n5/nginx/html/mtransproxy_admin/app/Http/Controllers/Api/ConnectionstatusController.php
 
