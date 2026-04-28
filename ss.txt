@@ -405,3 +405,7 @@ nohup bash -c 'while true; do timestamp=$(date "+%Y-%m-%d %H:%M:%S"); result=$(c
 ---
 awk -F'[][]' '$2 >= "24/Apr/2026:03:27:00" && $2 <= "24/Apr/2026:03:32:00"' /opt/squid/var/log/access.log | awk '{print $9}' | sort | uniq -c
 
+
+
+---
+sed -i "s#\[14/Apr/2026#\[15/Apr/2026#g" /opt/squid/var/log/access.log
