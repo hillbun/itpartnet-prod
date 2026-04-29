@@ -33,6 +33,41 @@ nohup bash -c 'while true; do timestamp=$(date "+%Y-%m-%d %H:%M:%S"); result=$(c
 
 ps -ef | grep "while true"
 
+4194304
+
+Dear Leo,
+ 
+Please set email alert and highlighted in color for below trigger. Thank you.
+ 
+No. of user connection:
+Red > 53000, Orange > 50000, Yellow > 47000
+ 
+Conntrack:
+
+4194304
+Red => net.netfilter.nf_conntrack_count > 3774873 (90%)
+Orange => net.netfilter.nf_conntrack_count > 3565158 (85%)
+Yellow => net.netfilter.nf_conntrack_count > 3355443 (80%) 
+
+
+262144
+Red => net.netfilter.nf_conntrack_count > 235930 (90%)
+Orange => net.netfilter.nf_conntrack_count > 222822 (85%)
+Yellow => net.netfilter.nf_conntrack_count > 209715 (80%) 
+
+ 
+CPU, RAM, Disk Usage: Red > 90%, Orange >85%, Yellow > 80%
+Bandwidth: Red > 900Mb/s, Orange > 800Mb/s, yellow > 700Mb/s
+Connections: Red > 53000, Orange > 50000, Yellow > 47000
+Conntrack: Red > 3774873, Orange > 3565158, Yellow > 3355443
+ 
+Server Status:
+Down => Red
+ 
+Disk Usage:
+Red > 90%, Orange >85%, Yellow > 80%
+
+
 
 
 
