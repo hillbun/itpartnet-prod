@@ -411,3 +411,10 @@ awk -F'[][]' '$2 >= "24/Apr/2026:03:27:00" && $2 <= "24/Apr/2026:03:32:00"' /opt
 sed -i "s#\[14/Apr/2026#\[15/Apr/2026#g" /opt/squid/var/log/access.log
 sed    "s#\[14/Apr/2026#\[15/Apr/2026#g" access.log > access.log.test
 
+
+---
+cat /proc/net/nf_conntrack | awk '{print $3}' | sort | uniq -c | sort -nr
+    626 tcp
+      6 icmp
+      5 udp
+
