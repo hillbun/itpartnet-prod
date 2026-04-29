@@ -419,3 +419,11 @@ cat /proc/net/nf_conntrack | awk '{print $3}' | sort | uniq -c | sort -nr
       5 udp
 
 grep "^ipv4 .* tcp" /proc/net/nf_conntrack | awk '{print $4}' | sort | uniq -c | sort -nr
+
+
+
+grep "^ipv4 .* tcp" /proc/net/nf_conntrack | awk '{print $6}' | sort | uniq -c | sort -nr
+    425 ESTABLISHED
+    225 TIME_WAIT
+      1 CLOSE
+
