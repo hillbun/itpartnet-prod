@@ -60,8 +60,68 @@ sysctl net.netfilter.nf_conntrack_count
 cat /sys/module/nf_conntrack/parameters/hashsize
 65536
 
+dmesg -T |grep "table full"
+
+cat /proc/net/nf_conntrack | awk '{print $3}' | sort | uniq -c | sort -nr
+    626 tcp
+      6 icmp
+      5 udp
+
+
+grep "^ipv4 .* tcp" /proc/net/nf_conntrack | awk '{print $6}' | sort | uniq -c | sort -nr
+    425 ESTABLISHED
+    225 TIME_WAIT
+      1 CLOSE
+  
+	  
+cat /proc/net/nf_conntrack | awk '{print $7}' | cut -d= -f2 | sort | uniq -c | sort -nr | head -n 10
+    325 127.0.0.1
+     99 192.168.50.163
+     88 192.168.50.159
+      3 160.98.27.60
+      2 210.87.250.48
+      2 160.93.17.40
+      1 160.99.33.113
+      1 11.68.96.164
+      1 11.185.1.33
+
 ----
 after upgrade
+
+
+sysctl net.netfilter.nf_conntrack_max
+4194304
+sysctl net.netfilter.nf_conntrack_count
+?????
+
+cat /sys/module/nf_conntrack/parameters/hashsize
+524288
+
+
+dmesg -T |grep "table full"
+
+cat /proc/net/nf_conntrack | awk '{print $3}' | sort | uniq -c | sort -nr
+    626 tcp
+      6 icmp
+      5 udp
+
+
+grep "^ipv4 .* tcp" /proc/net/nf_conntrack | awk '{print $6}' | sort | uniq -c | sort -nr
+    425 ESTABLISHED
+    225 TIME_WAIT
+      1 CLOSE
+  
+	  
+cat /proc/net/nf_conntrack | awk '{print $7}' | cut -d= -f2 | sort | uniq -c | sort -nr | head -n 10
+    325 127.0.0.1
+     99 192.168.50.163
+     88 192.168.50.159
+      3 160.98.27.60
+      2 210.87.250.48
+      2 160.93.17.40
+      1 160.99.33.113
+      1 11.68.96.164
+      1 11.185.1.33
 
 ----
 

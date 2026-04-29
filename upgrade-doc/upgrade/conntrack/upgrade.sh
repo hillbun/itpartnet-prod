@@ -10,7 +10,7 @@ export UPGRADE_DIR=/home/logreader/upgrade/20260508/conntrack
 mkdir -p $BACKUP_DIR
 cp /etc/sysctl.conf $BACKUP_DIR/sysctl.conf
 
-### 2. sysctl.conf upgrade
+### 2. conntrack upgrade
 
 \cp $UPGRADE_DIR/sysctl/sysctl.conf /etc/sysctl.conf
 

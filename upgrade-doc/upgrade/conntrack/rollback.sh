@@ -4,7 +4,7 @@
 
 export BACKUP_DIR=/root/backup/20260508/conntrack
 
-### 1. transproxy php
+### 1. conntrack rollback
 
 \cp $BACKUP_DIR/sysctl.conf /etc/sysctl.conf
 
