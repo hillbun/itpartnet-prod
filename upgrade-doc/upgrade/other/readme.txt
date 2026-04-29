@@ -71,4 +71,7 @@ Red > 90%, Orange >85%, Yellow > 80%
 
 rgb(224, 47, 68)    rgb(255, 179, 87) rgb(255, 238, 82)
 
-
+CPU, RAM, Disk Usage: Red > 90%, Orange >85%, Yellow > 80%<br />
+Bandwidth: Red > 900Mb/s, Orange > 800Mb/s, yellow > 700Mb/s<br />
+Connections: Red > 53000, Orange > 50000, Yellow > 47000<br />
+Conntrack: Red > 3774873, Orange > 3565158, Yellow > 3355443
