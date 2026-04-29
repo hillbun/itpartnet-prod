@@ -89,3 +89,29 @@ Conntrack: Red > 3774873, Orange > 3565158, Yellow > 3355443
     > 80%
   </div>
 </div>
+
+
+
+---
+
+<style>
+  .status-tag {
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    color: #000; /* 黑色文字在黄/橙色上对比度更好 */
+  }
+  .critical { background-color: rgb(224, 47, 68); color: #fff; } /* 红色用白色字 */
+  .warning  { background-color: rgb(255, 179, 87); }
+  .caution  { background-color: rgb(255, 238, 82); }
+</style>
+
+<div>
+  CPU Usage: <span class="status-tag critical">92%</span> (Critical)
+</div>
+<div>
+  Bandwidth: <span class="status-tag warning">850Mb/s</span> (Warning)
+</div>
+<div>
+  Connections: <span class="status-tag caution">48000</span> (Caution)
+</div>
