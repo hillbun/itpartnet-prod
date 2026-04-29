@@ -11,3 +11,6 @@ export BACKUP_DIR=/root/backup/20260508/conntrack
 sysctl -p
 sysctl -w net.netfilter.nf_conntrack_max=262144
 
+echo 65536 > /sys/module/nf_conntrack/parameters/hashsize
+echo "options nf_conntrack hashsize=65536" > /etc/modprobe.d/nf_conntrack_hash.conf
+
