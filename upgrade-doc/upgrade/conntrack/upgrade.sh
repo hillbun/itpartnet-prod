@@ -2,8 +2,8 @@
 
 #### 0. export variable
 
-export BACKUP_DIR=/root/backup/20260422/conntrack
-export UPGRADE_DIR=/home/logreader/upgrade/20260422/conntrack
+export BACKUP_DIR=/root/backup/20260508/conntrack
+export UPGRADE_DIR=/home/logreader/upgrade/20260508/conntrack
 
 ### 1. create backup dir
 
