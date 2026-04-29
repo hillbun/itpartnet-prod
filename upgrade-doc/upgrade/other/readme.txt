@@ -75,3 +75,17 @@ CPU, RAM, Disk Usage: Red > 90%, Orange >85%, Yellow > 80%<br />
 Bandwidth: Red > 900Mb/s, Orange > 800Mb/s, yellow > 700Mb/s<br />
 Connections: Red > 53000, Orange > 50000, Yellow > 47000<br />
 Conntrack: Red > 3774873, Orange > 3565158, Yellow > 3355443
+
+
+
+<div style="display: flex; gap: 10px;">
+  <div style="background: rgb(224, 47, 68); width: 100px; height: 50px; display: flex; align-items: center; justify-content: center; color: white;">
+    > 90%
+  </div>
+  <div style="background: rgb(255, 179, 87); width: 100px; height: 50px; display: flex; align-items: center; justify-content: center;">
+    > 85%
+  </div>
+  <div style="background: rgb(255, 238, 82); width: 100px; height: 50px; display: flex; align-items: center; justify-content: center;">
+    > 80%
+  </div>
+</div>
