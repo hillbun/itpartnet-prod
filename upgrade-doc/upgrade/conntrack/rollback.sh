@@ -2,7 +2,7 @@
 
 ### 0. export variable
 
-export BACKUP_DIR=/root/backup/20260422/conntrack
+export BACKUP_DIR=/root/backup/20260508/conntrack
 
 ### 1. transproxy php
 
