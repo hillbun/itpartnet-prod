@@ -76,6 +76,10 @@ Bandwidth: Red > 900Mb/s, Orange > 800Mb/s, yellow > 700Mb/s<br />
 Connections: Red > 53000, Orange > 50000, Yellow > 47000<br />
 Conntrack: Red > 3774873, Orange > 3565158, Yellow > 3355443
 
+CPU, RAM, Disk Usage: 🔴 > 90%, 🟠 >85%, 🟡 > 80%<br />
+Bandwidth: 🔴 > 900Mb/s, 🟠 > 800Mb/s, 🟡 > 700Mb/s<br />
+Connections: 🔴 > 53000, 🟠 > 50000, 🟡 > 47000<br />
+Conntrack: 🔴 > 3774873, 🟠 > 3565158, 🟡 > 3355443
 
 
 <div style="display: flex; gap: 10px;">
@@ -93,6 +97,7 @@ Conntrack: Red > 3774873, Orange > 3565158, Yellow > 3355443
 
 
 ---
+
 
 <style>
   .status-tag {
