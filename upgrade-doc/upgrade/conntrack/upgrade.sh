@@ -16,3 +16,6 @@ cp /etc/sysctl.conf $BACKUP_DIR/sysctl.conf
 
 sysctl -p
 
+echo 524288 > /sys/module/nf_conntrack/parameters/hashsize
+echo "options nf_conntrack hashsize=524288" > /etc/modprobe.d/nf_conntrack_hash.conf
+

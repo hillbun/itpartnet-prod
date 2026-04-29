@@ -50,10 +50,20 @@ sysctl -w net.netfilter.nf_conntrack_max=262144
 ------
 verify
 
+before upgrade
+
 sysctl net.netfilter.nf_conntrack_max
 262144
 sysctl net.netfilter.nf_conntrack_count
 ?????
+
+cat /sys/module/nf_conntrack/parameters/hashsize
+65536
+
+----
+after upgrade
+
+----
 
 awk '{print $9}' /opt/squid/var/log/access.log | sort | uniq -c
      52 0
