@@ -418,3 +418,4 @@ cat /proc/net/nf_conntrack | awk '{print $3}' | sort | uniq -c | sort -nr
       6 icmp
       5 udp
 
+grep "^tcp" /proc/net/nf_conntrack | awk '{print $4}' | sort | uniq -c | sort -nr
