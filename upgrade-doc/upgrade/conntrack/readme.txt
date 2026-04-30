@@ -94,8 +94,7 @@ cat /proc/net/nf_conntrack | awk '{print $7}' | cut -d= -f2 | sort | uniq -c | s
 5.dmesg -T |grep "table full"
 6.cat /proc/net/nf_conntrack | awk '{print $3}' | sort | uniq -c | sort -nr
 7.grep "^ipv4 .* tcp" /proc/net/nf_conntrack | awk '{print $6}' | sort | uniq -c | sort -nr
-8.cat /proc/net/nf_conntrack | awk '{print $7}' | cut -d= -f2 | sort | uniq -c | sort -nr | head -n 10
-8.cat /proc/net/nf_conntrack | grep -o 'src=[0-9.]*' | cut -d= -f2 | sort | uniq -c | sort -nr | head -n 10
+8.cat /proc/net/nf_conntrack | grep -o 'src=[0-9.]*' | cut -d= -f2 | sort -u | wc -l
 9.cat /proc/net/nf_conntrack | awk '{print $8}' | cut -d= -f2 | sort | uniq -c | sort -nr | head -n 10
 
 
