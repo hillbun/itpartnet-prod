@@ -60,6 +60,7 @@ sysctl net.netfilter.nf_conntrack_count
 cat /sys/module/nf_conntrack/parameters/hashsize
 65536
 
+dmesg -T
 dmesg -T |grep "table full"
 
 cat /proc/net/nf_conntrack | awk '{print $3}' | sort | uniq -c | sort -nr
@@ -84,6 +85,18 @@ cat /proc/net/nf_conntrack | awk '{print $7}' | cut -d= -f2 | sort | uniq -c | s
       1 160.99.33.113
       1 11.68.96.164
       1 11.185.1.33
+	  
+	  
+1.sysctl net.netfilter.nf_conntrack_max 
+2.sysctl net.netfilter.nf_conntrack_count
+3.cat /sys/module/nf_conntrack/parameters/hashsize
+4.dmesg -T | tail -n 1000
+5.dmesg -T |grep "table full"
+6.cat /proc/net/nf_conntrack | awk '{print $3}' | sort | uniq -c | sort -nr
+7.grep "^ipv4 .* tcp" /proc/net/nf_conntrack | awk '{print $6}' | sort | uniq -c | sort -nr
+8.cat /proc/net/nf_conntrack | awk '{print $7}' | cut -d= -f2 | sort | uniq -c | sort -nr | head -n 10
+9.grep "^ipv4 .* tcp" /proc/net/nf_conntrack | awk '{print $6}' | sort | uniq -c | sort -nr
+10.cat /proc/net/nf_conntrack | awk '{print $7}' | cut -d= -f2 | sort | uniq -c | sort -nr | head -n 10
 
 ----
 after upgrade
