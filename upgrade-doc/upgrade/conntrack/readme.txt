@@ -49,42 +49,6 @@ sysctl -w net.netfilter.nf_conntrack_max=262144
 
 ------
 verify
-
-before upgrade
-
-sysctl net.netfilter.nf_conntrack_max
-262144
-sysctl net.netfilter.nf_conntrack_count
-?????
-
-cat /sys/module/nf_conntrack/parameters/hashsize
-65536
-
-dmesg -T
-dmesg -T |grep "table full"
-
-cat /proc/net/nf_conntrack | awk '{print $3}' | sort | uniq -c | sort -nr
-    626 tcp
-      6 icmp
-      5 udp
-
-
-grep "^ipv4 .* tcp" /proc/net/nf_conntrack | awk '{print $6}' | sort | uniq -c | sort -nr
-    425 ESTABLISHED
-    225 TIME_WAIT
-      1 CLOSE
-  
-	  
-cat /proc/net/nf_conntrack | awk '{print $7}' | cut -d= -f2 | sort | uniq -c | sort -nr | head -n 10
-    325 127.0.0.1
-     99 192.168.50.163
-     88 192.168.50.159
-      3 160.98.27.60
-      2 210.87.250.48
-      2 160.93.17.40
-      1 160.99.33.113
-      1 11.68.96.164
-      1 11.185.1.33
 	  
 	  
 1.sysctl net.netfilter.nf_conntrack_max 
@@ -94,8 +58,11 @@ cat /proc/net/nf_conntrack | awk '{print $7}' | cut -d= -f2 | sort | uniq -c | s
 5.dmesg -T |grep "table full"
 6.cat /proc/net/nf_conntrack | awk '{print $3}' | sort | uniq -c | sort -nr
 7.grep "^ipv4 .* tcp" /proc/net/nf_conntrack | awk '{print $6}' | sort | uniq -c | sort -nr
-8.cat /proc/net/nf_conntrack | grep -o 'src=[0-9.]*' | cut -d= -f2 | sort -u | uniq -c
-9.cat /proc/net/nf_conntrack | awk '{print $8}' | cut -d= -f2 | sort | uniq -c | sort -nr | head -n 10
+8.cat /proc/net/nf_conntrack | grep -o 'src=[0-9.]*' | cut -d= -f2 | sort | uniq -c | sort -nr
+9.cat /proc/net/nf_conntrack | grep -o 'dst=[0-9.]*' | cut -d= -f2 | sort | uniq -c | sort -nr
+
+
+10.awk -F'[][]' $2 <= "30/Apr/2026:11:00:00"' /opt/squid/var/log/access.log | awk '{print $9}' | sort | uniq -c
 
 
 ----
@@ -151,7 +118,7 @@ awk '{print $9}' /opt/squid/var/log/access.log | sort | uniq -c
     190 503
 
 
-awk -F'[][]' '$2 >= "24/Apr/2026:03:27:00" && $2 <= "24/Apr/2026:03:32:00"' /opt/squid/var/log/access.log
+awk -F'[][]' $2 <= "30/Apr/2026:11:00:00"' /opt/squid/var/log/access.log | sort | uniq -c
 
 10.2.3.185 - - [24/Apr/2026:03:27:01 +0800] "POST http://10.2.3.110:5601/api/console/proxy? HTTP/1.1" 403 4882 63357 "http://10.2.3.110:5601/app/dev_tools" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" TCP_DENIED:HIER_NONE 403
 10.2.3.185 - - [24/Apr/2026:03:27:01 +0800] "POST http://10.2.3.110:5601/api/console/proxy? HTTP/1.1" 403 4883 63359 "http://10.2.3.110:5601/app/dev_tools" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" TCP_DENIED:HIER_NONE 403
