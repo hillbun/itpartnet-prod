@@ -61,8 +61,8 @@ verify
 8.cat /proc/net/nf_conntrack | grep -o 'src=[0-9.]*' | cut -d= -f2 | sort | uniq -c | sort -nr
 9.cat /proc/net/nf_conntrack | grep -o 'dst=[0-9.]*' | cut -d= -f2 | sort | uniq -c | sort -nr
 
-
-10.awk -F'[][]' $2 <= "30/Apr/2026:11:00:00"' /opt/squid/var/log/access.log | awk '{print $9}' | sort | uniq -c
+10.awk -F'[][]' '$2 <= "30/Apr/2026:11:00:00"' /opt/squid/var/log/access.log | awk '{print $9}' | sort | uniq -c
+11.awk -F'[][]' '$2 >= "30/Apr/2026:11:00:00"' /opt/squid/var/log/access.log | awk '{print $9}' | sort | uniq -c
 
 
 ----
