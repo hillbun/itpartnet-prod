@@ -452,3 +452,36 @@ wget -e use_proxy=yes -e http_proxy=192.168.50.160:8080 \
 	 
 -H "Connection: keep-alive" -H "Keep-Alive: timeout=60"
 
+---
+---
+/usr/sbin/ss -anto | grep -v "LISTEN" | awk 'NR>1 && $4 !~ /127.0.0.1/ && $4 !~ /:8080$/ && match($4, /:([0-9]+)$/, a) && a[1] > 1024 && $5 != "*:*" {print $1, $5, $NF}'
+
+
+/usr/sbin/ss -anto | grep -v "LISTEN" | awk 'NR>1 && $4 !~ /127.0.0.1/ && $4 !~ /:8080$/ && match($4, /:([0-9]+)$/, a) && a[1] > 1024 && $5 != "*:*" {print $1, $5, $NF}'
+
+/usr/sbin/ss -anto | grep -v "LISTEN" | awk 'NR>1 && $4 !~ /127.0.0.1/ && $4 !~ /:8080$/ && match($4, /:([0-9]+)$/, a) && a[1] > 1024 && $5 != "*:*" {print $1, $5, $NF}' | sort -k3
+
+---
+/usr/sbin/ss -anto | grep -v "LISTEN" | awk '
+NR>1 && $4 !~ /127.0.0.1/ && $4 !~ /::1/ && $4 !~ /:8080/ {
+    # 提取 timer 括号中的内容，例如 timewait,47sec,0
+    split($NF, a, "[(,)]")
+    t_val = a[3] # 取得中间的时间字符串，如 "47sec" 或 "3.218ms"
+    
+    # 统一换算为毫秒 (ms)
+    if (t_val ~ /ms/) {
+        sub(/ms/, "", t_val)
+        ms_v = t_val
+    } else if (t_val ~ /sec/) {
+        sub(/sec/, "", t_val)
+        ms_v = t_val * 1000
+    } else if (t_val ~ /min/) {
+        sub(/min/, "", t_val)
+        ms_v = t_val * 60000
+    } else {
+        ms_v = 0
+    }
+    
+    # 打印时在第一列插入隐藏的“总毫秒数”，用于排序
+    print ms_v, $1, $5, $NF
+}' | sort -n | cut -d' ' -f2-
