@@ -9,5 +9,4 @@ export UPGRADE_DIR=/opt/download/upgrade/20260425/mgt-upgrade
 ### 2.stat.sh upgrade
 
 cp $UPGRADE_DIR/squid_shell/stat.sh /opt/squid_shell/
-
-
+chown logreader.logreader /opt/squid_shell/stat.sh
