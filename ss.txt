@@ -443,3 +443,8 @@ cat /proc/net/nf_conntrack | awk '{print $7}' | cut -d= -f2 | sort | uniq -c | s
 
 ---
 /usr/sbin/ss -anto | grep -v "LISTEN" | awk 'NR>1 && $4 !~ /127.0.0.1/ && $4 !~ /:8080$/ && match($4, /:([0-9]+)$/, a) && a[1] > 1024 && $5 != "*:*" {print $1, $5, $NF}'
+
+
+wget -e use_proxy=yes -e http_proxy=192.168.50.160:8080 \
+     --pagemembers --delete-after \
+     -p https://www.apple.com/
