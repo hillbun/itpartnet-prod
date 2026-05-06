@@ -2,8 +2,8 @@
 
 ### 0. export variable
 
-export BACKUP_DIR=/root/backup/20260425/mgt-upgrade
-export UPGRADE_DIR=/opt/download/upgrade/20260425/mgt-upgrade
+export BACKUP_DIR=/root/backup/20260423/squid-timeout-tianji
+export UPGRADE_DIR=/home/logreader/upgrade/20260423/squid-timeout-tianji
 
 ### 1. create backup dir
 
