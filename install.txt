@@ -233,12 +233,14 @@ Q8b/c#F8633
 ---
 management platform
 
-prod
-poxadm@poxmgtprd61a
-Q8b/c#F8633
+
 
 uat
 poxadm@poxpxyvmcprd41b
+Q8b/c#F8633
+
+prod
+poxadm@poxmgtprd61a
 Q8b/c#F8633
 
 
