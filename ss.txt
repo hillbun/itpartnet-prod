@@ -448,3 +448,7 @@ cat /proc/net/nf_conntrack | awk '{print $7}' | cut -d= -f2 | sort | uniq -c | s
 wget -e use_proxy=yes -e http_proxy=192.168.50.160:8080 \
      --pagemembers --delete-after \
      -p https://www.apple.com/
+	 
+	 
+-H "Connection: keep-alive" -H "Keep-Alive: timeout=60"
+
