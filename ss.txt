@@ -323,9 +323,33 @@ table - 2
 
 100 * ( irate(node_network_transmit_bytes_total{instance=~'$node',device=~"$device"}[5m]) * 8 * on(instance) group_left(nodename) node_uname_info ) / 1000000000
 
-irate(node_network_receive_bytes_total{instance=~'$node',device=~"$device"}[5m])*8 * on(instance) group_left(nodename) node_uname_info
+rate(node_network_receive_bytes_total{instance=~'$node',device=~"$device"}[5m])*8 * on(instance) group_left(nodename) node_uname_info
 irate(node_network_transmit_bytes_total{instance=~'$node',device=~"$device"}[5m]) * 8 * on(instance) group_left(nodename) node_uname_info
 
+node_network_receive_bytes_total
+Bytes per second (B/s)
+
+
+ethtool team0 | grep Speed
+
+ethtool team0
+Settings for team0:
+Supported ports: [ ]
+Supported link modes:   Not reported
+Supported pause frame use: No
+Supports auto-negotiation: No
+Supported FEC modes: Not reported
+Advertised link modes:  Not reported
+Advertised pause frame use: No
+Advertised auto-negotiation: No
+Advertised FEC modes: Not reported
+Speed: 10000Mb/s
+Duplex: Full
+Auto-negotiation: off
+Port: Other
+PHYAD: 0
+Transceiver: internal
+Link detected: yes
 
 ---
 | 转换方向          | 公式           |
