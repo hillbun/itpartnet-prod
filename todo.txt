@@ -99,12 +99,3 @@ ldapsearch -x -H ldaps://160.98.39.18:636 -D CN=n5-proxy-opp-52a,OU=Users,OU=N2,
 curl  --proxy http://LH511:tyP6Jx?urY1@192.168.52.236:8080 https://www.facebook.com/
 
 
-
----
-10、QoS 要添加到UAT環境，給Daniel驗證@吴晓斌（hillbun） 
-1、日誌檢查清單@吴晓斌（hillbun） 
-4、timeout 要更新到server，要有前後數據做對比，記得提前拿數據樣本@吴晓斌（hillbun） 
-     9、forcepoint要通知用戶遷移，清理出IP給OPP使用@吴晓斌（hillbun） 
-
-5、系統的運維手冊，提供給HA，保障出現異常，HA的人可以快速處理@Huachang Liang（梁华昌） @吴晓斌（hillbun） 
-8、與adobe類似的應用問題，要在現偶的user manual上加該類型的處理方式@吴晓斌（hillbun） @Huachang Liang（梁华昌） 
