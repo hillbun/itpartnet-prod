@@ -3,3 +3,11 @@
 
 Host github.com
     ProxyCommand nc -X connect -x opp.ha.org.hk:8080 %h %p
+	
+	
+Host github.com
+    ProxyCommand corkscrew opp.ha.org.hk 8080 %h %p ~/.ssh/proxy_auth
+	
+~/.ssh/proxy_auth
+
+XXXX:YYYY
