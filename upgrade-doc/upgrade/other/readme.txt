@@ -36,6 +36,8 @@ more /opt/logrotate/etc/squid
 
 2. 52a, 52b, 52e
 
+ls -al /opt/nginx/var/log/
+
 crontab -l
 
 cat /opt/crontab/opp-crontab
