@@ -513,8 +513,6 @@ NR>1 && $4 !~ /127.0.0.1/ && $4 !~ /::1/ && $4 !~ /:8080/ {
 
 ---
 
-github
-_pat_
 11AAT7BZY0R6xlX2TwpatK_LjlyQcC0qQDGolwszfYPVultVtJubL8u7CifdWCLVFCRLHON7AYHseKyp6X
 
 
