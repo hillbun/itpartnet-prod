@@ -83,6 +83,41 @@ add this line:
 net.netfilter.nf_conntrack_max = 4194304
 
 
+---
+more /proc/net/nf_conntrack  |grep -v '127.0.0.1'
+ipv4     2 tcp      6 431998 ESTABLISHED src=192.168.1.189 dst=192.168.1.162 sport=59564 dport=22 src=192.168.1.162 dst=192.168.1.189 sport=22 dport=59564 [ASSURED] mark=0 zone=0 use=2
+ipv4     2 tcp      6 431993 ESTABLISHED src=192.168.1.189 dst=192.168.1.162 sport=49040 dport=22 src=192.168.1.162 dst=192.168.1.189 sport=22 dport=49040 [ASSURED] mark=0 zone=0 use=2
+ipv4     2 tcp      6 431992 ESTABLISHED src=192.168.1.189 dst=192.168.1.162 sport=33340 dport=22 src=192.168.1.162 dst=192.168.1.189 sport=22 dport=33340 [ASSURED] mark=0 zone=0 use=2
+ipv4     2 tcp      6 431984 ESTABLISHED src=10.2.3.94 dst=10.2.3.162 sport=51579 dport=8080 src=10.2.3.162 dst=10.2.3.94 sport=8080 dport=51579 [ASSURED] mark=0 zone=0 use=2
+ipv4     2 icmp     1 20 src=10.2.3.76 dst=10.2.3.162 type=8 code=0 id=7734 src=10.2.3.162 dst=10.2.3.76 type=0 code=0 id=7734 mark=0 zone=0 use=2
+ipv4     2 tcp      6 431993 ESTABLISHED src=192.168.1.189 dst=192.168.1.162 sport=38248 dport=22 src=192.168.1.162 dst=192.168.1.189 sport=22 dport=38248 [ASSURED] mark=0 zone=0 use=2
+ipv4     2 udp      17 5 src=0.0.0.0 dst=255.255.255.255 sport=68 dport=67 [UNREPLIED] src=255.255.255.255 dst=0.0.0.0 sport=67 dport=68 mark=0 zone=0 use=2
+ipv4     2 tcp      6 431994 ESTABLISHED src=192.168.1.189 dst=192.168.1.162 sport=48622 dport=22 src=192.168.1.162 dst=192.168.1.189 sport=22 dport=48622 [ASSURED] mark=0 zone=0 use=2
+ipv4     2 tcp      6 431989 ESTABLISHED src=192.168.40.62 dst=10.2.3.162 sport=42048 dport=9100 src=10.2.3.162 dst=192.168.40.62 sport=9100 dport=42048 [ASSURED] mark=0 zone=0 use=2
+ipv4     2 tcp      6 431996 ESTABLISHED src=192.168.1.189 dst=192.168.1.162 sport=44856 dport=22 src=192.168.1.162 dst=192.168.1.189 sport=22 dport=44856 [ASSURED] mark=0 zone=0 use=2
+ipv4     2 tcp      6 299 ESTABLISHED src=192.168.1.189 dst=192.168.1.162 sport=43746 dport=22 src=192.168.1.162 dst=192.168.1.189 sport=22 dport=43746 [ASSURED] mark=0 zone=0 use=2
+ipv4     2 tcp      6 431998 ESTABLISHED src=192.168.1.189 dst=192.168.1.162 sport=34766 dport=22 src=192.168.1.162 dst=192.168.1.189 sport=22 dport=34766 [ASSURED] mark=0 zone=0 use=2
+ipv4     2 tcp      6 431995 ESTABLISHED src=192.168.1.189 dst=192.168.1.162 sport=51284 dport=22 src=192.168.1.162 dst=192.168.1.189 sport=22 dport=51284 [ASSURED] mark=0 zone=0 use=2
+ipv4     2 udp      17 27 src=192.168.1.2 dst=255.255.255.255 sport=55330 dport=4680 [UNREPLIED] src=255.255.255.255 dst=192.168.1.2 sport=4680 dport=55330 mark=0 zone=0 use=2
+ipv4     2 icmp     1 20 src=10.2.3.76 dst=10.2.3.162 type=8 code=0 id=7728 src=10.2.3.162 dst=10.2.3.76 type=0 code=0 id=7728 mark=0 zone=0 use=2
+ipv4     2 tcp      6 431849 ESTABLISHED src=10.2.3.162 dst=74.125.204.188 sport=17228 dport=5228 src=74.125.204.188 dst=10.2.3.162 sport=5228 dport=17228 [ASSURED] mark=0 zone
 
 
 
+
+
+字段含义（从左到右）：
+
+字段	示例值	解释
+协议族名	ipv4	IPv4
+协议族数值	2	AF_INET 在内核中的宏定义值（2）
+传输层协议名	tcp	TCP 协议
+传输层协议号	6	TCP 的 IP 协议号（6）
+剩余生存时间（秒）	431998	此条目再过这么多秒就会超时删除（如果无新数据包刷新）
+连接状态	ESTABLISHED	TCP 连接状态（ESTABLISHED 表示已建立）
+原始方向元组	src=192.168.1.189 dst=192.168.1.162 sport=59564 dport=22	发起方 IP/端口 → 目标 IP/端口
+回复方向元组	src=192.168.1.162 dst=192.168.1.189 sport=22 dport=59564	预期的回复包方向（源/目的与原始方向互换）
+标志	[ASSURED]	连接已双向通信（见下文）
+防火墙标记	mark=0	未设置 netfilter 标记
+zone	zone=0	conntrack zone，用于虚拟化隔离
+引用计数	use=2	有 2 个地方正在使用此条目
