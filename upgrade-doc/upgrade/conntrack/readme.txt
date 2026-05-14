@@ -62,7 +62,7 @@ verify
 9.grep "^ipv4 .* tcp" /proc/net/nf_conntrack | awk '{print $6}' | sort | uniq -c | sort -nr
 10.cat /proc/net/nf_conntrack | grep -o 'src=[0-9.]*' | cut -d= -f2 | sort | uniq -c | sort -nr
 11.cat /proc/net/nf_conntrack | grep -o 'dst=[0-9.]*' | cut -d= -f2 | sort | uniq -c | sort -nr
-12.cat /proc/net/nf_conntrack | awk '{if($0 ~ /\[ASSURED\]/) a="[ASSURED]"; else a="[UN-ASSURED]"; print $3, $4, $5, a}' | sort | uniq -c | sort -nr
+12.cat /proc/net/nf_conntrack | grep -v "127.0.0.1" | awk '{if($0 ~ /\[ASSURED\]/) a="[ASSURED]"; else a="[UN-ASSURED]"; print $3, $4, $5, a}' | sort | uniq -c | sort -nr
 
 13.awk -F'[][]' '$2 <= "30/Apr/2026:11:00:00"' /opt/squid/var/log/access.log | awk '{print $9}' | sort | uniq -c
 14.awk -F'[][]' '$2 >= "30/Apr/2026:11:00:00"' /opt/squid/var/log/access.log | awk '{print $9}' | sort | uniq -c
