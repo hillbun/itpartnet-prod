@@ -22,7 +22,37 @@ NGINX Open Source 0.6.27 至 1.30.0 全系，NGINX Plus R32 至 R36，以及 NGI
 
 已发布修复版本：NGINX Open Source 用户应升级至 1.31.0 或 1.30.1，NGINX Plus 用户应升级至 R36 P4 或 R32 P6，升级后需重启服务使补丁生效。对于暂时无法升级的用户，可通过将配置中所有未命名捕获组（$1、$2）替换为命名捕获组的方式规避触发条件。排查方法为：确认已安装的 NGINX 版本区间，并在配置文件中检索同时含有未命名捕获组与问号替换字符串的 rewrite 指令。
 
+怎么排查与修复？
+由于当前已有针对此漏洞的活跃攻击，如果你的 IT 架构中大量使用了 NGINX 作反向代理，建议立即按以下步骤处置：
 
+第一步：快速全局排查漏洞配置
+在你的服务器上执行以下命令，扫描所有 NGINX 配置文件中是否存在使用未命名捕获组的重写规则：
+
+Bash
+nginx -T 2>/dev/null | grep -E 'rewrite.*\$[0-9]'
+如果有输出，说明你的重写规则满足了部分触发条件，需提高警惕并审查这些规则。
+
+如果无输出，说明你目前的配置基本免疫该漏洞的直接攻击，但依然建议升级二进制文件。
+
+第二步：临时缓解方案（如果不方便立即升级）
+如果你无法立刻编译或更新 NGINX 版本，可以通过修改 NGINX 配置来绕过这个 Bug：
+
+改用具名捕获组（Named Captures）：将类似 $1 的未命名捕获，改为可读性更好的具名捕获，这样会直接避开漏洞代码路径。
+
+⚠️ 修改前（有风险）：
+
+Nginx
+rewrite ^/user/(.*)$ /profile?name=$1 break;
+" 修复后（安全）：
+
+Nginx
+rewrite ^/user/(?<username>.*)$ /profile?name=$username break;
+第三步：彻底修复（升级版本）
+官方和各大 Linux 发行版（如 Red Hat、AlmaLinux、Ubuntu 等）已紧急推送了安全补丁：
+
+请将 NGINX 开源版升级至 1.30.1（Stable 稳定版） 或 1.31.1（Mainline 主线版） 及以上。
+
+如果使用的是 OpenResty，请关注官方后续针对该 CVE 的版本修正更新。
 
 
 ---
@@ -53,5 +83,55 @@ https://nginx.org/download/nginx-1.30.1.tar.gz
 /opt/nginx/sbin/nginx -V
 
 
-			
-			
+
+---
+192.168.1.162
+
+/opt/nginx/sbin/nginx -s quit
+
+
+nginx version: openresty/1.25.3.1
+
+--prefix=/usr/local/openresty/nginx --with-cc-opt=-O2 --add-module=../ngx_devel_kit-0.3.3 --add-module=../echo-nginx-module-0.63 --add-module=../xss-nginx-module-0.06 --add-module=../ngx_coolkit-0.2 --add-module=../set-misc-nginx-module-0.33 --add-module=../form-input-nginx-module-0.12 --add-module=../encrypted-session-nginx-module-0.09 --add-module=../srcache-nginx-module-0.33 --add-module=../ngx_lua-0.10.26 --add-module=../ngx_lua_upstream-0.07 --add-module=../headers-more-nginx-module-0.37 --add-module=../array-var-nginx-module-0.06 --add-module=../memc-nginx-module-0.20 --add-module=../redis2-nginx-module-0.15 --add-module=../redis-nginx-module-0.3.9 --add-module=../rds-json-nginx-module-0.16 --add-module=../rds-csv-nginx-module-0.09 --add-module=../ngx_stream_lua-0.0.14 --with-ld-opt=-Wl,-rpath,/usr/local/openresty/luajit/lib --with-http_ssl_module --with-http_v2_module --with-http_sub_module --with-http_stub_status_module --with-threads --with-compat --add-dynamic-module=/root/openresty-1.25.3.1/../headers-more-nginx-module --sbin-path=/usr/local/nginx/sbin/nginx --conf-path=/usr/local/nginx/conf/nginx.conf --with-stream --without-pcre2 --with-stream_ssl_module --with-stream_ssl_preread_module
+
+
+poxpxyvmcprd41a
+
+nginx version: openresty/1.25.3.1
+
+--prefix=/usr/nginx/openresty/nginx --with-cc-opt=-O2 --add-module=../ngx_devel_kit-0.3.3 --add-module=../echo-nginx-module-0.63 --add-module=../xss-nginx-module-0.06 --add-module=../ngx_coolkit-0.2 --add-module=../set-misc-nginx-module-0.33 --add-module=../form-input-nginx-module-0.12 --add-module=../encrypted-session-nginx-module-0.09 --add-module=../srcache-nginx-module-0.33 --add-module=../ngx_lua-0.10.26 --add-module=../ngx_lua_upstream-0.07 --add-module=../headers-more-nginx-module-0.37 --add-module=../array-var-nginx-module-0.06 --add-module=../memc-nginx-module-0.20 --add-module=../redis2-nginx-module-0.15 --add-module=../redis-nginx-module-0.3.9 --add-module=../rds-json-nginx-module-0.16 --add-module=../rds-csv-nginx-module-0.09 --add-module=../ngx_stream_lua-0.0.14 --with-ld-opt=-Wl,-rpath,/usr/nginx/openresty/luajit/lib --with-http_ssl_module --with-http_v2_module --with-http_sub_module --with-http_stub_status_module --with-threads --with-compat --add-dynamic-module=/root/openresty-1.25.3.1/../headers-more-nginx-module --sbin-path=/usr/nginx/sbin/nginx       --conf-path=/usr/nginx/conf/nginx.conf       --with-stream --without-pcre2 --with-stream_ssl_module --with-stream_ssl_preread_module
+
+
+
+41,51
+
+unknow
+
+42,52
+
+nginx version: nginx/1.25.5
+
+./configure --user=nginx --group=nginx --prefix=/opt/nginx \
+--with-cc-opt=-O2 \
+--with-http_ssl_module \
+--with-http_v2_module \
+--with-http_sub_module \
+--with-http_stub_status_module \
+--with-threads \
+--with-compat \
+--add-module=../headers-more-nginx-module-0.34 \
+--sbin-path=/opt/nginx/sbin/nginx \
+--conf-path=/opt/nginx/conf/nginx.conf \
+--with-stream \
+--without-pcre2 \
+--with-stream_ssl_module \
+--with-stream_ssl_preread_module
+
+
+
+---
+
+
+new version
+
+nginx-1.30.1
