@@ -521,3 +521,15 @@ more ~/.ssh/id_rsa.pub
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC8waGtatdgTTjZhiqYT5i8jJV3Nkn0toBNJYM6CMFbCVVvHIySM2Xh0b77eCX7zHDWJuUjah5oNjOS7if1PPWtIxQ/2lapFdHD5FJAXQqnnjMiD3UixUzss6azpABeHMdyrzfuO1qyHK2YAlhcEaluf11GMgEXIJgFpcvcEEW9gT6MnulwtHa677/x
 1HzDPPy6xbg+frDTi4kbka08KEDWyQjZ4XvRsVrBlV9x9w5VGPx4dPRqlVf1kvkM/6fmbEVCnx7mdMpLe5GqJNgOB+9MSQ6J7fIW9PTOKmK/+Gw0GzPDwoRmbimlVVIMUSCechzPsk87u/nN7W1gSVUwbWZ3fL/f83pyfphHBYVPiGgt0LApwRe+rZscrdV3oi7KlnCoOr9zHjZJZysywWMkzbAVYc6D
 4eF/BaNNQkez65tv0qSOGvYEz05U/wBTiaoCluKGN1RscMgzUALm/n2mhAu1Jv9pT0MaMujXnv3TWibw/RCKRPyhQqgUrNYo6vaHYOE= suoa@N5-INET-AC
+
+
+
+---
+
+
+--prefix=/usr/nginx/openresty/nginx --with-cc-opt=-O2 --add-module=../ngx_devel_kit-0.3.3 --add-module=../echo-nginx-module-0.63 --add-module=../xss-nginx-module-0.06 --add-module=../ngx_coolkit-0.2 --add-module=../set-misc-nginx-module-0.33 --add-module=../form-input-nginx-module-0.12 --add-module=../encrypted-session-nginx-module-0.09 --add-module=../srcache-nginx-module-0.33 --add-module=../ngx_lua-0.10.26 --add-module=../ngx_lua_upstream-0.07 --add-module=../headers-more-nginx-module-0.37 --add-module=../array-var-nginx-module-0.06 --add-module=../memc-nginx-module-0.20 --add-module=../redis2-nginx-module-0.15 --add-module=../redis-nginx-module-0.3.9 --add-module=../rds-json-nginx-module-0.16 --add-module=../rds-csv-nginx-module-0.09 --add-module=../ngx_stream_lua-0.0.14 --with-ld-opt=-Wl,-rpath,/usr/nginx/openresty/luajit/lib --with-http_ssl_module --with-http_v2_module --with-http_sub_module --with-http_stub_status_module --with-threads --with-compat --add-dynamic-module=/root/openresty-1.25.3.1/../headers-more-nginx-module --sbin-path=/usr/nginx/sbin/nginx --conf-path=/usr/nginx/conf/nginx.conf --with-stream --without-pcre2 --with-stream_ssl_module --with-stream_ssl_preread_module
+
+
+
+
+
