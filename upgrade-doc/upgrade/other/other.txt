@@ -53,6 +53,14 @@ Bandwidth: 🔴 > 900Mb/s, 🟠 > 800Mb/s, 🟡 > 700Mb/s<br />
 Connections: 🔴 > 53000, 🟠 > 50000, 🟡 > 47000<br />
 Conntrack: 🔴 > 3774873, 🟠 > 3565158, 🟡 > 3355443
 
+conntrack_max
+52a-52d:   262144
+52e:   4194304
+
+4194304   0.90   0.85    0.80
+262144    235930  222822  209515
+
+
 
 <div style="display: flex; gap: 10px;">
   <div style="background: rgb(224, 47, 68); width: 100px; height: 50px; display: flex; align-items: center; justify-content: center; color: white;">
