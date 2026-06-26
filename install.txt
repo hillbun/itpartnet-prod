@@ -21,6 +21,9 @@ Not Applicable
 https://remote.ha.org.hk/
 https://haportal.ha.org.hk/
 
+https://tkm.itpartners.lan/
+10.2.5.12 tkm.itpartners.lan
+
 https://hateams.ha.org.hk/workgroups/group/13446/disk/path/Open-Platform_Proxy_Solution/upgrade-procedure/
 
 
@@ -102,6 +105,11 @@ https://ka9rcghfcff.feishu.cn/sheets/ZQSCsPCPoh7lEwtVRkCcKwjLnSd?sheet=P0fxsP
 
 User Issue LIST
 https://ka9rcghfcff.feishu.cn/sheets/ZQSCsPCPoh7lEwtVRkCcKwjLnSd?sheet=AwhtGq
+
+
+异常分析
+https://ka9rcghfcff.feishu.cn/sheets/ZQSCsPCPoh7lEwtVRkCcKwjLnSd?sheet=WlAdAp
+
 
 
 
