@@ -110,6 +110,9 @@ https://ka9rcghfcff.feishu.cn/sheets/ZQSCsPCPoh7lEwtVRkCcKwjLnSd?sheet=AwhtGq
 异常分析
 https://ka9rcghfcff.feishu.cn/sheets/ZQSCsPCPoh7lEwtVRkCcKwjLnSd?sheet=WlAdAp
 
+周报
+https://ka9rcghfcff.feishu.cn/drive/folder/ZxdqfhcQQlu0Gcdpz0vcQEDHnab?from=space_personal_filelist&fromShareWithMeNew=1
+
 
 
 
@@ -145,7 +148,9 @@ centos8.4-物理机
 redhat-transproxy-manager
 192.168.40.62
 
-
+---
+https://hkch-cep-kb-plte:5601/s/n5/login?next=%2Fs%2Fn5%2Fapp%2Fdiscover#/
+3XR7m22E
 
 ---
 https://wps365.home/weboffice/l/stJaf4i7SCTgI
@@ -218,6 +223,16 @@ poxappprd52b  192.168.152.121 	DC7
 poxappprd52c  192.168.152.122	DC7
 poxappprd52d  192.168.152.123 	DC7
 poxappprd52e  192.168.152.124 	DC7
+
+
+---
+
+poxappprd42f（Extranet） root pox@N5OPP
+poxappprd52f（Extranet） root h0TjKi348UOT
+poxappprd42g（eHealth）  root 09^!U'aqG&7P
+poxappprd52g（eHealth）  root rFzzN1f9X4rB
+
+---
 
 
 pox@N5OPP
