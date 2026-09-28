@@ -81,6 +81,9 @@ https://ka9rcghfcff.feishu.cn/drive/folder/Qzd3fkfOsl2eOwdRbP2cKFtDn3f
 ROLLOUT
 https://ka9rcghfcff.feishu.cn/sheets/ZQSCsPCPoh7lEwtVRkCcKwjLnSd?sheet=MDvHFV
 
+Operation Records
+https://ka9rcghfcff.feishu.cn/sheets/ZQSCsPCPoh7lEwtVRkCcKwjLnSd?sheet=lqW2Nm
+
 
 RELOAD TIMEOUT
 https://ka9rcghfcff.feishu.cn/sheets/ZQSCsPCPoh7lEwtVRkCcKwjLnSd?sheet=K7VFCs
@@ -252,6 +255,9 @@ poxadm@poxpxyvmcprd51a
 poxadm
 Q8b/c#F8633
 
+192.168.153.195
+poxpxyvmcprd51a.server.ha.org.hk
+
 
 ---
 management platform
@@ -400,7 +406,7 @@ cd squid-6.11
     --enable-auth-ntlm=SMB_LM,fake \
     --enable-auth-digest=file,LDAP \
     --enable-auth-negotiate=kerberos \
-    --enable-external-acl helpers=LDAP_group,time_quota,session,unix_group,wbinfo_group,kerberos_ldap_group \
+    --enable-external-acl-helpers="LDAP_group,time_quota,session,unix_group,wbinfo_group,kerberos_ldap_group" \
     --enable-storeid-rewrite-helpers=file \
     --enable-cache-digests \
     --enable-cachemgr-hostname=localhost \
