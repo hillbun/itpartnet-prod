@@ -282,6 +282,10 @@ https://dc6-cep-kb-prd.server.ha.org.hk:5601
 LH511
 tyP6Jx?urY1
 
+ELK prod
+
+https://dc8-ilap-kb-prd.server.ha.org.hk:5601
+
 ---
 GRAFANA
 
